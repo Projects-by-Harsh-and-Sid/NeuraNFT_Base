@@ -1,0 +1,122 @@
+/* App.css */
+.main-container{
+  min-height: 100vh;
+  background-color: #000000;
+  background-image: url('tron.jpeg');
+  background-size: cover; /* Cover the entire body */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  /* make the backgrounf more opaque */
+  opacity: 0.99;
+  /* decrease image size */
+  background-size: 100%;
+  /* shift background image to down */
+  background-position: 0px -90px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: black;
+  padding: 10px 20px;
+  color: white;
+
+}
+
+.navbar-brand {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: white !important;
+  margin-left: 20px;
+}
+
+.navbar-menu {
+  position: relative;
+}
+.dropdown-button {
+  background-color: transparent;
+  border: 1px solid gray;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 4px;
+  color: gray;
+}
+
+.connect-button{
+  background-color: red;
+  border: transparent;
+  padding: 5px 10px;
+  font-size: 1em;
+  cursor: pointer;
+  border-radius: 4px;
+  color:white;
+}
+
+
+.dropdown-menu {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 100%;
+}
+.dropdown-menu button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+.dropdown-item:hover {
+  background-color: #f3f4f6;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu button {
+  background: none;
+  border: none;
+  padding: 0.5rem 1rem;
+  text-align: left;
+  cursor: pointer;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  right: 0;
+  background-color: white;
+  min-width: 160px;
+  border: 1px solid #ddd;
+  z-index: 1;
+  border-radius: 4px;
+}
+
+.dropdown-content a,
+.dropdown-content button {
+  color: black;
+  padding: 10px 16px;
+  text-decoration: none;
+  display: block;
+  background-color: white;
+  border: none;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.dropdown-content a:hover,
+.dropdown-content button:hover {
+  background-color: #f1f1f1;
+}
+
+.show {
+  display: block;
+}
