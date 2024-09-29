@@ -26,12 +26,14 @@ const actions = [
       id: 1,
       name: "Your Collections",
       image: create,
+      description: "This is a description for Action 1",
       action: () => navigate("/profile"),
     },
     {
       id: 2,
       name: "All Collections",
       image: gradient,
+      description: "This is a description for Action 1",
       action: () => {
         setActiveTab("allCollections");
         scrollToSection(allCollectionsRef);
@@ -41,18 +43,21 @@ const actions = [
       id: 3,
       name: "Create Collections",
       image: night,
+      description: "This is a description for Action 1",
       action: handleCreateCollection,
     },
     {
       id: 4,
       name: "My NFTs",
       image: allnfts,
+      description: "This is a description for Action 1",
       action: () => navigate("/profile"),
     },
     {
       id: 5,
       name: "All NFTs",
       image: mynfts,
+      description: "This is a description for Action 1",
       action: () => {
         setActiveTab("allNFTs");
         scrollToSection(allCollectionsRef);
@@ -69,7 +74,7 @@ const actions = [
       <button className={styles.scrollArrowLeft} onClick={() => scrollGrid(actionsRef, 'left')}>
             &#8249;
           </button> */}
-      <div className={styles.actionsGrid}>
+      {/* <div className={styles.actionsGrid}>
         {actions.map((action) => (
           <div
             key={action.id}
@@ -80,7 +85,30 @@ const actions = [
             <h3 className={styles.actionCardTitle}>{action.name}</h3>
           </div>
         ))}
+      </div> */}
+      {/* <div className={styles.actionsGrid}>
+  {actions.map((action) => (
+    <div key={action.id} className={styles.actionCard} onClick={action.action}>
+      <img src={action.image} alt={action.name} />
+      <div className={styles.actionCardContent}>
+        <h3 className={styles.actionCardTitle}>{action.name}</h3>
+        <p className={styles.actionCardInfo}>{action.description}</p>
       </div>
+    </div>
+  ))}
+</div> */}
+<div className={styles.actionsGrid}>
+  {actions.map((action) => (
+    <div key={action.id} className={styles.actionCard} onClick={action.action}>
+      <img src={action.image} alt={action.name} />
+      {/* <h3 className={styles.actionCardTitle}>{action.name}</h3> */}
+      <div className={styles.actionCardContent}>
+        <h3 className={styles.actionCardTitle}>{action.name}</h3>
+        <p className={styles.actionCardInfo}>{action.description}</p>
+      </div>
+    </div>
+  ))}
+</div>
       {/* <button className={styles.scrollArrowRight} onClick={() => scrollGrid(actionsRef, 'right')}>
           &#8250;
         </button>
