@@ -12,6 +12,9 @@ import { Image, Paperclip, Brain, X } from 'lucide-react';
 import TopBar from './TopBar'; // New import
 import night from './night.jpg';
 import { useAppContext } from '../AppContext';
+import ChainSelector from './ChainSelector';
+import allnfts from './allnfts.jpg';
+import mynfts from './mynfts.jpg';
 // import brain image from material-ui
 
 
@@ -27,7 +30,11 @@ function MainComponent() {
   const [activeTab, setActiveTab] = useState('allCollections');
   const navigate = useNavigate();
   const collectionsRef = useRef(null);
+  const actionsRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const allCollectionsRef = useRef(null);
+  const allNFTsRef = useRef(null);
+  
 
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
@@ -115,15 +122,31 @@ function MainComponent() {
     navigate('/your_collections');
   };
 
+
   const handleAllCollection = () => {
+    allCollectionsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
-    navigate('/view_collection');
+  const handleAllNFTs = () => {
+    allNFTsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
+  const scrollToSection = (ref) => {
+    ref.current?.scrollIntoView({ behavior: 'smooth' });
   };
   const actions = [
-    { id: 1, name: 'Your Collections', image: create,action: handleYourCollections },
-    { id: 2, name: 'All Collections', image: gradient,action: handleAllCollection },
+    { id: 1, name: 'Your Collections', image: create,action: () => navigate('/profile') },
+    { id: 2, name: 'All Collections', image: gradient,      action: () => {
+      setActiveTab('allCollections');
+      scrollToSection(allCollectionsRef);
+    }
+},
     { id: 3, name: 'Create Collections', image: night,action: handleCreateCollection },
+    { id: 4, name: 'My NFTs', image: allnfts,action: () => navigate('/profile') },
+    { id: 5, name: 'All NFTs', image: mynfts,action: () => {
+      setActiveTab('allNFTs');
+      scrollToSection(allCollectionsRef);
+    }}
     // { id: 4, name: 'onchain gaias', image: gradient },
 
   ];
@@ -161,6 +184,13 @@ function MainComponent() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const scrollGrid = (ref, direction) => {
+    if (ref.current) {
+      const scrollAmount = direction === 'right' ? 240 : -240;
+      ref.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className={styles.mainContainer}>
       {/* <nav className={styles.navbar}>
@@ -187,7 +217,12 @@ function MainComponent() {
         balance={balance}
       /> */}  
  <TopBar onConnectWallet={handleConnectWallet} />
+ <ChainSelector />
       <div className={styles.content}>
+      {/* <div className={styles.actionsContainer}>
+      <button className={styles.scrollArrowLeft} onClick={() => scrollGrid(actionsRef, 'left')}>
+            &#8249;
+          </button> */}
       <div className={styles.actionsGrid}>
             {actions.map((action) => (
               <div key={action.id} className={styles.actionCard} onClick={action.action}>
@@ -197,6 +232,10 @@ function MainComponent() {
               </div>
             ))}
           </div>
+          {/* <button className={styles.scrollArrowRight} onClick={() => scrollGrid(actionsRef, 'right')}>
+            &#8250;
+          </button>
+        </div> */}
           <h2> Popular Collections</h2>
         <div className={styles.collectionsContainer}>
           <button className={styles.scrollArrowLeft} onClick={() => scrollCollections('left')}>
@@ -226,7 +265,7 @@ function MainComponent() {
           </button>
         </div>
 
-        <div className={styles.tabs}>
+        <div ref={allCollectionsRef}className={styles.tabs}>
           <button 
             className={classNames(styles.tab, { [styles.activeTab]: activeTab === 'allCollections' })}
             onClick={() => setActiveTab('allCollections')}

@@ -4,6 +4,7 @@ import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
+import { useAppContext } from '../AppContext';
 
 const NFTDetailPopup = ({ nft, onClose }) => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -20,6 +21,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
 
     const navigate = useNavigate();
 
+    const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
     const accessLevelDescriptions = {
         'Level 1': 'Viewer - Can view the NFT',
@@ -118,10 +120,22 @@ const NFTDetailPopup = ({ nft, onClose }) => {
             </div>
             <div className={styles.detailsContainer}>
 
+
   
             <div className={styles.tabContent}>
                 {activeTab === 'overview' && (
                   <div className={styles.overviewContent}>
+                                <div className={styles.listingStatusSection}>
+                            <h2 className={styles.listingStatus}>{nft.name}</h2>
+                            <p className={styles.ownerInfo}>
+                                Owned by: <span className={styles.ownerAddress}>{nft.owner}</span>
+                            </p>
+                            {!tronWebState.loggedIn && (
+                                <button className={styles.connectWalletButton} onClick={connectWallet}>
+                                    Connect Wallet
+                                </button>
+                            )}
+                        </div>
                     <div className={styles.descriptionSection}>
                       <h3>NFT Description</h3>
                       <p className={styles.description}>{nft.description}</p>
