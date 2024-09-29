@@ -4,6 +4,7 @@ import styles from '../styles/ViewNFTs.module.css';
 import TopBar from './TopBar';
 import temp from './temp.jpg'; // Placeholder image
 import { useAppContext } from '../AppContext';
+import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
 
 
 const ViewCollectionNFTs = () => {
@@ -11,6 +12,8 @@ const ViewCollectionNFTs = () => {
   const navigate = useNavigate();
   const [collection, setCollection] = useState(null);
   const [nfts, setNfts] = useState([]);
+  const [selectedNFT, setSelectedNFT] = useState(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
@@ -34,19 +37,49 @@ const ViewCollectionNFTs = () => {
     });
   };
 
+  const nfts_temp = [
+    {
+      id: 1,
+      name: 're:gen #3911',
+      collection: 're:generates',
+        image: temp,
+      attributes: [
+        { trait_type: "Model", value: "Llama 3.1", rarity: "90% 0.0037 ETH" },
+        { trait_type: "Context Window", value: "16k tokens", rarity: "24% 0.0037 ETH" },
+        { trait_type: "Total Access", value: "24", rarity: "10% 0.0037 ETH" },
+        { trait_type: "hair", value: "clown_green", rarity: "4% 0.0037 ETH" },
+      ],
+      accessList: [
+        { address: '0x123...', accessLevel: 'Level 1' },
+        { address: '0x456...', accessLevel: 'Level 3' },
+        // ...more entries...
+      ],
+      contractAddress: '0x56...bc4a',
+      tokenId: '4911',
+      tokenStandard: 'ERC-721',
+      owner: '0x58...4c4c',
+      chain: 'Base',
+      description: "This is a unique NFT from the re:generates collection. It features...",
+
+      creatorAddress: "0x9876...5432",
+      ownerAddress: "0x5432...9876",
+    },
+
+    
+    // ... other NFTs
+  ];
+
   const fetchNFTs = () => {
     // Placeholder data. Replace with actual API call
-    setNfts([
-      { id: 1, name: 'NFT #1854', image: temp, price: '0.004 ETH' },
-      { id: 2, name: 'NFT #2628', image: temp, price: '0.004 ETH' },
-      { id: 3, name: 'NFT #2061', image: temp, price: '0.004 ETH' },
-      // Add more NFTs as needed
-    ]);
+    setNfts(nfts_temp);
   };
 
-  const handleNFTClick = (nftId) => {
-    navigate(`/nft/${nftId}`);
+  
+  const handleNFTClick = (nft) => {
+    setSelectedNFT(nft);
+    setIsPopupOpen(true);
   };
+
 
   if (!collection) {
     return <div>Loading...</div>;
@@ -101,7 +134,7 @@ const ViewCollectionNFTs = () => {
           </div>
         </div>
         {nfts.map((nft) => (
-          <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.id)}>
+           <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft)}>
             <img src={nft.image} alt={nft.name} className={styles.nftImage} />
             <div className={styles.nftDetails}>
               <h3>{nft.name}</h3>
@@ -110,6 +143,12 @@ const ViewCollectionNFTs = () => {
           </div>
         ))}
       </div>
+      {isPopupOpen && selectedNFT && (
+        <NFTDetailPopup
+          nft={selectedNFT}
+          onClose={() => setIsPopupOpen(false)}
+        />
+      )}
     </div>
   );
 };

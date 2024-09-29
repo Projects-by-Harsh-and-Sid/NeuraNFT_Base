@@ -7,7 +7,8 @@ function Footer() {
     <footer className={styles.footer}>
       <div className={styles.footerContent}>
         <div className={styles.footerSection}>
-          <h3 className={styles.footerTitle}>NeuraNFT</h3>
+          <h3 className={styles.footerTitle}>
+            NeuraNFT</h3>
           <p className={styles.footerDescription}>
             The largest NFT marketplace and Runes platform. Buy, sell and discover Ordinals and NFTs across multiple blockchains.
           </p>
