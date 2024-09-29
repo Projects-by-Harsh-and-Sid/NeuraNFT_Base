@@ -1,0 +1,52 @@
+/* topbar.module.css */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 20px 20px;
+  }
+  
+  .navbarBrand {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .connectButton {
+    background-color: #e74c3c;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-radius: 4px;
+    color: white;
+  }
+  
+  .walletInfo {
+    position: relative;
+  }
+  
+  .balanceDisplay {
+    background-color: #1e1e1e;
+    border: 1px solid #3a3a3a;
+    border-radius: 8px;
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    font-size: 0.9em;
+  }
+  
+  .balance {
+    margin-right: 10px;
+    font-weight: bold;
+  }
+  
+  .profileImage {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-left: 10px;
+  }

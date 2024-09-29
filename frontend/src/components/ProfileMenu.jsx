@@ -1,16 +1,22 @@
-// ProfileMenu.js
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import temp from './temp.jpg';
 import styles from '../styles/ProfileMenu.module.css';
-import classNames from 'classnames'; // Optional: For handling dynamic class names
+import classNames from 'classnames';
 
 function ProfileMenu({ isOpen, onClose, address, balance }) {
-  // Function to format the address
+  const navigate = useNavigate();
+
   const formatAddress = (addr) => {
     if (addr && addr.length > 10) {
       return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
     }
     return addr || 'Address not available';
+  };
+
+  const handleProfileClick = () => {
+    navigate('/profile'); // Assumes '/profile' is the route for ProfilePage
+    onClose(); // Close the menu after navigation
   };
 
   return (
@@ -25,10 +31,13 @@ function ProfileMenu({ isOpen, onClose, address, balance }) {
         {/* <p>{balance} SOL</p> */}
       </div>
       <div className={styles.menuItems}>
-        <div className={styles.menuItem}>Profile</div>
-        {/* <div className={styles.menuItem}>Rewards</div>
-        <div className={styles.menuItem}>Account Settings</div>
-        <div className={styles.menuItem}>Support</div> */}
+        <button 
+          className={styles.profileButton}
+          onClick={handleProfileClick}
+        >
+          Profile
+        </button>
+        {/* Add other menu items here if needed */}
       </div>
       <div className={styles.menuFooter}>
         <button className={styles.menuFooterButton} onClick={onClose}>

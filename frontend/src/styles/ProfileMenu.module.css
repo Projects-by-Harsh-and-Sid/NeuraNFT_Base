@@ -70,3 +70,20 @@
     right: 0;
     margin-right: 20px;
 }
+
+
+.profileButton {
+    width: 100%;
+    padding: 12px 16px;
+    background-color: transparent;
+    border: none;
+    color: white;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .profileButton:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
