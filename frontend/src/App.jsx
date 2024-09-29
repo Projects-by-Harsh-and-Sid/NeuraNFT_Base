@@ -5,10 +5,10 @@ import MainComponent from './components/HomePage/MainComponent';
 // import ViewCollection from './components/ViewCollection';
 import Profile from './components/Profile/ProfilePage';
 import { AppProvider } from './AppContext';
-import CreateNFTCollection from './components/CreateCollections';
+import CreateNFTCollection from './components/CreateForms/CreateCollections';
 import ViewCollection from './components/ViewCollection';
 import ViewNFTs from './components/NFTs/ViewNFTs';
-import CreateNFT from './components/CreateNFT';
+import CreateNFT from './components/CreateForms/CreateNFT';
 
 function App() {
   return (

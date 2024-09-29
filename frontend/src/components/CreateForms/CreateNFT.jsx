@@ -3,7 +3,7 @@ import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Paperclip, Upload, X, Image , Brain } from 'lucide-react';
 // import { useAppContext } from './AppContext';
-import styles from '../styles/CreateNFT.module.css'; // Updated import
+import styles from './styles/CreateNFT.module.css'; // Updated import
 import { Alert, Snackbar } from '@mui/material';
 
 const CreateNFT = () => {

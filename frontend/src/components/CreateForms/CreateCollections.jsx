@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { Alert, Snackbar } from '@mui/material';
 import { Image } from 'lucide-react';
 // import { mintNFTData } from './metagraph_scripts/mint_functions';
-import styles from '../styles/nft_collections.module.css';
-import { useAppContext } from '../AppContext';
+import styles from './styles/nft_collections.module.css';
+import { useAppContext } from '../../AppContext';
 
 const CreateNFTCollection = () => {
   const navigate = useNavigate();
