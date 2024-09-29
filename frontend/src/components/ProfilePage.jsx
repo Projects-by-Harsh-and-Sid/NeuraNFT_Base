@@ -48,6 +48,9 @@ const ProfilePage = () => {
         { id: 1, name: 'Collection 1', image: temp, numberOfNFTs: 5 },
         { id: 2, name: 'Collection 2', image: temp, numberOfNFTs: 3 },
         { id: 3, name: 'Collection 3', image: temp, numberOfNFTs: 7 },
+
+
+
       ];
     
       const nfts = [

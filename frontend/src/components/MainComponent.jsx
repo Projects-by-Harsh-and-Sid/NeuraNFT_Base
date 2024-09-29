@@ -117,7 +117,7 @@ function MainComponent() {
 
   const handleAllCollection = () => {
 
-    navigate('/all_collections');
+    navigate('/view_collection');
 
   };
   const actions = [

@@ -6,6 +6,9 @@ import MainComponent from './components/MainComponent';
 import Profile from './components/ProfilePage';
 import { AppProvider } from './AppContext';
 import CreateNFTCollection from './components/CreateCollections';
+import ViewCollection from './components/ViewCollection';
+import ViewNFTs from './components/ViewNFTs';
+import CreateNFT from './components/CreateNFT';
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
       <Route path="/view_collection" element={<ViewCollection />} /> */}
       <Route path="/profile" element={<Profile />} />
       <Route path="/create_collection" element={<CreateNFTCollection />} />
+      <Route path="/view_collection" element={<ViewCollection />} />
+      <Route path="/collection/:collectionId" element={<ViewNFTs />} />
+      <Route path="/create_nft" element={<CreateNFT />} />
     </Routes>
     </AppProvider>
   );
