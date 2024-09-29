@@ -15,7 +15,17 @@ const TopBar = ({ onConnectWallet }) => {
 
   return (
     <nav className={styles.navbar}>
-      <div className={styles.navbarBrand}><Brain size={20} /> NeuraNFT</div>
+      <div className={styles.navbarBrand}>
+      <svg width="0" height="0">
+          <linearGradient id="brain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop stopColor="#ff00cc" offset="0%" />
+            <stop stopColor="#3333ff" offset="100%" />
+          </linearGradient>
+        </svg>
+        <Brain size={30} style={{ stroke: "url(#brain-gradient)",
+            marginTop: '-1px', // Adjust this value as needed
+        verticalAlign: 'middle' }} /> NeuraNFT
+        </div>
       <div className={styles.navbarMenu}>
         {!tronWebState.loggedIn ? (
           <button className={styles.connectButton} onClick={onConnectWallet}>

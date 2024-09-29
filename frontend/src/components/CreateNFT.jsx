@@ -1,7 +1,7 @@
 // CreateNFT.js
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Paperclip, Upload, X, Image } from 'lucide-react';
+import { Paperclip, Upload, X, Image , Brain } from 'lucide-react';
 // import { useAppContext } from './AppContext';
 import styles from '../styles/CreateNFT.module.css'; // Updated import
 import { Alert, Snackbar } from '@mui/material';
@@ -213,7 +213,7 @@ const CreateNFT = () => {
               onClick={uploadNFT}
               className={styles.uploadButton}
             >
-              <Upload size={20} /> Upload
+              <Brain size={20} /> Tokenize Knowledge
             </button>
           </div>
         </div>

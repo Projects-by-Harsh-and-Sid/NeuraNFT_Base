@@ -73,7 +73,7 @@ const ProfilePage = () => {
   };
 
   const handleCollectionClick = (collectionId) => {
-    navigate(`/collections/${collectionId}`);
+    navigate(`/collection/${collectionId}`);
   };
 
   const handleNFTClick = (nftId) => {
