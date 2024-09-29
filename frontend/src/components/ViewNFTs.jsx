@@ -60,6 +60,14 @@ const ViewCollectionNFTs = () => {
     setIsPopupOpen(true);
   };
 
+  const formatDate = (timestamp) => {
+    return new Date(timestamp * 1000).toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  };
+
 
   if (!collection) {
     return <div>Loading...</div>;
@@ -81,28 +89,44 @@ const ViewCollectionNFTs = () => {
     <div className={styles.container}>
    <TopBar onConnectWallet={handleConnectWallet} />
       
-      <div className={styles.collectionInfo}>
-        <img src={collection.image} alt={collection.name} className={styles.collectionImage} />
+   {/* <div className={styles.collectionInfo}>
+        <img src={collection.image || temp} alt={collection.name} className={styles.collectionImage} />
         <div className={styles.collectionDetails}>
           <h2 className={styles.collectionName}>{collection.name}</h2>
           <p className={styles.collectionAddress}>{collection.collectionaddress}</p>
-        </div>
-      </div>
-
-      {/* <div className={styles.collectionStats}>
-        <div className={styles.stat}>
-          <span className={styles.statLabel}>Floor Price</span>
-          <span className={styles.statValue}>{collection.floorPrice}</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statLabel}>Top Offer</span>
-          <span className={styles.statValue}>{collection.topOffer}</span>
-        </div>
-        <div className={styles.stat}>
-          <span className={styles.statLabel}>24h Vol</span>
-          <span className={styles.statValue}>{collection.volume}</span>
+          <p className={styles.collectionDescription}>{collection.description}</p>
         </div>
       </div> */}
+            <div className={styles.collectionInfo}>
+        <img src={collection.image || temp} alt={collection.name} className={styles.collectionImage} />
+        <div className={styles.collectionDetails}>
+          <div className={styles.collectionHeader}>
+            <h2 className={styles.collectionName}>{collection.name}</h2>
+            <div className={styles.serverInfo2}>
+              <p className={styles.serverInfo}>No. of Servers</p>
+              <p className={styles.serverCount}>{collection.noOfServers}</p>
+            </div>
+            <div className={styles.serverInfo}>
+            <p className={styles.serverInfo}>Model:</p>
+              <span className={styles.serverCount}>{collection.model}</span>
+            </div>
+            <div className={styles.serverInfo}>
+            <p className={styles.serverInfo}>Date Created: </p>
+              <span className={styles.serverCount}>{new Date(collection.date * 1000).toLocaleDateString()}</span>
+            </div>
+            <div className={styles.serverInfo}>
+            <p className={styles.serverInfo}>ContextWindow: </p>
+              <span className={styles.serverCount}>{collection.contextWindow}</span>
+            </div>
+            <div className={styles.serverInfo3}>
+            <p className={styles.serverInfo}>Number of NFTs: </p>
+              <span className={styles.serverCount}>{collection.noOfNFTs}</span>
+            </div>
+          </div>
+
+          <p className={styles.collectionDescription}>{collection.description}</p>
+        </div>
+      </div>
 
       
 

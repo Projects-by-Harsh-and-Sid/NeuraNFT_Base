@@ -61,6 +61,8 @@ const TopBar = ({ onConnectWallet }) => {
         </div>
         <div className={styles.navItem} onClick={handleMintClick}>Mint</div>
         <div className={styles.navItem} onClick={handleMintClick}>Documentation</div>
+        <div className={styles.navItem} onClick={handleMintClick}>GPU Leading</div>
+
         <div className={`${styles.navItem} ${styles.walletGradient}`} onClick={handleWalletClick}>Wallet</div>
       </div>
       </div>

@@ -10,7 +10,6 @@
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
-    /* background-color: rgba(255, 255, 255, 0.05); */
     margin-bottom: 10px;
   }
   
@@ -24,6 +23,14 @@
   .collectionDetails {
     display: flex;
     flex-direction: column;
+    flex: 1;
+  }
+  
+  .collectionHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
   }
   
   .collectionName {
@@ -32,12 +39,64 @@
     margin: 0;
   }
   
-  .collectionAddress {
-    font-size: 0.9rem;
-    color: #888;
-    margin: 0.25rem 0 0 0;
+  .serverInfo {
+    text-align: right;
+    margin-bottom: 0% !important;
+    /* margin-right: ; */
+  }
+  .serverInfo2{
+    text-align: right;
+    margin-bottom: 0% !important;
+    /* margin-left: 300px;
+     */
+    margin-left: 20%;
+
+  }
+  .serverInfo3{
+    text-align: right;
+    margin-bottom: 0% !important;
+    /* margin-right: 400px; */
+    /* margin-right: 20%; */
   }
   
+  .serverHeading {
+    font-size: 0.9rem;
+    color: #888;
+    margin: 0;
+  }
+  
+  .serverCount {
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  .additionalInfo {
+    display: flex;
+    margin-top: 0.5rem;
+  }
+  
+  .infoItem {
+    margin-right: 2rem;
+  }
+  
+  .infoLabel {
+    font-size: 0.9rem;
+    color: #888;
+    margin-right: 0.5rem;
+  }
+  
+  .infoValue {
+    font-size: 0.9rem;
+  }
+  
+  .collectionDescription {
+    margin-top: -0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+  }
+  
+  /* Rest of your existing CSS */
   .collectionStats {
     display: flex;
     justify-content: space-around;
@@ -68,7 +127,6 @@
     gap: 1rem;
     padding: 0 2rem;
   }
-  
   
   .gridItem {
     background-color: #1A1A1A;
@@ -103,7 +161,7 @@
     font-size: 0.8rem;
     color: #888;
   }
-
+  
   .createNew {
     display: flex;
     justify-content: center;
@@ -128,3 +186,4 @@
     font-size: 0.9rem;
     margin: 0;
   }
+  

@@ -1,16 +1,12 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useAppContext } from './AppContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import { marked } from 'marked'; // Import the marked library
-import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
-import styles from './styles/chat.css';
-
-// import {get_api_key} from './helper_functions/get_chat_data';
-
-// import {get_collection_data , get_nft_data} from './helper_functions/get_chain_data';
+import { marked } from 'marked';
+import DOMPurify from 'dompurify';
+import styles from './Chat.module.css';
 
 const NFTImage = ({ nftImage, name }) => {
-  const [imageError, setImageError] = React.useState(false);
+  const [imageError, setImageError] = useState(false);
 
   const uint8ArrayToBase64 = (uint8Array) => {
     if (!(uint8Array instanceof Uint8Array)) {
@@ -49,7 +45,7 @@ const NFTImage = ({ nftImage, name }) => {
 
   if (imageError || !imageSource) {
     return (
-      <div className="nft-image-placeholder">
+      <div className={styles.nftImagePlaceholder}>
         <p>Image not available for {name || 'Unnamed NFT'}</p>
       </div>
     );
@@ -60,15 +56,13 @@ const NFTImage = ({ nftImage, name }) => {
       src={imageSource}
       alt={name || 'Unnamed NFT'}
       onError={handleImageError}
-      className="nft-image"
+      className={styles.nftImage}
     />
   );
 };
 
-
 const Chat = () => {
-  // const { actor, authClient } = useAppContext();
-  const { collectionId, nftID } = useParams(); // Get nftId from URL
+  const { collectionId, nftID } = useParams();
   const navigate = useNavigate();
   const [chatHistory, setChatHistory] = useState([]);
   const [userInput, setUserInput] = useState('');
@@ -81,21 +75,18 @@ const Chat = () => {
     description: 'No description available',
     model: 'Unknown',
     nft_image: null,
-    
   });
   const [isModelFeaturesOpen, setIsModelFeaturesOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
 
-
-
   useEffect(() => {
     if (collectionId) {
-      fetchNFTDetails();
+    //   fetchNFTDetails();
       initializeChat();
       console.log("Collection ID:", collectionId);
     } else {
-      navigate('/collections'); // Redirect to collections if no NFT ID is provided
+      navigate('/collections');
     }
   }, [collectionId]);
 
@@ -103,47 +94,46 @@ const Chat = () => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatHistory]);
 
-
   const initializeChat = async () => {
 
 
 
     setIsInitializing(true);
 
-    const API_Keys = await get_api_key(collectionId, nftID);
-    const url = API_Keys['hpcEndpoint']+":"+API_Keys['hpcEndpointPort']+"/start_chat";
-    const apiKey = API_Keys['apiKey'];
+    // const API_Keys = await get_api_key(collectionId, nftID);
+    // const url = API_Keys['hpcEndpoint']+":"+API_Keys['hpcEndpointPort']+"/start_chat";
+    // const apiKey = API_Keys['apiKey'];
 
-    // post request to get the jwt token and chat url
+    // // post request to get the jwt token and chat url
 
-    console.log("---------------------------------------------------------------");
-    console.log("API Keys:", apiKey);
-    console.log("URL:", url);
+    // console.log("---------------------------------------------------------------");
+    // console.log("API Keys:", apiKey);
+    // console.log("URL:", url);
 
 
       
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'X-API-Key': apiKey
-      },}
+    // const response = await fetch(url, {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'X-API-Key': apiKey
+    //   },}
      
-    );
+    // );
 
-    const decoded_response = await response.json();
+    // const decoded_response = await response.json();
 
-    const jwt_Token = decoded_response['jwt_token'];
+    // const jwt_Token = decoded_response['jwt_token'];
 
-    console.log("JWT Token:", jwt_Token);
+    // console.log("JWT Token:", jwt_Token);
 
-    setJwtToken(jwt_Token);
-    setChatUrl(decoded_response['url']);
+    // setJwtToken(jwt_Token);
+    // setChatUrl(decoded_response['url']);
 
 
 
-    // console.log("Response:", response);
-    setIsInitializing(false);
+    // // console.log("Response:", response);
+    // setIsInitializing(false);
 
   };
 
@@ -169,10 +159,9 @@ const Chat = () => {
 
 
   };
-
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault(); // Prevents default behavior (like adding a newline)
+      event.preventDefault();
       sendMessage();
     }
   };
@@ -197,55 +186,6 @@ const Chat = () => {
     setIsTyping(false);
   };
 
-
-  // const sendMessage = async () => {
-  //   if (!userInput.trim()) return;
-
-  //   const newUserMessage = { type: 'user', content: userInput };
-  //   setChatHistory(prevHistory => [...prevHistory, newUserMessage]);
-  //   setIsLoading(true);
-
-  //   setUserInput(''); // Clear the input field
-
-  //   try {
-  //     const response = await fetch('https://1889-115-117-107-100.ngrok-free.app/chat', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json',
-  //         'Authorization': jwtToken
-  //       },
-  //       body: JSON.stringify({ query: userInput, url: ChatUrl }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error(`HTTP error! status: ${response.status}`);
-  //     }
-  //     const responseData = await response.json();
-
-  //     const rawMarkdown = responseData.answer || 'No answer provided';
-  //     console.log("Raw Markdown:", rawMarkdown);
-  //     const sanitizedHtml = DOMPurify.sanitize(marked(rawMarkdown));
-
-      
-  //   const wrappedHtml = `<div class="bot-response">${sanitizedHtml}</div>`;
-
-  //   const newBotMessage = {
-  //     type: 'bot',
-  //     content: wrappedHtml
-  //   };
-  //     setChatHistory(prevHistory => [...prevHistory, newBotMessage]);
-  //   } catch (error) {
-  //     console.error('Error sending message:', error);
-  //     const errorMessage = {
-  //       type: 'bot',
-  //       content: `An error occurred: ${error.message}`
-  //     };
-  //     setChatHistory(prevHistory => [...prevHistory, errorMessage]);
-  //   } finally {
-  //     setIsLoading(false);
-  //     setUserInput('');
-  //   }
-  // };
 
   const sendMessage = async () => {
     if (!userInput.trim() || isLoading || isInitializing) return;
@@ -286,53 +226,49 @@ const Chat = () => {
       setIsLoading(false);
     }
   };
-
   return (
-  <div className="chat-page">
-    <div className="sidebar">
-    {nftDetails && (
-      <>
-    <img
-      src={nftDetails.nft_image}
-      alt={nftDetails.name || 'Unnamed NFT'}
-
-      className="nft-image"
-    />
-        <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
-        <p>{nftDetails.description || 'No description available'}</p>
-        <div className="model-info">
-        <div className="model-tag" onClick={toggleModelFeatures}>
-                <span className="model-name">
+    <div className={styles.chatPage}>
+      <div className={styles.sidebar}>
+        {nftDetails && (
+          <>
+            <img
+              src={nftDetails.nft_image}
+              alt={nftDetails.name || 'Unnamed NFT'}
+              className={styles.nftImage}
+            />
+            <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
+            <p>{nftDetails.description || 'No description available'}</p>
+            <div className={styles.modelInfo}>
+              <div className={styles.modelTag} onClick={toggleModelFeatures}>
+                <span className={styles.modelName}>
                   Model: {nftDetails.model || 'Unknown'}
                 </span>
-                <span className="arrow-down"></span>
+                <span className={styles.arrowDown}></span>
               </div>
               {isModelFeaturesOpen && (
-                <ul className="model-features">
+                <ul className={styles.modelFeatures}>
                   <li>Content window: 16k</li>
                 </ul>
               )}
             </div>
-      </>
-    )}
-  </div>
-    <div className="chat-container">
-      
-      <h2 className="chat-header">Chat with NFT: {nftDetails.name}</h2>
-      <div className="chat-messages">
-      <div className="chat-messages">
+          </>
+        )}
+      </div>
+      <div className={styles.chatContainer}>
+        <h2 className={styles.chatHeader}>Chat with NFT: {nftDetails.name}</h2>
+        <div className={styles.chatMessages}>
           {chatHistory.map((message, index) => (
-            <div key={index} className={`message ${message.type}-message`}>
+            <div key={index} className={message.type === 'user' ? styles.userMessage : styles.botMessage}>
               {message.type === 'bot' ? (
-                <div className="bot-para" dangerouslySetInnerHTML={{ __html: message.content }} />
+                <div className={styles.botPara} dangerouslySetInnerHTML={{ __html: message.content }} />
               ) : (
                 <p>{message.content}</p>
               )}
             </div>
           ))}
           {isTyping && (
-            <div className="message bot-message">
-              <div className="typing-indicator">
+            <div className={styles.botMessage}>
+              <div className={styles.typingIndicator}>
                 <span></span>
                 <span></span>
                 <span></span>
@@ -342,34 +278,32 @@ const Chat = () => {
           <div ref={chatEndRef} />
         </div>
         {isLoading && (
-          <div className="loading-indicator"></div>
+          <div className={styles.loadingIndicator}></div>
         )}
       </div>
-      <div className="chat-input-container">
-      {isInitializing && (
-          <div className="initializing-message">Loading your model...</div>
+      <div className={styles.chatInputContainer}>
+        {isInitializing && (
+          <div className={styles.initializingMessage}>Loading your model...</div>
         )}
         <input
-          className="chat-input"
+          className={styles.chatInput}
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           placeholder="Type your message..."
           onKeyDown={handleKeyDown}
-          // disabled={isLoading || isInitializing}
         />
         <button 
-          className="send-button"
+          className={styles.sendButton}
           onClick={sendMessage} 
           disabled={isLoading || isInitializing}
         >
-          <svg className="send-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className={styles.sendIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
       </div>
-    </div>
     </div>
   );
 }

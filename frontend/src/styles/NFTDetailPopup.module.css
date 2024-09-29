@@ -20,7 +20,7 @@
 
   
   .popup {
-    background-color: #1a1a2e;
+    background-color: #0e0e11;
     border-radius: 10px;
     width: 90%;
     max-width: 900px;
@@ -34,7 +34,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #2a2a3e;
+    border-bottom: 1px solid #202026;
   }
   
   .title {
@@ -92,12 +92,12 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    border-left: 1px solid #2a2a3e;
+    border-left: 1px solid #202026;
   }
   
   .tabs {
     display: flex;
-    border-bottom: 1px solid #2a2a3e;
+    border-bottom: 1px solid #202026;
   }
   
   .tab {
@@ -133,7 +133,7 @@
   }
   
   .attributeItem {
-    background-color: #2a2a3e;
+    background-color: #202026;
     padding: 10px;
     border-radius: 5px;
   }
@@ -163,7 +163,7 @@
   
   .accessListItem {
     padding: 5px 0;
-    border-bottom: 1px solid #2a2a3e;
+    border-bottom: 1px solid #202026;
     color: #a0a0a0;
   }
   
@@ -174,7 +174,7 @@
 
   .detailsSection {
     margin-top: 20px;
-    background-color: #2a2a3e;
+    background-color: #202026;
     border-radius: 10px;
     overflow: hidden;
   }
@@ -250,7 +250,7 @@
   }
 
   .accessDetailSection {
-    background-color: #2a2a3e;
+    background-color: #202026;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 20px;
@@ -290,7 +290,7 @@
     justify-content: space-between;
     padding: 10px;
     color: #a0a0a0;
-    border-bottom: 1px solid #2a2a3e;
+    border-bottom: 1px solid #202026;
   }
   
   .accessListHeaderItem {
@@ -302,7 +302,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #2a2a3e;
+    background-color: #202026;
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;
@@ -329,7 +329,7 @@
     position: absolute;
     bottom: 100%;
     right: 0;
-    background-color: #2a2a3e;
+    background-color: #202026;
     color: #fff;
     padding: 5px;
     border-radius: 5px;
@@ -339,6 +339,7 @@
     transition: opacity 0.2s;
     margin-bottom: 5px;
     z-index: 10;
+    border: 1px solid #ff69b4;
   }
   
   .accessLevel:hover::after {
@@ -503,7 +504,7 @@
   }
 
   .listingStatusSection {
-    background-color: #2a2a3e;
+    background-color: #202026;
     border-radius: 10px;
     padding: 20px;
     /* margin-bottom: 20px; */

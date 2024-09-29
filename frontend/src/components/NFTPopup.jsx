@@ -231,6 +231,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                         
                     <div className={styles.buttonContainer}>
                       <button className={styles.actionButton2}>Add Access</button>
+                      <button className={styles.actionButton2}>Update Access</button>
 
                     </div>    
                   </div>
