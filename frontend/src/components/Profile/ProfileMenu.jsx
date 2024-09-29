@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import DefaultImage from './DefaultImage.jpg';
-import styles from '../styles/ProfileMenu.module.css';
+import styles from './styles/ProfileMenu.module.css';
 import classNames from 'classnames';
 
 function ProfileMenu({ isOpen, onClose, address, balance }) {

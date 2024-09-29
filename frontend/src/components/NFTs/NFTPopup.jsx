@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import styles from '../styles/NFTDetailPopup.module.css';
+import styles from './styles/NFTDetailPopup.module.css';
 import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../../AppContext';
 
 const NFTDetailPopup = ({ nft, onClose }) => {
     const [activeTab, setActiveTab] = useState('overview');

@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import styles from '../styles/ViewNFTs.module.css';
-import TopBar from './Common_Components/TopBar';
+import styles from './styles/ViewNFTs.module.css';
+import TopBar from '../Common_Components/TopBar';
 import DefaultImage from './DefaultImage.jpg'; // Placeholder image
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../../AppContext';
 import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
-import { fetchData } from './Utils/datafetch';
+import { fetchData } from '../Utils/datafetch';
 
 const ViewCollectionNFTs = () => {
   const { collectionId } = useParams();

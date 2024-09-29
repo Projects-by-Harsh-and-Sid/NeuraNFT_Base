@@ -3,7 +3,7 @@ import React, { useEffect, useState, useRef } from 'react';
 // import { useNavigate } from 'react-router-dom';
 
 import Footer from '../Footer';
-import ProfileMenu from '../ProfileMenu';
+import ProfileMenu from '../Profile/ProfileMenu';
 import styles from './styles/maincomponent.module.css';
 
 import { Image, Paperclip, Brain, X } from 'lucide-react';

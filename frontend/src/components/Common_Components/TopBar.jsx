@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Brain } from 'lucide-react';
-import ProfileMenu from '../ProfileMenu';
+import ProfileMenu from '../Profile/ProfileMenu';
 import UserProfileImage from './UserProfile.jpg';
 import styles from '../../styles/topbar.module.css';
 import { useAppContext } from '../../AppContext';

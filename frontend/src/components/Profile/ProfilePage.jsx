@@ -1,11 +1,11 @@
 import React, { useState,useEffect } from 'react';
-import styles from '../styles/ProfilePage.module.css';
-import TopBar from './Common_Components/TopBar';
+import styles from './styles/ProfilePage.module.css';
+import TopBar from '../Common_Components/TopBar';
 import DefaultImage from './DefaultImage.jpg';
 // import gradient from './gradient.jpg';
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../../AppContext';
 import { useNavigate } from 'react-router-dom';
-import { fetchData } from './Utils/datafetch';
+import { fetchData } from '../Utils/datafetch';
 
 
 const ProfilePage = () => {
