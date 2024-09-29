@@ -5,73 +5,53 @@ import TopBar from './TopBar';
 import temp from './temp.jpg'; // Placeholder image
 import { useAppContext } from '../AppContext';
 import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
-
+import { fetchData } from './Utils/datafetch';
 
 const ViewCollectionNFTs = () => {
   const { collectionId } = useParams();
   const navigate = useNavigate();
   const [collection, setCollection] = useState(null);
+  const [collectionAddress, setCollectionAddress] = useState(null);
   const [nfts, setNfts] = useState([]);
   const [selectedNFT, setSelectedNFT] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const [error, setError] = useState(null);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
   useEffect(() => {
-    // Fetch collection and NFT data
-    // This is a placeholder. Replace with actual API calls
     fetchCollectionData();
-    fetchNFTs();
   }, [collectionId]);
 
-  const fetchCollectionData = () => {
-    // Placeholder data. Replace with actual API call
-    setCollection({
-      id: collectionId,
-      name: 're:generates',
-      image: temp,
-      address: '0x1234...5678',
-      floorPrice: '0.004 ETH',
-      topOffer: '0.003 WETH',
-      volume: '11 ETH'
-    });
+  const fetchCollectionData = async () => {
+    try {
+    //   setIsLoading(true);
+    const collectionIdInt = parseInt(collectionId, 10);
+      const collectionData = fetchData('collection_from_id', collectionIdInt);
+      if (collectionData && collectionData.myCollections && collectionData.myCollections.length > 0) {
+        const fetchedCollection = collectionData.myCollections[0];
+        setCollection(fetchedCollection);
+        fetchCollectionNFTs(fetchedCollection.collectionaddress);
+      } else {
+        setError('Collection not found');
+      }
+    } catch (err) {
+      setError('Error fetching collection data');
+      console.error(err);
+    } 
   };
 
-  const nfts_temp = [
-    {
-      id: 1,
-      name: 're:gen #3911',
-      collection: 're:generates',
-        image: temp,
-      attributes: [
-        { trait_type: "Model", value: "Llama 3.1", rarity: "90% 0.0037 ETH" },
-        { trait_type: "Context Window", value: "16k tokens", rarity: "24% 0.0037 ETH" },
-        { trait_type: "Total Access", value: "24", rarity: "10% 0.0037 ETH" },
-        { trait_type: "hair", value: "clown_green", rarity: "4% 0.0037 ETH" },
-      ],
-      accessList: [
-        { address: '0x123...', accessLevel: 'Level 1' },
-        { address: '0x456...', accessLevel: 'Level 3' },
-        // ...more entries...
-      ],
-      contractAddress: '0x56...bc4a',
-      tokenId: '4911',
-      tokenStandard: 'ERC-721',
-      owner: '0x58...4c4c',
-      chain: 'Base',
-      description: "This is a unique NFT from the re:generates collection. It features...",
-
-      creatorAddress: "0x9876...5432",
-      ownerAddress: "0x5432...9876",
-    },
-
-    
-    // ... other NFTs
-  ];
-
-  const fetchNFTs = () => {
-    // Placeholder data. Replace with actual API call
-    setNfts(nfts_temp);
+  const fetchCollectionNFTs = (collectionAddress) => {
+    try {
+      const collectionNFTs = fetchData('collection_nft', collectionAddress);
+      if (collectionNFTs && collectionNFTs.myNFTs) {
+        setNfts(collectionNFTs.myNFTs);
+      } else {
+        setNfts([]);
+      }
+    } catch (err) {
+      console.error('Error fetching NFTs:', err);
+      setNfts([]);
+    }
   };
 
   
@@ -105,7 +85,7 @@ const ViewCollectionNFTs = () => {
         <img src={collection.image} alt={collection.name} className={styles.collectionImage} />
         <div className={styles.collectionDetails}>
           <h2 className={styles.collectionName}>{collection.name}</h2>
-          <p className={styles.collectionAddress}>{collection.address}</p>
+          <p className={styles.collectionAddress}>{collection.collectionaddress}</p>
         </div>
       </div>
 
@@ -138,7 +118,7 @@ const ViewCollectionNFTs = () => {
             <img src={nft.image} alt={nft.name} className={styles.nftImage} />
             <div className={styles.nftDetails}>
               <h3>{nft.name}</h3>
-              <p>{nft.price}</p>
+              {/* <p>{nft.price}</p> */}
             </div>
           </div>
         ))}

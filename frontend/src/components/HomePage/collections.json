@@ -3,12 +3,15 @@
       {
         "id": 1,
         "name": "re:generates",
-        "image": "https://picsum.photos/200", 
+        "image": "https://picsum.photos/200",
         "creator": "0x8765...4321",
-
         "model": "Llama 3.1",
         "noOfNFTs": 1842,
-        "contextWindow": 4096
+        "contextWindow": 4096,
+        "collectionaddress": "0x1234...5678",
+        "date": 1695945600,
+        "description": "A collection of AI-generated art pieces using Llama 3.1",
+        "noOfServers": 12
       },
       {
         "id": 2,
@@ -17,7 +20,11 @@
         "creator": "0x8765...4321",
         "model": "GPT-4",
         "noOfNFTs": 9,
-        "contextWindow": 8192
+        "contextWindow": 8192,
+        "collectionaddress": "0x1234...5748",
+        "date": 1696032000,
+        "description": "Unique digital landscapes inspired by the concept of Gaia",
+        "noOfServers": 5
       },
       {
         "id": 3,
@@ -26,36 +33,50 @@
         "creator": "0x5678...1234",
         "model": "DALL-E",
         "noOfNFTs": 94,
-        "contextWindow": 2048
+        "contextWindow": 2048,
+        "collectionaddress": "0x1234...5478",
+        "date": 1696118400,
+        "description": "A series of rebellious monkey characters created by DALL-E",
+        "noOfServers": 8
       },
       {
         "id": 4,
         "name": "MankiBeanz",
         "image": "https://picsum.photos/200",
         "creator": "0x8765...4321",
-
         "model": "Stable Diffusion",
         "noOfNFTs": 1183,
-        "contextWindow": 4096
+        "contextWindow": 4096,
+        "collectionaddress": "0x1234...5878",
+        "date": 1696204800,
+        "description": "Quirky bean-shaped monkey characters generated using Stable Diffusion",
+        "noOfServers": 15
       },
       {
         "id": 5,
         "name": "based punks",
-        "image": "https://picsum.photos/200", 
+        "image": "https://picsum.photos/200",
         "creator": "0x2468...1357",
         "model": "Midjourney",
         "noOfNFTs": 8,
-        "contextWindow": 2048
+        "contextWindow": 2048,
+        "collectionaddress": "0x1234...5578",
+        "date": 1696291200,
+        "description": "A small collection of punk-inspired NFTs created with Midjourney",
+        "noOfServers": 3
       },
       {
         "id": 6,
         "name": "based punks",
-        "image": "https://picsum.photos/200", 
+        "image": "https://picsum.photos/200",
         "creator": "0x2468...1357",
         "model": "Midjourney",
         "noOfNFTs": 8,
-        "contextWindow": 2048
+        "contextWindow": 2048,
+        "collectionaddress": "0x1234...5668",
+        "date": 1696377600,
+        "description": "Another set of punk-themed NFTs generated using Midjourney",
+        "noOfServers": 3
       }
     ]
   }
-  

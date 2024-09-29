@@ -1,16 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import styles from '../styles/ProfilePage.module.css';
 import TopBar from './TopBar';
 import temp from './temp.jpg';
 import gradient from './gradient.jpg';
 import { useAppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
+import { fetchData } from './Utils/datafetch';
+
 
 const ProfilePage = () => {
   const [activeTab, setActiveTab] = useState('collections');
   const [viewMode, setViewMode] = useState('grid');
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   const navigate = useNavigate();
+
+  const [collections, setCollections] = useState([]);
+  const [nfts, setNFTs] = useState([]);
+
+  const temp_address = '0x8765...4321';
+  useEffect(() => {
+    const loadData = async () => {
+      if (temp_address) {
+        const { myCollections, myNFTs } = await fetchData('myData', temp_address);
+        setCollections(myCollections);
+        setNFTs(myNFTs);
+      }
+    };
+    loadData();
+  }, [temp_address]);
+
+  
 
   // Dummy data
   const userAddress = '6Senu...HBX'; // get the real address
@@ -43,22 +62,21 @@ const ProfilePage = () => {
     // };
     // fetchUserData();
 
+    // const collections = [
+    //     { id: 1, name: 'Collection 1', image: temp, numberOfNFTs: 5 },
+    //     { id: 2, name: 'Collection 2', image: temp, numberOfNFTs: 3 },
+    //     { id: 3, name: 'Collection 3', image: temp, numberOfNFTs: 7 },
+
+
+
+    //   ];
     
-    const collections = [
-        { id: 1, name: 'Collection 1', image: temp, numberOfNFTs: 5 },
-        { id: 2, name: 'Collection 2', image: temp, numberOfNFTs: 3 },
-        { id: 3, name: 'Collection 3', image: temp, numberOfNFTs: 7 },
-
-
-
-      ];
-    
-      const nfts = [
-        { id: 1, name: 'NFT 1', image: temp },
-        { id: 2, name: 'NFT 2', image: temp },
-        { id: 3, name: 'NFT 3', image: temp },
-        { id: 4, name: 'NFT 4', image: temp },
-      ];
+    //   const nfts = [
+    //     { id: 1, name: 'NFT 1', image: temp },
+    //     { id: 2, name: 'NFT 2', image: temp },
+    //     { id: 3, name: 'NFT 3', image: temp },
+    //     { id: 4, name: 'NFT 4', image: temp },
+    //   ];
 
   const handleCreateCollection = () => {
     navigate('/create_collection');
@@ -169,7 +187,7 @@ const ProfilePage = () => {
                     <img src={collection.image} alt={collection.name} className={styles.itemImage} />
                     <div className={styles.itemDetails}>
                       <h3>{collection.name}</h3>
-                      <p>{collection.numberOfNFTs} NFTs</p>
+                      <p>{collection.noOfNFTs} NFTs</p>
                     </div>
                   </div>
                 ))}

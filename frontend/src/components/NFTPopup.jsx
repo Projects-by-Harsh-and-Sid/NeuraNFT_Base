@@ -159,8 +159,8 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                       {isDetailsExpanded && (
                         <div className={styles.detailsContent}>
                           <div className={styles.detailItem}>
-                            <span className={styles.detailLabel}>Contract Address</span>
-                            <span className={styles.detailValue}>{nft.contractAddress}</span>
+                            <span className={styles.detailLabel}>Collection Address</span>
+                            <span className={styles.detailValue}>{nft.collectionaddress}</span>
                           </div>
                           <div className={styles.detailItem}>
                             <span className={styles.detailLabel}>Token ID</span>

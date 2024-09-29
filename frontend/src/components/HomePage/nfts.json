@@ -2,48 +2,130 @@
     "nfts": [
       {
         "id": 1,
-        "owner": "0x8765...4321",
-        "name": "NFT #1234",
+        "name": "re:gen #1234",
+        "collection": "re:generates",
         "image": "https://picsum.photos/200",
-        "collectionName": "re:generates",
         "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "0x8765...4321", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x1234...5678",
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "0x8765...4321",
+        "chain": "Ethereum",
+        "description": "This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "0x1234...5678",
+        "ownerAddress": "0x8765...4321",
         "numberOfOwners": 1
-
       },
       {
         "id": 2,
-        "name": "NFT #5678",
-        "owner": "0x8765...4321",
+        "name": "onchain gaia #5678",
+        "collection": "onchain gaias",
         "image": "https://picsum.photos/200",
-        "collectionName": "onchain gaias",
         "model": "GPT-4",
+        "attributes": [
+          { "trait_type": "Model", "value": "GPT-4" },
+          { "trait_type": "Context Window", "value": "8192 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "onchain gaias" }
+        ],
+        "accessList": [
+          { "address": "0x8765...4321", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x1234...5678",
+        "tokenId": "5678",
+        "tokenStandard": "ERC-721",
+        "owner": "0x8765...4321",
+        "chain": "Ethereum",
+        "description": "A unique digital landscape from the onchain gaias collection, powered by GPT-4.",
+        "creatorAddress": "0x1234...5748",
+        "ownerAddress": "0x8765...4321",
         "numberOfOwners": 1
       },
       {
         "id": 3,
-        "name": "NFT #9101",
-        "owner": "0x8765...4321",
+        "name": "Rebel Monke #9101",
+        "collection": "Rebel Monkes",
         "image": "https://picsum.photos/200",
-        "collectionName": "Rebel Monkes",
         "model": "DALL-E",
+        "attributes": [
+          { "trait_type": "Model", "value": "DALL-E" },
+          { "trait_type": "Context Window", "value": "2048 tokens" },
+          { "trait_type": "Total Access", "value": "2" },
+          { "trait_type": "Collection", "value": "Rebel Monkes" }
+        ],
+        "accessList": [
+          { "address": "0x8765...4321", "accessLevel": "Level 1" },
+          { "address": "0x1111...2222", "accessLevel": "Level 2" }
+        ],
+        "collectionaddress": "0x1234...5678",
+        "tokenId": "9101",
+        "tokenStandard": "ERC-721",
+        "owner": "0x8765...4321",
+        "chain": "Ethereum",
+        "description": "A rebellious monkey character from the Rebel Monkes collection, created by DALL-E.",
+        "creatorAddress": "0x5678...1234",
+        "ownerAddress": "0x8765...4321",
         "numberOfOwners": 2
       },
       {
         "id": 4,
-        "name": "NFT #1121",
-        "owner": "0x8765...4321",
+        "name": "MankiBean #1121",
+        "collection": "MankiBeanz",
         "image": "https://picsum.photos/200",
-        "collectionName": "MankiBeanz",
         "model": "Stable Diffusion",
+        "attributes": [
+          { "trait_type": "Model", "value": "Stable Diffusion" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "MankiBeanz" }
+        ],
+        "accessList": [
+          { "address": "0x8765...4321", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x1234...5878",
+        "tokenId": "1121",
+        "tokenStandard": "ERC-721",
+        "owner": "0x8765...4321",
+        "chain": "Ethereum",
+        "description": "A quirky bean-shaped monkey character from the MankiBeanz collection, generated using Stable Diffusion.",
+        "creatorAddress": "0x8765...4321",
+        "ownerAddress": "0x8765...4321",
         "numberOfOwners": 1
       },
       {
         "id": 5,
-        "name": "NFT #3141",
-        "owner": "0x8765...4321",
+        "name": "based punk #3141",
+        "collection": "based punks",
         "image": "https://picsum.photos/200",
-        "collectionName": "based punks",
         "model": "Midjourney",
+        "attributes": [
+          { "trait_type": "Model", "value": "Midjourney" },
+          { "trait_type": "Context Window", "value": "2048 tokens" },
+          { "trait_type": "Total Access", "value": "3" },
+          { "trait_type": "Collection", "value": "based punks" }
+        ],
+        "accessList": [
+          { "address": "0x8765...4321", "accessLevel": "Level 1" },
+          { "address": "0x2222...3333", "accessLevel": "Level 2" },
+          { "address": "0x3333...4444", "accessLevel": "Level 3" }
+        ],
+        "collectionaddress": "0x1234...5578",
+        "tokenId": "3141",
+        "tokenStandard": "ERC-721",
+        "owner": "0x8765...4321",
+        "chain": "Ethereum",
+        "description": "A punk-inspired NFT from the based punks collection, created with Midjourney.",
+        "creatorAddress": "0x2468...1357",
+        "ownerAddress": "0x8765...4321",
         "numberOfOwners": 3
       }
     ]

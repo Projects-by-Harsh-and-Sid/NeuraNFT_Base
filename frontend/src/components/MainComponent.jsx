@@ -101,6 +101,8 @@ function MainComponent() {
     setNftsData(allNFTsData);
   }, []);
 
+
+
   
   const handleConnectWallet = async () => {
     if (!tronWebState.loggedIn) {
@@ -271,7 +273,8 @@ function MainComponent() {
             &#8250;
           </button>
         </div> */}
-          <h2> Popular Collections</h2>
+        <div className={styles.collectionsmainContainer}>
+          <h2 className={styles.collectionheader}> Popular Collections</h2>
         <div className={styles.collectionsContainer}>
           <button className={styles.scrollArrowLeft} onClick={() => scrollCollections('left')}>
             &#8249;
@@ -298,6 +301,8 @@ function MainComponent() {
           <button className={styles.scrollArrowRight} onClick={() => scrollCollections('right')}>
             &#8250;
           </button>
+        </div>
+
         </div>
 
         <div ref={allCollectionsRef}className={styles.tabs}>
@@ -381,7 +386,7 @@ function MainComponent() {
                 </div>
                 <div className={styles.rowItem}>{item.owner}</div>
 
-                <div className={styles.rowItem}>{item.collectionName}</div>
+                <div className={styles.rowItem}>{item.collection}</div>
                 <div className={styles.rowItem}>{item.model}</div>
                 <div className={styles.rowItem}>{item.numberOfOwners}</div>
 
