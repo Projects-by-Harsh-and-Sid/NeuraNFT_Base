@@ -88,7 +88,7 @@ function TopCollectionGrid() {
               <img src={collection.image} alt={collection.name} />
               <h3 className={styles.collectionCardTitle}>{collection.name}</h3>
               <div className={styles.overlay}>
-                <p>{collection.description}</p>
+                {/* <p>{collection.description}</p> */}
                 <button
                   className={styles.overlayButton}
                   onClick={() => handleExploreClick(collection.id)}

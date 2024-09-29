@@ -9,6 +9,7 @@ import CreateNFTCollection from './components/CreateForms/CreateCollections';
 import ViewCollection from './components/ViewCollection';
 import ViewNFTs from './components/NFTs/ViewNFTs';
 import CreateNFT from './components/CreateForms/CreateNFT';
+import Chat from './components/Chat/Chat';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
       <Route path="/view_collection" element={<ViewCollection />} />
       <Route path="/collection/:collectionId" element={<ViewNFTs />} />
       <Route path="/create_nft" element={<CreateNFT />} />
+      <Route path="/chat/:collectionId/:nftID" element={<Chat />} />
     </Routes>
     </AppProvider>
   );

@@ -1,12 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useAppContext } from './AppContext';
+import React, { useState, useEffect,useRef } from 'react';
+// import { useAppContext } from './AppContext';
 import { useParams, useNavigate } from 'react-router-dom';
-import { marked } from 'marked';
-import DOMPurify from 'dompurify';
-import styles from './Chat.module.css';
+import { marked } from 'marked'; // Import the marked library
+import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
+import styles from './styles/Chat.module.css';
+
+// import {get_api_key} from './helper_functions/get_chat_data';
+
+// import {get_collection_data , get_nft_data} from './helper_functions/get_chain_data';
 
 const NFTImage = ({ nftImage, name }) => {
-  const [imageError, setImageError] = useState(false);
+  const [imageError, setImageError] = React.useState(false);
 
   const uint8ArrayToBase64 = (uint8Array) => {
     if (!(uint8Array instanceof Uint8Array)) {
@@ -45,7 +49,7 @@ const NFTImage = ({ nftImage, name }) => {
 
   if (imageError || !imageSource) {
     return (
-      <div className={styles.nftImagePlaceholder}>
+      <div className={styles['nft-image-placeholder']}>
         <p>Image not available for {name || 'Unnamed NFT'}</p>
       </div>
     );
@@ -56,13 +60,15 @@ const NFTImage = ({ nftImage, name }) => {
       src={imageSource}
       alt={name || 'Unnamed NFT'}
       onError={handleImageError}
-      className={styles.nftImage}
+      className={styles['nft-image']}
     />
   );
 };
 
+
 const Chat = () => {
-  const { collectionId, nftID } = useParams();
+  // const { actor, authClient } = useAppContext();
+  const { collectionId, nftID } = useParams(); // Get nftId from URL
   const navigate = useNavigate();
   const [chatHistory, setChatHistory] = useState([]);
   const [userInput, setUserInput] = useState('');
@@ -75,24 +81,28 @@ const Chat = () => {
     description: 'No description available',
     model: 'Unknown',
     nft_image: null,
+    
   });
   const [isModelFeaturesOpen, setIsModelFeaturesOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
 
+
+
   useEffect(() => {
     if (collectionId) {
-    //   fetchNFTDetails();
+      // fetchNFTDetails();
       initializeChat();
       console.log("Collection ID:", collectionId);
     } else {
-      navigate('/collections');
+      navigate('/collections'); // Redirect to collections if no NFT ID is provided
     }
   }, [collectionId]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatHistory]);
+
 
   const initializeChat = async () => {
 
@@ -141,28 +151,29 @@ const Chat = () => {
     setIsModelFeaturesOpen(!isModelFeaturesOpen);
   };
 
-  const fetchNFTDetails = async () => {
+  // const fetchNFTDetails = async () => {
 
-    const collectionDetails = await get_collection_data(collectionId);
-    const nftDetails = await get_nft_data(collectionId, nftID);
-    console.log("NFT Details:", nftDetails);
-    console.log("Collection Details:", collectionDetails);
+  //   const collectionDetails = await get_collection_data(collectionId);
+  //   const nftDetails = await get_nft_data(collectionId, nftID);
+  //   console.log("NFT Details:", nftDetails);
+  //   console.log("Collection Details:", collectionDetails);
         
-    const nft_data = {
-      name: nftDetails.name,
-      description: nftDetails.description,
-      model: collectionDetails.name +" : " +collectionDetails.baseModel,
-      nft_image: nftDetails.uri,
-      }
+  //   const nft_data = {
+  //     name: nftDetails.name,
+  //     description: nftDetails.description,
+  //     model: collectionDetails.name +" : " +collectionDetails.baseModel,
+  //     nft_image: nftDetails.uri,
+  //     }
 
-    setNftDetails(nft_data);
+  //   setNftDetails(nft_data);
 
 
-  };
+  // };
+
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault();
-      sendMessage();
+      event.preventDefault(); // Prevents default behavior (like adding a newline)
+      // sendMessage();
     }
   };
 
@@ -177,7 +188,7 @@ const Chat = () => {
         const newHistory = [...prevHistory];
         newHistory[newHistory.length - 1] = { 
           type: 'bot', 
-          content: `<div class="bot-response">${typedMessage.trim()}</div>`
+          content: `<div class={styles['bot-response']}>${typedMessage.trim()}</div>`
         };
         return newHistory;
       });
@@ -186,6 +197,55 @@ const Chat = () => {
     setIsTyping(false);
   };
 
+
+  // const sendMessage = async () => {
+  //   if (!userInput.trim()) return;
+
+  //   const newUserMessage = { type: 'user', content: userInput };
+  //   setChatHistory(prevHistory => [...prevHistory, newUserMessage]);
+  //   setIsLoading(true);
+
+  //   setUserInput(''); // Clear the input field
+
+  //   try {
+  //     const response = await fetch('https://1889-115-117-107-100.ngrok-free.app/chat', {
+  //       method: 'POST',
+  //       headers: {
+  //         'Content-Type': 'application/json',
+  //         'Authorization': jwtToken
+  //       },
+  //       body: JSON.stringify({ query: userInput, url: ChatUrl }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error(`HTTP error! status: ${response.status}`);
+  //     }
+  //     const responseData = await response.json();
+
+  //     const rawMarkdown = responseData.answer || 'No answer provided';
+  //     console.log("Raw Markdown:", rawMarkdown);
+  //     const sanitizedHtml = DOMPurify.sanitize(marked(rawMarkdown));
+
+      
+  //   const wrappedHtml = `<div class="bot-response">${sanitizedHtml}</div>`;
+
+  //   const newBotMessage = {
+  //     type: 'bot',
+  //     content: wrappedHtml
+  //   };
+  //     setChatHistory(prevHistory => [...prevHistory, newBotMessage]);
+  //   } catch (error) {
+  //     console.error('Error sending message:', error);
+  //     const errorMessage = {
+  //       type: 'bot',
+  //       content: `An error occurred: ${error.message}`
+  //     };
+  //     setChatHistory(prevHistory => [...prevHistory, errorMessage]);
+  //   } finally {
+  //     setIsLoading(false);
+  //     setUserInput('');
+  //   }
+  // };
 
   const sendMessage = async () => {
     if (!userInput.trim() || isLoading || isInitializing) return;
@@ -216,7 +276,7 @@ const Chat = () => {
       const sanitizedHtml = DOMPurify.sanitize(marked(rawMarkdown));
       
       setChatHistory(prevHistory => [...prevHistory, { type: 'bot', content: '' }]);
-      await simulateTyping(`<div class="bot-response">${sanitizedHtml}</div>`);
+      await simulateTyping(`<div class={styles['bot-response']}>${sanitizedHtml}</div>`);
 
     } catch (error) {
       console.error('Error sending message:', error);
@@ -226,49 +286,53 @@ const Chat = () => {
       setIsLoading(false);
     }
   };
+
   return (
-    <div className={styles.chatPage}>
-      <div className={styles.sidebar}>
-        {nftDetails && (
-          <>
-            <img
-              src={nftDetails.nft_image}
-              alt={nftDetails.name || 'Unnamed NFT'}
-              className={styles.nftImage}
-            />
-            <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
-            <p>{nftDetails.description || 'No description available'}</p>
-            <div className={styles.modelInfo}>
-              <div className={styles.modelTag} onClick={toggleModelFeatures}>
-                <span className={styles.modelName}>
+  <div className={styles['chat-page']}>
+    <div className={styles['sidebar']}>
+    {nftDetails && (
+      <>
+    <img
+      src={nftDetails.nft_image}
+      alt={nftDetails.name || 'Unnamed NFT'}
+
+      className={styles['nft-image']}
+    />
+        <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
+        <p>{nftDetails.description || 'No description available'}</p>
+        <div className={styles['model-info']}>
+        <div className={styles['model-tag']} onClick={toggleModelFeatures}>
+                <span className={styles['model-name']}>
                   Model: {nftDetails.model || 'Unknown'}
                 </span>
-                <span className={styles.arrowDown}></span>
+                <span className={styles['arrow-down']}></span>
               </div>
               {isModelFeaturesOpen && (
-                <ul className={styles.modelFeatures}>
+                <ul className={styles['model-features']}>
                   <li>Content window: 16k</li>
                 </ul>
               )}
             </div>
-          </>
-        )}
-      </div>
-      <div className={styles.chatContainer}>
-        <h2 className={styles.chatHeader}>Chat with NFT: {nftDetails.name}</h2>
-        <div className={styles.chatMessages}>
+      </>
+    )}
+  </div>
+    <div className={styles['chat-container']}>
+      
+      <h2 className={styles['chat-header']}>Chat with NFT: {nftDetails.name}</h2>
+      <div className={styles['chat-messages']}>
+      <div className={styles['chat-messages']}>
           {chatHistory.map((message, index) => (
-            <div key={index} className={message.type === 'user' ? styles.userMessage : styles.botMessage}>
+            <div key={index} className={styles['{`message ${message.type}-message`}']}>
               {message.type === 'bot' ? (
-                <div className={styles.botPara} dangerouslySetInnerHTML={{ __html: message.content }} />
+                <div className={styles['bot-para']} dangerouslySetInnerHTML={{ __html: message.content }} />
               ) : (
                 <p>{message.content}</p>
               )}
             </div>
           ))}
           {isTyping && (
-            <div className={styles.botMessage}>
-              <div className={styles.typingIndicator}>
+            <div className={styles['message bot-message']}>
+              <div className="typing-indicator">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -278,32 +342,34 @@ const Chat = () => {
           <div ref={chatEndRef} />
         </div>
         {isLoading && (
-          <div className={styles.loadingIndicator}></div>
+          <div className={styles['loading-indicator']}></div>
         )}
       </div>
-      <div className={styles.chatInputContainer}>
-        {isInitializing && (
-          <div className={styles.initializingMessage}>Loading your model...</div>
+      <div className={styles['chat-input-container']}>
+      {isInitializing && (
+          <div className={styles['initializing-message']}>Loading your model...</div>
         )}
         <input
-          className={styles.chatInput}
+          className={styles['chat-input']}
           type="text"
           value={userInput}
           onChange={(e) => setUserInput(e.target.value)}
           placeholder="Type your message..."
           onKeyDown={handleKeyDown}
+          // disabled={isLoading || isInitializing}
         />
         <button 
-          className={styles.sendButton}
+          className={styles['send-button']}
           onClick={sendMessage} 
           disabled={isLoading || isInitializing}
         >
-          <svg className={styles.sendIcon} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <svg className={styles['send-icon']} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M22 2L11 13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             <path d="M22 2L15 22L11 13L2 9L22 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
       </div>
+    </div>
     </div>
   );
 }
