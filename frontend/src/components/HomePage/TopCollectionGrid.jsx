@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import styles from './styles/maincomponent.module.css';
+import styles from './styles/topcollectiongrid.module.css';
 import { useNavigate } from 'react-router-dom';
 import temp from './Images//temp.jpg'; // Adjust the path based on your project structure
 const collections = [
