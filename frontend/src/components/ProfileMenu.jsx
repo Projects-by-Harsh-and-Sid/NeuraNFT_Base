@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import temp from './temp.jpg';
+import DefaultImage from './DefaultImage.jpg';
 import styles from '../styles/ProfileMenu.module.css';
 import classNames from 'classnames';
 
@@ -26,7 +26,7 @@ function ProfileMenu({ isOpen, onClose, address, balance }) {
       })}
     >
       <div className={styles.menuHeader}>
-        <img src={temp} alt="Profile" className={styles.largeProfileImage} />
+        <img src={DefaultImage} alt="Profile" className={styles.largeProfileImage} />
         <h3 className={styles.addressMenu}>{formatAddress(address)}</h3>
         {/* <p>{balance} SOL</p> */}
       </div>

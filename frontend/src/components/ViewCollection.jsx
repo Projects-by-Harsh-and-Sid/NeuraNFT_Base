@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/ViewCollection.module.css';
-import TopBar from './TopBar';
+import TopBar from './Common_Components/TopBar';
 import { useAppContext } from '../AppContext';
-import temp from './temp.jpg'; // Placeholder image
+import DefaultImage from './DefaultImage.jpg'; // Placeholder image
 
 const ViewCollection = () => {
   const navigate = useNavigate();
@@ -11,9 +11,9 @@ const ViewCollection = () => {
 
   // Dummy data for collections (replace with actual data fetching)
   const collections = [
-    { id: 1, name: 'Collection 1', image: temp  },
-    { id: 2, name: 'Collection 2', image: temp },
-    { id: 3, name: 'Collection 3', image: temp },
+    { id: 1, name: 'Collection 1', image: DefaultImage  },
+    { id: 2, name: 'Collection 2', image: DefaultImage },
+    { id: 3, name: 'Collection 3', image: DefaultImage },
     // Add more collections as needed
   ];
 
@@ -48,7 +48,7 @@ const ViewCollection = () => {
       <TopBar onConnectWallet={handleConnectWallet} />
       
       <div className={styles.userInfo}>
-        <img src={temp} alt="User" className={styles.userImage} />
+        <img src={DefaultImage} alt="User" className={styles.userImage} />
         <h2 className={styles.userAddress}>{formatAddress(address)}</h2>
       </div>
 {/* 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import MainComponent from './components/MainComponent';
+import MainComponent from './components/HomePage/MainComponent';
 // import CreateCollection from './components/CreateCollection';
 // import ViewCollection from './components/ViewCollection';
 import Profile from './components/ProfilePage';

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from '../styles/ViewNFTs.module.css';
-import TopBar from './TopBar';
-import temp from './temp.jpg'; // Placeholder image
+import TopBar from './Common_Components/TopBar';
+import DefaultImage from './DefaultImage.jpg'; // Placeholder image
 import { useAppContext } from '../AppContext';
 import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
 import { fetchData } from './Utils/datafetch';
@@ -90,7 +90,7 @@ const ViewCollectionNFTs = () => {
    <TopBar onConnectWallet={handleConnectWallet} />
       
    {/* <div className={styles.collectionInfo}>
-        <img src={collection.image || temp} alt={collection.name} className={styles.collectionImage} />
+        <img src={collection.image || DefaultImage} alt={collection.name} className={styles.collectionImage} />
         <div className={styles.collectionDetails}>
           <h2 className={styles.collectionName}>{collection.name}</h2>
           <p className={styles.collectionAddress}>{collection.collectionaddress}</p>
@@ -98,7 +98,7 @@ const ViewCollectionNFTs = () => {
         </div>
       </div> */}
             <div className={styles.collectionInfo}>
-        <img src={collection.image || temp} alt={collection.name} className={styles.collectionImage} />
+        <img src={collection.image || DefaultImage} alt={collection.name} className={styles.collectionImage} />
         <div className={styles.collectionDetails}>
           <div className={styles.collectionHeader}>
             <h2 className={styles.collectionName}>{collection.name}</h2>

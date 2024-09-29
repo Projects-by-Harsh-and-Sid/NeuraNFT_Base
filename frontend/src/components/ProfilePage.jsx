@@ -1,8 +1,8 @@
 import React, { useState,useEffect } from 'react';
 import styles from '../styles/ProfilePage.module.css';
-import TopBar from './TopBar';
-import temp from './temp.jpg';
-import gradient from './gradient.jpg';
+import TopBar from './Common_Components/TopBar';
+import DefaultImage from './DefaultImage.jpg';
+// import gradient from './gradient.jpg';
 import { useAppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from './Utils/datafetch';
@@ -112,7 +112,7 @@ const ProfilePage = () => {
 
       {/* Profile Info */}
       <div className={styles.profileInfo}>
-        <img src={temp} alt="Profile" className={styles.profileImage} />
+        <img src={DefaultImage} alt="Profile" className={styles.profileImage} />
         <div className={styles.profileDetails}>
           <h1 className={styles.profileAddress}>{formatAddress(address)}</h1>
           {/* <button className={styles.editButton}>Edit Profile</button> */}

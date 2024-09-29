@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Brain } from 'lucide-react';
-import ProfileMenu from './ProfileMenu';
-import temp from './temp.jpg';
-import styles from '../styles/topbar.module.css';
-import { useAppContext } from '../AppContext';
+import ProfileMenu from '../ProfileMenu';
+import UserProfileImage from './UserProfile.jpg';
+import styles from '../../styles/topbar.module.css';
+import { useAppContext } from '../../AppContext';
 import { useNavigate } from 'react-router-dom';
 
 const TopBar = ({ onConnectWallet }) => {
@@ -78,7 +78,7 @@ const TopBar = ({ onConnectWallet }) => {
           <div className={styles.walletInfo}>
             <div className={styles.balanceDisplay} onClick={toggleMenu}>
               <span className={styles.balance}>{balance} TRX</span>
-              <img src={temp} alt="Profile" className={styles.profileImage} />
+              <img src={UserProfileImage} alt="Profile" className={styles.profileImage} />
             </div>
           </div>
         )}

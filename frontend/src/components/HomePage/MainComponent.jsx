@@ -1,22 +1,22 @@
 // MainComponent.js
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import temp from './temp.jpg'; // Adjust the path based on your project structure
-import create from './create.jpg'; // Adjust the path based on your project structure
-import gradient from './gradient.jpg'; // Adjust the path based on your project structure
-import Footer from './Footer';
-import ProfileMenu from './ProfileMenu';
-import styles from '../styles/maincomponent.module.css';
+import temp from './Images//temp.jpg'; // Adjust the path based on your project structure
+import create from './Images/create.jpg'; // Adjust the path based on your project structure
+import gradient from './Images/gradient.jpg'; // Adjust the path based on your project structure
+import Footer from '../Footer';
+import ProfileMenu from '../ProfileMenu';
+import styles from '../../styles/maincomponent.module.css';
 import classNames from 'classnames'; // Import classnames library
 import { Image, Paperclip, Brain, X } from 'lucide-react';
-import TopBar from './TopBar'; // New import
-import night from './night.jpg';
-import { useAppContext } from '../AppContext';
-import ChainSelector from './ChainSelector';
-import allnfts from './allnfts.jpg';
-import mynfts from './mynfts.jpg';
+import TopBar from '../Common_Components/TopBar'; // New import
+import night from './Images/night.jpg';
+import { useAppContext } from '../../AppContext';
+import ChainSelector from '../ChainSelector';
+import allnfts from './Images/allnfts.jpg';
+import mynfts from './Images/mynfts.jpg';
 // import brain image from material-ui
-import { fetchData } from './Utils/datafetch';
+import { fetchData } from '../Utils/datafetch';
 
 
 function MainComponent() {
@@ -253,8 +253,13 @@ function MainComponent() {
         address={address}
         balance={balance}
       /> */}  
+
  <TopBar onConnectWallet={handleConnectWallet} />
  <ChainSelector />
+
+
+
+
       <div className={styles.content}>
       {/* <div className={styles.actionsContainer}>
       <button className={styles.scrollArrowLeft} onClick={() => scrollGrid(actionsRef, 'left')}>
@@ -273,6 +278,10 @@ function MainComponent() {
             &#8250;
           </button>
         </div> */}
+
+
+
+        
         <div className={styles.collectionsmainContainer}>
           <h2 className={styles.collectionheader}> Popular Collections</h2>
         <div className={styles.collectionsContainer}>
