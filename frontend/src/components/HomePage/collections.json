@@ -1,0 +1,61 @@
+{
+    "collections": [
+      {
+        "id": 1,
+        "name": "re:generates",
+        "image": "https://picsum.photos/200", 
+        "creator": "0x8765...4321",
+
+        "model": "Llama 3.1",
+        "noOfNFTs": 1842,
+        "contextWindow": 4096
+      },
+      {
+        "id": 2,
+        "name": "onchain gaias",
+        "image": "https://picsum.photos/200",
+        "creator": "0x8765...4321",
+        "model": "GPT-4",
+        "noOfNFTs": 9,
+        "contextWindow": 8192
+      },
+      {
+        "id": 3,
+        "name": "Rebel Monkes",
+        "image": "https://picsum.photos/200",
+        "creator": "0x5678...1234",
+        "model": "DALL-E",
+        "noOfNFTs": 94,
+        "contextWindow": 2048
+      },
+      {
+        "id": 4,
+        "name": "MankiBeanz",
+        "image": "https://picsum.photos/200",
+        "creator": "0x8765...4321",
+
+        "model": "Stable Diffusion",
+        "noOfNFTs": 1183,
+        "contextWindow": 4096
+      },
+      {
+        "id": 5,
+        "name": "based punks",
+        "image": "https://picsum.photos/200", 
+        "creator": "0x2468...1357",
+        "model": "Midjourney",
+        "noOfNFTs": 8,
+        "contextWindow": 2048
+      },
+      {
+        "id": 6,
+        "name": "based punks",
+        "image": "https://picsum.photos/200", 
+        "creator": "0x2468...1357",
+        "model": "Midjourney",
+        "noOfNFTs": 8,
+        "contextWindow": 2048
+      }
+    ]
+  }
+  

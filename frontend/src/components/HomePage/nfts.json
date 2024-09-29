@@ -1,0 +1,50 @@
+{
+    "nfts": [
+      {
+        "id": 1,
+        "owner": "0x8765...4321",
+        "name": "NFT #1234",
+        "image": "https://picsum.photos/200",
+        "collectionName": "re:generates",
+        "model": "Llama 3.1",
+        "numberOfOwners": 1
+
+      },
+      {
+        "id": 2,
+        "name": "NFT #5678",
+        "owner": "0x8765...4321",
+        "image": "https://picsum.photos/200",
+        "collectionName": "onchain gaias",
+        "model": "GPT-4",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 3,
+        "name": "NFT #9101",
+        "owner": "0x8765...4321",
+        "image": "https://picsum.photos/200",
+        "collectionName": "Rebel Monkes",
+        "model": "DALL-E",
+        "numberOfOwners": 2
+      },
+      {
+        "id": 4,
+        "name": "NFT #1121",
+        "owner": "0x8765...4321",
+        "image": "https://picsum.photos/200",
+        "collectionName": "MankiBeanz",
+        "model": "Stable Diffusion",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 5,
+        "name": "NFT #3141",
+        "owner": "0x8765...4321",
+        "image": "https://picsum.photos/200",
+        "collectionName": "based punks",
+        "model": "Midjourney",
+        "numberOfOwners": 3
+      }
+    ]
+  }

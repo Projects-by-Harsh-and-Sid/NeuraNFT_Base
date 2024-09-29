@@ -1,6 +1,7 @@
 // Footer.js
 import React from 'react';
 import styles from '../styles/footer.module.css';
+import {Brain} from 'lucide-react';
 
 function Footer() {
   return (
@@ -8,7 +9,16 @@ function Footer() {
       <div className={styles.footerContent}>
         <div className={styles.footerSection}>
           <h3 className={styles.footerTitle}>
-            NeuraNFT</h3>
+          <svg width="0" height="0">
+          <linearGradient id="brain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop stopColor="#ff00cc" offset="0%" />
+            <stop stopColor="#3333ff" offset="100%" />
+          </linearGradient>
+        </svg>
+        <Brain size={30} style={{ stroke: "url(#brain-gradient)",
+            marginTop: '-1px', // Adjust this value as needed
+        verticalAlign: 'middle',
+        marginRight:'10px' }} />NeuraNFT</h3>
           <p className={styles.footerDescription}>
             The largest NFT marketplace and Runes platform. Buy, sell and discover Ordinals and NFTs across multiple blockchains.
           </p>

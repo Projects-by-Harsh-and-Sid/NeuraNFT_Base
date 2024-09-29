@@ -16,6 +16,7 @@ import ChainSelector from './ChainSelector';
 import allnfts from './allnfts.jpg';
 import mynfts from './mynfts.jpg';
 // import brain image from material-ui
+import { fetchData } from './Utils/datafetch';
 
 
 function MainComponent() {
@@ -34,6 +35,9 @@ function MainComponent() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const allCollectionsRef = useRef(null);
   const allNFTsRef = useRef(null);
+
+  const [collectionsData, setCollectionsData] = useState([]);
+  const [nftsData, setNftsData] = useState([])
   
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -90,6 +94,12 @@ function MainComponent() {
   //   setConnectInitiated(false);
   // };
 
+  useEffect(() => {
+    const allCollectionsData = fetchData('allCollections');
+    setCollectionsData(allCollectionsData);
+    const allNFTsData = fetchData('allNFTs');
+    setNftsData(allNFTsData);
+  }, []);
 
   
   const handleConnectWallet = async () => {
@@ -111,18 +121,18 @@ function MainComponent() {
     { id: 8, name: 'Capy Friends', image: temp ,description: 'Mint your NFTs here'},
   ];
 
-  const collectionsData = [
-    { id: 1, name: 're:generates', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,842' },
-    { id: 2, name: 'onchain gaias', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '9' },
-    { id: 3, name: 'Rebel Monkes', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '94' },
-    { id: 4, name: 'MankiBeanz', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,183' },
-    { id: 5, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
-    { id: 6, name: 're:generates', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,84' },
-    { id: 7, name: 'onchain gaias', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '9' },
-    { id: 8, name: 'Rebel Monkes', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '4' },
-    { id: 9, name: 'MankiBeanz', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '183' },
-    { id: 10, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
-  ];
+  // const collectionsData = [
+  //   { id: 1, name: 're:generates', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,842' },
+  //   { id: 2, name: 'onchain gaias', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '9' },
+  //   { id: 3, name: 'Rebel Monkes', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '94' },
+  //   { id: 4, name: 'MankiBeanz', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,183' },
+  //   { id: 5, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
+  //   { id: 6, name: 're:generates', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,84' },
+  //   { id: 7, name: 'onchain gaias', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '9' },
+  //   { id: 8, name: 'Rebel Monkes', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '4' },
+  //   { id: 9, name: 'MankiBeanz', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '183' },
+  //   { id: 10, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
+  // ];
 
   const handleCreateCollection = () => {
     navigate('/create_collection');
@@ -172,13 +182,13 @@ function MainComponent() {
   };
 
   // Mock data for NFTs table
-  const nftsData = [
-    { id: 1, name: 'NFT #1234', image: temp, price: '0.5 ETH', lastSale: '0.4 ETH', owner: '0x1234...5678' },
-    { id: 2, name: 'NFT #5678', image: temp, price: '0.7 ETH', lastSale: '0.6 ETH', owner: '0x8765...4321' },
-    { id: 3, name: 'NFT #9101', image: temp, price: '0.3 ETH', lastSale: '0.25 ETH', owner: '0x2468...1357' },
-    { id: 4, name: 'NFT #1121', image: temp, price: '1.0 ETH', lastSale: '0.9 ETH', owner: '0x1357...2468' },
-    { id: 5, name: 'NFT #3141', image: temp, price: '0.8 ETH', lastSale: '0.75 ETH', owner: '0x9876...5432' },
-  ];
+  // const nftsData = [
+  //   { id: 1, name: 'NFT #1234', image: temp, price: '0.5 ETH', lastSale: '0.4 ETH', owner: '0x1234...5678' },
+  //   { id: 2, name: 'NFT #5678', image: temp, price: '0.7 ETH', lastSale: '0.6 ETH', owner: '0x8765...4321' },
+  //   { id: 3, name: 'NFT #9101', image: temp, price: '0.3 ETH', lastSale: '0.25 ETH', owner: '0x2468...1357' },
+  //   { id: 4, name: 'NFT #1121', image: temp, price: '1.0 ETH', lastSale: '0.9 ETH', owner: '0x1357...2468' },
+  //   { id: 5, name: 'NFT #3141', image: temp, price: '0.8 ETH', lastSale: '0.75 ETH', owner: '0x9876...5432' },
+  // ];
 
 
   const itemsPerPage = 5;
@@ -311,14 +321,22 @@ function MainComponent() {
           </button>
         </div>
         <div className={styles.dataTable}>
-          <div className={styles.tableHeader}>
+          {/* <div className={styles.tableHeader}>
             <div className={styles.headerItem}># Collection</div>
             <div className={styles.headerItem}>Owner</div>
             <div className={styles.headerItem}>Model</div>
             <div className={styles.headerItem}>No. of NFTs</div>
-          </div>
-          {activeTab === 'allCollections' ? (
-            currentCollections.map((item, index) => (
+          </div> */}
+          {activeTab === 'allCollections' ? (<>
+            <div className={styles.tableHeader}>
+      <div className={styles.headerItem}># Collection</div>
+      <div className={styles.headerItem}>Creator</div>
+      <div className={styles.headerItem}>Model</div>
+      <div className={styles.headerItem}>No. of NFTs</div>
+      <div className={styles.headerItem}>Context Window</div>
+
+    </div>
+            {currentCollections.map((item, index) => (
               <div 
                 key={item.id} 
                 className={styles.tableRow} 
@@ -330,13 +348,26 @@ function MainComponent() {
                   <img src={item.image} alt={item.name} className={styles.itemImage} />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
-                <div className={styles.rowItem}>{item.owner}</div>
+                <div className={styles.rowItem}>{item.creator}</div>
                 <div className={styles.rowItem}>{item.model}</div>
-                <div className={styles.rowItem}>{item.NFTs}</div>
+                <div className={styles.rowItem}>{item.noOfNFTs}</div>
+                <div className={styles.rowItem}>{item.contextWindow}</div>
+
               </div>
-            ))
-          ) : (
-            currentNFTs.map((item, index) => (
+            ))}
+          </>
+          ) : (  <>
+            <div className={styles.tableHeader}>
+              <div className={styles.headerItem}># NFT</div>
+              <div className={styles.headerItem}>Owner</div>
+              <div className={styles.headerItem}>Collection</div>
+              <div className={styles.headerItem}>Model</div>
+              <div className={styles.headerItem}>Number of Owners</div>
+
+              
+            </div>
+            {currentNFTs.map((item, index) => (
+              
               <div 
                 key={item.id} 
                 className={styles.tableRow} 
@@ -348,11 +379,15 @@ function MainComponent() {
                   <img src={item.image} alt={item.name} className={styles.itemImage} />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
-                <div className={styles.rowItem}>{item.price}</div>
-                <div className={styles.rowItem}>{item.lastSale}</div>
                 <div className={styles.rowItem}>{item.owner}</div>
+
+                <div className={styles.rowItem}>{item.collectionName}</div>
+                <div className={styles.rowItem}>{item.model}</div>
+                <div className={styles.rowItem}>{item.numberOfOwners}</div>
+
               </div>
-            ))
+            ))}
+          </>
           )}
         </div>
         <div className={styles.pagination}>
