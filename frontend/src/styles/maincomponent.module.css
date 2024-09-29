@@ -427,3 +427,30 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 .actionsContainer .scrollArrowRight {
   right: 10px;
 }
+
+
+.pagination {
+  display: flex;
+  /* justify-content: center; */
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.pageButton {
+  background-color: #1e1e1e;
+  border: 1px solid #3a3a3a;
+  color: white;
+  padding: 8px 12px;
+  margin: 0 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.pageButton:hover {
+  background-color: #2c2c2c;
+}
+
+.activePage {
+  background-color: #e74c3c;
+  border-color: #e74c3c;
+}

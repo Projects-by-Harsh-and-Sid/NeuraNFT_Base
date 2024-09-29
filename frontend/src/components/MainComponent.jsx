@@ -36,6 +36,8 @@ function MainComponent() {
   const allNFTsRef = useRef(null);
   
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
   // useEffect(() => {
@@ -87,6 +89,9 @@ function MainComponent() {
   //   setBalance(null);
   //   setConnectInitiated(false);
   // };
+
+
+  
   const handleConnectWallet = async () => {
     if (!tronWebState.loggedIn) {
       await connectWallet();
@@ -112,6 +117,11 @@ function MainComponent() {
     { id: 3, name: 'Rebel Monkes', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '94' },
     { id: 4, name: 'MankiBeanz', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,183' },
     { id: 5, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
+    { id: 6, name: 're:generates', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '1,84' },
+    { id: 7, name: 'onchain gaias', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '9' },
+    { id: 8, name: 'Rebel Monkes', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '4' },
+    { id: 9, name: 'MankiBeanz', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '183' },
+    { id: 10, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
   ];
 
   const handleCreateCollection = () => {
@@ -123,13 +133,13 @@ function MainComponent() {
   };
 
 
-  const handleAllCollection = () => {
-    allCollectionsRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  // const handleAllCollection = () => {
+  //   allCollectionsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // };
 
-  const handleAllNFTs = () => {
-    allNFTsRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
+  // const handleAllNFTs = () => {
+  //   allNFTsRef.current?.scrollIntoView({ behavior: 'smooth' });
+  // };
 
   const scrollToSection = (ref) => {
     ref.current?.scrollIntoView({ behavior: 'smooth' });
@@ -139,6 +149,7 @@ function MainComponent() {
     { id: 2, name: 'All Collections', image: gradient,      action: () => {
       setActiveTab('allCollections');
       scrollToSection(allCollectionsRef);
+      
     }
 },
     { id: 3, name: 'Create Collections', image: night,action: handleCreateCollection },
@@ -168,6 +179,20 @@ function MainComponent() {
     { id: 4, name: 'NFT #1121', image: temp, price: '1.0 ETH', lastSale: '0.9 ETH', owner: '0x1357...2468' },
     { id: 5, name: 'NFT #3141', image: temp, price: '0.8 ETH', lastSale: '0.75 ETH', owner: '0x9876...5432' },
   ];
+
+
+  const itemsPerPage = 5;
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentCollections = collectionsData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentNFTs = nftsData.slice(indexOfFirstItem, indexOfLastItem);
+
+  const totalPages = Math.ceil((activeTab === 'allCollections' ? collectionsData.length : nftsData.length) / itemsPerPage);
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
 
   const scrollCollections = (direction) => {
     if (collectionsRef.current) {
@@ -268,13 +293,19 @@ function MainComponent() {
         <div ref={allCollectionsRef}className={styles.tabs}>
           <button 
             className={classNames(styles.tab, { [styles.activeTab]: activeTab === 'allCollections' })}
-            onClick={() => setActiveTab('allCollections')}
+            onClick={() => {
+              setActiveTab('allCollections');
+              setCurrentPage(1);
+            }}
           >
             All Collections
           </button>
           <button 
             className={classNames(styles.tab, { [styles.activeTab]: activeTab === 'allNFTs' })}
-            onClick={() => setActiveTab('allNFTs')}
+            onClick={() => {
+              setActiveTab('allNFTs');
+              setCurrentPage(1);
+            }}
           >
             All NFTs
           </button>
@@ -287,14 +318,15 @@ function MainComponent() {
             <div className={styles.headerItem}>No. of NFTs</div>
           </div>
           {activeTab === 'allCollections' ? (
-            collectionsData.map((item, index) => (
+            currentCollections.map((item, index) => (
               <div 
                 key={item.id} 
                 className={styles.tableRow} 
                 onClick={() => handleRowClick(item.id, 'collection')}
               >
                 <div className={styles.rowItem}>
-                  <span className={styles.itemNumber}>{index + 1}</span>
+                  {/* <span className={styles.itemNumber}>{index + 1}</span> */}
+                  <span className={styles.itemNumber}>{(currentPage - 1) * itemsPerPage + index + 1}</span>
                   <img src={item.image} alt={item.name} className={styles.itemImage} />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
@@ -304,14 +336,15 @@ function MainComponent() {
               </div>
             ))
           ) : (
-            nftsData.map((item, index) => (
+            currentNFTs.map((item, index) => (
               <div 
                 key={item.id} 
                 className={styles.tableRow} 
                 onClick={() => handleRowClick(item.id, 'nft')}
               >
                 <div className={styles.rowItem}>
-                  <span className={styles.itemNumber}>{index + 1}</span>
+                  {/* <span className={styles.itemNumber}>{index + 1}</span> */}
+                  <span className={styles.itemNumber}>{(currentPage - 1) * itemsPerPage + index + 1}</span>
                   <img src={item.image} alt={item.name} className={styles.itemImage} />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
@@ -321,6 +354,17 @@ function MainComponent() {
               </div>
             ))
           )}
+        </div>
+        <div className={styles.pagination}>
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => (
+            <button
+              key={pageNumber}
+              onClick={() => handlePageChange(pageNumber)}
+              className={classNames(styles.pageButton, { [styles.activePage]: currentPage === pageNumber })}
+            >
+              {pageNumber}
+            </button>
+          ))}
         </div>
         {/* Content for All Collections or All NFTs would go here */}
         <Footer />
