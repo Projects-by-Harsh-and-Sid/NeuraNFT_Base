@@ -2,19 +2,18 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import temp from './Images//temp.jpg'; // Adjust the path based on your project structure
-import create from './Images/create.jpg'; // Adjust the path based on your project structure
-import gradient from './Images/gradient.jpg'; // Adjust the path based on your project structure
 import Footer from '../Footer';
 import ProfileMenu from '../ProfileMenu';
-import styles from '../../styles/maincomponent.module.css';
+import styles from './styles/maincomponent.module.css';
 import classNames from 'classnames'; // Import classnames library
 import { Image, Paperclip, Brain, X } from 'lucide-react';
 import TopBar from '../Common_Components/TopBar'; // New import
-import night from './Images/night.jpg';
 import { useAppContext } from '../../AppContext';
 import ChainSelector from '../ChainSelector';
-import allnfts from './Images/allnfts.jpg';
-import mynfts from './Images/mynfts.jpg';
+import ActionGrid from './ActionGrid';
+import { useCommonLogic } from './CommonComponet'; // Adjust the path as needed
+
+
 // import brain image from material-ui
 import { fetchData } from '../Utils/datafetch';
 
@@ -28,12 +27,12 @@ function MainComponent() {
   // const [address, setAddress] = useState(null);
   const [connectInitiated, setConnectInitiated] = useState(false);
   // const [balance, setBalance] = useState(null);
-  const [activeTab, setActiveTab] = useState('allCollections');
-  const navigate = useNavigate();
+  // const [activeTab, setActiveTab] = useState('allCollections');
+  // const navigate = useNavigate();
   const collectionsRef = useRef(null);
-  const actionsRef = useRef(null);
+  // const actionsRef = useRef(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const allCollectionsRef = useRef(null);
+  // const allCollectionsRef = useRef(null);
   const allNFTsRef = useRef(null);
 
   const [collectionsData, setCollectionsData] = useState([]);
@@ -43,6 +42,17 @@ function MainComponent() {
   const [currentPage, setCurrentPage] = useState(1);
 
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const {
+    navigate,
+    activeTab,
+    setActiveTab,
+    allCollectionsRef,
+    scrollToSection,
+    handleCreateCollection,
+  } = useCommonLogic();
+
+
+
 
   // useEffect(() => {
   //   if (connectInitiated) {
@@ -136,9 +146,9 @@ function MainComponent() {
   //   { id: 10, name: 'based punks', image: temp, owner: '0x1234...5678', model: 'Llama 3.1', NFTs: '8' },
   // ];
 
-  const handleCreateCollection = () => {
-    navigate('/create_collection');
-  };
+  // const handleCreateCollection = () => {
+  //   navigate('/create_collection');
+  // };
 
   const handleYourCollections = () => {
     navigate('/your_collections');
@@ -153,26 +163,10 @@ function MainComponent() {
   //   allNFTsRef.current?.scrollIntoView({ behavior: 'smooth' });
   // };
 
-  const scrollToSection = (ref) => {
-    ref.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-  const actions = [
-    { id: 1, name: 'Your Collections', image: create,action: () => navigate('/profile') },
-    { id: 2, name: 'All Collections', image: gradient,      action: () => {
-      setActiveTab('allCollections');
-      scrollToSection(allCollectionsRef);
-      
-    }
-},
-    { id: 3, name: 'Create Collections', image: night,action: handleCreateCollection },
-    { id: 4, name: 'My NFTs', image: allnfts,action: () => navigate('/profile') },
-    { id: 5, name: 'All NFTs', image: mynfts,action: () => {
-      setActiveTab('allNFTs');
-      scrollToSection(allCollectionsRef);
-    }}
-    // { id: 4, name: 'onchain gaias', image: gradient },
+  // const scrollToSection = (ref) => {
+  //   ref.current?.scrollIntoView({ behavior: 'smooth' });
+  // };
 
-  ];
 
 
   const handleRowClick = (id, type) => {
@@ -257,31 +251,20 @@ function MainComponent() {
  <TopBar onConnectWallet={handleConnectWallet} />
  <ChainSelector />
 
+ 
+
 
 
 
       <div className={styles.content}>
-      {/* <div className={styles.actionsContainer}>
-      <button className={styles.scrollArrowLeft} onClick={() => scrollGrid(actionsRef, 'left')}>
-            &#8249;
-          </button> */}
-      <div className={styles.actionsGrid}>
-            {actions.map((action) => (
-              <div key={action.id} className={styles.actionCard} onClick={action.action}>
-                <img src={action.image
-                } alt={action.name} />
-                <h3 className={styles.actionCardTitle}>{action.name}</h3>
-              </div>
-            ))}
-          </div>
-          {/* <button className={styles.scrollArrowRight} onClick={() => scrollGrid(actionsRef, 'right')}>
-            &#8250;
-          </button>
-        </div> */}
 
+      <ActionGrid 
+        setActiveTab={setActiveTab} 
+        allCollectionsRef={allCollectionsRef}
+        scrollToSection={scrollToSection}
+      />
+     
 
-
-        
         <div className={styles.collectionsmainContainer}>
           <h2 className={styles.collectionheader}> Popular Collections</h2>
         <div className={styles.collectionsContainer}>
