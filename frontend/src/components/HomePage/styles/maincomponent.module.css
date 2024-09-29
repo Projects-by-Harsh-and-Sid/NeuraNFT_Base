@@ -113,75 +113,16 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
   background-color: rgba(255, 255, 255, 0.1);
 } */
 
-.dataTable {
-  margin-top: 20px;
-  /* background-color: rgba(255, 255, 255, 0.05); */
-  border-radius: 8px;
-  overflow: hidden;
-  font-size: 18px;
-}
 
-.tableHeader {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  padding: 12px 20px;
-  align-items: center;
-  /* background-color: rgba(255, 255, 255, 0.1); */
-  font-weight: bold;
-}
 
-.tableRow {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
-  padding: 12px 20px;
-  align-items: center;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
 
-.tableRow:nth-child(even) {
-  /* background-color: rgba(255, 255, 255, 0.03); */
-  background-color: black;
-}
 
-.headerItem,
-.rowItem {
-  color: white;
-  font-size: 0.9em;
-}
 
-.rowItem {
-  display: flex;
-  align-items: center;
-}
 
-.itemNumber {
-  width: 20px;
-  margin-right: 10px;
-  text-align: right;
-}
 
-.itemImage {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  margin-right: 10px;
-  object-fit: cover;
-}
 
-.itemName {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
 
-.tableRow:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-}
 
-.tableRow:active {
-  background-color: rgba(255, 255, 255, 0.15);
-}
 
 .walletInfo {
   position: relative;
@@ -260,28 +201,4 @@ html::-webkit-scrollbar, body::-webkit-scrollbar {
 
 
 
-.pagination {
-  display: flex;
-  /* justify-content: center; */
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
 
-.pageButton {
-  background-color: #1e1e1e;
-  border: 1px solid #3a3a3a;
-  color: white;
-  padding: 8px 12px;
-  margin: 0 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.pageButton:hover {
-  background-color: #2c2c2c;
-}
-
-.activePage {
-  background-color: #e74c3c;
-  border-color: #e74c3c;
-}

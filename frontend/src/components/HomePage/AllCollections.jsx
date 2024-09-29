@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useCommonLogic } from "./CommonComponet";
 import { fetchData } from "../Utils/datafetch";
-import styles from './styles/maincomponent.module.css';
+import styles from './styles/allcollection.module.css';
 import classNames from 'classnames'; // Import classnames library
 
 // Adjust the path as needed
@@ -19,7 +19,7 @@ function AllCollections({ activeTab, setActiveTab }) {
     scrollToSection,
     handleCreateCollection,
   } = useCommonLogic();
-  
+
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
