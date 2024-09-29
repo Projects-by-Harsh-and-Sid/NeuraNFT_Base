@@ -1,0 +1,24 @@
+.tab {
+    background-color: transparent;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: border-color 0.3s ease;
+  }
+  
+  .activeTab {
+    border-bottom-color: #e74c3c;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  .dataTable {
+    margin-top: 20px;
+    /* background-color: rgba(255, 255, 255, 0.05); */
+    border-radius: 8px;
+    overflow: hidden;
+    font-size: 18px;
+  }
