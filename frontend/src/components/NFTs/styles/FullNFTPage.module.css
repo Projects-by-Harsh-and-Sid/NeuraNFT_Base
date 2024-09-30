@@ -1,0 +1,375 @@
+.mainContainer{
+    background-color: black;
+}
+
+.fullPageContainer {
+    background-color: #0e0e11;
+    min-height: 100vh;
+    padding: 20px;
+    color: white;
+  }
+  
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .backButton {
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    font-size: 24px;
+    cursor: pointer;
+    margin-right: 20px;
+  }
+  
+  .title {
+    font-size: 28px;
+    margin: 0;
+  }
+  
+  .collection {
+    font-size: 16px;
+    color: #a0a0a0;
+    margin-left: 20px;
+  }
+  
+  .content {
+    display: flex;
+    gap: 40px;
+  }
+  
+  .imageContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .imageContainer img {
+    width: 500px;
+    margin-top: 80px;
+  }
+  
+  .nftImage {
+    max-width: 100%;
+    max-height: 600px;
+    object-fit: contain;
+    border-radius: 10px;
+  }
+  
+  .detailsContainer {
+    flex: 1;
+    margin-right: 50px;
+  }
+  
+  .tabs {
+    display: flex;
+    margin-bottom: 20px;
+  }
+  
+  .tab {
+    background: none;
+    border: none;
+    color: #a0a0a0;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-bottom: 2px solid transparent;
+  }
+  
+  .activeTab {
+    color: #ff69b4;
+    border-bottom-color: #ff69b4;
+  }
+  
+  .tabContent {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 20px;
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+  }
+
+  .tabContent::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  .listingStatusSection {
+    margin-bottom: 20px;
+    background-color: #2a2a2a;
+    border-radius: 5px;
+  }
+  
+  .listingStatus {
+    font-size: 24px;
+    font-weight: bold;
+    /* margin: 0 0 10px 0; */
+    color: #ffffff;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.listingStatusSection h2 {
+    margin-top: 10px;
+}
+
+
+
+.listingStatus 
+
+.ownerInfo {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin: 0 0 15px 0;
+}
+
+.ownerInfo p{
+    margin: 20px;
+    margin-bottom: 0px;
+
+}
+  
+.ownerAddress {
+    color: #ffffff;
+    font-weight: bold;
+}
+  
+.connectWalletButton {
+    background-color: #e91e63;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-bottom: 15px;
+    margin: 20px;
+    margin-top: 10px;
+}
+
+.connectWalletButton:hover {
+    background-color: #c2185b;
+}
+  
+  .descriptionSection {
+    margin-bottom: 20px;
+  }
+  
+  .attributesGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .attributeItem {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .attributeType {
+    font-size: 14px;
+    color: #a0a0a0;
+    margin: 0;
+  }
+  
+  .attributeValue {
+    font-size: 16px;
+    margin: 5px 0 0;
+  }
+  
+  .detailsSection {
+    background-color: #2a2a2a;
+    border-radius: 5px;
+    overflow: hidden;
+  }
+  
+ 
+  .detailsHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+  }
+  
+  .detailsHeader h3 {
+    margin: 0;
+    color: white;
+  }
+  
+  
+  .detailsContent {
+    padding: 0 20px 20px;
+  }
+  
+  .detailItem {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+  
+  .detailLabel {
+    color: #a0a0a0;
+  }
+  
+  .accessContent h3 {
+    margin-top: 0;
+  }
+  
+  .accessList {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .accessListHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: #a0a0a0;
+    border-bottom: 1px solid #202026;
+  }
+  
+  .accessListHeaderItem {
+    flex: 1;
+    font-weight: bold;
+  }
+  
+  .accessListItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #202026;
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+
+  }
+
+  @media (max-width: 600px) {
+    .accessListHeader,
+    .accessListItem {
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 10px;
+    }
+  
+    .accessLevel {
+      text-align: left;
+      margin-top: 5px;
+    }
+  }
+
+  .accessList {
+    list-style-type: none;
+    padding: 0;
+    padding: 10px;
+  }
+  
+  .accessListItem {
+    padding: 5px 0;
+    border-bottom: 1px solid #202026;
+    color: #a0a0a0;
+    padding: 10px;
+  }
+  
+  .accessListItem:last-child {
+    border-bottom: none;
+  }
+  
+  .address {
+    color: #a0a0a0;
+  }
+  
+  .accessLevel {
+    flex: 1;
+    text-align: right;
+    color: #ff69b4;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+  }
+  
+  .accessLevel::after {
+    content: attr(title);
+    position: absolute;
+    bottom: 100%;
+    right: 0;
+    background-color: #202026;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s;
+    margin-bottom: 5px;
+    z-index: 10;
+    border: 1px solid #ff69b4;
+  }
+  
+  .accessLevel:hover::after {
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 24px;
+    color: white;
+  }
+
+  .accessDetailSection {
+    background-color: #202026;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin-top: 20px;
+  }
+
+  .accessDetailHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 15px;
+    cursor: pointer;
+  }
+  
+  .accessDetailHeader h3 {
+    margin: 0;
+    color: white;
+  }
+
+    
+  .accessDetailContent {
+    padding: 0 20px 15px;
+  }
+
+  .buttonContainer {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  .actionButton2 {
+    background-color: #ff69b4;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .actionButton2:hover {
+    background-color: #ff1493;
+  }
+  .expandedIcon, .collapsedIcon {
+    color: #a0a0a0;
+    /* margin-top: 10px; */
+  }

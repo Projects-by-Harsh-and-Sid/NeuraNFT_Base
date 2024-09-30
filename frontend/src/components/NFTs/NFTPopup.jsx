@@ -81,6 +81,10 @@ const NFTDetailPopup = ({ nft, onClose }) => {
         setActiveTab('access');
     };
 
+    const GotoFullPage = (collectionid,nftid) => {
+        navigate(`/collection/${collectionid}/nft/${nftid}`);
+    }
+
 
 
 
@@ -95,8 +99,8 @@ const NFTDetailPopup = ({ nft, onClose }) => {
             </div>
             <div className={styles.actions}>
               <button className={styles.actionButton}>↻</button>
-              <button className={styles.actionButton}>⇱</button>
-              <button className={styles.actionButton} onClick={GotoAccess}>✎</button>
+              <button onClick={() => GotoFullPage(nft.collectionaddress, nft.id)} className={styles.actionButton}>⇱</button>
+              <button onClick={GotoAccess} className={styles.actionButton} >✎</button>
               <button onClick={onClose} className={styles.closeButton}>×</button>
             </div>
           </div>
