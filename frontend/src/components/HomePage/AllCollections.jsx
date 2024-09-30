@@ -57,6 +57,13 @@ function AllCollections({ activeTab, setActiveTab }) {
 
   };
 
+  const formatAddress = (addr) => {
+    if (addr && addr.length > 10) {
+      return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+    }
+    return addr || 'Address not available';
+  };
+
   return (
     <div>
       <div>
@@ -117,7 +124,7 @@ function AllCollections({ activeTab, setActiveTab }) {
                   />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
-                <div className={styles.rowItem}>{item.creator}</div>
+                <div className={styles.rowItem}>{formatAddress(item.creator)}</div>
                 <div className={styles.rowItem}>{item.model}</div>
                 <div className={styles.rowItem}>{item.noOfNFTs}</div>
                 <div className={styles.rowItem}>{item.contextWindow}</div>
@@ -151,7 +158,7 @@ function AllCollections({ activeTab, setActiveTab }) {
                   />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
-                <div className={styles.rowItem}>{item.owner}</div>
+                <div className={styles.rowItem}>{formatAddress(item.owner)}</div>
 
                 <div className={styles.rowItem}>{item.collection}</div>
                 <div className={styles.rowItem}>{item.model}</div>
