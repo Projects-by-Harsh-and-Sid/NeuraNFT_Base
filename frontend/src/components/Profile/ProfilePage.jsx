@@ -94,8 +94,9 @@ const ProfilePage = () => {
     navigate(`/collection/${collectionId}`);
   };
 
-  const handleNFTClick = (nftId) => {
-    navigate(`/nft/${nftId}`);
+
+  const handleNFTClick = (collectionsid,nftid) => {
+    navigate(`/collection/${collectionsid}/nft/${nftid}`);
   };
   const handleBrowseNFTs = () => {
     navigate('/browse-nfts'); // Implement this route in your application
@@ -196,7 +197,7 @@ const ProfilePage = () => {
             {activeTab === 'nfts' && (
               <>
                 {nfts.map((nft) => (
-                  <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.id)}>
+                  <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.collectionaddress,nft.id)}>
                     <img src={nft.image} alt={nft.name} className={styles.itemImage} />
                     <div className={styles.itemDetails}>
                       <h3>{nft.name}</h3>
