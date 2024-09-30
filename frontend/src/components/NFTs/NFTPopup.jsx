@@ -77,8 +77,9 @@ const NFTDetailPopup = ({ nft, onClose }) => {
 
 
 
-
-
+    const GotoAccess = () => {
+        setActiveTab('access');
+    };
 
 
 
@@ -95,7 +96,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
             <div className={styles.actions}>
               <button className={styles.actionButton}>↻</button>
               <button className={styles.actionButton}>⇱</button>
-              <button className={styles.actionButton}>✎</button>
+              <button className={styles.actionButton} onClick={GotoAccess}>✎</button>
               <button onClick={onClose} className={styles.closeButton}>×</button>
             </div>
           </div>

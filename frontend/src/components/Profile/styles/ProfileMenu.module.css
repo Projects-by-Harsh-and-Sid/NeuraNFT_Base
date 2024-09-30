@@ -33,6 +33,7 @@
 }
 
 .menuItems {
+    margin-top: 10px;
     margin-bottom: 20px;
     font-size: 18px;
 }
@@ -40,7 +41,7 @@
 .menuItem {
     padding: 10px 0;
     border-bottom: 1px solid #333;
-    cursor: pointer; /* Optional: Change cursor on hover */
+    cursor: pointer;
 }
 
 .menuFooter {
@@ -84,9 +85,9 @@
     transition: background-color 0.3s ease;
   }
   
-  .profileButton:hover {
+  /* .profileButton:hover {
     background-color: rgba(255, 255, 255, 0.1);
-  }
+  } */
 
   .walletInfo {
     display: flex;
