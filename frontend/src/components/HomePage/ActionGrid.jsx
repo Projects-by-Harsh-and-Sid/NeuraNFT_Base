@@ -26,14 +26,14 @@ const actions = [
       id: 1,
       name: "Your Collections",
       image: create,
-      description: "This is a description for Action 1",
+      description: "See all the collections you have created",
       action: () => navigate("/profile"),
     },
     {
       id: 2,
       name: "All Collections",
       image: gradient,
-      description: "This is a description for Action 1",
+      description: "See all the collections created by everyone",
       action: () => {
         setActiveTab("allCollections");
         scrollToSection(allCollectionsRef);
@@ -43,21 +43,21 @@ const actions = [
       id: 3,
       name: "Create Collections",
       image: night,
-      description: "This is a description for Action 1",
+      description: "Create a new collection",
       action: handleCreateCollection,
     },
     {
       id: 4,
-      name: "My NFTs",
+      name: "Your NFTs",
       image: allnfts,
-      description: "This is a description for Action 1",
+      description: "See all the NFTs you own",
       action: () => navigate("/profile"),
     },
     {
       id: 5,
       name: "All NFTs",
       image: mynfts,
-      description: "This is a description for Action 1",
+      description: "See all the NFTs created by everyone",
       action: () => {
         setActiveTab("allNFTs");
         scrollToSection(allCollectionsRef);
