@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect  } from 'react';
 import { Brain } from 'lucide-react';
 import ProfileMenu from '../Profile/ProfileMenu';
 import UserProfileImage from './UserProfile.jpg';
@@ -27,6 +27,21 @@ const TopBar = ({ onConnectWallet }) => {
   const handleoptionclick = () => {
     navigate('/');
   };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (isMenuOpen) {
+        setIsMenuOpen(false);
+      }
+    };
+  
+    window.addEventListener('scroll', handleScroll);
+  
+    // Cleanup function to remove the event listener when the component unmounts
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [isMenuOpen]);
 
   return (
     <nav className={styles.navbar}>

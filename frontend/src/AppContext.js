@@ -11,26 +11,29 @@ export const AppProvider = ({ children }) => {
   const [address, setAddress] = useState(null);
   const [balance, setBalance] = useState(null);
 
-  const checkTronWebState = () => {
-    if (window.tronWeb) {
-      setTronWebState({
-        installed: true,
-        loggedIn: window.tronWeb.ready,
-      });
-    } else {
-      setTronWebState({
-        installed: false,
-        loggedIn: false,
-      });
-    }
-  };
+// src/AppContext.js
+const checkTronWebState = () => {
+  if (window.tronWeb) {
+    setTronWebState((prevState) => ({
+      ...prevState,
+      installed: true,
+    }));
+  } else {
+    setTronWebState({
+      installed: false,
+      loggedIn: false,
+    });
+  }
+};
 
-  useEffect(() => {
-    checkTronWebState();
-    // Check TronWeb state every 5 seconds
-    const interval = setInterval(checkTronWebState, 5000);
-    return () => clearInterval(interval);
-  }, []);
+
+// src/AppContext.js
+useEffect(() => {
+  checkTronWebState();
+  const interval = setInterval(checkTronWebState, 5000);
+  return () => clearInterval(interval);
+}, []);
+
 
   const connectWallet = async () => {
     if (!window.tronWeb) {

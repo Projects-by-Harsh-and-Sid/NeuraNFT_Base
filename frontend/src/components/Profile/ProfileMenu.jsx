@@ -5,7 +5,7 @@ import styles from './styles/ProfileMenu.module.css';
 import classNames from 'classnames';
 import TronLinkLogo from './styles/trn-link.png';
 
-function ProfileMenu({ isOpen, onClose, address, balance }) {
+function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
   const navigate = useNavigate();
 
   const formatAddress = (addr) => {
@@ -68,7 +68,10 @@ function ProfileMenu({ isOpen, onClose, address, balance }) {
         {/* Add other menu items here if needed */}
       </div>
       <div className={styles.menuFooter}>
-        <button className={styles.menuFooterButton} onClick={onClose}>
+        <button className={styles.menuFooterButton} onClick={() => {
+              onDisconnect();
+              onClose();
+            }}>
           Disconnect
         </button>
       </div>
