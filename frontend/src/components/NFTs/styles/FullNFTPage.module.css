@@ -98,6 +98,7 @@
     margin-bottom: 20px;
     background-color: #202026;
     border-radius: 5px;
+    min-height: 100px;
   }
   
   .listingStatus {

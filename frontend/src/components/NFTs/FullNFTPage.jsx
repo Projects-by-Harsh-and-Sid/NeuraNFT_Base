@@ -8,6 +8,7 @@ import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 
+
 import APIDialog from './ApiDialog';
 import TestAPIDialog from './Apitestdialog';
 
@@ -18,6 +19,8 @@ const FullNFTPage = () => {
   const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
   const [isAccessDetailExpanded, setIsAccessDetailExpanded] = useState(true);
   const navigate = useNavigate();
+
+  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
   const [isApiDialogOpen, setIsApiDialogOpen] = useState(false);
   const [isTestApiDialogOpen, setIsTestApiDialogOpen] = useState(false);
@@ -35,6 +38,13 @@ const FullNFTPage = () => {
     'Level 5': 'Owner - Full control',
   };
 
+  const handleConnectWallet = async () => {
+    if (!tronWebState.loggedIn) {
+      await connectWallet();
+    } else {
+      disconnectWallet();
+    }
+  };
   
   const handleApiClick = async () => {
     setIsApiDialogOpen(true);
@@ -80,9 +90,6 @@ const openChat = () => {
 };
 
 
-
-  const { tronWebState, connectWallet } = useAppContext();
-
   useEffect(() => {
     const fetchNFTData = async () => {
       const nftData = await fetchData('particular_nft', parseInt(nftId), collectionId);
@@ -104,7 +111,7 @@ const openChat = () => {
 
   return (
     <div className={styles.mainContainer}>
-    <TopBar />
+   <TopBar onConnectWallet={handleConnectWallet} />
     <div className={styles.fullPageContainer}>
       <div className={styles.header}>
         <button onClick={handleBack} className={styles.backButton}>←</button>

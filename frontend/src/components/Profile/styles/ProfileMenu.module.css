@@ -16,6 +16,7 @@
 
 .addressMenu {
     margin-left: 10px;
+    color: white;
 }
 
 .menuHeader {
@@ -146,6 +147,7 @@
   .tronInfo{
     display: flex;
     flex-direction: column;
+    color: white;
   }
 
   .addressMenusmall{
@@ -156,4 +158,5 @@
 
   .Walletheader{
     font-size: 14px;
+    color: white;
   }
