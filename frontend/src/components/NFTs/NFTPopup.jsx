@@ -191,6 +191,26 @@ const NFTDetailPopup = ({ nft, onClose }) => {
               {activeTab === 'access' && (
                 <div className={styles.accessContent}>
                   <h3>Access Management</h3>
+                  <div className={styles.accessDetailSection}>
+                      <div className={styles.accessDetailHeader} onClick={() => setIsAccessDetailExpanded(!isAccessDetailExpanded)}>
+                        <h3>Access Detail</h3>
+                        {/* <span className={isAccessDetailExpanded ? styles.expandedIcon : styles.collapsedIcon}>
+                          {isAccessDetailExpanded ? '▲' : '▼'}
+                        </span> */}
+                      </div>
+    
+                        <div className={styles.accessDetailContent}>
+                          <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Creator Address</span>
+                            <span className={styles.detailValue}>{nft.creatorAddress}</span>
+                          </div>
+                          <div className={styles.detailItem}>
+                            <span className={styles.detailLabel}>Owner Address</span>
+                            <span className={styles.detailValue}>{nft.ownerAddress}</span>
+                          </div>
+                        </div>
+          
+                        </div>
                   <div className={styles.accessList}>
                     <div className={styles.accessListHeader}>
                       <div className={styles.accessListHeaderItem}>Address</div>
@@ -208,7 +228,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                       </div>
                     ))}
                   </div>
-                    <div className={styles.accessDetailSection}>
+                    {/* <div className={styles.accessDetailSection}>
                       <div className={styles.accessDetailHeader} onClick={() => setIsAccessDetailExpanded(!isAccessDetailExpanded)}>
                         <h3>Access Detail</h3>
                         <span className={isAccessDetailExpanded ? styles.expandedIcon : styles.collapsedIcon}>
@@ -227,7 +247,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                           </div>
                         </div>
                       )}
-                        </div>
+                        </div> */}
                         
                     <div className={styles.buttonContainer}>
                       <button className={styles.actionButton2}>Add Access</button>
