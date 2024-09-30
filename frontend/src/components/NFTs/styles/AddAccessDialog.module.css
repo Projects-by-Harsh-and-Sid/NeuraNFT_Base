@@ -1,20 +1,20 @@
 .dialogContent {
-    background-color: #121212;
+    background-color: #121212 !important;
     color: white;
-    padding: 24px;
+    padding: 24px !important;
   }
   
   .dialogTitle {
-    margin-top: 0;
-    margin-bottom: 20px;
-    font-size: 1.5rem;
+    margin-top: 0 !important;
+    margin-bottom: 20px !important;
+    font-size: 1.5rem !important;
   }
   
   .loadingContainer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 200px;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+    height: 200px !important;
   }
   
   .input {
@@ -24,6 +24,7 @@
   .inputText {
     color: white !important;
     background-color: #333 !important;
+    margin-bottom: 20px !important;
   }
   
   .inputText:hover {
@@ -43,7 +44,7 @@
   }
   
   .select {
-    margin-bottom: 20px;
+    margin-bottom: 20px !important;
     color: white !important;
     background-color: #333 !important;
   }
@@ -66,22 +67,22 @@
   }
   
   .submitButton {
-    background-color: #ff69b4;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s;
+    background-color: #ff69b4 !important;
+    color: white !important ;
+    padding: 10px 20px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s !important;
   }
   
   .submitButton:hover {
     background-color: #ff1493;
   }
 
-    .dialogPaper {
+.dialogPaper {
     background-color: #121212 !important;
     color: white;
     border-radius: 10px !important;
-  }
+  } 

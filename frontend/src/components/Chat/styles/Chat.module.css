@@ -388,3 +388,31 @@
   color: white;
 }
 
+.attributesGrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.attributeItem {
+  background-color: #2a2a2a;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 5px;
+  flex: 1 1 calc(50% - 10px); /* Adjust this for the number of columns */
+  box-sizing: border-box;
+  max-height: 100px;
+}
+
+.attributeType {
+  font-weight: bold;
+  /* margin-bottom: 5px; */
+  color: #fff;
+  margin-top: 0px !important; 
+  margin-bottom: 0px !important;
+}
+
+.attributeValue {
+  color: #ccc;
+  margin-top: 2px !important ;
+}

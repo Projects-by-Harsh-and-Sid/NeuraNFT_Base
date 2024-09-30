@@ -85,6 +85,7 @@ const Chat = () => {
     contextWindow: 'Unknown',
     totalAccess: 'Unknown',
     collection: 'Unknown',
+    attributes: [],
   });
   const [isModelFeaturesOpen, setIsModelFeaturesOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
@@ -152,11 +153,8 @@ const Chat = () => {
 
   const fetchNFTDetails = async () => {
     try {
-      // const { myCollections } = await fetchData('collection_from_id', collectionId);
       const { myNFTs } = await fetchData('particular_nft', parseInt(nftID), collectionId);
-
-      console.log("My NFTs:", myNFTs);
-      
+  
       if (myNFTs.length > 0) {
         const nft = myNFTs[0];
         setNftDetails({
@@ -164,15 +162,17 @@ const Chat = () => {
           description: nft.description,
           model: `${nft.name} : ${nft.model}`,
           image: nft.image,
-          contextWindow: '4096 tokens', // You might want to fetch this from the API
-          totalAccess: '1', // You might want to fetch this from the API
-          collection: 're:generates', // You might want to fetch this from the API
+          contextWindow: '4096 tokens', // Update as needed
+          totalAccess: '1',             // Update as needed
+          collection: 're:generates',   // Update as needed
+          attributes: nft.attributes,   // Add this line
         });
       }
     } catch (error) {
       console.error('Error fetching NFT details:', error);
     }
   };
+  
 
   const toggleModelFeatures = () => {
     setIsModelFeaturesOpen(!isModelFeaturesOpen);
@@ -327,7 +327,7 @@ const Chat = () => {
     />
         <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
         <p>{nftDetails.description || 'No description available'}</p>
-        <div className={styles['model-info']}>
+        {/* <div className={styles['model-info']}>
         <div className={styles['model-tag']} onClick={toggleModelFeatures}>
                 <span className={styles['model-name']}>
                   Model: {nftDetails.model || 'Unknown'}
@@ -339,7 +339,17 @@ const Chat = () => {
                   <li>Content window: 16k</li>
                 </ul>
               )}
+            </div> */}
+            {nftDetails.attributes && nftDetails.attributes.length > 0 && (
+        <div className={styles.attributesGrid}>
+          {nftDetails.attributes.map((attr, index) => (
+            <div key={index} className={styles.attributeItem}>
+              <p className={styles.attributeType}>{attr.trait_type}</p>
+              <p className={styles.attributeValue}>{attr.value}</p>
             </div>
+          ))}
+        </div>
+      )}
       </>
     )}
   </div>
