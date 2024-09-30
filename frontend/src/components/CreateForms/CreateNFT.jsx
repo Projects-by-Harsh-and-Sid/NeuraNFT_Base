@@ -137,9 +137,9 @@ const CreateNFT = () => {
     //   return;
     // }
 
-    // setIsUploading(true);
 
-    // try {
+    try {
+      setIsUploading(true);
 
     //   const textResults = await Promise.all(pdfFiles.map(file => convertPdfToText(file)));
 
@@ -198,10 +198,10 @@ const CreateNFT = () => {
       // console.log('NFT minted with token ID:', tokenId);
       // alert(`NFT minted with token ID: ${tokenId}`)
 
-    // } catch (error) {
+    } catch (error) {
     //   console.error('Error processing PDFs and minting NFT:', error);
     //   alert('Error processing PDFs and minting NFT');
-    // }
+    }
   };
   // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
