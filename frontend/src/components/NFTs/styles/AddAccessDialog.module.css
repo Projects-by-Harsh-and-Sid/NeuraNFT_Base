@@ -1,0 +1,87 @@
+.dialogContent {
+    background-color: #121212;
+    color: white;
+    padding: 24px;
+  }
+  
+  .dialogTitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .input {
+    margin-bottom: 20px;
+  }
+  
+  .inputText {
+    color: white !important;
+    background-color: #333 !important;
+  }
+  
+  .inputText:hover {
+    background-color: #444 !important;
+  }
+  
+  .inputLabel {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  .inputText fieldset {
+    border-color: rgba(255, 255, 255, 0.23) !important;
+  }
+  
+  .inputText:hover fieldset {
+    border-color: rgba(255, 255, 255, 0.5) !important;
+  }
+  
+  .select {
+    margin-bottom: 20px;
+    color: white !important;
+    background-color: #333 !important;
+  }
+  
+  .select:before, .select:after {
+    border-color: white !important;
+  }
+  
+  .select svg {
+    color: white !important;
+  }
+  
+  .menuPaper {
+    background-color: #333 !important;
+    color: white !important;
+  }
+  
+  .placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+  
+  .submitButton {
+    background-color: #ff69b4;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s;
+  }
+  
+  .submitButton:hover {
+    background-color: #ff1493;
+  }
+
+  .dialogPaper {
+    background-color: #121212 !important;
+    color: white;
+    border-radius: 10px !important;
+  }

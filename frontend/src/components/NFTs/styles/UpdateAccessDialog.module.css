@@ -1,0 +1,63 @@
+.dialogContent {
+    background-color: #121212;
+    color: white;
+    padding: 24px;
+  }
+  
+  .dialogTitle {
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .loadingContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200px;
+  }
+  
+  .select {
+    margin-bottom: 20px;
+    color: white !important;
+    background-color: #333 !important;
+  }
+  
+  .select:before, .select:after {
+    border-color: white !important;
+  }
+  
+  .select svg {
+    color: white !important;
+  }
+  
+  .menuPaper {
+    background-color: #333 !important;
+    color: white !important;
+  }
+  
+  .placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+  }
+
+
+  .submitButton {
+    background-color: #ff69b4 !important; 
+    color: white !important;
+    padding: 10px 20px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    cursor: pointer !important;
+    font-size: 16px !important;
+    transition: background-color 0.3s !important;
+  }
+  
+  .submitButton:hover {
+    background-color: #ff1493;
+  }
+
+  .dialogPaper {
+    background-color: #121212 !important;
+    color: white;
+    border-radius: 10px !important;
+  }

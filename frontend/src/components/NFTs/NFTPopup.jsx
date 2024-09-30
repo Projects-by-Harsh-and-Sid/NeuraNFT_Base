@@ -7,6 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../AppContext';
 import APIDialog from './ApiDialog';
 import TestAPIDialog from './Apitestdialog';
+import AddAccessDialog from './AddAccessDialog';
+import UpdateAccessDialog from './UpdateAccessDialog';
 
 const NFTDetailPopup = ({ nft, onClose }) => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -20,6 +22,9 @@ const NFTDetailPopup = ({ nft, onClose }) => {
     const [isApiLoading, setIsApiLoading] = useState(false);
     const [testApiResult, setTestApiResult] = useState('');
     const [isTestApiLoading, setIsTestApiLoading] = useState(false);
+
+    const [isAddAccessDialogOpen, setIsAddAccessDialogOpen] = useState(false);
+    const [isUpdateAccessDialogOpen, setIsUpdateAccessDialogOpen] = useState(false);
 
     const navigate = useNavigate();
 
@@ -58,6 +63,17 @@ const NFTDetailPopup = ({ nft, onClose }) => {
             setIsTestApiLoading(false);
         }, 1500);
     };
+
+    const handleAddAccess = (address, accessLevel) => {
+      // Implement the logic to add access
+      console.log(`Adding access for ${address} with level ${accessLevel}`);
+  };
+
+  const handleUpdateAccess = (address, newAccessLevel) => {
+      // Implement the logic to update access
+      console.log(`Updating access for ${address} to level ${newAccessLevel}`);
+  };
+
 
     const openChat = () => {
         navigate(`/chat/${nft.collectionId}/${nft.id}`);
@@ -252,8 +268,8 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                         </div> */}
                         
                     <div className={styles.buttonContainer}>
-                      <button className={styles.actionButton2}>Add Access</button>
-                      <button className={styles.actionButton2}>Update Access</button>
+                    <button className={styles.actionButton2} onClick={() => setIsAddAccessDialogOpen(true)}>Add Access</button>
+                    <button className={styles.actionButton2} onClick={() => setIsUpdateAccessDialogOpen(true)}>Update Access</button>
 
                     </div>    
                   </div>
@@ -276,6 +292,18 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                 onClose={() => setIsTestApiDialogOpen(false)}
                 testResult={testApiResult}
                 isLoading={isTestApiLoading}
+            />
+            <AddAccessDialog
+                isOpen={isAddAccessDialogOpen}
+                onClose={() => setIsAddAccessDialogOpen(false)}
+                onAddAccess={handleAddAccess}
+            />
+
+            <UpdateAccessDialog
+                isOpen={isUpdateAccessDialogOpen}
+                onClose={() => setIsUpdateAccessDialogOpen(false)}
+                onUpdateAccess={handleUpdateAccess}
+                accessList={nft.accessList}
             />
       </div>
 
