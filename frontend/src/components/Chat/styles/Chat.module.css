@@ -68,6 +68,7 @@
   height: auto;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  max-height: 250px;
 }
 
 .nft-image::after {
@@ -386,3 +387,4 @@
 .bot-para{
   color: white;
 }
+

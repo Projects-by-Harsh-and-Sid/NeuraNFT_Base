@@ -7,6 +7,8 @@ import TopBar from '../Common_Components/TopBar';
 import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
+import AddAccessDialog from './AddAccessDialog';
+import UpdateAccessDialog from './UpdateAccessDialog';
 
 
 import APIDialog from './ApiDialog';
@@ -19,6 +21,10 @@ const FullNFTPage = () => {
   const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
   const [isAccessDetailExpanded, setIsAccessDetailExpanded] = useState(true);
   const navigate = useNavigate();
+
+  const [isAddAccessDialogOpen, setIsAddAccessDialogOpen] = useState(false);
+  const [isUpdateAccessDialogOpen, setIsUpdateAccessDialogOpen] = useState(false);
+
 
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
@@ -45,6 +51,23 @@ const FullNFTPage = () => {
       disconnectWallet();
     }
   };
+
+  const formatAddress = (addr) => {
+    if (addr && addr.length > 10) {
+      return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
+    }
+    return addr || 'Address not available';
+  };
+
+  const handleAddAccess = (address, accessLevel) => {
+    // Implement the logic to add access
+    console.log(`Adding access for ${address} with level ${accessLevel}`);
+};
+
+const handleUpdateAccess = (address, newAccessLevel) => {
+    // Implement the logic to update access
+    console.log(`Updating access for ${address} to level ${newAccessLevel}`);
+};
   
   const handleApiClick = async () => {
     setIsApiDialogOpen(true);
@@ -147,7 +170,7 @@ const openChat = () => {
                 <div className={styles.listingStatusSection}>
                   <h2 style={{ margin: '10px', marginBottom: '0px',marginTop :'10px'}} className={styles.listingStatus}>{nft.name}</h2>
                   <p style={{ margin: '20px', marginBottom: '0px',marginTop: '0px'}}className={styles.ownerInfo}>
-                    Owned by: <span className={styles.ownerAddress}>{nft.owner}</span>
+                    Owned by: <span className={styles.ownerAddress}>{formatAddress(nft.owner)}</span>
                   </p>
                   {!tronWebState.loggedIn && (
                     <button className={styles.connectWalletButton} onClick={connectWallet}>
@@ -179,7 +202,7 @@ const openChat = () => {
                     <div className={styles.detailsContent}>
                       <div className={styles.detailItem}>
                         <span className={styles.detailLabel}>Collection Address</span>
-                        <span className={styles.detailValue}>{nft.collectionaddress}</span>
+                        <span className={styles.detailValue}>{formatAddress(nft.collectionaddress)}</span>
                       </div>
                       <div className={styles.detailItem}>
                         <span className={styles.detailLabel}>Token ID</span>
@@ -219,11 +242,11 @@ const openChat = () => {
                   <div className={styles.accessDetailContent}>
                     <div className={styles.detailItem}>
                       <span className={styles.detailLabel}>Creator Address</span>
-                      <span className={styles.detailValue}>{nft.creatorAddress}</span>
+                      <span className={styles.detailValue}>{formatAddress(nft.creatorAddress)}</span>
                     </div>
                     <div className={styles.detailItem}>
                       <span className={styles.detailLabel}>Owner Address</span>
-                      <span className={styles.detailValue}>{nft.ownerAddress}</span>
+                      <span className={styles.detailValue}>{formatAddress(nft.ownerAddress)}</span>
                     </div>
                   </div>
                 </div>
@@ -234,7 +257,7 @@ const openChat = () => {
                   </div>
                   {nft.accessList.map((accessItem, index) => (
                     <div key={index} className={styles.accessListItem}>
-                      <div className={styles.address}>{accessItem.address}</div>
+                      <div className={styles.address}>{formatAddress(accessItem.address)}</div>
                       <div className={styles.accessLevel} title={accessLevelDescriptions[accessItem.accessLevel]}>
                         {accessItem.accessLevel}
                       </div>
@@ -242,8 +265,8 @@ const openChat = () => {
                   ))}
                 </div>
                 <div className={styles.buttonContainer2}>
-                <button className={styles.actionButton2}>Add Access</button>
-                <button className={styles.actionButton2}>Update Access</button>
+                <button className={styles.actionButton2} onClick={() => setIsAddAccessDialogOpen(true)}>Add Access</button>
+                <button className={styles.actionButton2} onClick={() => setIsUpdateAccessDialogOpen(true)}>Update Access</button>
             </div>    
               </div>
 
@@ -254,7 +277,7 @@ const openChat = () => {
         </div>
       </div>
     </div>
-    <APIDialog
+         <APIDialog
                 isOpen={isApiDialogOpen}
                 onClose={() => setIsApiDialogOpen(false)}
                 apiKey={apiKey}
@@ -267,6 +290,19 @@ const openChat = () => {
                 onClose={() => setIsTestApiDialogOpen(false)}
                 testResult={testApiResult}
                 isLoading={isTestApiLoading}
+            />
+
+          <AddAccessDialog
+                isOpen={isAddAccessDialogOpen}
+                onClose={() => setIsAddAccessDialogOpen(false)}
+                onAddAccess={handleAddAccess}
+            />
+
+            <UpdateAccessDialog
+                isOpen={isUpdateAccessDialogOpen}
+                onClose={() => setIsUpdateAccessDialogOpen(false)}
+                onUpdateAccess={handleUpdateAccess}
+                accessList={nft.accessList}
             />
    
     </div>

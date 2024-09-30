@@ -4,6 +4,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked'; // Import the marked library
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
 import styles from './styles/Chat.module.css';
+import { fetchData } from '../Utils/datafetch';
 
 // import {get_api_key} from './helper_functions/get_chat_data';
 
@@ -80,8 +81,10 @@ const Chat = () => {
     name: 'Unnamed NFT',
     description: 'No description available',
     model: 'Unknown',
-    nft_image: null,
-    
+    image: null,
+    contextWindow: 'Unknown',
+    totalAccess: 'Unknown',
+    collection: 'Unknown',
   });
   const [isModelFeaturesOpen, setIsModelFeaturesOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
@@ -91,7 +94,7 @@ const Chat = () => {
 
   useEffect(() => {
     if (collectionId) {
-      // fetchNFTDetails();
+      fetchNFTDetails();
       initializeChat();
       console.log("Collection ID:", collectionId);
     } else {
@@ -145,6 +148,30 @@ const Chat = () => {
     // // console.log("Response:", response);
     // setIsInitializing(false);
 
+  };
+
+  const fetchNFTDetails = async () => {
+    try {
+      // const { myCollections } = await fetchData('collection_from_id', collectionId);
+      const { myNFTs } = await fetchData('particular_nft', parseInt(nftID), collectionId);
+
+      console.log("My NFTs:", myNFTs);
+      
+      if (myNFTs.length > 0) {
+        const nft = myNFTs[0];
+        setNftDetails({
+          name: nft.name,
+          description: nft.description,
+          model: `${nft.name} : ${nft.model}`,
+          image: nft.image,
+          contextWindow: '4096 tokens', // You might want to fetch this from the API
+          totalAccess: '1', // You might want to fetch this from the API
+          collection: 're:generates', // You might want to fetch this from the API
+        });
+      }
+    } catch (error) {
+      console.error('Error fetching NFT details:', error);
+    }
   };
 
   const toggleModelFeatures = () => {
@@ -293,7 +320,7 @@ const Chat = () => {
     {nftDetails && (
       <>
     <img
-      src={nftDetails.nft_image}
+      src={nftDetails.image}
       alt={nftDetails.name || 'Unnamed NFT'}
 
       className={styles['nft-image']}
