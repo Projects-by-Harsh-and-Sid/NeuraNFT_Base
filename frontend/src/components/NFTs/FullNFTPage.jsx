@@ -56,6 +56,7 @@ const FullNFTPage = () => {
     if (addr && addr.length > 10) {
       return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
     }
+    console.log(addr);
     return addr || 'Address not available';
   };
 

@@ -98,10 +98,12 @@ const NFTDetailPopup = ({ nft, onClose }) => {
         navigate(`/collection/${collectionid}/nft/${nftid}`);
     }
     
+
     const formatAddress = (addr) => {
       if (addr && addr.length > 10) {
         return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
       }
+      console.log(addr);
       return addr || 'Address not available';
     };
 
@@ -184,7 +186,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                         <div className={styles.detailsContent}>
                           <div className={styles.detailItem}>
                             <span className={styles.detailLabel}>Collection Address</span>
-                            <span className={styles.detailValue}>{nft.collectionaddress}</span>
+                            <span className={styles.detailValue}>{formatAddress(nft.collectionaddress)}</span>
                           </div>
                           <div className={styles.detailItem}>
                             <span className={styles.detailLabel}>Token ID</span>

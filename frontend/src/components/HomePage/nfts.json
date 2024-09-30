@@ -15,13 +15,13 @@
         "accessList": [
           { "address": "0x8765...4321", "accessLevel": "Level 1" }
         ],
-        "collectionaddress": "0x1234...5678",
+        "collectionaddress": "0x123488888888888885678",
         "tokenId": "1234",
         "tokenStandard": "ERC-721",
         "owner": "0x8765...4321",
         "chain": "Ethereum",
         "description": "This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
-        "creatorAddress": "0x1234...5678",
+        "creatorAddress": "0x123488888888888885678",
         "ownerAddress": "0x8765...4321",
         "numberOfOwners": 1
       },
@@ -40,7 +40,7 @@
         "accessList": [
           { "address": "0x8765...4321", "accessLevel": "Level 1" }
         ],
-        "collectionaddress": "0x1234...5678",
+        "collectionaddress": "0x123488888888888885678",
         "tokenId": "5678",
         "tokenStandard": "ERC-721",
         "owner": "0x8765...4321",
@@ -66,7 +66,7 @@
           { "address": "0x8765...4321", "accessLevel": "Level 1" },
           { "address": "0x1111...2222", "accessLevel": "Level 2" }
         ],
-        "collectionaddress": "0x1234...5678",
+        "collectionaddress": "0x123488888888888885678",
         "tokenId": "9101",
         "tokenStandard": "ERC-721",
         "owner": "0x8765...4321",
