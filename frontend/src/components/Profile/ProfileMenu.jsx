@@ -19,6 +19,10 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
     navigate('/profile'); // Assumes '/profile' is the route for ProfilePage
     onClose(); // Close the menu after navigation
   };
+  const handleHomeClick = () => {
+    navigate('/'); // Assumes '/profile' is the route for ProfilePage
+    onClose(); // Close the menu after navigation
+  };
 
   return (
     <div
@@ -59,6 +63,12 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
           </div>
         </div>
       <div className={styles.menuItems}>
+      <button 
+          className={styles.profileButton}
+          onClick={handleHomeClick}
+        >
+          Home
+        </button>
         <button 
           className={styles.profileButton}
           onClick={handleProfileClick}
