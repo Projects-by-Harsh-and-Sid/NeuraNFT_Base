@@ -109,7 +109,7 @@ const handleTestApiClick = async () => {
 };
 
 const openChat = () => {
-    navigate(`/chat/${nft.collectionId}/${nft.id}`);
+    navigate(`/chat/${nft.collectionaddress}/${nft.id}`);
 };
 
 
