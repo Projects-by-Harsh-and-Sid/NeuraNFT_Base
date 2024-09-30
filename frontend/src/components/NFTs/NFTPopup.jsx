@@ -5,6 +5,8 @@ import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
 import { useAppContext } from '../../AppContext';
+import APIDialog from './ApiDialog';
+import TestAPIDialog from './Apitestdialog';
 
 const NFTDetailPopup = ({ nft, onClose }) => {
     const [activeTab, setActiveTab] = useState('overview');
@@ -34,10 +36,6 @@ const NFTDetailPopup = ({ nft, onClose }) => {
       const handleApiClick = async () => {
         setIsApiDialogOpen(true);
         setIsApiLoading(true);
-        // wait for the dialog to open before closing the NFT popup
-        
-        // onClose(); // Close the NFT popup
-
         
         // Simulating API call with dummy values
         setTimeout(() => {
@@ -48,7 +46,6 @@ const NFTDetailPopup = ({ nft, onClose }) => {
     };
 
     const handleTestApiClick = async () => {
-        
         setIsTestApiLoading(true);
         setIsTestApiDialogOpen(true);
 
@@ -266,70 +263,20 @@ const NFTDetailPopup = ({ nft, onClose }) => {
             </div>
           </div>
         </div>
-        
-        <Dialog
-                open={isApiDialogOpen}
+              <APIDialog
+                isOpen={isApiDialogOpen}
                 onClose={() => setIsApiDialogOpen(false)}
-                maxWidth="md"
-                classes={{ paper: styles.dialogPaper }}
-            >
-                <DialogContent className={styles.apiDialogContent}>
-                    {isApiLoading ? (
-                        <div className={styles.loadingContainer}>
-                            <CircularProgress />
-                        </div>
-                    ) : (
-                        <>
-                            <div className={styles.apiItem}>
-                                <span className={styles.apiLabel}>API Key:</span>
-                                <div className={styles.apiValueContainer}>
-                                    <span className={styles.apiValue}>{apiKey}</span>
-                                    <button
-                                        className={styles.copyButton}
-                                        onClick={() => copyToClipboard(apiKey)}
-                                    >
-                                        Copy
-                                    </button>
-                                </div>
-                            </div>
-                            <div className={styles.apiItem}>
-                                <span className={styles.apiLabel}>API Endpoint:</span>
-                                <div className={styles.apiValueContainer}>
-                                    <span className={styles.apiValue}>{apiEndpoint}</span>
-                                    <button
-                                        className={styles.copyButton}
-                                        onClick={() => copyToClipboard(apiEndpoint)}
-                                    >
-                                        Copy
-                                    </button>
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </DialogContent>
-            </Dialog>
-            {/* Test API Dialog */}
-            <Dialog
-                open={isTestApiDialogOpen}
+                apiKey={apiKey}
+                apiEndpoint={apiEndpoint}
+                isLoading={isApiLoading}
+            />
+            
+            <TestAPIDialog
+                isOpen={isTestApiDialogOpen}
                 onClose={() => setIsTestApiDialogOpen(false)}
-                maxWidth="lg"
-                fullWidth
-                classes={{ paper: styles.testApiDialogPaper }}
-            >
-                <DialogContent className={styles.testApiDialogContent}>
-                    <h3 className={styles.testApiDialogTitle}>API Test Result</h3>
-                    {isTestApiLoading ? (
-                        <div className={styles.testApiLoadingContainer}>
-                            <CircularProgress />
-                        </div>
-                    ) : (
-                        <pre className={styles.testApiResultPre} dangerouslySetInnerHTML={{ __html: testApiResult }}></pre>
-                    )}
-                    <button className={styles['dialogClose']} onClick={() => setIsTestApiDialogOpen(false)}>
-                        ×
-                    </button>
-                </DialogContent>
-            </Dialog>
+                testResult={testApiResult}
+                isLoading={isTestApiLoading}
+            />
       </div>
 
       

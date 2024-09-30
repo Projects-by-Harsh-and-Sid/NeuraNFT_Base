@@ -51,6 +51,12 @@ function AllCollections({ activeTab, setActiveTab }) {
     }
   };
 
+  const handleNFTClick = (collectionid,nftid) => {
+
+    navigate(`/collection/${collectionid}/nft/${nftid}`);
+
+  };
+
   return (
     <div>
       <div>
@@ -131,7 +137,7 @@ function AllCollections({ activeTab, setActiveTab }) {
               <div
                 key={item.id}
                 className={styles.tableRow}
-                onClick={() => handleRowClick(item.id, "nft")}
+                onClick={() => handleNFTClick(item.collectionaddress,item.id)}
               >
                 <div className={styles.rowItem}>
                   {/* <span className={styles.itemNumber}>{index + 1}</span> */}

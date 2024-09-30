@@ -8,6 +8,9 @@ import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 
+import APIDialog from './ApiDialog';
+import TestAPIDialog from './Apitestdialog';
+
 const FullNFTPage = () => {
   const { collectionId, nftId } = useParams();
   const [nft, setNft] = useState(null);
@@ -231,76 +234,34 @@ const openChat = () => {
                     </div>
                   ))}
                 </div>
+                <div className={styles.buttonContainer2}>
+                <button className={styles.actionButton2}>Add Access</button>
+                <button className={styles.actionButton2}>Update Access</button>
+            </div>    
               </div>
+
+
+                         
             )}
           </div>
         </div>
       </div>
     </div>
-
-    <Dialog
-                open={isApiDialogOpen}
+    <APIDialog
+                isOpen={isApiDialogOpen}
                 onClose={() => setIsApiDialogOpen(false)}
-                maxWidth="md"
-                classes={{ paper: styles.dialogPaper }}
-            >
-                <DialogContent className={styles.apiDialogContent}>
-                    {isApiLoading ? (
-                        <div className={styles.loadingContainer}>
-                            <CircularProgress />
-                        </div>
-                    ) : (
-                        <>
-                            <div className={styles.apiItem}>
-                                <span className={styles.apiLabel}>API Key:</span>
-                                <div className={styles.apiValueContainer}>
-                                    <span className={styles.apiValue}>{apiKey}</span>
-                                    <button
-                                        className={styles.copyButton}
-                                        onClick={() => copyToClipboard(apiKey)}
-                                    >
-                                        Copy
-                                    </button>
-                                </div>
-                            </div>
-                            <div className={styles.apiItem}>
-                                <span className={styles.apiLabel}>API Endpoint:</span>
-                                <div className={styles.apiValueContainer}>
-                                    <span className={styles.apiValue}>{apiEndpoint}</span>
-                                    <button
-                                        className={styles.copyButton}
-                                        onClick={() => copyToClipboard(apiEndpoint)}
-                                    >
-                                        Copy
-                                    </button>
-                                </div>
-                            </div>
-                        </>
-                    )}
-                </DialogContent>
-            </Dialog>
-            {/* Test API Dialog */}
-            <Dialog
-                open={isTestApiDialogOpen}
+                apiKey={apiKey}
+                apiEndpoint={apiEndpoint}
+                isLoading={isApiLoading}
+            />
+            
+            <TestAPIDialog
+                isOpen={isTestApiDialogOpen}
                 onClose={() => setIsTestApiDialogOpen(false)}
-                maxWidth="lg"
-                fullWidth
-                classes={{ paper: styles.testApiDialogPaper }}
-            >
-                <DialogContent className={styles.testApiDialogContent}>
-                    <h3 className={styles.testApiDialogTitle}>API Test Result</h3>
-                    {isTestApiLoading ? (
-                        <div className={styles.testApiLoadingContainer}>
-                            <CircularProgress />
-                        </div>
-                    ) : (
-                        <pre className={styles.testApiResultPre} dangerouslySetInnerHTML={{ __html: testApiResult }}></pre>
-                    )}
-                    <button className={styles['dialogClose']} onClick={() => setIsTestApiDialogOpen(false)}>
-                        ×
-                    </button>
-                </DialogContent>
-            </Dialog>
+                testResult={testApiResult}
+                isLoading={isTestApiLoading}
+            />
+   
     </div>
   );
 };

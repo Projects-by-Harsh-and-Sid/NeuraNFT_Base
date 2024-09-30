@@ -96,7 +96,7 @@
   
   .listingStatusSection {
     margin-bottom: 20px;
-    background-color: #2a2a2a;
+    background-color: #202026;
     border-radius: 5px;
   }
   
@@ -164,7 +164,7 @@
   }
   
   .attributeItem {
-    background-color: #2a2a2a;
+    background-color: #202026;
     padding: 10px;
     border-radius: 5px;
   }
@@ -181,7 +181,7 @@
   }
   
   .detailsSection {
-    background-color: #2a2a2a;
+    background-color: #202026;
     border-radius: 5px;
     overflow: hidden;
   }
@@ -355,7 +355,13 @@
     justify-content: space-between;
     margin-top: 20px;
   }
-
+  
+  .buttonContainer2 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    padding: 10px;
+  }
   .actionButton2 {
     background-color: #ff69b4;
     color: white;
