@@ -97,7 +97,7 @@
     margin-left: 10px;
     background-color: #1f2422c2;
     border-radius: 10px;
-    height: 15%;
+    /* height: 15%; */
   }
   
   .tronWallet {
@@ -111,8 +111,9 @@
   .tronBalance {
     display: flex;
     align-items: center;
-    margin-top: 5px;
+    /* margin-top: 5px; */
     margin: 10px;
+    margin-top: 0px;
   }
   .tronBalance img {
     margin-right: 16px;
@@ -159,4 +160,23 @@
   .Walletheader{
     font-size: 14px;
     color: white;
+  }
+
+  .addressContainer {
+    display: flex;
+    align-items: center;
+  }
+  
+  .copyButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-left: 5px;
+    color: #666;
+    margin-top: 5px;
+  }
+  
+  .copyButton:hover {
+    color: #333;
   }

@@ -4,6 +4,7 @@ import DefaultImage from './DefaultImage.jpg';
 import styles from './styles/ProfileMenu.module.css';
 import classNames from 'classnames';
 import TronLinkLogo from './styles/trn-link.png';
+import { Copy } from 'lucide-react'; // Import the Copy icon from lucide-react
 
 function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
   const navigate = useNavigate();
@@ -22,6 +23,14 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
   const handleHomeClick = () => {
     navigate('/'); // Assumes '/profile' is the route for ProfilePage
     onClose(); // Close the menu after navigation
+  };
+
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text).then(() => {
+      console.log('Text copied to clipboard');
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
   };
 
   return (
@@ -43,7 +52,7 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
               alt="Tron"
               className={styles.WalletIcon}
               />
-            <span className={styles.Walletheader}>TronLink( 1 wallet )</span>
+            <span className={styles.Walletheader}>TronLink (1 wallet)</span>
             <div className={styles.activeStatus}>
               <span className={styles.walletStatus}>Active</span>
             </div>
@@ -58,7 +67,16 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
             />
           <div className={styles.tronInfo}>
             <span>0.00 TrX</span>
-            <h3 className={styles.addressMenusmall}>{formatAddress(address)}</h3>
+            <div className={styles.addressContainer}>
+              <h3 className={styles.addressMenusmall}>{formatAddress(address)}</h3>
+              <button 
+                className={styles.copyButton} 
+                onClick={() => copyToClipboard(address)}
+                aria-label="Copy address"
+              >
+                <Copy size={10} />
+              </button>
+            </div>
           </div>
           </div>
         </div>
