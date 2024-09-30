@@ -153,6 +153,31 @@
     border-radius: 0.25rem;
     font-family: 'Poppins', sans-serif;
   }
+
+  .textInputname{
+    width: 97%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 0.25rem;
+    font-family: 'Poppins', sans-serif;
+  }
+  .textInputdesc{
+    width: 97%;
+    padding: 0.5rem;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #444;
+    border-radius: 0.25rem;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  .textInputname:focus,
+  .textInputdesc:focus{
+    outline: none;
+    border-color: var(--gradient-mid3);
+  }
   
   .selectInput {
     appearance: none;

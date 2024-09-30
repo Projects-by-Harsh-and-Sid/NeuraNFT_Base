@@ -263,7 +263,7 @@ const CreateNFT = () => {
             type="text" 
             value={name} 
             onChange={handleNameChange}
-            className={styles.textInput}
+            className={styles.textInputname}
             placeholder="Enter NFT name"
           />
         </div>
@@ -273,7 +273,7 @@ const CreateNFT = () => {
           <textarea 
             value={description} 
             onChange={handleDescriptionChange}
-            className={styles.textInput}
+            className={styles.textInputdesc}
             placeholder="Enter NFT description"
             rows="3"
           />
