@@ -86,7 +86,7 @@ const TopBar = ({ onConnectWallet }) => {
 
       <div className={styles.navbarMenu}>
         {!tronWebState.loggedIn ? (
-          <button className={styles.connectButton} onClick={onConnectWallet}>
+          <button className={styles.fancybutton} onClick={onConnectWallet}>
             Connect Wallet
           </button>
         ) : (
