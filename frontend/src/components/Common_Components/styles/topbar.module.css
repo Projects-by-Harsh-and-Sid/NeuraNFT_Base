@@ -61,7 +61,7 @@
   .fancybutton::before {
     width: 40px;  /* Reduced size */
     height: 40px;  /* Reduced size */
-    background-color: #8b5cf6;
+    background-color: #6e34f5;
     right: 4px;
     top: 4px;
     z-index: 1;
@@ -71,15 +71,15 @@
   .fancybutton::after {
     width: 80px;
     height: 80px;
-    background-color: #fda4af;
+    background-color: #7977ff;
     right: 32px;
-    top: 12px;
+    top: 15px;
     z-index: 1;
     filter: blur(8px);
   }
   
   .fancybutton:hover {
-    border-color: #fda4af;
+    border-color: #5452da;
     color: #ffffff;  /* Changed to pure white for maximum contrast */
     /* text-decoration: underline; */
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);  /* Enhanced text shadow on hover */
