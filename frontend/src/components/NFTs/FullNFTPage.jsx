@@ -57,7 +57,7 @@ const FullNFTPage = () => {
       return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
     }
     console.log(addr);
-    return addr || 'Address not available';
+    return addr || 'Connect to Wallet';
   };
 
   const handleAddAccess = (address, accessLevel) => {

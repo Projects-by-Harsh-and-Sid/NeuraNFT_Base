@@ -40,7 +40,7 @@ const ProfilePage = () => {
     if (addr && addr.length > 10) {
       return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
     }
-    return addr || 'Address not available';
+    return addr || 'Connect to Wallet';
   };
 
 
