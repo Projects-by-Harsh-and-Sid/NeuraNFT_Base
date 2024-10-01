@@ -29,7 +29,7 @@
 
   .fancybutton {
     position: relative;
-    height: 48px;  /* Reduced height */
+    height: 52px;  /* Reduced height */
     width: 200px;  /* Reduced width */
     background-color: #0d1117;  /* Changed to a dark gray, slightly lighter than before */
     border: none;  /* Removed border */
