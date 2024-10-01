@@ -66,7 +66,7 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
               // className={styles.chainIcon}
             />
           <div className={styles.tronInfo}>
-            <span>0.00 TrX</span>
+            <span>{balance} TRX</span>
             <div className={styles.addressContainer}>
               <h3 className={styles.addressMenusmall}>{formatAddress(address)}</h3>
               <button 
