@@ -384,7 +384,7 @@ const Chat = () => {
       </div>
       <div className={styles['chat-input-container']}>
       {isInitializing && (
-          <div className={styles['initializing-message']}>Loading your model...</div>
+          <div className={styles['initializing-message']}>Initializing your model...</div>
         )}
         <input
           className={styles['chat-input']}
