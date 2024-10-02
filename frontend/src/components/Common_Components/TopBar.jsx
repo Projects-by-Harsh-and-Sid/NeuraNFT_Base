@@ -4,7 +4,7 @@ import ProfileMenu from '../Profile/ProfileMenu';
 import UserProfileImage from './UserProfile.jpg';
 import styles from './styles/topbar.module.css';
 import { useAppContext } from '../../AppContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate,Link  } from 'react-router-dom';
 
 const TopBar = ({ onConnectWallet }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -46,7 +46,7 @@ const TopBar = ({ onConnectWallet }) => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.leftSection}>
-      <div className={styles.navbarBrand}>
+      <Link to="/" className={styles.navbarBrand} style={{ textDecoration: 'none' }}>
       <svg width="0" height="0">
           <linearGradient id="brain-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
             <stop stopColor="#ff00cc" offset="0%" />
@@ -56,7 +56,7 @@ const TopBar = ({ onConnectWallet }) => {
         <Brain size={30} style={{ stroke: "url(#brain-gradient)",
             marginTop: '-1px', // Adjust this value as needed
         verticalAlign: 'middle' }} /> NeuraNFT
-        </div>
+      </Link>
 
 
 
