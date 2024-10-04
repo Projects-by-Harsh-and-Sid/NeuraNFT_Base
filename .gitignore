@@ -1,0 +1,12 @@
+# python compiled files and directories
+*.pyc
+**/__pycache__/
+# virtualenv
+venv/
+
+# node_modules
+node_modules/
+**/node_modules/
+# build files
+build/
+dist/
