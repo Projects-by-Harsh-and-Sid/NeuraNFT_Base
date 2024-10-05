@@ -24,7 +24,7 @@ contract MasterAccessControl {
     }
 
     // Grant access to a caller for a specific contract
-    function grantAccess(address _contract, address _caller) onlyAuthorized() external {
+    function grantAccess(address _contract, address _caller) external onlyAuthorized {
         // Implement ownership logic if necessary
         accessRights[_contract][_caller] = true;
         emit AccessGranted(_contract, _caller);
