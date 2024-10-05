@@ -2,11 +2,13 @@
 pragma solidity ^0.8.7;
 
 import "./MasterAccessControl.sol";
+import "./NFTAccessControl.sol";
 
 
 contract NFTMetadata {
     // Reference to Master Access Control
     MasterAccessControl public accessControl;
+    NFTAccessControl public nftAccessControl;
 
     // Metadata structure
     struct Metadata {
@@ -18,27 +20,49 @@ contract NFTMetadata {
         string description;   // Text description
     }
 
+
+    struct Replica {
+        uint256 replicaCollectionId;
+        uint256 replicaNFTId;
+    }
+
     // Mappings
     mapping(uint256 => mapping(uint256 => Metadata)) private metadataMap; // collectionId => NFTId => Metadata
-    mapping(uint256 => mapping=>(uint256 => (uint256, `uint256))) private replicaMap; // collectionId => NFTId => replicaId => (replicaCollectionId, replicaNFTId)
+    mapping(uint256 => mapping(uint256 => Replica)) private replicaMap; // collectionId => NFTId => replicaId => (replicaCollectionId, replicaNFTId)
 
     // Events
     event MetadataCreated(uint256 indexed collectionId, uint256 indexed nftId, Metadata metadata);
     event MetadataUpdated(uint256 indexed collectionId, uint256 indexed nftId, Metadata metadata);
     event MetadataDeleted(uint256 indexed collectionId, uint256 indexed nftId);
-    event MetadataReplicated(uint256 indexed collectionId, uint256 indexed nftId, uint256 indexed replicaCollectionId, uint256 indexed replicaNFTId);
+    event ReplicaCreated(uint256 indexed collectionId, uint256 indexed nftId, Replica replica);
 
     // Constructor
-    constructor(address _accessControlAddress) {
+    constructor(address _accessControlAddress, address _nftAccessControlAddress) {
         accessControl = MasterAccessControl(_accessControlAddress);
+        nftAccessControl = NFTAccessControl(_nftAccessControlAddress);
         accessControl.grantSelfAccess(msg.sender);
     }
 
     // Modifier to check access
     modifier onlyAuthorized() {
+        // TODO: Implement access control for access levels using nftAccessControl
         require(accessControl.selfCheckAccess(msg.sender), "NFTMetadata: Not authorized");
         _;
     }
+
+
+    // None                  - No access
+    // 1 - UseModel          - Can use the model
+    // 2 - Resale            - Can resell the NFT without replicating and data and model view
+    // 3 - CreateReplica     - Can create a replica of the NFT but not data view
+    // 4 - ViewAndDownload   - Can view and download the data and model but no absolute ownership
+    // 5 - AbsoluteOwnership - Can view, download, create replica, resale, and use model
+
+    modifier onlyAuthorized_level() {
+        require(accessControl.selfCheckAccess(msg.sender), "NFTMetadata: Not authorized");
+        _;
+    }
+
 
     // Create new metadata
     function createMetadata(uint256 _collectionId, uint256 _nftId, Metadata memory _metadata) public onlyAuthorized {
@@ -46,18 +70,17 @@ contract NFTMetadata {
         emit MetadataCreated(_collectionId, _nftId, _metadata);
     }
 
-
     function replicateNFT(uint256 _collectionId, uint256 _nftId, uint256 _replicaCollectionId, uint256 _replicaNFTId) external onlyAuthorized {
         
         require(_metadataExists(_collectionId, _nftId), "NFTMetadata: Metadata does not exist");
 
-        replicaMap[_collectionId][_nftId][_replicaNFTId] = (_replicaCollectionId, _replicaNFTId);
-        Metadata memory _metadata = metadataMap[_re[licaCollectionId][_replicaNFTId];
+        replicaMap[_collectionId][_nftId] = Replica(_replicaCollectionId, _replicaNFTId);
+        Metadata memory _metadata = metadataMap[_replicaCollectionId][_replicaNFTId];
 
-        createMetadata(_cpollectionId, _replicaNFTId, _metadata);
-        
-        emit MetadataReplicated(_collectionId, _nftId, _replicaCollectionId, _replicaNFTId);
-    
+        createMetadata(_collectionId, _replicaNFTId, _metadata);
+
+        emit ReplicaCreated(_collectionId, _nftId, Replica(_replicaCollectionId, _replicaNFTId));
+            
     }
 
 

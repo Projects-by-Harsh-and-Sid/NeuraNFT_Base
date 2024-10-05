@@ -23,6 +23,10 @@ contract NFTAccessControl {
     // Default access level for all users per NFT
     mapping(uint256 => mapping(uint256 => AccessLevel)) private defaultAccessLevel;
 
+    // basic reverse mapping for user access
+    mapping(address => mapping(uint256 => uint256)) private userAccess; // address => collectionId => NFTId
+
+
     // Events
     event AccessGranted(uint256 indexed collectionId, uint256 indexed nftId, address indexed user, AccessLevel accessLevel);
     event AccessRevoked(uint256 indexed collectionId, uint256 indexed nftId, address indexed user);
