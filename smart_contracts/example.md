@@ -144,31 +144,82 @@ To deploy a simple "Hello World" application on the Tron blockchain using TronBo
 2. After deployment, you will see an address where the contract has been deployed.
 
 ### Step 7: Interact with the Smart Contract
-To interact with the smart contract, you can use the TronBox console or TronWeb.
+
+To interact with the smart contract, you can use the TronBox console or TronWeb. Here's how to do it using the TronBox console:
+
+**Note**:
+> when pasting the code in the console, make sure to paste as `one line`  in vscode terminal
+> or you can use the `.editor` command in the console to paste multiline code and `ctrl + d` to run the code
 
 1. **TronBox Console**: Use the TronBox console to interact with the contract.
 
     ```bash
     tronbox console --network shasta
     ```
-   
+
 2. **Get the Contract Instance**:
     ```javascript
-    let instance = await HelloWorld.deployed();
+    HelloWorld.deployed().then(instance => {
+      // Store the instance in a variable for further use
+      global.contractInstance = instance;
+      console.log("Contract instance obtained and stored in global.contractInstance");
+    }).catch(error => {
+      console.error("Error getting contract instance:", error);
+    });
     ```
 
 3. **Call the `getMessage` function**:
     ```javascript
-    let message = await instance.getMessage();
-    console.log(message);  // Output: "Hello World"
+    global.contractInstance.getMessage().then(message => {
+      console.log("Current message:", message);
+    }).catch(error => {
+      console.error("Error getting message:", error);
+    });
     ```
 
 4. **Call the `setMessage` function**:
     ```javascript
-    await instance.setMessage("Hello Tron");
-    let newMessage = await instance.getMessage();
-    console.log(newMessage);  // Output: "Hello Tron"
+    global.contractInstance.setMessage("Hello Tron").then(() => {
+      console.log("Message set to 'Hello Tron'");
+      // Get the new message
+      return global.contractInstance.getMessage();
+    }).then(newMessage => {
+      console.log("New message:", newMessage);
+    }).catch(error => {
+      console.error("Error setting or getting message:", error);
+    });
     ```
+
+Note: The `global.contractInstance` is used to store the contract instance across multiple commands in the console. This allows you to interact with the contract without having to redeploy it for each command.
+
+If you want to chain these operations together, you can do so like this:
+
+```javascript
+HelloWorld.deployed().then(instance => {
+  return instance.getMessage();
+}).then(message => {
+  console.log("Initial message:", message);
+  return HelloWorld.deployed();
+}).then(instance => {
+  return instance.setMessage("Hello Tron");
+}).then(() => {
+  return HelloWorld.deployed();
+}).then(instance => {
+  return instance.getMessage();
+}).then(newMessage => {
+  console.log("New message:", newMessage);
+}).catch(error => {
+  console.error("An error occurred:", error);
+});
+```
+
+This chain of operations will:
+1. Get the deployed contract
+2. Call `getMessage` and log the initial message
+3. Set a new message to "Hello Tron"
+4. Call `getMessage` again and log the new message
+
+Remember to replace `HelloWorld` with your actual contract name if it's different. Also, make sure your contract is deployed to the network you're connecting to before trying to interact with it.
 
 ### Step 8: Testing the Smart Contract
 To write automated tests for the smart contract, you can use Mocha and Chai (which are already included in the TronBox setup).
