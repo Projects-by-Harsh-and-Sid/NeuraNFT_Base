@@ -1,12 +1,3 @@
-Base resource https://developers.tron.network/docs/getting-start
-
-Chrome Extension https://www.tronlink.org/
-
-Get test token https://nileex.io/join/getJoinPage
-
-tron documentation https://developers.tron.network/ 
-
-youtube : https://www.youtube.com/watch?v=1z5M12tcSdQ&list=PLL5pYVd8AWtRDnTTKWzPpFcBT9nrPCQt6
 
 # Developing and Deploying a Test Smart Contract on TRON
 
