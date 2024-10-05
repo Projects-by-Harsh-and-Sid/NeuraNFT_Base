@@ -1,0 +1,16 @@
+{
+  "name": "helloworldtron",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "test": "mocha"
+  },
+  "dependencies": {
+    "chai": "^4.3.7",
+    "dotenv": "^16.4.5",
+    "tronweb": ""
+  },
+  "devDependencies": {
+    "mocha": "^10.7.3"
+  }
+}

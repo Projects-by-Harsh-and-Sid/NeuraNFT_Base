@@ -29,6 +29,7 @@ With your `tron_dev` environment activated, install the following packages:
 ```bash
 pip install tronapi tronbox
 npm install -g tronbox
+npm install -g tronweb
 ```
 
 ### 4. Install Additional Tools
