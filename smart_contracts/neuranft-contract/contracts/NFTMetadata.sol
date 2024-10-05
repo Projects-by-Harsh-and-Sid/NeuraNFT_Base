@@ -20,11 +20,13 @@ contract NFTMetadata {
 
     // Mappings
     mapping(uint256 => mapping(uint256 => Metadata)) private metadataMap; // collectionId => NFTId => Metadata
+    mapping(uint256 => mapping=>(uint256 => (uint256, `uint256))) private replicaMap; // collectionId => NFTId => replicaId => (replicaCollectionId, replicaNFTId)
 
     // Events
     event MetadataCreated(uint256 indexed collectionId, uint256 indexed nftId, Metadata metadata);
     event MetadataUpdated(uint256 indexed collectionId, uint256 indexed nftId, Metadata metadata);
     event MetadataDeleted(uint256 indexed collectionId, uint256 indexed nftId);
+    event MetadataReplicated(uint256 indexed collectionId, uint256 indexed nftId, uint256 indexed replicaCollectionId, uint256 indexed replicaNFTId);
 
     // Constructor
     constructor(address _accessControlAddress) {
@@ -39,10 +41,27 @@ contract NFTMetadata {
     }
 
     // Create new metadata
-    function createMetadata(uint256 _collectionId, uint256 _nftId, Metadata memory _metadata) external onlyAuthorized {
+    function createMetadata(uint256 _collectionId, uint256 _nftId, Metadata memory _metadata) public onlyAuthorized {
         metadataMap[_collectionId][_nftId] = _metadata;
         emit MetadataCreated(_collectionId, _nftId, _metadata);
     }
+
+
+    function replicateNFT(uint256 _collectionId, uint256 _nftId, uint256 _replicaCollectionId, uint256 _replicaNFTId) external onlyAuthorized {
+        
+        require(_metadataExists(_collectionId, _nftId), "NFTMetadata: Metadata does not exist");
+
+        replicaMap[_collectionId][_nftId][_replicaNFTId] = (_replicaCollectionId, _replicaNFTId);
+        Metadata memory _metadata = metadataMap[_re[licaCollectionId][_replicaNFTId];
+
+        createMetadata(_cpollectionId, _replicaNFTId, _metadata);
+        
+        emit MetadataReplicated(_collectionId, _nftId, _replicaCollectionId, _replicaNFTId);
+    
+    }
+
+
+
 
     // Update existing metadata
     function updateMetadata(uint256 _collectionId, uint256 _nftId, Metadata memory _metadata) external onlyAuthorized {
@@ -69,3 +88,4 @@ contract NFTMetadata {
         return bytes(metadataMap[_collectionId][_nftId].image).length > 0;
     }
 }
+
