@@ -5,40 +5,40 @@ import "./MasterAccessControl.sol";
 import "./NFTAccessControl.sol";
 import "./NFTMetadata.sol";
 
-// Abstract ERC721 contract
-abstract contract ERC721 {
-    event Transfer(address indexed from, address indexed to, uint256 indexed tokenId);
-    event Approval(address indexed owner, address indexed approved, uint256 indexed tokenId);
+// Novel ERC standard incorporating collection ID
+abstract contract ERC721Collection {
+    event Transfer(address indexed from, address indexed to, uint256 indexed collectionId, uint256 tokenId);
+    event Approval(address indexed owner, address indexed approved, uint256 indexed collectionId, uint256 tokenId);
     event ApprovalForAll(address indexed owner, address indexed operator, bool approved);
 
     function balanceOf(address owner) public view virtual returns (uint256 balance);
-    function ownerOf(uint256 tokenId) public view virtual returns (address owner);
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public virtual;
-    function safeTransferFrom(address from, address to, uint256 tokenId) public virtual;
-    function transferFrom(address from, address to, uint256 tokenId) public virtual;
-    function approve(address to, uint256 tokenId) public virtual;
+    function balanceOfCollection(address owner, uint256 collectionId) public view virtual returns (uint256 balance);
+    function ownerOf(uint256 collectionId, uint256 tokenId) public view virtual returns (address owner);
+    function safeTransferFrom(address from, address to, uint256 collectionId, uint256 tokenId, bytes memory data) public virtual;
+    function safeTransferFrom(address from, address to, uint256 collectionId, uint256 tokenId) public virtual;
+    function transferFrom(address from, address to, uint256 collectionId, uint256 tokenId) public virtual;
+    function approve(address to, uint256 collectionId, uint256 tokenId) public virtual;
     function setApprovalForAll(address operator, bool _approved) public virtual;
-    function getApproved(uint256 tokenId) public view virtual returns (address operator);
+    function getApproved(uint256 collectionId, uint256 tokenId) public view virtual returns (address operator);
     function isApprovedForAll(address owner, address operator) public view virtual returns (bool);
 }
 
-contract NFTContract is ERC721 {
+contract NFTContract is ERC721Collection {
     MasterAccessControl public masterAccessControl;
     NFTAccessControl public nftAccessControl;
     NFTMetadata public nftMetadata;
 
     struct NFTInfo {
         uint8 levelOfOwnership;
-        uint256 collectionId;
         string name;
         address creator;
         uint256 creationDate;
         address owner;
     }
 
-    mapping(uint256 => mapping(uint256 => NFTInfo)) private nfts; // collectionId => nftId => NFTInfo
+    mapping(uint256 => mapping(uint256 => NFTInfo)) private nfts; // collectionId => tokenId => NFTInfo
     mapping(uint256 => uint256) private collectionNFTCount; // collectionId => number of NFTs
-    mapping(address => uint256) private balances; // owner => number of NFTs
+    mapping(address => uint256) private balances; // owner => total number of NFTs
     mapping(address => mapping(uint256 => uint256)) private balanceCollection; // owner => collectionId => number of NFTs
 
     mapping(uint256 => mapping(uint256 => address)) private tokenApprovals; // collectionId => tokenId => approved address
@@ -46,13 +46,13 @@ contract NFTContract is ERC721 {
 
     mapping(uint256 => uint256) private nextTokenId; // collectionId => nextTokenId
 
-    event NFTCreated(uint256 indexed collectionId, uint256 indexed nftId, string name, address creator);
-    event NFTBurned(uint256 indexed collectionId, uint256 indexed nftId);
+    event NFTCreated(uint256 indexed collectionId, uint256 indexed tokenId, string name, address creator);
+    event NFTBurned(uint256 indexed collectionId, uint256 indexed tokenId);
 
     constructor(address _masterAccessControlAddress, address _nftAccessControlAddress, address _nftMetadataAddress) {
         masterAccessControl = MasterAccessControl(_masterAccessControlAddress);
-        nftAccessControl    = NFTAccessControl(_nftAccessControlAddress);
-        nftMetadata         = NFTMetadata(_nftMetadataAddress);
+        nftAccessControl = NFTAccessControl(_nftAccessControlAddress);
+        nftMetadata = NFTMetadata(_nftMetadataAddress);
         masterAccessControl.grantSelfAccess(msg.sender);
     }
 
@@ -61,16 +61,10 @@ contract NFTContract is ERC721 {
         _;
     }
 
-    modifier onlyNFTOwner(uint256 _collectionId, uint256 _nftId) {
-        require(nfts[_collectionId][_nftId].owner == msg.sender, "NFTContract: Not the NFT owner");
+    modifier onlyNFTOwner(uint256 _collectionId, uint256 _tokenId) {
+        require(nfts[_collectionId][_tokenId].owner == msg.sender, "NFTContract: Not the NFT owner");
         _;
     }
-
-
-    // ------------------------------
-    // NFT create and burn functions
-    // ------------------------------
-
 
     function createNFT(uint256 _collectionId, string memory _name, uint8 _levelOfOwnership) external returns (uint256) {
         require(_levelOfOwnership > 0 && _levelOfOwnership <= 6, "NFTContract: Invalid level of ownership");
@@ -79,59 +73,49 @@ contract NFTContract is ERC721 {
             nextTokenId[_collectionId] = 1;
         }
 
-        uint256 nftId = nextTokenId[_collectionId]++;
+        uint256 tokenId = nextTokenId[_collectionId]++;
         NFTInfo memory newNFT = NFTInfo({
             levelOfOwnership: _levelOfOwnership,
-            collectionId: _collectionId,
             name: _name,
             creator: msg.sender,
             creationDate: block.timestamp,
             owner: msg.sender
         });
 
-        nfts[_collectionId][nftId] = newNFT;
+        nfts[_collectionId][tokenId] = newNFT;
         collectionNFTCount[_collectionId]++;
         balances[msg.sender]++;
         balanceCollection[msg.sender][_collectionId]++;
 
-        nftAccessControl.grantAccess(_collectionId, nftId, msg.sender, AccessLevel.AbsoluteOwnership);
+        nftAccessControl.grantAccess(_collectionId, tokenId, msg.sender, AccessLevel.AbsoluteOwnership);
 
-        emit NFTCreated(_collectionId, nftId, _name, msg.sender);
-        emit Transfer(address(0), msg.sender, nftId);
+        emit NFTCreated(_collectionId, tokenId, _name, msg.sender);
+        emit Transfer(address(0), msg.sender, _collectionId, tokenId);
 
-        return nftId;
+        return tokenId;
     }
 
-    function burnNFT(uint256 _collectionId, uint256 _nftId) external onlyNFTOwner(_collectionId, _nftId) {
-        address owner = nfts[_collectionId][_nftId].owner;
+    function burnNFT(uint256 _collectionId, uint256 _tokenId) external onlyNFTOwner(_collectionId, _tokenId) {
+        address owner = nfts[_collectionId][_tokenId].owner;
 
-        delete nfts[_collectionId][_nftId];
+        delete nfts[_collectionId][_tokenId];
         collectionNFTCount[_collectionId]--;
         balances[owner]--;
         balanceCollection[owner][_collectionId]--;
 
-        nftMetadata.deleteMetadata(_collectionId, _nftId);
-        nftAccessControl.revokeAccess(_collectionId, _nftId, owner);
+        nftMetadata.deleteMetadata(_collectionId, _tokenId);
+        nftAccessControl.revokeAccess(_collectionId, _tokenId, owner);
 
-        emit NFTBurned(_collectionId, _nftId);
-        emit Transfer(owner, address(0), _nftId);
+        emit NFTBurned(_collectionId, _tokenId);
+        emit Transfer(owner, address(0), _collectionId, _tokenId);
     }
 
-    // ------------------------------
-    // NFT transfer functions
-    // ------------------------------
-
-
-    function transferNFT(uint256 _collectionId, uint256 _nftId, address _to) external {
-        safeTransferFrom(msg.sender, _to, _nftId);
+    function transferNFT(uint256 _collectionId, uint256 _tokenId, address _to) external {
+        safeTransferFrom(msg.sender, _to, _collectionId, _tokenId);
     }
 
-    // ------------------------------
-    // NFT info functions
-    // ------------------------------
-
-    function getNFTInfo(uint256 _collectionId, uint256 _nftId) external view returns (NFTInfo memory) {
-        return nfts[_collectionId][_nftId];
+    function getNFTInfo(uint256 _collectionId, uint256 _tokenId) external view returns (NFTInfo memory) {
+        return nfts[_collectionId][_tokenId];
     }
 
     function getCollectionNFTCount(uint256 _collectionId) external view returns (uint256) {
@@ -144,7 +128,7 @@ contract NFTContract is ERC721 {
         uint256 index = 0;
 
         for (uint256 i = 1; i < nextTokenId[_collectionId]; i++) {
-            if (nfts[_collectionId][i].collectionId == _collectionId) {
+            if (nfts[_collectionId][i].owner != address(0)) {
                 collectionNFTs[index] = i;
                 index++;
             }
@@ -157,18 +141,14 @@ contract NFTContract is ERC721 {
         return balances[owner];
     }
 
-    function balanceOfCollection(address owner, uint256 collectionId) public view returns (uint256) {
+    function balanceOfCollection(address owner, uint256 collectionId) public view override returns (uint256) {
         return balanceCollection[owner][collectionId];
     }
 
-    function ownerOf(uint256 tokenId) public view override returns (address) 
-    {
-        for (uint256 collectionId = 1; collectionId < nextTokenId[collectionId]; collectionId++) {
-            if (nfts[collectionId][tokenId].owner != address(0)) {
-                return nfts[collectionId][tokenId].owner;
-            }
-        }
-        revert("NFTContract: Invalid token ID");
+    function ownerOf(uint256 collectionId, uint256 tokenId) public view override returns (address) {
+        address owner = nfts[collectionId][tokenId].owner;
+        require(owner != address(0), "NFTContract: Invalid token ID");
+        return owner;
     }
 
     function numberOfHolders(uint256 _collectionId) public view returns (uint256) {
@@ -194,32 +174,27 @@ contract NFTContract is ERC721 {
         return count;
     }
 
-    // ------------------------------
-    // ERC721 functions
-    // ------------------------------
-
-    function safeTransferFrom(address from, address to, uint256 tokenId, bytes memory data) public override {
-        transferFrom(from, to, tokenId);
-        require(_checkOnERC721Received(from, to, tokenId, data), "NFTContract: Transfer to non ERC721Receiver implementer");
+    function safeTransferFrom(address from, address to, uint256 collectionId, uint256 tokenId, bytes memory data) public override {
+        transferFrom(from, to, collectionId, tokenId);
+        require(_checkOnERC721Received(from, to, collectionId, tokenId, data), "NFTContract: Transfer to non ERC721Receiver implementer");
     }
 
-    function safeTransferFrom(address from, address to, uint256 tokenId) public override {
-        safeTransferFrom(from, to, tokenId, "");
+    function safeTransferFrom(address from, address to, uint256 collectionId, uint256 tokenId) public override {
+        safeTransferFrom(from, to, collectionId, tokenId, "");
     }
 
-    function transferFrom(address from, address to, uint256 tokenId) public override {
-        require(_isApprovedOrOwner(msg.sender, tokenId), "NFTContract: Not approved or owner");
-        _transfer(from, to, tokenId);
+    function transferFrom(address from, address to, uint256 collectionId, uint256 tokenId) public override {
+        require(_isApprovedOrOwner(msg.sender, collectionId, tokenId), "NFTContract: Not approved or owner");
+        _transfer(from, to, collectionId, tokenId);
     }
 
-    function approve(address to, uint256 tokenId) public override {
-        address owner = ownerOf(tokenId);
+    function approve(address to, uint256 collectionId, uint256 tokenId) public override {
+        address owner = ownerOf(collectionId, tokenId);
         require(to != owner, "NFTContract: Approval to current owner");
         require(msg.sender == owner || isApprovedForAll(owner, msg.sender), "NFTContract: Not owner or approved for all");
         
-        uint256 collectionId = _getCollectionId(tokenId);
         tokenApprovals[collectionId][tokenId] = to;
-        emit Approval(owner, to, tokenId);
+        emit Approval(owner, to, collectionId, tokenId);
     }
 
     function setApprovalForAll(address operator, bool approved) public override {
@@ -228,9 +203,8 @@ contract NFTContract is ERC721 {
         emit ApprovalForAll(msg.sender, operator, approved);
     }
 
-    function getApproved(uint256 tokenId) public view override returns (address) {
-        require(_exists(tokenId), "NFTContract: Token does not exist");
-        uint256 collectionId = _getCollectionId(tokenId);
+    function getApproved(uint256 collectionId, uint256 tokenId) public view override returns (address) {
+        require(_exists(collectionId, tokenId), "NFTContract: Token does not exist");
         return tokenApprovals[collectionId][tokenId];
     }
 
@@ -238,28 +212,21 @@ contract NFTContract is ERC721 {
         return operatorApprovals[owner][operator];
     }
 
-    function _exists(uint256 tokenId) internal view returns (bool) {
-        for (uint256 collectionId = 1; collectionId < type(uint256).max; collectionId++) {
-            if (nfts[collectionId][tokenId].owner != address(0)) {
-                return true;
-            }
-        }
-        return false;
+    function _exists(uint256 collectionId, uint256 tokenId) internal view returns (bool) {
+        return nfts[collectionId][tokenId].owner != address(0);
     }
 
-    function _isApprovedOrOwner(address spender, uint256 tokenId) internal view returns (bool) {
-        address owner = ownerOf(tokenId);
-        return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
+    function _isApprovedOrOwner(address spender, uint256 collectionId, uint256 tokenId) internal view returns (bool) {
+        address owner = ownerOf(collectionId, tokenId);
+        return (spender == owner || getApproved(collectionId, tokenId) == spender || isApprovedForAll(owner, spender));
     }
 
-    function _transfer(address from, address to, uint256 tokenId) internal {
-        require(ownerOf(tokenId) == from, "NFTContract: Transfer from incorrect owner");
+    function _transfer(address from, address to, uint256 collectionId, uint256 tokenId) internal {
+        require(ownerOf(collectionId, tokenId) == from, "NFTContract: Transfer from incorrect owner");
         require(to != address(0), "NFTContract: Transfer to the zero address");
 
-        uint256 collectionId = _getCollectionId(tokenId);
-
         // Clear approvals
-        approve(address(0), tokenId);
+        approve(address(0), collectionId, tokenId);
 
         balances[from]--;
         balances[to]++;
@@ -267,7 +234,7 @@ contract NFTContract is ERC721 {
         balanceCollection[to][collectionId]++;
         nfts[collectionId][tokenId].owner = to;
 
-        emit Transfer(from, to, tokenId);
+        emit Transfer(from, to, collectionId, tokenId);
 
         // Update access control
         AccessLevel currentAccessLevel = nftAccessControl.getAccessLevel(collectionId, tokenId, from);
@@ -275,9 +242,9 @@ contract NFTContract is ERC721 {
         nftAccessControl.grantAccess(collectionId, tokenId, to, currentAccessLevel);
     }
 
-    function _checkOnERC721Received(address from, address to, uint256 tokenId, bytes memory data) private returns (bool) {
+    function _checkOnERC721Received(address from, address to, uint256 collectionId, uint256 tokenId, bytes memory data) private returns (bool) {
         if (to.code.length > 0) {
-            try IERC721Receiver(to).onERC721Received(msg.sender, from, tokenId, data) returns (bytes4 retval) {
+            try IERC721Receiver(to).onERC721Received(msg.sender, from, collectionId, tokenId, data) returns (bytes4 retval) {
                 return retval == IERC721Receiver.onERC721Received.selector;
             } catch (bytes memory reason) {
                 if (reason.length == 0) {
@@ -292,17 +259,8 @@ contract NFTContract is ERC721 {
             return true;
         }
     }
-
-    function _getCollectionId(uint256 tokenId) internal view returns (uint256) {
-        for (uint256 collectionId = 1; collectionId < type(uint256).max; collectionId++) {
-            if (nfts[collectionId][tokenId].owner != address(0)) {
-                return collectionId;
-            }
-        }
-        revert("NFTContract: Token does not exist");
-    }
 }
 
 interface IERC721Receiver {
-    function onERC721Received(address operator, address from, uint256 tokenId, bytes calldata data) external returns (bytes4);
+    function onERC721Received(address operator, address from, uint256 collectionId, uint256 tokenId, bytes calldata data) external returns (bytes4);
 }
