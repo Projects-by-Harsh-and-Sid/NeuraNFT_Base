@@ -174,56 +174,73 @@ contract NFTAccessControl {
     // }
 
 
-  // Grant Access to a User
-    function grantAccess(
-        uint256 _collectionId,
-        uint256 _nftId,
-        address _user,
-        AccessLevel _accessLevel
-    )
-        external
-        onlyAuthorizedOrOwner(_collectionId, _nftId)
-        maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
-    {
-        require(_accessLevel != AccessLevel.None, "NFTAccessControl: Invalid access level");
+// Grant Access to a User
+// Main function
+function grantAccess(
+    uint256 _collectionId,
+    uint256 _nftId,
+    address _user,
+    AccessLevel _accessLevel
+)
+    external
+    onlyAuthorizedOrOwner(_collectionId, _nftId)
+    maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
+{
+    require(_accessLevel != AccessLevel.None, "NFTAccessControl: Invalid access level");
 
-        nftAccess[_collectionId][_nftId][_user] = _accessLevel;
-        userAccess[_user][_collectionId][_nftId] = _accessLevel;
+    nftAccess[_collectionId][_nftId][_user] = _accessLevel;
+    userAccess[_user][_collectionId][_nftId] = _accessLevel;
 
-        // Update userAccessList and userAccessIndex
-        if (userAccessIndex[_user][_collectionId][_nftId] == 0) {
-            // Entry does not exist
-            userAccessList[_user].push(AccessEntry({
-                collectionId: _collectionId,
-                nftId: _nftId,
-                accessLevel: _accessLevel
-            }));
-            // Store index (indexing from 1 because default mapping value is 0)
-            userAccessIndex[_user][_collectionId][_nftId] = userAccessList[_user].length;
-        } else {
-            // Entry exists, update accessLevel
-            uint256 index = userAccessIndex[_user][_collectionId][_nftId] - 1;
-            userAccessList[_user][index].accessLevel = _accessLevel;
-        }
+    _updateUserAccessList(_user, _collectionId, _nftId, _accessLevel);
+    _updateNFTAccessList(_collectionId, _nftId, _user, _accessLevel);
 
-        // Update nftAccessList and nftAccessIndex
-        if (nftAccessIndex[_collectionId][_nftId][_user] == 0) {
-            // User not in the list, add them
-            nftAccessList[_collectionId][_nftId].push(UserAccess({
-                user: _user,
-                accessLevel: _accessLevel
-            }));
-            nftAccessIndex[_collectionId][_nftId][_user] = nftAccessList[_collectionId][_nftId].length;
-        } else {
-            // User exists, update accessLevel
-            uint256 index = nftAccessIndex[_collectionId][_nftId][_user] - 1;
-            nftAccessList[_collectionId][_nftId][index].accessLevel = _accessLevel;
-        }
+    emit AccessGranted(_collectionId, _nftId, _user, _accessLevel);
+    emit AccessLevelChanged(_user, _collectionId, _nftId, _accessLevel);
+}
 
-        emit AccessGranted(_collectionId, _nftId, _user, _accessLevel);
-        emit AccessLevelChanged(_user, _collectionId, _nftId, _accessLevel);
+// Function to update user access list
+function _updateUserAccessList(
+    address _user,
+    uint256 _collectionId,
+    uint256 _nftId,
+    AccessLevel _accessLevel
+) internal {
+    if (userAccessIndex[_user][_collectionId][_nftId] == 0) {
+        // Entry does not exist
+        userAccessList[_user].push(AccessEntry({
+            collectionId: _collectionId,
+            nftId: _nftId,
+            accessLevel: _accessLevel
+        }));
+        // Store index (indexing from 1 because default mapping value is 0)
+        userAccessIndex[_user][_collectionId][_nftId] = userAccessList[_user].length;
+    } else {
+        // Entry exists, update accessLevel
+        uint256 index = userAccessIndex[_user][_collectionId][_nftId] - 1;
+        userAccessList[_user][index].accessLevel = _accessLevel;
     }
+}
 
+// Function to update NFT access list
+function _updateNFTAccessList(
+    uint256 _collectionId,
+    uint256 _nftId,
+    address _user,
+    AccessLevel _accessLevel
+) internal {
+    if (nftAccessIndex[_collectionId][_nftId][_user] == 0) {
+        // User not in the list, add them
+        nftAccessList[_collectionId][_nftId].push(UserAccess({
+            user: _user,
+            accessLevel: _accessLevel
+        }));
+        nftAccessIndex[_collectionId][_nftId][_user] = nftAccessList[_collectionId][_nftId].length;
+    } else {
+        // User exists, update accessLevel
+        uint256 index = nftAccessIndex[_collectionId][_nftId][_user] - 1;
+        nftAccessList[_collectionId][_nftId][index].accessLevel = _accessLevel;
+    }
+}
 
 
 
@@ -239,61 +256,76 @@ contract NFTAccessControl {
 
 
 
-    // Revoke Access from a User
-    function revokeAccess(
-        uint256 _collectionId,
-        uint256 _nftId,
-        address _user
-    )
-        external
-        onlyAuthorized
-    {
-        delete nftAccess[_collectionId][_nftId][_user];
-        delete userAccess[_user][_collectionId][_nftId];
+ // Revoke Access from a User
+function revokeAccess(
+    uint256 _collectionId,
+    uint256 _nftId,
+    address _user
+)
+    external
+    onlyAuthorized
+{
+    delete nftAccess[_collectionId][_nftId][_user];
+    delete userAccess[_user][_collectionId][_nftId];
 
-        // Update userAccessList and userAccessIndex
-        uint256 userIndexPlusOne = userAccessIndex[_user][_collectionId][_nftId];
-        if (userIndexPlusOne > 0) {
-            uint256 userIndex = userIndexPlusOne - 1;
-            uint256 lastIndex = userAccessList[_user].length - 1;
+    _updateUserAccessListOnRevoke(_user, _collectionId, _nftId);
+    _updateNFTAccessListOnRevoke(_collectionId, _nftId, _user);
 
-            if (userIndex != lastIndex) {
-                // Swap the last entry with the one to delete
-                AccessEntry memory lastEntry = userAccessList[_user][lastIndex];
-                userAccessList[_user][userIndex] = lastEntry;
-                // Update the index mapping
-                userAccessIndex[_user][lastEntry.collectionId][lastEntry.nftId] = userIndexPlusOne;
-            }
+    emit AccessRevoked(_collectionId, _nftId, _user);
+    emit AccessLevelChanged(_user, _collectionId, _nftId, AccessLevel.None);
+}
 
-            // Remove the last element
-            userAccessList[_user].pop();
-            // Delete index mapping
-            delete userAccessIndex[_user][_collectionId][_nftId];
+// Function to update user access list on revoke
+function _updateUserAccessListOnRevoke(
+    address _user,
+    uint256 _collectionId,
+    uint256 _nftId
+) internal {
+    uint256 userIndexPlusOne = userAccessIndex[_user][_collectionId][_nftId];
+    if (userIndexPlusOne > 0) {
+        uint256 userIndex = userIndexPlusOne - 1;
+        uint256 lastIndex = userAccessList[_user].length - 1;
+
+        if (userIndex != lastIndex) {
+            // Swap the last entry with the one to delete
+            AccessEntry memory lastEntry = userAccessList[_user][lastIndex];
+            userAccessList[_user][userIndex] = lastEntry;
+            // Update the index mapping
+            userAccessIndex[_user][lastEntry.collectionId][lastEntry.nftId] = userIndexPlusOne;
         }
 
-        // Update nftAccessList and nftAccessIndex
-        uint256 nftIndexPlusOne = nftAccessIndex[_collectionId][_nftId][_user];
-        if (nftIndexPlusOne > 0) {
-            uint256 nftIndex = nftIndexPlusOne - 1;
-            uint256 lastIndex = nftAccessList[_collectionId][_nftId].length - 1;
-
-            if (nftIndex != lastIndex) {
-                // Swap the last entry with the one to delete
-                UserAccess memory lastUserAccess = nftAccessList[_collectionId][_nftId][lastIndex];
-                nftAccessList[_collectionId][_nftId][nftIndex] = lastUserAccess;
-                // Update the index mapping
-                nftAccessIndex[_collectionId][_nftId][lastUserAccess.user] = nftIndexPlusOne;
-            }
-
-            // Remove the last element
-            nftAccessList[_collectionId][_nftId].pop();
-            // Delete index mapping
-            delete nftAccessIndex[_collectionId][_nftId][_user];
-        }
-
-        emit AccessRevoked(_collectionId, _nftId, _user);
-        emit AccessLevelChanged(_user, _collectionId, _nftId, AccessLevel.None);
+        // Remove the last element
+        userAccessList[_user].pop();
+        // Delete index mapping
+        delete userAccessIndex[_user][_collectionId][_nftId];
     }
+}
+
+// Function to update NFT access list on revoke
+function _updateNFTAccessListOnRevoke(
+    uint256 _collectionId,
+    uint256 _nftId,
+    address _user
+) internal {
+    uint256 nftIndexPlusOne = nftAccessIndex[_collectionId][_nftId][_user];
+    if (nftIndexPlusOne > 0) {
+        uint256 nftIndex = nftIndexPlusOne - 1;
+        uint256 lastIndex = nftAccessList[_collectionId][_nftId].length - 1;
+
+        if (nftIndex != lastIndex) {
+            // Swap the last entry with the one to delete
+            UserAccess memory lastUserAccess = nftAccessList[_collectionId][_nftId][lastIndex];
+            nftAccessList[_collectionId][_nftId][nftIndex] = lastUserAccess;
+            // Update the index mapping
+            nftAccessIndex[_collectionId][_nftId][lastUserAccess.user] = nftIndexPlusOne;
+        }
+
+        // Remove the last element
+        nftAccessList[_collectionId][_nftId].pop();
+        // Delete index mapping
+        delete nftAccessIndex[_collectionId][_nftId][_user];
+    }
+}
 
 
 
