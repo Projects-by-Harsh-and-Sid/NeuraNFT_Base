@@ -27,30 +27,16 @@ contract NFTAccessControl {
     // 3 - CreateReplica     - Can create a replica of the NFT but not data view
     // 4 - ViewAndDownload   - Can view and download the data and model but no absolute ownership
     // 5 - AbsoluteOwnership - Can view, download, create replica, resale, and use model, set access levels
-
-    // Mappings
     mapping(uint256 => mapping(uint256 => mapping(address => AccessLevel))) private nftAccess; // collectionId => NFTId => address => AccessLevel
 
     // Default access level for all users per NFT
     mapping(uint256 => mapping(uint256 => AccessLevel)) private defaultAccessLevel;
 
     // Max access level for a NFT
-
     mapping(uint256 => mapping(uint256 => AccessLevel)) private maxAccessLevel;
 
-
-    // basic reverse mapping for user access
+    // User Access Mappings
     mapping(address => mapping(uint256 => mapping (uint256 => AccessLevel))) private userAccess; // address => collectionId => NFTId
-
-
-
-
-    // AccessEntry struct
-    struct AccessEntry {
-        uint256 collectionId;
-        uint256 nftId;
-        AccessLevel accessLevel;
-    }
 
     // Mapping from user to their list of access entries
     mapping(address => AccessEntry[]) private userAccessList;
@@ -58,12 +44,49 @@ contract NFTAccessControl {
     // Helper mapping to track indices in userAccessList for efficient removal
     mapping(address => mapping(uint256 => mapping(uint256 => uint256))) private userAccessIndex; // address => collectionId => nftId => index in userAccessList (index + 1)
 
+    // Structs
+    struct AccessEntry {
+        uint256 collectionId;
+        uint256 nftId;
+        AccessLevel accessLevel;
+    }
 
+    // New struct to store user access for an NFT
+    struct UserAccess {
+        address user;
+        AccessLevel accessLevel;
+    }
+
+    // Mapping from NFT to list of user accesses
+    mapping(uint256 => mapping(uint256 => UserAccess[])) private nftAccessList; // collectionId => nftId => array of UserAccess
+
+    // Helper mapping to track indices in nftAccessList for efficient removal
+    mapping(uint256 => mapping(uint256 => mapping(address => uint256))) private nftAccessIndex; // collectionId => nftId => user => index in nftAccessList (index + 1)
 
     // Events
     event AccessGranted(uint256 indexed collectionId, uint256 indexed nftId, address indexed user, AccessLevel accessLevel);
     event AccessRevoked(uint256 indexed collectionId, uint256 indexed nftId, address indexed user);
     event AccessLevelChanged(address indexed user, uint256 indexed collectionId, uint256 indexed nftId, AccessLevel newAccessLevel);
+
+    // // AccessEntry struct
+    // struct AccessEntry {
+    //     uint256 collectionId;
+    //     uint256 nftId;
+    //     AccessLevel accessLevel;
+    // }
+
+    // // Mapping from user to their list of access entries
+    // mapping(address => AccessEntry[]) private userAccessList;
+
+    // // Helper mapping to track indices in userAccessList for efficient removal
+    // mapping(address => mapping(uint256 => mapping(uint256 => uint256))) private userAccessIndex; // address => collectionId => nftId => index in userAccessList (index + 1)
+
+
+
+    // // Events
+    // event AccessGranted(uint256 indexed collectionId, uint256 indexed nftId, address indexed user, AccessLevel accessLevel);
+    // event AccessRevoked(uint256 indexed collectionId, uint256 indexed nftId, address indexed user);
+    // event AccessLevelChanged(address indexed user, uint256 indexed collectionId, uint256 indexed nftId, AccessLevel newAccessLevel);
 
     
 
@@ -114,7 +137,10 @@ contract NFTAccessControl {
     //------------------------------------------------------------------------
 
 
-    function setMaxAccessLevel(uint256 _collectionId, uint256 _nftId, AccessLevel _accessLevel) external onlyAuthorizedOrOwner(_collectionId, _nftId) maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
+    function setMaxAccessLevel(uint256 _collectionId, uint256 _nftId, AccessLevel _accessLevel) 
+    external 
+    onlyAuthorizedOrOwner(_collectionId, _nftId) 
+    maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
     {
         require(_accessLevel != AccessLevel.None, "NFTAccessControl: Invalid access level");
         maxAccessLevel[_collectionId][_nftId] = _accessLevel;
@@ -122,7 +148,10 @@ contract NFTAccessControl {
 
 
     // Set default access level
-    function setDefaultAccessLevel(uint256 _collectionId, uint256 _nftId, AccessLevel _accessLevel) external onlyAuthorizedOrOwner(_collectionId, _nftId) maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
+    function setDefaultAccessLevel(uint256 _collectionId, uint256 _nftId, AccessLevel _accessLevel) 
+    external 
+    onlyAuthorizedOrOwner(_collectionId, _nftId) 
+    maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
     {   
         defaultAccessLevel[_collectionId][_nftId] = _accessLevel;
     }
@@ -145,15 +174,15 @@ contract NFTAccessControl {
     // }
 
 
-    // Grant access to a user
+  // Grant Access to a User
     function grantAccess(
-        uint256 _collectionId, 
-        uint256 _nftId, 
-        address _user, 
+        uint256 _collectionId,
+        uint256 _nftId,
+        address _user,
         AccessLevel _accessLevel
-    ) 
-        external 
-        onlyAuthorizedOrOwner(_collectionId, _nftId) 
+    )
+        external
+        onlyAuthorizedOrOwner(_collectionId, _nftId)
         maxAccessLevelCheck(_collectionId, _nftId, _accessLevel)
     {
         require(_accessLevel != AccessLevel.None, "NFTAccessControl: Invalid access level");
@@ -177,11 +206,23 @@ contract NFTAccessControl {
             userAccessList[_user][index].accessLevel = _accessLevel;
         }
 
+        // Update nftAccessList and nftAccessIndex
+        if (nftAccessIndex[_collectionId][_nftId][_user] == 0) {
+            // User not in the list, add them
+            nftAccessList[_collectionId][_nftId].push(UserAccess({
+                user: _user,
+                accessLevel: _accessLevel
+            }));
+            nftAccessIndex[_collectionId][_nftId][_user] = nftAccessList[_collectionId][_nftId].length;
+        } else {
+            // User exists, update accessLevel
+            uint256 index = nftAccessIndex[_collectionId][_nftId][_user] - 1;
+            nftAccessList[_collectionId][_nftId][index].accessLevel = _accessLevel;
+        }
+
         emit AccessGranted(_collectionId, _nftId, _user, _accessLevel);
         emit AccessLevelChanged(_user, _collectionId, _nftId, _accessLevel);
     }
-
-
 
 
 
@@ -198,36 +239,56 @@ contract NFTAccessControl {
 
 
 
-    // Revoke access from a user
+    // Revoke Access from a User
     function revokeAccess(
-        uint256 _collectionId, 
-        uint256 _nftId, 
+        uint256 _collectionId,
+        uint256 _nftId,
         address _user
-    ) 
-        external 
-        onlyAuthorized 
+    )
+        external
+        onlyAuthorized
     {
         delete nftAccess[_collectionId][_nftId][_user];
         delete userAccess[_user][_collectionId][_nftId];
 
         // Update userAccessList and userAccessIndex
-        uint256 indexPlusOne = userAccessIndex[_user][_collectionId][_nftId];
-        if (indexPlusOne > 0) {
-            uint256 index = indexPlusOne - 1;
+        uint256 userIndexPlusOne = userAccessIndex[_user][_collectionId][_nftId];
+        if (userIndexPlusOne > 0) {
+            uint256 userIndex = userIndexPlusOne - 1;
             uint256 lastIndex = userAccessList[_user].length - 1;
 
-            if (index != lastIndex) {
+            if (userIndex != lastIndex) {
                 // Swap the last entry with the one to delete
                 AccessEntry memory lastEntry = userAccessList[_user][lastIndex];
-                userAccessList[_user][index] = lastEntry;
+                userAccessList[_user][userIndex] = lastEntry;
                 // Update the index mapping
-                userAccessIndex[_user][lastEntry.collectionId][lastEntry.nftId] = indexPlusOne;
+                userAccessIndex[_user][lastEntry.collectionId][lastEntry.nftId] = userIndexPlusOne;
             }
 
             // Remove the last element
             userAccessList[_user].pop();
             // Delete index mapping
             delete userAccessIndex[_user][_collectionId][_nftId];
+        }
+
+        // Update nftAccessList and nftAccessIndex
+        uint256 nftIndexPlusOne = nftAccessIndex[_collectionId][_nftId][_user];
+        if (nftIndexPlusOne > 0) {
+            uint256 nftIndex = nftIndexPlusOne - 1;
+            uint256 lastIndex = nftAccessList[_collectionId][_nftId].length - 1;
+
+            if (nftIndex != lastIndex) {
+                // Swap the last entry with the one to delete
+                UserAccess memory lastUserAccess = nftAccessList[_collectionId][_nftId][lastIndex];
+                nftAccessList[_collectionId][_nftId][nftIndex] = lastUserAccess;
+                // Update the index mapping
+                nftAccessIndex[_collectionId][_nftId][lastUserAccess.user] = nftIndexPlusOne;
+            }
+
+            // Remove the last element
+            nftAccessList[_collectionId][_nftId].pop();
+            // Delete index mapping
+            delete nftAccessIndex[_collectionId][_nftId][_user];
         }
 
         emit AccessRevoked(_collectionId, _nftId, _user);
@@ -290,13 +351,27 @@ contract NFTAccessControl {
 
     function checkMinimumAccess(uint256 _collectionId, uint256 _nftId, address _user, AccessLevel _accessLevel) external view returns (bool) {
         
+
+        if (defaultAccessLevel[_collectionId][_nftId] >= _accessLevel ){
+            return true;
+        }
+
         AccessLevel level = nftAccess[_collectionId][_nftId][_user];
 
-        AccessLevel minimum_access = 
         
         if (level == AccessLevel.None) {
             return defaultAccessLevel[_collectionId][_nftId] >= _accessLevel;
         }
         return level >= _accessLevel;
+    }
+
+
+    // Get all users and their access levels for a specific NFT
+    function getAllUsersAccessForNFT(uint256 _collectionId, uint256 _nftId)
+        external
+        view
+        returns (UserAccess[] memory)
+    {
+        return nftAccessList[_collectionId][_nftId];
     }
 }
