@@ -10,6 +10,7 @@ enum AccessLevel {
         Resale,
         CreateReplica,
         ViewAndDownload,
+        EditData,
         AbsoluteOwnership
     }
 
@@ -26,7 +27,8 @@ contract NFTAccessControl {
     // 2 - Resale            - Can resell the NFT without replicating and data and model view
     // 3 - CreateReplica     - Can create a replica of the NFT but not data view
     // 4 - ViewAndDownload   - Can view and download the data and model but no absolute ownership
-    // 5 - AbsoluteOwnership - Can view, download, create replica, resale, and use model, set access levels
+    // 5 - EditData          - Can NFT Metadata
+    // 6 - AbsoluteOwnership - Can view, download, create replica, resale, and use model, set access levels
     mapping(uint256 => mapping(uint256 => mapping(address => AccessLevel))) private nftAccess; // collectionId => NFTId => address => AccessLevel
 
     // Default access level for all users per NFT

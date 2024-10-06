@@ -45,7 +45,7 @@ contract NFTMetadata {
 
     // Modifier to check access
     modifier onlyAuthorized() {
-        // TODO: Implement access control for access levels using nftAccessControl
+
         require(accessControl.selfCheckAccess(msg.sender), "NFTMetadata: Not authorized");
         _;
     }
@@ -58,8 +58,14 @@ contract NFTMetadata {
     // 4 - ViewAndDownload   - Can view and download the data and model but no absolute ownership
     // 5 - AbsoluteOwnership - Can view, download, create replica, resale, and use model
 
-    modifier onlyAuthorized_level() {
-        require(accessControl.selfCheckAccess(msg.sender), "NFTMetadata: Not authorized");
+    modifier onlyAuthorizedEditData(uint256 _collectionId, uint256 _nftId) {
+
+        AccessLevel requiredAccess = AccessLevel.EditData;
+
+        bool isAuthorized = nftAccessControl.checkMinimumAccess(_collectionId, _nftId, msg.sender ,requiredAccess);
+        bool isOwner =  accessControl.selfCheckAccess(msg.sender);
+
+        require(isAuthorized || isOwner, "NFTMetadata: Not authorized");
         _;
     }
 
