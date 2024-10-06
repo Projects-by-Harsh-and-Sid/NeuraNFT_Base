@@ -40,6 +40,7 @@ contract NFTContract is ERC721 {
     mapping(uint256 => uint256) private collectionNFTCount; // collectionId => number of NFTs
     mapping(address => uint256) private balances; // owner => number of NFTs
     mapping(address => mapping (uint256=>uint256)) balanceCollection; // owner => collectionId => number of NFTs
+    
     mapping(uint256 => address) private tokenApprovals;
     mapping(address => mapping(address => bool)) private operatorApprovals;
 
