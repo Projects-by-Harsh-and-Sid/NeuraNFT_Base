@@ -39,12 +39,12 @@ contract NFTContract is ERC721 {
     mapping(uint256 => mapping(uint256 => NFTInfo)) private nfts; // collectionId => nftId => NFTInfo
     mapping(uint256 => uint256) private collectionNFTCount; // collectionId => number of NFTs
     mapping(address => uint256) private balances; // owner => number of NFTs
-    mapping(address => mapping (uint256=>uint256)) balanceCollection; // owner => collectionId => number of NFTs
-    
-    mapping(uint256 => address) private tokenApprovals;
+    mapping(address => mapping(uint256 => uint256)) private balanceCollection; // owner => collectionId => number of NFTs
+
+    mapping(uint256 => mapping(uint256 => address)) private tokenApprovals; // collectionId => tokenId => approved address
     mapping(address => mapping(address => bool)) private operatorApprovals;
 
-    uint256 private nextTokenId = 1;
+    mapping(uint256 => uint256) private nextTokenId; // collectionId => nextTokenId
 
     event NFTCreated(uint256 indexed collectionId, uint256 indexed nftId, string name, address creator);
     event NFTBurned(uint256 indexed collectionId, uint256 indexed nftId);
@@ -71,11 +71,15 @@ contract NFTContract is ERC721 {
     // NFT create and burn functions
     // ------------------------------
 
-    function createNFT(uint256 _collectionId, string memory _name, uint8 _levelOfOwnership) external returns (uint256) {
 
+    function createNFT(uint256 _collectionId, string memory _name, uint8 _levelOfOwnership) external returns (uint256) {
         require(_levelOfOwnership > 0 && _levelOfOwnership <= 6, "NFTContract: Invalid level of ownership");
 
-        uint256 nftId = nextTokenId++;
+        if (nextTokenId[_collectionId] == 0) {
+            nextTokenId[_collectionId] = 1;
+        }
+
+        uint256 nftId = nextTokenId[_collectionId]++;
         NFTInfo memory newNFT = NFTInfo({
             levelOfOwnership: _levelOfOwnership,
             collectionId: _collectionId,
@@ -90,7 +94,6 @@ contract NFTContract is ERC721 {
         balances[msg.sender]++;
         balanceCollection[msg.sender][_collectionId]++;
 
-        // Grant absolute ownership to the creator
         nftAccessControl.grantAccess(_collectionId, nftId, msg.sender, AccessLevel.AbsoluteOwnership);
 
         emit NFTCreated(_collectionId, nftId, _name, msg.sender);
@@ -100,7 +103,6 @@ contract NFTContract is ERC721 {
     }
 
     function burnNFT(uint256 _collectionId, uint256 _nftId) external onlyNFTOwner(_collectionId, _nftId) {
-        
         address owner = nfts[_collectionId][_nftId].owner;
 
         delete nfts[_collectionId][_nftId];
@@ -108,26 +110,21 @@ contract NFTContract is ERC721 {
         balances[owner]--;
         balanceCollection[owner][_collectionId]--;
 
-        // Remove metadata
         nftMetadata.deleteMetadata(_collectionId, _nftId);
-
-        // Remove access control entries
         nftAccessControl.revokeAccess(_collectionId, _nftId, owner);
 
         emit NFTBurned(_collectionId, _nftId);
         emit Transfer(owner, address(0), _nftId);
     }
 
-
-
     // ------------------------------
     // NFT transfer functions
     // ------------------------------
 
+
     function transferNFT(uint256 _collectionId, uint256 _nftId, address _to) external {
         safeTransferFrom(msg.sender, _to, _nftId);
     }
-
 
     // ------------------------------
     // NFT info functions
@@ -142,12 +139,11 @@ contract NFTContract is ERC721 {
     }
 
     function getCollectionNFTs(uint256 _collectionId) external view returns (uint256[] memory) {
-
-        uint256 count                   = collectionNFTCount[_collectionId];
+        uint256 count = collectionNFTCount[_collectionId];
         uint256[] memory collectionNFTs = new uint256[](count);
-        uint256 index                   = 0;
+        uint256 index = 0;
 
-        for (uint256 i = 1; i < nextTokenId; i++) {
+        for (uint256 i = 1; i < nextTokenId[_collectionId]; i++) {
             if (nfts[_collectionId][i].collectionId == _collectionId) {
                 collectionNFTs[index] = i;
                 index++;
@@ -157,7 +153,6 @@ contract NFTContract is ERC721 {
         return collectionNFTs;
     }
 
-    // ERC721 Implementation
     function balanceOf(address owner) public view override returns (uint256) {
         return balances[owner];
     }
@@ -166,8 +161,9 @@ contract NFTContract is ERC721 {
         return balanceCollection[owner][collectionId];
     }
 
-    function ownerOf(uint256 tokenId) public view override returns (address) {
-        for (uint256 collectionId = 1; collectionId < nextTokenId; collectionId++) {
+    function ownerOf(uint256 tokenId) public view override returns (address) 
+    {
+        for (uint256 collectionId = 1; collectionId < nextTokenId[collectionId]; collectionId++) {
             if (nfts[collectionId][tokenId].owner != address(0)) {
                 return nfts[collectionId][tokenId].owner;
             }
@@ -175,14 +171,11 @@ contract NFTContract is ERC721 {
         revert("NFTContract: Invalid token ID");
     }
 
-
-    function numberOfHolder(uint256 _collectionId) public view returns (uint256) {
-        
-        // Count the number of unique holders
+    function numberOfHolders(uint256 _collectionId) public view returns (uint256) {
         uint256 count = 0;
-        address[] memory holders = new address[](nextTokenId);
+        address[] memory holders = new address[](nextTokenId[_collectionId]);
 
-        for (uint256 i = 1; i < nextTokenId; i++) {
+        for (uint256 i = 1; i < nextTokenId[_collectionId]; i++) {
             if (nfts[_collectionId][i].owner != address(0)) {
                 address holder = nfts[_collectionId][i].owner;
                 bool found = false;
@@ -198,6 +191,7 @@ contract NFTContract is ERC721 {
                 }
             }
         }
+        return count;
     }
 
     // ------------------------------
@@ -222,7 +216,9 @@ contract NFTContract is ERC721 {
         address owner = ownerOf(tokenId);
         require(to != owner, "NFTContract: Approval to current owner");
         require(msg.sender == owner || isApprovedForAll(owner, msg.sender), "NFTContract: Not owner or approved for all");
-        tokenApprovals[tokenId] = to;
+        
+        uint256 collectionId = _getCollectionId(tokenId);
+        tokenApprovals[collectionId][tokenId] = to;
         emit Approval(owner, to, tokenId);
     }
 
@@ -234,7 +230,8 @@ contract NFTContract is ERC721 {
 
     function getApproved(uint256 tokenId) public view override returns (address) {
         require(_exists(tokenId), "NFTContract: Token does not exist");
-        return tokenApprovals[tokenId];
+        uint256 collectionId = _getCollectionId(tokenId);
+        return tokenApprovals[collectionId][tokenId];
     }
 
     function isApprovedForAll(address owner, address operator) public view override returns (bool) {
@@ -242,7 +239,7 @@ contract NFTContract is ERC721 {
     }
 
     function _exists(uint256 tokenId) internal view returns (bool) {
-        for (uint256 collectionId = 1; collectionId < nextTokenId; collectionId++) {
+        for (uint256 collectionId = 1; collectionId < type(uint256).max; collectionId++) {
             if (nfts[collectionId][tokenId].owner != address(0)) {
                 return true;
             }
@@ -259,19 +256,15 @@ contract NFTContract is ERC721 {
         require(ownerOf(tokenId) == from, "NFTContract: Transfer from incorrect owner");
         require(to != address(0), "NFTContract: Transfer to the zero address");
 
-        uint256 collectionId;
-        for (uint256 i = 1; i < nextTokenId; i++) {
-            if (nfts[i][tokenId].owner == from) {
-                collectionId = i;
-                break;
-            }
-        }
+        uint256 collectionId = _getCollectionId(tokenId);
 
         // Clear approvals
         approve(address(0), tokenId);
 
         balances[from]--;
         balances[to]++;
+        balanceCollection[from][collectionId]--;
+        balanceCollection[to][collectionId]++;
         nfts[collectionId][tokenId].owner = to;
 
         emit Transfer(from, to, tokenId);
@@ -298,6 +291,15 @@ contract NFTContract is ERC721 {
         } else {
             return true;
         }
+    }
+
+    function _getCollectionId(uint256 tokenId) internal view returns (uint256) {
+        for (uint256 collectionId = 1; collectionId < type(uint256).max; collectionId++) {
+            if (nfts[collectionId][tokenId].owner != address(0)) {
+                return collectionId;
+            }
+        }
+        revert("NFTContract: Token does not exist");
     }
 }
 
