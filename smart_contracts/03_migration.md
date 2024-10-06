@@ -123,6 +123,23 @@ To run your migrations and deploy your contracts:
 tronbox migrate --network shasta
 ```
 
+to use the private key from the `.env` file, run the following command:
+
+```bash
+source .env && tronbox migrate --network shasta
+
+OR
+
+source .env
+
+tronbox migrate --network shasta
+
+```
+
+the `source .env` command will load the environment variables from the `.env` file before running the `tronbox migrate --network shasta` command.
+
+
+
 This command:
 
 1. Checks which migrations have been run
