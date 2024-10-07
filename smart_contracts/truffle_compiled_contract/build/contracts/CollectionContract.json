@@ -19993,14 +19993,84 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0xb0b7b214963f2e16da9cf6ed5851757dfed306875edf1d59e030881102ef24ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "creator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "baseModel",
+              "type": "string"
+            }
+          ],
+          "name": "CollectionCreated",
+          "type": "event"
+        },
+        "0x9b6a32f3cd7b15e8a1bfb25410c1b783cf20a9fcfee4b3b070770f5c09c0646f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "CollectionTransferred",
+          "type": "event"
+        },
+        "0xdc3665dfa360896ba80f3f0a287f3fab1df037f080190fd39f5b39281b5cef33": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "updater",
+              "type": "address"
+            }
+          ],
+          "name": "CollectionUpdated",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x095d4250e2496432101bD9dA33a8bE3e3fd1BD38",
-      "transactionHash": "0x9c6715e873f9435626a1b39fa365f5816c93cb3263c0a2087a2e179d9857a0a9"
+      "address": "0xCFb27AC19EB2cbB8dD0e2cde09839Ae6ef659C6F",
+      "transactionHash": "0x98c5d9b01462d3e1b49937ea58a169c69e5e15b1a1b6f5734df1f932700b6109"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-07T11:04:08.674Z",
+  "updatedAt": "2024-10-07T11:25:36.130Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

@@ -37087,14 +37087,152 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0xb3fd5071835887567a0671151121894ddccc2842f1d10bedad13e0d17cace9a7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "approved",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "operator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "approved",
+              "type": "bool"
+            }
+          ],
+          "name": "ApprovalForAll",
+          "type": "event"
+        },
+        "0x401ca505317eed77a11d86cfdf8adc682b4c9cb9855ab9b951515e1b371c67ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTBurned",
+          "type": "event"
+        },
+        "0x70c783e7a8d1b78c0efffba9d45d314bfe7a85f6388c8e9a32536a97949a0f2a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "creator",
+              "type": "address"
+            }
+          ],
+          "name": "NFTCreated",
+          "type": "event"
+        },
+        "0x9ed053bb818ff08b8353cd46f78db1f0799f31c9e4458fdb425c10eccd2efc44": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x42eded86dA1010B26A0A0bd1D34cBE127E71bCd0",
-      "transactionHash": "0x94166e6a375b51f1023fd9f2b3537532e26fa0c7045c7af03ddc90addd2c6a74"
+      "address": "0x703F7C520fFa941f02A32dee3FA7B5Dc4c7EEe0E",
+      "transactionHash": "0xf59c9223d901e1b233f6d08e8ab1b4359773f9c67451c3e9df73a2151d1ea3a1"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-07T11:04:08.665Z",
+  "updatedAt": "2024-10-07T11:25:36.122Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

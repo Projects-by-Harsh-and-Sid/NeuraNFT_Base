@@ -20116,14 +20116,102 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0xd5422307db29d9fcf76206ee945905c864bf3bf5118ab875bc2c9523e59866e9": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "enum AccessLevel",
+              "name": "accessLevel",
+              "type": "uint8"
+            }
+          ],
+          "name": "AccessGranted",
+          "type": "event"
+        },
+        "0x9c22416d2351a8fd56706bdcaba7a6a4a245104ea90834907b9f503a5de96c43": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "enum AccessLevel",
+              "name": "newAccessLevel",
+              "type": "uint8"
+            }
+          ],
+          "name": "AccessLevelChanged",
+          "type": "event"
+        },
+        "0xd2ba3a3435b2cf3d7fc56557f43627b4c46c251aae1e05868586ebcb52a511f1": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "user",
+              "type": "address"
+            }
+          ],
+          "name": "AccessRevoked",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xEc271D5a82A1d1c9bA2E7C91E21AF780964c9D5b",
-      "transactionHash": "0xda7dede8751a37f6d0b78deb9fd5f201f8c978ecf0f9553c871850e5a01c1d42"
+      "address": "0xDbBe68CA3Ed66D04F493577fB72FCF6614ee5d44",
+      "transactionHash": "0x49c8cdc698fe33696fc512b8bac9cf6bade37b17b71fa4ed705477711bbaf1b9"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-07T11:04:08.652Z",
+  "updatedAt": "2024-10-07T11:25:35.920Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
