@@ -16,4 +16,4 @@ services:
       - "18888:18888" # solidity port
       - "50051:50051" # rpc port
 
-    command: ["-c", "/java-tron/config/private_net_config.conf"]
+    command: ["-c", "/java-tron/config/private_net_config.conf", "--witness"]

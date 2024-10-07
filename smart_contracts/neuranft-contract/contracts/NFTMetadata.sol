@@ -112,6 +112,11 @@ contract NFTMetadata {
         return metadataMap[_collectionId][_nftId];
     }
 
+    //external function to check if metadata exists
+    function metadataExists(uint256 _collectionId, uint256 _nftId) external view returns (bool) {
+        return _metadataExists(_collectionId, _nftId);
+    }
+
     // Internal function to check if metadata exists
     function _metadataExists(uint256 _collectionId, uint256 _nftId) internal view returns (bool) {
         return bytes(metadataMap[_collectionId][_nftId].image).length > 0;
