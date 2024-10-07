@@ -42,8 +42,12 @@ Then, run the migration with:
       // userFeePercentage: 100,
       feeLimit: 1000 * 1e6,
       // fullHost: 'http://127.0.0.1:' + port,
-      fullHost: 'http://localhost:50051',
-      network_id: '9'
+      fullHost: 'http://localhost:9090',
+      network_id: '9',
+
+      fullNode: "http://127.0.0.1:9090",
+      solidityNode: "http://127.0.0.1:9091",
+      eventServer: "http://127.0.0.1:9090"
     },
     compilers: {
       solc: {

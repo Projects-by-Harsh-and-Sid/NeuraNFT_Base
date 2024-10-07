@@ -1,0 +1,17 @@
+version: '3'
+services:
+  tron:
+    build: .
+    container_name: tron
+    ports:
+      - "9090:9090"
+      - "8090:8090"
+      - "50051:50051"
+    environment:
+      - accounts=20
+      - formatJson=true
+      - defaultBalance=10000000000000
+      - seed=ushwe63hgeXUS
+    volumes:
+      - ./tron-data:/tron/data
+    restart: unless-stopped

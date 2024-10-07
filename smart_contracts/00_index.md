@@ -25,10 +25,41 @@ Welcome to the comprehensive guide for developing on the Tron blockchain. This s
 
 ## Additional Resources
 
+### Tron Documentation
+
 - [Tron Developer Hub](https://developers.tron.network/)
 - [TronBox Documentation](https://developers.tron.network/docs/tron-box-user-guide)
 - [Solidity Documentation](https://docs.soliditylang.org/)
 - [TronWeb Documentation](https://developers.tron.network/docs/tron-web-intro)
 - [Tronbox CLI Reference](https://developers.tron.network/reference/interact-with-a-contract)
+
+
+### Tron Private Node Setup
+
+- [Tron-docker-private-node-doc](https://developers.tron.network/docs/tron-private-chain)
+- [Tron-docker-private-blog](https://dev.to/axatbhardwaj/tron-private-network-setup-complete-guide-2022-2pa2)
+- [Java Tron Git](https://github.com/tronprotocol/java-tron)
+- [Java Tron Version](https://github.com/tronprotocol/java-tron/releases/)
+- [Mainnet Configuration](https://raw.githubusercontent.com/tronprotocol/tron-deployment/master/main_net_config.conf)
+
+
+### Tron Docker Quickstart (Deprecated)
+
+- [Tron-docker-quick-start-github](https://github.com/tronprotocol/docker-tron-quickstart)
+- [Tron-docker-quik-start-doc](https://developers.tron.network/v3.7/docs/quickstart)
+- [Tron-docker-quik-start-version](https://hub.docker.com/r/trontools/quickstart/tags)
+
+
+### Tron Testnets
+
+- [shasta testnet](https://api.shasta.trongrid.io/) -> https://api.shasta.trongrid.io/
+- [nile testnet](https://api.nileex.io/) -> https://api.nileex.io/
+- [Faucet Information](https://www.reddit.com/r/Tronix/comments/1fa9jtf/tron_shasta_faucet/)
+- [Tron Scan](https://tronscan.org/#/)
+
+
+### Tron Versions
+[Tron Box](https://github.com/tronprotocol/tronbox/releases)
+
 
 Happy coding on the Tron blockchain!
