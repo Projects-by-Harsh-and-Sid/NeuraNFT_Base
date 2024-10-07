@@ -34,9 +34,9 @@ function getAddressesPath(network) {
     const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
   
     // Deploy NFTContract
-    const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
-    const nftAccessControlAddress = deployedAddresses.NFTAccessControl;
-    const nftMetadataAddress = deployedAddresses.NFTMetadata;
+    const masterAccessControlAddress  = deployedAddresses.MasterAccessControl;
+    const nftAccessControlAddress     = deployedAddresses.NFTAccessControl;
+    const nftMetadataAddress          = deployedAddresses.NFTMetadata;
     await deployer.deploy(NFTContract, masterAccessControlAddress, nftAccessControlAddress, nftMetadataAddress);
     const nftContract = await NFTContract.deployed();
     const nftAccessControl = await NFTAccessControl.deployed();
