@@ -103,7 +103,13 @@ contract NFTContract is ERC721Collection {
         balances[owner]--;
         balanceCollection[owner][_collectionId]--;
 
-        nftMetadata.deleteMetadata(_collectionId, _tokenId);
+
+        // check if metadata exists
+        if (nftMetadata.metadataExists(_collectionId, _tokenId)) {
+            nftMetadata.deleteMetadata(_collectionId, _tokenId);
+        }
+        // nftMetadata.deleteMetadata(_collectionId, _tokenId);
+        
         nftAccessControl.revokeAccess(_collectionId, _tokenId, owner);
 
         emit NFTBurned(_collectionId, _tokenId);

@@ -23,24 +23,29 @@ function getAddressesPath(network) {
 
 
 
-module.exports = async function(deployer, network) {
-  const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
-
-  // Deploy CollectionContract
-  const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
-  const nftContractAddress = deployedAddresses.NFTContract;
-  await deployer.deploy(CollectionContract, masterAccessControlAddress, nftContractAddress);
-  const collectionContract = await CollectionContract.deployed();
-  console.log("CollectionContract deployed at:", collectionContract.address);
-  deployedAddresses.CollectionContract = collectionContract.address;
-
-  // Grant access to CollectionContract in MasterAccessControl
-  const masterAccessControl = await MasterAccessControl.at(masterAccessControlAddress);
-  await masterAccessControl.grantAccess(collectionContract.address, collectionContract.address);
-  console.log("Granted access to CollectionContract in MasterAccessControl");
-
-  // Save updated addresses to file
-  saveAddresses(network, deployedAddresses);
-
-  console.log("All contracts deployed and set up successfully");
-};
+  module.exports = async function(deployer, network) {
+    const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
+  
+    // Deploy CollectionContract
+    const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
+    const nftContractAddress = deployedAddresses.NFTContract;
+    await deployer.deploy(CollectionContract, masterAccessControlAddress, nftContractAddress);
+    const collectionContract = await CollectionContract.deployed();
+    console.log("CollectionContract deployed at:", collectionContract.address);
+    deployedAddresses.CollectionContract = collectionContract.address;
+  
+    // Grant access to CollectionContract in MasterAccessControl
+    const masterAccessControl = await MasterAccessControl.at(masterAccessControlAddress);
+    await masterAccessControl.grantAccess(collectionContract.address, collectionContract.address);
+    console.log("Granted access to CollectionContract in MasterAccessControl");
+  
+    // Grant access to CollectionContract in NFTContract
+    const nftContract = await NFTContract.at(nftContractAddress);
+    await masterAccessControl.grantAccess(nftContractAddress, collectionContract.address);
+    console.log("Granted access to CollectionContract in NFTContract");
+  
+    // Save updated addresses to file
+    saveAddresses(network, deployedAddresses);
+  
+    console.log("All contracts deployed and set up successfully");
+  };

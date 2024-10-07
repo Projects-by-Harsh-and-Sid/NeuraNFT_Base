@@ -39,6 +39,12 @@ contract("NFTContract", accounts => {
     await nftAccessControl.grantAccess(collectionId, 0, owner, 6, { from: owner }); // Granting AbsoluteOwnership
     await nftAccessControl.grantAccess(collectionId, 0, user1, 6, { from: owner }); // Granting AbsoluteOwnership
     await nftAccessControl.grantAccess(collectionId, 0, user2, 6, { from: owner }); // Granting AbsoluteOwnership
+
+
+    await masterAccessControl.grantAccess(masterAccessControl.address, owner, { from: owner });
+    await masterAccessControl.grantAccess(nftAccessControl.address, nftContract.address, { from: owner });
+    await masterAccessControl.grantAccess(nftMetadata.address, nftContract.address, { from: owner });
+
   });
 
   it("should create an NFT", async () => {

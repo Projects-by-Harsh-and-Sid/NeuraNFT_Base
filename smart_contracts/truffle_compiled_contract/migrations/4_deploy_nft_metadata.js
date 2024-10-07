@@ -25,17 +25,27 @@ function getAddressesPath(network) {
 
 
 
-module.exports = async function(deployer, network) {
-  const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
-
-  // Deploy NFTMetadata
-  const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
-  const nftAccessControlAddress = deployedAddresses.NFTAccessControl;
-  await deployer.deploy(NFTMetadata, masterAccessControlAddress, nftAccessControlAddress);
-  const nftMetadata = await NFTMetadata.deployed();
-  console.log("NFTMetadata deployed at:", nftMetadata.address);
-  deployedAddresses.NFTMetadata = nftMetadata.address;
-
-  // Save updated addresses to file
-  saveAddresses(network, deployedAddresses);
-};
+  module.exports = async function(deployer, network) {
+    const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
+  
+    // Deploy NFTMetadata
+    const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
+    const nftAccessControlAddress = deployedAddresses.NFTAccessControl;
+    await deployer.deploy(NFTMetadata, masterAccessControlAddress, nftAccessControlAddress);
+    const nftMetadata = await NFTMetadata.deployed();
+    console.log("NFTMetadata deployed at:", nftMetadata.address);
+    deployedAddresses.NFTMetadata = nftMetadata.address;
+  
+    // Grant access to NFTMetadata in MasterAccessControl
+    const masterAccessControl = await MasterAccessControl.at(masterAccessControlAddress);
+    await masterAccessControl.grantAccess(nftMetadata.address, nftMetadata.address);
+    console.log("Granted access to NFTMetadata in MasterAccessControl");
+  
+    // Grant access to NFTMetadata in NFTAccessControl
+    const nftAccessControl = await NFTAccessControl.at(nftAccessControlAddress);
+    await nftAccessControl.grantAccess(0, 0, nftMetadata.address, 6); // Granting AbsoluteOwnership
+    console.log("Granted access to NFTMetadata in NFTAccessControl");
+  
+    // Save updated addresses to file
+    saveAddresses(network, deployedAddresses);
+  };

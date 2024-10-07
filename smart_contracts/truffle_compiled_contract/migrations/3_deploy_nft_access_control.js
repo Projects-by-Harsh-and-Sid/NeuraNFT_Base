@@ -22,16 +22,21 @@ function getAddressesPath(network) {
 
 
 
-module.exports = async function(deployer, network) {
-  const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
-
-  // Deploy NFTAccessControl
-  const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
-  await deployer.deploy(NFTAccessControl, masterAccessControlAddress);
-  const nftAccessControl = await NFTAccessControl.deployed();
-  console.log("NFTAccessControl deployed at:", nftAccessControl.address);
-  deployedAddresses.NFTAccessControl = nftAccessControl.address;
-
-  // Save updated addresses to file
-  saveAddresses(network, deployedAddresses);
-};
+  module.exports = async function(deployer, network) {
+    const deployedAddresses = JSON.parse(fs.readFileSync(getAddressesPath(network), 'utf8'));
+  
+    // Deploy NFTAccessControl
+    const masterAccessControlAddress = deployedAddresses.MasterAccessControl;
+    await deployer.deploy(NFTAccessControl, masterAccessControlAddress);
+    const nftAccessControl = await NFTAccessControl.deployed();
+    console.log("NFTAccessControl deployed at:", nftAccessControl.address);
+    deployedAddresses.NFTAccessControl = nftAccessControl.address;
+  
+    // Grant access to NFTAccessControl in MasterAccessControl
+    const masterAccessControl = await MasterAccessControl.at(masterAccessControlAddress);
+    await masterAccessControl.grantAccess(nftAccessControl.address, nftAccessControl.address);
+    console.log("Granted access to NFTAccessControl in MasterAccessControl");
+  
+    // Save updated addresses to file
+    saveAddresses(network, deployedAddresses);
+  };

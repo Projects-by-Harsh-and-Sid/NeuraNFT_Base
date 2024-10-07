@@ -20065,12 +20065,12 @@
         }
       },
       "links": {},
-      "address": "0xCFb27AC19EB2cbB8dD0e2cde09839Ae6ef659C6F",
-      "transactionHash": "0x98c5d9b01462d3e1b49937ea58a169c69e5e15b1a1b6f5734df1f932700b6109"
+      "address": "0x5CdfD2249091c05Dabd1d200D6908482A6cE2226",
+      "transactionHash": "0xbb15aaf8e277a1baf7c9e32d5834e496140b2aae76fc78366adab0e0b12476a9"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-07T11:25:36.130Z",
+  "updatedAt": "2024-10-07T12:42:49.469Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
