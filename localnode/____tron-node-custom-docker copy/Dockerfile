@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     python3-venv \
     nodejs \
     npm \
-    jq
+    jq \
+    gettext
 
 # Set up JAVA_HOME
 ENV JAVA_HOME=/usr/local/openjdk-8
@@ -29,21 +30,20 @@ RUN python3 -m venv /tron/venv
 ENV PATH="/tron/venv/bin:$PATH"
 RUN pip install --upgrade pip && pip install tronpy
 
-# Install tronweb globally
-RUN npm install -g tronweb
+# Install tronweb locally in /tron
+RUN npm install tronweb
 
 # Copy configuration files and scripts
 COPY start_tron.sh /tron/
 COPY generate_sr_account.py /tron/
 COPY generate_accounts.py /tron/
-COPY private_net_config.conf /tron/
 COPY private_net_config.conf.template /tron/
 COPY modify_parameters.js /tron/
 
 # Expose necessary ports
 EXPOSE 9090 8090 50051
 
-# Set environment variables (you can adjust these as needed)
+# Set environment variables
 ENV accounts=20 \
     defaultBalance=10000000000000 \
     formatJson=false

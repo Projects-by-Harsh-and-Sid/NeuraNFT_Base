@@ -11,6 +11,7 @@ services:
       - accounts=20
       - formatJson=true
       - defaultBalance=10000000000000
+      - seed=ushwe63hgeXUS
     volumes:
       - ./tron-data:/tron/data
     restart: unless-stopped

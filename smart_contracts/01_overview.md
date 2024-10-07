@@ -38,6 +38,13 @@ npm install -g tronweb
 ```bash
 npm install -g tronbox@2.1.9
 ```
+
+get current version of tronbox
+
+```bash
+tronbox --version
+```
+
 List of all version
 
 `https://github.com/tronprotocol/tronbox/releases`
