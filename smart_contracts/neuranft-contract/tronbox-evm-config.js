@@ -23,8 +23,8 @@ Then, run the migration with:
       network_id: '2'
     },
     development: {
-      privateKey: process.env.PRIVATE_KEY_DEV,
-      fullHost: 'http://127.0.0.1:8545',
+      privateKey: process.env.PRIVATE_KEY_LOCAL,
+      fullHost: 'http://127.0.0.1:9090',
       network_id: '9'
     }
   },
