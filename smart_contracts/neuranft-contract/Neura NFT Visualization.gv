@@ -355,7 +355,7 @@ digraph G {
 
 
 
-
+rankdir=LR
 subgraph cluster_legend {
   label="Legend";
   fontsize=20;
@@ -396,25 +396,24 @@ subgraph cluster_legend {
   node [shape=plaintext]
   subgraph cluster_01 {
     label = "Legend";
-    key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
-      <tr><td align="right" port="i1">Internal Call</td></tr>
-      <tr><td align="right" port="i2">External Call</td></tr>
-      <tr><td align="right" port="i3">Defined Contract</td></tr>
-      <tr><td align="right" port="i4">Undefined Contract</td></tr>
-    </table>>]
-    key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
-      <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
-      <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
-      <tr><td port="i3" bgcolor="#33334C">&nbsp;&nbsp;&nbsp;</td></tr>
-      <tr><td port="i4">
-        <table border="1" cellborder="0" cellspacing="0" cellpadding="7" color="#e8726d">
-          <tr>
-           <td></td>
-          </tr>
-         </table>
-      </td></tr>
-    </table>>]
-    key:i1:e -> key2:i1:w [color="#59A14F"]
-    key:i2:e -> key2:i2:w [color="white"]
-  }
+  key [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+    <tr><td align="right" port="i1">Internal Call</td></tr>
+    <tr><td align="right" port="i2">External Call</td></tr>
+    <tr><td align="right" port="i3">Write Operation</td></tr>
+    <tr><td align="right" port="i4">Read Operation</td></tr>
+    <tr><td align="right" port="i5">Inheritance</td></tr>
+  </table>>]
+  key2 [label=<<table border="0" cellpadding="2" cellspacing="0" cellborder="0">
+    <tr><td port="i1">&nbsp;&nbsp;&nbsp;</td></tr>
+    <tr><td port="i2">&nbsp;&nbsp;&nbsp;</td></tr>
+    <tr><td port="i3">&nbsp;&nbsp;&nbsp;</td></tr>
+    <tr><td port="i4">&nbsp;&nbsp;&nbsp;</td></tr>
+    <tr><td port="i5">&nbsp;&nbsp;&nbsp;</td></tr>
+  </table>>]
+  key:i1:e -> key2:i1:w [color="#40e7c8"]
+  key:i2:e -> key2:i2:w [color="white"]
+  key:i3:e -> key2:i3:w [color="#59A14F"]
+  key:i4:e -> key2:i4:w [color="blue"]
+  key:i5:e -> key2:i5:w [color="#FF00FF", style="dashed"]
+}
 }
