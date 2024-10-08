@@ -326,6 +326,36 @@ digraph G {
 
 
 
+
+
+// Define ERC721Collection interface functions
+"ERC721Collection.balanceOf";
+"ERC721Collection.balanceOfCollection";
+"ERC721Collection.ownerOf";
+"ERC721Collection.safeTransferFrom";
+"ERC721Collection.transferFrom";
+"ERC721Collection.approve";
+"ERC721Collection.setApprovalForAll";
+"ERC721Collection.getApproved";
+"ERC721Collection.isApprovedForAll";
+
+// Connect ERC721Collection to NFTContract (inheritance)
+"ERC721Collection.balanceOf" -> "NFTContract.balanceOf" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.balanceOfCollection" -> "NFTContract.balanceOfCollection" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.ownerOf" -> "NFTContract.ownerOf" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.safeTransferFrom" -> "NFTContract.safeTransferFrom" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.transferFrom" -> "NFTContract.transferFrom" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.approve" -> "NFTContract.approve" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.setApprovalForAll" -> "NFTContract.setApprovalForAll" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.getApproved" -> "NFTContract.getApproved" [color="#d2c6d7", style="dashed"];
+"ERC721Collection.isApprovedForAll" -> "NFTContract.isApprovedForAll" [color="#d2c6d7", style="dashed"];
+
+
+
+
+
+
+
 subgraph cluster_legend {
   label="Legend";
   fontsize=20;
