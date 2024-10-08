@@ -2,52 +2,59 @@ import React, { useEffect, useState, useRef } from "react";
 import styles from './styles/topcollectiongrid.module.css';
 import { useNavigate } from 'react-router-dom';
 import temp from './Images//temp.jpg'; // Adjust the path based on your project structure
+import temp2 from './Images//temp2.png'; // Adjust the path based on your project structure
+import temp3 from './Images//temp3.png'; // Adjust the path based on your project structure
+import temp4 from './Images//temp4.png'; // Adjust the path based on your project structure
+import temp5 from './Images//temp5.png'; // Adjust the path based on your project structure
+import temp6 from './Images//temp6.png'; // Adjust the path based on your project structure
+import temp7 from './Images//temp7.png'; // Adjust the path based on your project structure
+
 const collections = [
   {
     id: 1,
-    name: "Mint Terminal",
-    image: temp,
+    name: "Neural Mint Hub",
+    image: temp7,
     description: "Mint your NFTs here",
   },
   {
     id: 2,
-    name: "Diamond Rewards",
-    image: temp,
+    name: "Quantum Rewards",
+    image: temp2,
     description: "Earn rewards for minting NFTs",
   },
   {
     id: 3,
-    name: "New Profile Page",
-    image: temp,
+    name: "AI Profile Architect",
+    image: temp3,
     description: "Customize your profile page",
   },
   {
     id: 4,
-    name: "On Chain Daily",
-    image: temp,
+    name: "Algorithmic Daily Drops",
+    image: temp4,
     description: "Daily NFT drops",
   },
   {
     id: 5,
-    name: "Capy Friends",
-    image: temp,
+    name: "Digital Personas",
+    image: temp5,
     description: "Mint your NFTs here",
   },
   {
     id: 6,
-    name: "Capy Friends",
-    image: temp,
+    name: "Synthetic Sidekicks",
+    image: temp6,
     description: "Mint your NFTs here",
   },
   {
     id: 7,
-    name: "Capy Friends",
+    name: "Virtual Companions",
     image: temp,
     description: "Mint your NFTs here",
   },
   {
     id: 8,
-    name: "Capy Friends",
+    name: "Cyber Entities",
     image: temp,
     description: "Mint your NFTs here",
   },

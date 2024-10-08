@@ -2,15 +2,15 @@
     "collections": [
       {
         "id": 1,
-        "name": "re:generates",
-        "image": "https://picsum.photos/200",
+        "name": "Neural Mint Hub",
+        "image": "/temp7.png",
         "creator": "0x876grgrgr4grgr4848gr4321",
         "model": "Llama 3.1",
-        "noOfNFTs": 1842,
+        "noOfNFTs": 7,
         "contextWindow": 4096,
         "collectionaddress": "0x123488888888888885678",
-        "date": 1695945600,
-        "description": "A collection of AI-generated art pieces using Llama 3.1",
+        "date": 1728384003,
+        "description": "A collection AI bots based on Llama that have cognition and have multilevel reasoning",
         "noOfServers": 12
       },
       {

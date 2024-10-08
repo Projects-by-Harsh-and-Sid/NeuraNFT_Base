@@ -83,11 +83,12 @@ const UpdateAccessDialog = ({ isOpen, onClose, onUpdateAccess, accessList }) => 
               <MenuItem value="" disabled>
                 <span className={styles.placeholder}>Select New Access Level</span>
               </MenuItem>
-              <MenuItem value="Level 1">Level 1 - Viewer</MenuItem>
-              <MenuItem value="Level 2">Level 2 - Commenter</MenuItem>
-              <MenuItem value="Level 3">Level 3 - Editor</MenuItem>
-              <MenuItem value="Level 4">Level 4 - Admin</MenuItem>
-              <MenuItem value="Level 5">Level 5 - Owner</MenuItem>
+              <MenuItem value={1}>Level 1 - UseModel</MenuItem>
+              <MenuItem value={2}>Level 2 - Resale</MenuItem>
+              <MenuItem value={3}>Level 3 - CreateReplica</MenuItem>
+              <MenuItem value={4}>Level 4 - ViewAndDownload</MenuItem>
+              <MenuItem value={5}>Level 5 - EditData</MenuItem>
+              <MenuItem value={6}>Level 6 - AbsoluteOwnership</MenuItem>
             </Select>
             <Button 
               onClick={handleSubmit} 

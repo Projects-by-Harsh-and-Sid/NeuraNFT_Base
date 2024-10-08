@@ -2,34 +2,40 @@
     "nfts": [
       {
         "id": 1,
-        "name": "re:gen #1234",
-        "collection": "re:generates",
-        "image": "https://picsum.photos/200",
+        "name": "Cognitive Llama",
+        "collection": "Neural Mint Hub",
+        "image": "/temp11.jpg",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
           { "trait_type": "Context Window", "value": "4096 tokens" },
           { "trait_type": "Total Access", "value": "1" },
-          { "trait_type": "Collection", "value": "re:generates" }
+          { "trait_type": "Collection", "value": "Neural Mint Hub" }
         ],
         "accessList": [
-          { "address": "0x8765...4321", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 6" },
+          { "address": "TFJGXg1C962aDqSyvdSZXZ9am2ETqwNQka", "accessLevel": "Level 5" },
+          { "address": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7", "accessLevel": "Level 2" },
+          { "address": "TJfqnAUwX2ViGTP1J81itXWhuJhUYa8RwK", "accessLevel": "Level 2" },
+          { "address": "TVh65XCYkerBch3WtgY9kwLqrtH64MhiFe", "accessLevel": "Level 3" },
+          { "address": "TMVQGm1qAQYVdetCeGRRkTWYYrLXuHK2HC", "accessLevel": "Level 1" }
+
         ],
         "collectionaddress": "0x123488888888888885678",
         "tokenId": "1234",
         "tokenStandard": "ERC-721",
-        "owner": "0x8765...4321",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
-        "description": "This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
-        "creatorAddress": "0x123488888888888885678",
-        "ownerAddress": "0x8765...4321",
+        "description": "Cognitive Llama is an advanced AI-driven bot, utilizing the power of Llama 3.1 with multi-level reasoning and cognition. Part of the Neural Mint Hub collection.",
+        "creatorAddress": "TMVQGm1qAQYVdetCeGRRkTWYYrLXuHK2HC",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 1
       },
       {
         "id": 2,
-        "name": "onchain gaia #5678",
+        "name": "Cyborg Bored Ape",
         "collection": "onchain gaias",
-        "image": "https://picsum.photos/200",
+        "image": "/temp10.jpg",
         "model": "GPT-4",
         "attributes": [
           { "trait_type": "Model", "value": "GPT-4" },
@@ -38,23 +44,23 @@
           { "trait_type": "Collection", "value": "onchain gaias" }
         ],
         "accessList": [
-          { "address": "0x8765...4321", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
         ],
         "collectionaddress": "0x123488888888888885678",
         "tokenId": "5678",
         "tokenStandard": "ERC-721",
-        "owner": "0x8765...4321",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
-        "description": "A unique digital landscape from the onchain gaias collection, powered by GPT-4.",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
         "creatorAddress": "0x1234...5748",
-        "ownerAddress": "0x8765...4321",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 1
       },
       {
         "id": 3,
-        "name": "Rebel Monke #9101",
+        "name": "Thinker Primate",
         "collection": "Rebel Monkes",
-        "image": "https://picsum.photos/200",
+        "image": "/temp9.jpg",
         "model": "DALL-E",
         "attributes": [
           { "trait_type": "Model", "value": "DALL-E" },
@@ -63,22 +69,22 @@
           { "trait_type": "Collection", "value": "Rebel Monkes" }
         ],
         "accessList": [
-          { "address": "0x8765...4321", "accessLevel": "Level 1" },
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" },
           { "address": "0x1111...2222", "accessLevel": "Level 2" }
         ],
         "collectionaddress": "0x123488888888888885678",
         "tokenId": "9101",
         "tokenStandard": "ERC-721",
-        "owner": "0x8765...4321",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
         "description": "A rebellious monkey character from the Rebel Monkes collection, created by DALL-E.",
         "creatorAddress": "0x5678...1234",
-        "ownerAddress": "0x8765...4321",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 2
       },
       {
         "id": 4,
-        "name": "MankiBean #1121",
+        "name": "MankiBean",
         "collection": "MankiBeanz",
         "image": "https://picsum.photos/200",
         "model": "Stable Diffusion",
@@ -89,21 +95,21 @@
           { "trait_type": "Collection", "value": "MankiBeanz" }
         ],
         "accessList": [
-          { "address": "0x8765...4321", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
         ],
         "collectionaddress": "0x1234...5878",
         "tokenId": "1121",
         "tokenStandard": "ERC-721",
-        "owner": "0x8765...4321",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
         "description": "A quirky bean-shaped monkey character from the MankiBeanz collection, generated using Stable Diffusion.",
-        "creatorAddress": "0x8765...4321",
-        "ownerAddress": "0x8765...4321",
+        "creatorAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 1
       },
       {
         "id": 5,
-        "name": "based punk #3141",
+        "name": "based punk",
         "collection": "based punks",
         "image": "https://picsum.photos/200",
         "model": "Midjourney",
@@ -114,19 +120,119 @@
           { "trait_type": "Collection", "value": "based punks" }
         ],
         "accessList": [
-          { "address": "0x8765...4321", "accessLevel": "Level 1" },
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" },
           { "address": "0x2222...3333", "accessLevel": "Level 2" },
           { "address": "0x3333...4444", "accessLevel": "Level 3" }
         ],
         "collectionaddress": "0x1234...5578",
         "tokenId": "3141",
         "tokenStandard": "ERC-721",
-        "owner": "0x8765...4321",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
         "description": "A punk-inspired NFT from the based punks collection, created with Midjourney.",
         "creatorAddress": "0x2468...1357",
-        "ownerAddress": "0x8765...4321",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 3
+      },
+      {
+        "id": 6,
+        "name": "Dark Llama",
+        "collection": "re:generates",
+        "image": "/temp8.jpg",
+        "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x123488888888888885678",
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "chain": "Ethereum",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "0x123488888888888885678",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 7,
+        "name": "Tron Cells",
+        "collection": "re:generates",
+        "image": "/temp12.png",
+        "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x123488888888888885678",
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "chain": "Ethereum",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "0x123488888888888885678",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 8,
+        "name": "Corrupted Cyborg",
+        "collection": "re:generates",
+        "image": "/temp13.png",
+        "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x123488888888888885678",
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "chain": "Ethereum",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "0x123488888888888885678",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 9,
+        "name": "Skynet",
+        "collection": "re:generates",
+        "image": "/temp14.png",
+        "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+        ],
+        "collectionaddress": "0x123488888888888885678",
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "chain": "Ethereum",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "0x123488888888888885678",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "numberOfOwners": 1
       }
     ]
   }

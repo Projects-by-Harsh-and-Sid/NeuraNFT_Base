@@ -98,7 +98,9 @@ const ViewCollectionNFTs = () => {
         </div>
       </div> */}
             <div className={styles.collectionInfo}>
-        <img src={collection.image || DefaultImage} alt={collection.name} className={styles.collectionImage} />
+              <div className={styles.collectionImage}>
+              <img src={collection.image || DefaultImage} alt={collection.name}  />
+        </div>
         <div className={styles.collectionDetails}>
           <div className={styles.collectionHeader}>
             <h2 className={styles.collectionName}>{collection.name}</h2>
