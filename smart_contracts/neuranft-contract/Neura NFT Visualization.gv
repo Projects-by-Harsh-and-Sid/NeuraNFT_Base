@@ -145,6 +145,9 @@ subgraph "clusterNFTMetadata" {
 "NFTMetadata.replicaMap" [ label = "replicaMap\n(mapping)", shape = "rectangle", color = "#FFA500" ];
 }
 
+
+// ---------------------------- Function Calls ---------------------------- //
+
   "CollectionContract.<Constructor>";
   "MasterAccessControl.grantSelfAccess";
   "CollectionContract.onlyAuthorized";
@@ -191,6 +194,110 @@ subgraph "clusterNFTMetadata" {
   "NFTMetadata.createMetadata";
   "NFTMetadata.updateMetadata";
   "NFTMetadata.getMetadata";
+
+
+
+// ---------------------------- Data Variables ---------------------------- //
+
+
+"CollectionContract.collections";
+"CollectionContract.collectionOwners";
+"CollectionContract.totalCollections";
+"MasterAccessControl.accessRights";
+"NFTContract.nfts";
+"NFTContract.collectionNFTCount";
+"NFTContract.balances";
+"NFTContract.balanceCollection";
+"NFTContract.tokenApprovals";
+"NFTContract.operatorApprovals";
+"NFTContract.nextTokenId";
+"NFTAccessControl.nftAccess";
+"NFTAccessControl.defaultAccessLevel";
+"NFTAccessControl.maxAccessLevel";
+"NFTAccessControl.userAccess";
+"NFTAccessControl.userAccessList";
+"NFTAccessControl.userAccessIndex";
+"NFTAccessControl.nftAccessList";
+"NFTAccessControl.nftAccessIndex";
+"NFTMetadata.metadataMap";
+"NFTMetadata.replicaMap";
+
+
+
+
+// ---------------------------- Data Call Flow---------------------------- //
+
+
+// CollectionContract
+"CollectionContract.createCollection" -> "CollectionContract.collections" [ color = "green" ];
+"CollectionContract.createCollection" -> "CollectionContract.collectionOwners" [ color = "green" ];
+"CollectionContract.createCollection" -> "CollectionContract.totalCollections" [ color = "green" ];
+"CollectionContract.collections" -> "CollectionContract.getCollectionMetadata" [ color = "blue" ];
+"CollectionContract.collectionOwners" -> "CollectionContract.getCollectionOwner" [ color = "blue" ];
+"CollectionContract.totalCollections" -> "CollectionContract.getTotalCollections" [ color = "blue" ];
+"CollectionContract.collections" -> "CollectionContract.getAllCollections" [ color = "blue" ];
+"CollectionContract.updateCollection" -> "CollectionContract.collections" [ color = "green" ];
+"CollectionContract.transferCollection" -> "CollectionContract.collectionOwners" [ color = "green" ];
+
+// MasterAccessControl
+"MasterAccessControl.grantAccess" -> "MasterAccessControl.accessRights" [ color = "green" ];
+"MasterAccessControl.revokeAccess" -> "MasterAccessControl.accessRights" [ color = "green" ];
+"MasterAccessControl.accessRights" -> "MasterAccessControl.hasAccess" [ color = "blue" ];
+"MasterAccessControl.accessRights" -> "MasterAccessControl.selfCheckAccess" [ color = "blue" ];
+
+// NFTContract
+"NFTContract.createNFT" -> "NFTContract.nfts" [ color = "green" ];
+"NFTContract.createNFT" -> "NFTContract.collectionNFTCount" [ color = "green" ];
+"NFTContract.createNFT" -> "NFTContract.balances" [ color = "green" ];
+"NFTContract.createNFT" -> "NFTContract.balanceCollection" [ color = "green" ];
+"NFTContract.createNFT" -> "NFTContract.nextTokenId" [ color = "green" ];
+"NFTContract.burnNFT" -> "NFTContract.nfts" [ color = "green" ];
+"NFTContract.burnNFT" -> "NFTContract.collectionNFTCount" [ color = "green" ];
+"NFTContract.burnNFT" -> "NFTContract.balances" [ color = "green" ];
+"NFTContract.burnNFT" -> "NFTContract.balanceCollection" [ color = "green" ];
+"NFTContract.nfts" -> "NFTContract.getNFTInfo" [ color = "blue" ];
+"NFTContract.collectionNFTCount" -> "NFTContract.getCollectionNFTCount" [ color = "blue" ];
+"NFTContract.balances" -> "NFTContract.balanceOf" [ color = "blue" ];
+"NFTContract.balanceCollection" -> "NFTContract.balanceOfCollection" [ color = "blue" ];
+"NFTContract.nfts" -> "NFTContract.ownerOf" [ color = "blue" ];
+"NFTContract._transfer" -> "NFTContract.nfts" [ color = "green" ];
+"NFTContract._transfer" -> "NFTContract.balances" [ color = "green" ];
+"NFTContract._transfer" -> "NFTContract.balanceCollection" [ color = "green" ];
+"NFTContract.approve" -> "NFTContract.tokenApprovals" [ color = "green" ];
+"NFTContract.setApprovalForAll" -> "NFTContract.operatorApprovals" [ color = "green" ];
+"NFTContract.tokenApprovals" -> "NFTContract.getApproved" [ color = "blue" ];
+"NFTContract.operatorApprovals" -> "NFTContract.isApprovedForAll" [ color = "blue" ];
+
+// NFTAccessControl
+"NFTAccessControl.grantAccess" -> "NFTAccessControl.nftAccess" [ color = "green" ];
+"NFTAccessControl.grantAccess" -> "NFTAccessControl.userAccess" [ color = "green" ];
+"NFTAccessControl.revokeAccess" -> "NFTAccessControl.nftAccess" [ color = "green" ];
+"NFTAccessControl.revokeAccess" -> "NFTAccessControl.userAccess" [ color = "green" ];
+"NFTAccessControl.nftAccess" -> "NFTAccessControl.getAccessLevel" [ color = "blue" ];
+"NFTAccessControl.defaultAccessLevel" -> "NFTAccessControl.getAccessLevel" [ color = "blue" ];
+"NFTAccessControl.setMaxAccessLevel" -> "NFTAccessControl.maxAccessLevel" [ color = "green" ];
+"NFTAccessControl.setDefaultAccessLevel" -> "NFTAccessControl.defaultAccessLevel" [ color = "green" ];
+"NFTAccessControl.userAccessList" -> "NFTAccessControl.getAllAccessForUser" [ color = "blue" ];
+"NFTAccessControl.nftAccess" -> "NFTAccessControl.checkMinimumAccess" [ color = "blue" ];
+"NFTAccessControl.defaultAccessLevel" -> "NFTAccessControl.checkMinimumAccess" [ color = "blue" ];
+"NFTAccessControl.nftAccessList" -> "NFTAccessControl.getAllUsersAccessForNFT" [ color = "blue" ];
+
+// NFTMetadata
+"NFTMetadata.createMetadata" -> "NFTMetadata.metadataMap" [ color = "green" ];
+"NFTMetadata.replicateNFT" -> "NFTMetadata.metadataMap" [ color = "green" ];
+"NFTMetadata.replicateNFT" -> "NFTMetadata.replicaMap" [ color = "green" ];
+"NFTMetadata.updateMetadata" -> "NFTMetadata.metadataMap" [ color = "green" ];
+"NFTMetadata.deleteMetadata" -> "NFTMetadata.metadataMap" [ color = "green" ];
+"NFTMetadata.metadataMap" -> "NFTMetadata.getMetadata" [ color = "blue" ];
+"NFTMetadata.metadataMap" -> "NFTMetadata._metadataExists" [ color = "blue" ];
+"NFTMetadata.metadataMap" -> "NFTMetadata.metadataExists" [ color = "blue" ];
+
+
+// ---------------------------- Function Flow---------------------------- //
+
+
+
+
   "CollectionContract.<Constructor>" -> "MasterAccessControl.grantSelfAccess" [ color = "white" ];
   "CollectionContract.onlyAuthorized" -> "MasterAccessControl.selfCheckAccess" [ color = "white" ];
   "CollectionContract.getCollectionNFTCount" -> "NFTContract.getCollectionNFTCount" [ color = "white" ];
