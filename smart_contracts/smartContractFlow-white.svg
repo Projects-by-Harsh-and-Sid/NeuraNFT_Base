@@ -1,6 +1,6 @@
 <?xml version="1.0" standalone="no"?>
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2426pt" height="3258pt" viewBox="0.00 0.00 2425.54 3257.54">
-<g id="graph0" class="graph" transform="translate(-1120.2819366782405,6192.638923309909) scale(2.0140344206149843)" data-name="G">
+<g id="graph0" class="graph" transform="translate(138.35892561382207,3060.3217065293165) scale(0.8766593996820868)" data-name="G">
 
 <polygon fill="white" stroke="none" points="-4,4 -4,-3253.54 2421.54,-3253.54 2421.54,4 -4,4"/>
 <g id="clust1" class="cluster" data-name="clusterCollectionContract">
@@ -194,14 +194,14 @@
 <!-- NFTContract.getCollectionNFTCount -->
 <g id="node34" class="node" pointer-events="visible" data-name="NFTContract.getCollectionNFTCount">
 
-<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-596.54" rx="104.84" ry="18"/>
-<text text-anchor="middle" x="1648.3" y="-592.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getCollectionNFTCount</text>
+<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-629.54" rx="104.84" ry="18"/>
+<text text-anchor="middle" x="1648.3" y="-625.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getCollectionNFTCount</text>
 </g>
 <!-- CollectionContract.getCollectionNFTCount&#45;&gt;NFTContract.getCollectionNFTCount -->
 <g id="edge57" class="edge" data-name="CollectionContract.getCollectionNFTCount-&gt;NFTContract.getCollectionNFTCount">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M139.6,-2315.21C145.61,-2098.65 202.48,-133.86 288.14,-49.54 390.84,51.56 467.89,-33.54 612.01,-33.54 612.01,-33.54 612.01,-33.54 1107.74,-33.54 1274.73,-33.54 1345.49,-24.92 1468.78,-137.54 1599.02,-256.5 1635.28,-481.79 1644.46,-564.8"/>
-<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1640.95,-564.91 1645.46,-574.5 1647.91,-564.2 1640.95,-564.91"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M139.6,-2315.21C145.61,-2098.65 202.48,-133.86 288.14,-49.54 390.84,51.56 467.89,-33.54 612.01,-33.54 612.01,-33.54 612.01,-33.54 1107.74,-33.54 1292.71,-33.54 1344.03,-103.98 1468.78,-240.54 1569.07,-350.32 1621.65,-526.15 1639.83,-597.7"/>
+<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1636.4,-598.39 1642.19,-607.26 1643.19,-596.71 1636.4,-598.39"/>
 </g>
 <!-- CollectionContract.getCollectionUniqueHolders -->
 <g id="node12" class="node" pointer-events="visible" data-name="CollectionContract.getCollectionUniqueHolders">
@@ -328,32 +328,32 @@
 <!-- NFTContract.balanceOf -->
 <g id="node44" class="node" pointer-events="visible" data-name="NFTContract.balanceOf">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-650.54" rx="50.92" ry="18"/>
-<text text-anchor="middle" x="1648.3" y="-646.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceOf</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-700.54" rx="50.92" ry="18"/>
+<text text-anchor="middle" x="1648.3" y="-696.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceOf</text>
 </g>
 <!-- ERC721Collection.balanceOf&#45;&gt;NFTContract.balanceOf -->
 <g id="edge100" class="edge" data-name="ERC721Collection.balanceOf-&gt;NFTContract.balanceOf">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M436.88,-139.48C523.31,-149.46 709.02,-168.54 866.38,-168.54 866.38,-168.54 866.38,-168.54 1107.74,-168.54 1268.92,-168.54 1355.31,-88.09 1468.78,-202.54 1534.89,-269.22 1441.86,-553.85 1504.78,-623.54 1524.61,-645.5 1556.27,-652.99 1584.71,-654.67"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1584.37,-658.16 1594.47,-654.97 1584.59,-651.16 1584.37,-658.16"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M433.74,-142.37C450.67,-146.6 469.71,-152.54 486.02,-160.54 499.98,-167.39 499.9,-175.01 514.02,-181.54 659.76,-248.98 705.79,-261.54 866.38,-261.54 866.38,-261.54 866.38,-261.54 1107.74,-261.54 1269.86,-261.54 1356.37,-196.72 1468.78,-313.54 1521.92,-368.77 1456.12,-597.33 1504.78,-656.54 1523.96,-679.88 1555.25,-691.08 1583.63,-696.36"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1583,-699.81 1593.42,-697.92 1584.1,-692.9 1583,-699.81"/>
 </g>
 <!-- ERC721Collection.balanceOfCollection -->
 <g id="node26" class="node" pointer-events="visible" data-name="ERC721Collection.balanceOfCollection">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="387.08" cy="-241.54" rx="90.88" ry="18"/>
-<text text-anchor="middle" x="387.08" y="-237.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceOfCollection</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="387.08" cy="-187.54" rx="90.88" ry="18"/>
+<text text-anchor="middle" x="387.08" y="-183.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceOfCollection</text>
 </g>
 <!-- NFTContract.balanceOfCollection -->
 <g id="node45" class="node" pointer-events="visible" data-name="NFTContract.balanceOfCollection">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-779.54" rx="90.88" ry="18"/>
-<text text-anchor="middle" x="1648.3" y="-775.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceOfCollection</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-759.54" rx="90.88" ry="18"/>
+<text text-anchor="middle" x="1648.3" y="-755.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceOfCollection</text>
 </g>
 <!-- ERC721Collection.balanceOfCollection&#45;&gt;NFTContract.balanceOfCollection -->
 <g id="edge101" class="edge" data-name="ERC721Collection.balanceOfCollection-&gt;NFTContract.balanceOfCollection">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M468.78,-250.52C563.77,-260.29 726.33,-274.54 866.38,-274.54 866.38,-274.54 866.38,-274.54 1107.74,-274.54 1268.72,-274.54 1354.74,-189.93 1468.78,-303.54 1536.4,-370.91 1445.89,-656.43 1504.78,-731.54 1517.66,-747.96 1536.38,-758.81 1556.05,-765.96"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1554.9,-769.27 1565.49,-769.02 1557.06,-762.61 1554.9,-769.27"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M449.84,-201.77C462.05,-205.35 474.6,-209.62 486.02,-214.54 499.39,-220.31 500.64,-225.79 514.02,-231.54 663.15,-295.62 704.07,-327.54 866.38,-327.54 866.38,-327.54 866.38,-327.54 1107.74,-327.54 1269.09,-327.54 1355.02,-251.12 1468.78,-365.54 1525.78,-422.87 1451.2,-667.01 1504.78,-727.54 1515.46,-739.6 1529.61,-747.65 1544.86,-752.93"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1543.79,-756.26 1554.37,-755.74 1545.77,-749.55 1543.79,-756.26"/>
 </g>
 <!-- ERC721Collection.ownerOf -->
 <g id="node27" class="node" pointer-events="visible" data-name="ERC721Collection.ownerOf">
@@ -364,14 +364,14 @@
 <!-- NFTContract.ownerOf -->
 <g id="node46" class="node" pointer-events="visible" data-name="NFTContract.ownerOf">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-833.54" rx="45.22" ry="18"/>
-<text text-anchor="middle" x="1648.3" y="-829.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">ownerOf</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-939.54" rx="45.22" ry="18"/>
+<text text-anchor="middle" x="1648.3" y="-935.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">ownerOf</text>
 </g>
 <!-- ERC721Collection.ownerOf&#45;&gt;NFTContract.ownerOf -->
 <g id="edge102" class="edge" data-name="ERC721Collection.ownerOf-&gt;NFTContract.ownerOf">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M432.89,-298.98C517.53,-305.17 706.78,-317.54 866.38,-317.54 866.38,-317.54 866.38,-317.54 1107.74,-317.54 1303.43,-317.54 1365.49,-403.34 1468.78,-569.54 1525.02,-660.03 1430.83,-729.84 1504.78,-806.54 1526.48,-829.05 1560.64,-836.07 1590.09,-837.34"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1589.7,-840.84 1599.76,-837.51 1589.82,-833.84 1589.7,-840.84"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M429.06,-303.91C446.98,-308.31 467.98,-314.48 486.02,-322.54 499.53,-328.58 500.41,-334.74 514.02,-340.54 662.13,-403.63 705.39,-424.54 866.38,-424.54 866.38,-424.54 866.38,-424.54 1107.74,-424.54 1280.66,-424.54 1364.58,-431.54 1468.78,-569.54 1514.96,-630.71 1452.87,-856.16 1504.78,-912.54 1526.03,-935.62 1560.34,-942.63 1589.98,-943.75"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1589.7,-947.25 1599.74,-943.86 1589.78,-940.25 1589.7,-947.25"/>
 </g>
 <!-- ERC721Collection.safeTransferFrom -->
 <g id="node28" class="node" pointer-events="visible" data-name="ERC721Collection.safeTransferFrom">
@@ -382,14 +382,14 @@
 <!-- NFTContract.safeTransferFrom -->
 <g id="node47" class="node" pointer-events="visible" data-name="NFTContract.safeTransferFrom">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="#2e2e38" stroke-width="3" cx="613.01" cy="-652.54" rx="80.43" ry="18"/>
-<text text-anchor="middle" x="613.01" y="-648.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">safeTransferFrom</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="#2e2e38" stroke-width="3" cx="613.01" cy="-743.54" rx="80.43" ry="18"/>
+<text text-anchor="middle" x="613.01" y="-739.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">safeTransferFrom</text>
 </g>
 <!-- ERC721Collection.safeTransferFrom&#45;&gt;NFTContract.safeTransferFrom -->
 <g id="edge103" class="edge" data-name="ERC721Collection.safeTransferFrom-&gt;NFTContract.safeTransferFrom">
 
-<path fill="none" stroke="#433878" stroke-width="2" stroke-dasharray="5,2" d="M421.14,-529.17C440.32,-539.63 464.81,-553.38 486.02,-566.54 517.19,-585.88 551.51,-609.47 576.45,-627.04"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="574.21,-629.75 584.39,-632.67 578.26,-624.03 574.21,-629.75"/>
+<path fill="none" stroke="#433878" stroke-width="2" stroke-dasharray="5,2" d="M426.89,-528.37C446,-537.84 468.61,-550.9 486.02,-566.54 534.38,-609.99 574.73,-675.16 595.93,-713.11"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="592.8,-714.68 600.68,-721.76 598.94,-711.31 592.8,-714.68"/>
 </g>
 <!-- ERC721Collection.transferFrom -->
 <g id="node29" class="node" pointer-events="visible" data-name="ERC721Collection.transferFrom">
@@ -400,14 +400,14 @@
 <!-- NFTContract.transferFrom -->
 <g id="node48" class="node" pointer-events="visible" data-name="NFTContract.transferFrom">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="867.38" cy="-652.54" rx="61.41" ry="18"/>
-<text text-anchor="middle" x="867.38" y="-648.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">transferFrom</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="867.38" cy="-743.54" rx="61.41" ry="18"/>
+<text text-anchor="middle" x="867.38" y="-739.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">transferFrom</text>
 </g>
 <!-- ERC721Collection.transferFrom&#45;&gt;NFTContract.transferFrom -->
 <g id="edge104" class="edge" data-name="ERC721Collection.transferFrom-&gt;NFTContract.transferFrom">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M436.84,-469.47C452.68,-473.75 470.24,-478.91 486.02,-484.54 611.04,-529.11 752.68,-596.32 822.57,-630.66"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="820.74,-633.65 831.25,-634.94 823.83,-627.38 820.74,-633.65"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M443.02,-466.27C457.79,-470.28 473.21,-476.1 486.02,-484.54 502.66,-495.5 499.19,-506.24 514.02,-519.54 613.23,-608.54 751.69,-685.24 821.84,-721.41"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="820.12,-724.46 830.62,-725.89 823.31,-718.22 820.12,-724.46"/>
 </g>
 <!-- ERC721Collection.approve -->
 <g id="node30" class="node" pointer-events="visible" data-name="ERC721Collection.approve">
@@ -418,14 +418,14 @@
 <!-- NFTContract.approve -->
 <g id="node49" class="node" pointer-events="visible" data-name="NFTContract.approve">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1347.76" cy="-890.54" rx="42.28" ry="18"/>
-<text text-anchor="middle" x="1347.76" y="-886.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">approve</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1347.76" cy="-896.54" rx="42.28" ry="18"/>
+<text text-anchor="middle" x="1347.76" y="-892.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">approve</text>
 </g>
 <!-- ERC721Collection.approve&#45;&gt;NFTContract.approve -->
 <g id="edge105" class="edge" data-name="ERC721Collection.approve-&gt;NFTContract.approve">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M430.02,-345.79C566.65,-336.18 1001.01,-326.67 1190.74,-571.54 1230.66,-623.07 1175.3,-814.93 1218.74,-863.54 1236.86,-883.83 1266.05,-891.04 1291.98,-892.98"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1291.61,-896.46 1301.75,-893.41 1291.92,-889.47 1291.61,-896.46"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M429.97,-353C448.91,-356.45 470.47,-363.24 486.02,-376.54 508.99,-396.2 490.14,-420 514.02,-438.54 535.08,-454.89 960.66,-516.06 986.75,-521.54 1078.1,-540.73 1129.75,-500.88 1190.74,-571.54 1234.2,-621.89 1174.46,-819.9 1218.74,-869.54 1236.84,-889.84 1266.03,-897.06 1291.96,-898.99"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1291.59,-902.48 1301.74,-899.42 1291.9,-895.48 1291.59,-902.48"/>
 </g>
 <!-- ERC721Collection.setApprovalForAll -->
 <g id="node31" class="node" pointer-events="visible" data-name="ERC721Collection.setApprovalForAll">
@@ -442,8 +442,8 @@
 <!-- ERC721Collection.setApprovalForAll&#45;&gt;NFTContract.setApprovalForAll -->
 <g id="edge106" class="edge" data-name="ERC721Collection.setApprovalForAll-&gt;NFTContract.setApprovalForAll">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M443.02,-418.16C508.87,-435.71 622.55,-466.09 720,-492.54 832.38,-523.05 963.02,-559.06 1039.8,-580.29"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1038.62,-583.59 1049.19,-582.88 1040.48,-576.84 1038.62,-583.59"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M456.43,-414.91C467.02,-418.71 477.31,-423.78 486.02,-430.54 505.83,-445.93 493.63,-464.93 514.02,-479.54 589.83,-533.86 628.55,-501.3 720,-519.54 828.12,-541.11 953.1,-566.85 1030.79,-582.96"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1029.85,-586.33 1040.35,-584.94 1031.27,-579.48 1029.85,-586.33"/>
 </g>
 <!-- ERC721Collection.getApproved -->
 <g id="node32" class="node" pointer-events="visible" data-name="ERC721Collection.getApproved">
@@ -454,32 +454,32 @@
 <!-- NFTContract.getApproved -->
 <g id="node51" class="node" pointer-events="visible" data-name="NFTContract.getApproved">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1927.36" cy="-741.54" rx="61.41" ry="18"/>
-<text text-anchor="middle" x="1927.36" y="-737.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getApproved</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1927.36" cy="-882.54" rx="61.41" ry="18"/>
+<text text-anchor="middle" x="1927.36" y="-878.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getApproved</text>
 </g>
 <!-- ERC721Collection.getApproved&#45;&gt;NFTContract.getApproved -->
 <g id="edge107" class="edge" data-name="ERC721Collection.getApproved-&gt;NFTContract.getApproved">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M449.22,-81.85C540.17,-85.07 716.45,-90.54 866.38,-90.54 866.38,-90.54 866.38,-90.54 1348.76,-90.54 1684.37,-90.54 1872.43,-580.64 1916.32,-710.36"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1912.9,-711.16 1919.38,-719.54 1919.54,-708.95 1912.9,-711.16"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M437.74,-91.05C542.38,-114.9 782.79,-167.54 866.38,-167.54 866.38,-167.54 866.38,-167.54 1348.76,-167.54 1705.5,-167.54 1879.66,-712.79 1918.07,-851"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1914.65,-851.77 1920.66,-860.5 1921.41,-849.93 1914.65,-851.77"/>
 </g>
 <!-- ERC721Collection.isApprovedForAll -->
 <g id="node33" class="node" pointer-events="visible" data-name="ERC721Collection.isApprovedForAll">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="387.08" cy="-187.54" rx="81.7" ry="18"/>
-<text text-anchor="middle" x="387.08" y="-183.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">isApprovedForAll</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="387.08" cy="-241.54" rx="81.7" ry="18"/>
+<text text-anchor="middle" x="387.08" y="-237.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">isApprovedForAll</text>
 </g>
 <!-- NFTContract.isApprovedForAll -->
 <g id="node52" class="node" pointer-events="visible" data-name="NFTContract.isApprovedForAll">
 
-<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-704.54" rx="81.7" ry="18"/>
-<text text-anchor="middle" x="1648.3" y="-700.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">isApprovedForAll</text>
+<ellipse fill="rgb(152, 228, 255)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-821.54" rx="81.7" ry="18"/>
+<text text-anchor="middle" x="1648.3" y="-817.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">isApprovedForAll</text>
 </g>
 <!-- ERC721Collection.isApprovedForAll&#45;&gt;NFTContract.isApprovedForAll -->
 <g id="edge108" class="edge" data-name="ERC721Collection.isApprovedForAll-&gt;NFTContract.isApprovedForAll">
 
-<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M463.79,-194.97C558.02,-203.56 723.91,-216.54 866.38,-216.54 866.38,-216.54 866.38,-216.54 1107.74,-216.54 1269.39,-216.54 1356.51,-144.25 1468.78,-260.54 1533.38,-327.46 1442.42,-608.53 1504.78,-677.54 1517.46,-691.58 1534.97,-699.7 1553.38,-704.17"/>
-<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1552.44,-707.55 1562.93,-706.07 1553.8,-700.69 1552.44,-707.55"/>
+<path fill="none" stroke="rgb(67, 56, 120)" stroke-width="2" stroke-dasharray="5,2" d="M447.61,-254.85C460.53,-258.59 473.94,-263.15 486.02,-268.54 499.53,-274.58 500.48,-280.58 514.02,-286.54 662.26,-351.8 704.41,-379.54 866.38,-379.54 866.38,-379.54 866.38,-379.54 1107.74,-379.54 1268.8,-379.54 1354.34,-297.22 1468.78,-410.54 1528.43,-469.6 1449.9,-723.04 1504.78,-786.54 1517.36,-801.1 1534.92,-810.11 1553.43,-815.59"/>
+<polygon fill="#433878" stroke="#433878" stroke-width="2" points="1552.53,-818.97 1563.08,-818.03 1554.24,-812.18 1552.53,-818.97"/>
 </g>
 <!-- NFTContract.&lt;Constructor&gt; -->
 <g id="node36" class="node" pointer-events="visible" data-name="NFTContract.&lt;Constructor&gt;">
@@ -509,80 +509,80 @@
 <!-- NFTContract.onlyNFTOwner -->
 <g id="node38" class="node" pointer-events="visible" data-name="NFTContract.onlyNFTOwner">
 
-<polygon fill="#73ec8b" stroke="#2e2e38" stroke-width="3" points="466.01,-777.09 466.01,-792 419.77,-802.54 354.38,-802.54 308.15,-792 308.15,-777.09 354.38,-766.54 419.77,-766.54 466.01,-777.09"/>
-<polygon fill="none" stroke="#2e2e38" stroke-width="3" points="470.02,-773.9 470.02,-795.19 420.22,-806.54 353.93,-806.54 304.14,-795.19 304.14,-773.9 353.93,-762.54 420.22,-762.54 470.02,-773.9"/>
-<text text-anchor="middle" x="387.08" y="-780.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">onlyNFTOwner</text>
+<polygon fill="#73ec8b" stroke="#2e2e38" stroke-width="3" points="466.01,-831.09 466.01,-846 419.77,-856.54 354.38,-856.54 308.15,-846 308.15,-831.09 354.38,-820.54 419.77,-820.54 466.01,-831.09"/>
+<polygon fill="none" stroke="#2e2e38" stroke-width="3" points="470.02,-827.9 470.02,-849.19 420.22,-860.54 353.93,-860.54 304.14,-849.19 304.14,-827.9 353.93,-816.54 420.22,-816.54 470.02,-827.9"/>
+<text text-anchor="middle" x="387.08" y="-834.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">onlyNFTOwner</text>
 </g>
 <!-- NFTContract.createNFT -->
 <g id="node39" class="node" pointer-events="visible" data-name="NFTContract.createNFT">
 
-<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1106.74" cy="-867.54" rx="52.15" ry="18"/>
-<text text-anchor="middle" x="1106.74" y="-863.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">createNFT</text>
+<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1106.74" cy="-809.54" rx="52.15" ry="18"/>
+<text text-anchor="middle" x="1106.74" y="-805.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">createNFT</text>
 </g>
 <!-- NFTContract.nfts -->
 <g id="node57" class="node" pointer-events="visible" data-name="NFTContract.nfts">
 
-<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1385.08,-1028.14 1310.44,-1028.14 1310.44,-986.94 1385.08,-986.94 1385.08,-1028.14"/>
-<text text-anchor="middle" x="1347.76" y="-1011.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">nfts</text>
-<text text-anchor="middle" x="1347.76" y="-994.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
+<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1385.08,-974.14 1310.44,-974.14 1310.44,-932.94 1385.08,-932.94 1385.08,-974.14"/>
+<text text-anchor="middle" x="1347.76" y="-957.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">nfts</text>
+<text text-anchor="middle" x="1347.76" y="-940.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
 </g>
 <!-- NFTContract.createNFT&#45;&gt;NFTContract.nfts -->
 <g id="edge14" class="edge" data-name="NFTContract.createNFT-&gt;NFTContract.nfts">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1130.89,-884.87C1148.32,-898.48 1172.27,-918.43 1190.74,-938.54 1205.17,-954.26 1201,-965.68 1218.74,-977.54 1241.61,-992.83 1271.31,-1000.37 1296.35,-1004.07"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1295.59,-1007.5 1305.95,-1005.29 1296.47,-1000.56 1295.59,-1007.5"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1130.26,-826.77C1147.79,-840.76 1172.17,-861.56 1190.74,-882.54 1205.36,-899.07 1200.54,-911.07 1218.74,-923.54 1241.5,-939.15 1271.33,-946.71 1296.46,-950.33"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1295.76,-953.77 1306.11,-951.53 1296.61,-946.83 1295.76,-953.77"/>
 </g>
 <!-- NFTContract.collectionNFTCount -->
 <g id="node58" class="node" pointer-events="visible" data-name="NFTContract.collectionNFTCount">
 
-<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1413.64,-794.14 1281.88,-794.14 1281.88,-752.94 1413.64,-752.94 1413.64,-794.14"/>
-<text text-anchor="middle" x="1347.76" y="-777.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">collectionNFTCount</text>
-<text text-anchor="middle" x="1347.76" y="-760.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
+<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1413.64,-740.14 1281.88,-740.14 1281.88,-698.94 1413.64,-698.94 1413.64,-740.14"/>
+<text text-anchor="middle" x="1347.76" y="-723.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">collectionNFTCount</text>
+<text text-anchor="middle" x="1347.76" y="-706.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
 </g>
 <!-- NFTContract.createNFT&#45;&gt;NFTContract.collectionNFTCount -->
 <g id="edge15" class="edge" data-name="NFTContract.createNFT-&gt;NFTContract.collectionNFTCount">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1132.25,-850.59C1154.06,-836.21 1187.3,-815.98 1218.74,-803.54 1234.3,-797.39 1251.45,-792.3 1268,-788.17"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1268.64,-791.61 1277.56,-785.89 1267.02,-784.8 1268.64,-791.61"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1133.71,-792.93C1155.63,-779.55 1188.22,-761.13 1218.74,-749.54 1234.38,-743.6 1251.57,-738.6 1268.12,-734.49"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1268.76,-737.94 1277.68,-732.22 1267.15,-731.13 1268.76,-737.94"/>
 </g>
 <!-- NFTContract.balances -->
 <g id="node59" class="node" pointer-events="visible" data-name="NFTContract.balances">
 
-<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1385.08,-854.14 1310.44,-854.14 1310.44,-812.94 1385.08,-812.94 1385.08,-854.14"/>
-<text text-anchor="middle" x="1347.76" y="-837.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">balances</text>
-<text text-anchor="middle" x="1347.76" y="-820.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
+<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1385.08,-800.14 1310.44,-800.14 1310.44,-758.94 1385.08,-758.94 1385.08,-800.14"/>
+<text text-anchor="middle" x="1347.76" y="-783.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">balances</text>
+<text text-anchor="middle" x="1347.76" y="-766.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
 </g>
 <!-- NFTContract.createNFT&#45;&gt;NFTContract.balances -->
 <g id="edge16" class="edge" data-name="NFTContract.createNFT-&gt;NFTContract.balances">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1156.69,-860.58C1197.48,-854.78 1255.36,-846.54 1296.51,-840.69"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.84,-844.18 1306.24,-839.3 1295.85,-837.25 1296.84,-844.18"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1157.27,-803.33C1197.98,-798.21 1255.44,-791 1296.38,-785.86"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.57,-789.37 1306.05,-784.65 1295.69,-782.42 1296.57,-789.37"/>
 </g>
 <!-- NFTContract.balanceCollection -->
 <g id="node60" class="node" pointer-events="visible" data-name="NFTContract.balanceCollection">
 
-<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1406.33,-968.14 1289.19,-968.14 1289.19,-926.94 1406.33,-926.94 1406.33,-968.14"/>
-<text text-anchor="middle" x="1347.76" y="-951.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceCollection</text>
-<text text-anchor="middle" x="1347.76" y="-934.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
+<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1406.33,-860.14 1289.19,-860.14 1289.19,-818.94 1406.33,-818.94 1406.33,-860.14"/>
+<text text-anchor="middle" x="1347.76" y="-843.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">balanceCollection</text>
+<text text-anchor="middle" x="1347.76" y="-826.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
 </g>
 <!-- NFTContract.createNFT&#45;&gt;NFTContract.balanceCollection -->
 <g id="edge17" class="edge" data-name="NFTContract.createNFT-&gt;NFTContract.balanceCollection">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1138.2,-883.19C1160.15,-893.98 1190.71,-908.05 1218.74,-917.54 1236.74,-923.64 1256.58,-928.95 1275.16,-933.33"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1274.3,-936.73 1284.82,-935.54 1275.86,-929.9 1274.3,-936.73"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1157.27,-815.76C1191.42,-820.04 1237.35,-825.81 1275.43,-830.59"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1274.66,-834.02 1285.01,-831.79 1275.53,-827.07 1274.66,-834.02"/>
 </g>
 <!-- NFTContract.nextTokenId -->
 <g id="node63" class="node" pointer-events="visible" data-name="NFTContract.nextTokenId">
 
-<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1391.29,-734.14 1304.23,-734.14 1304.23,-692.94 1391.29,-692.94 1391.29,-734.14"/>
-<text text-anchor="middle" x="1347.76" y="-717.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">nextTokenId</text>
-<text text-anchor="middle" x="1347.76" y="-700.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
+<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1391.29,-680.14 1304.23,-680.14 1304.23,-638.94 1391.29,-638.94 1391.29,-680.14"/>
+<text text-anchor="middle" x="1347.76" y="-663.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">nextTokenId</text>
+<text text-anchor="middle" x="1347.76" y="-646.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
 </g>
 <!-- NFTContract.createNFT&#45;&gt;NFTContract.nextTokenId -->
 <g id="edge18" class="edge" data-name="NFTContract.createNFT-&gt;NFTContract.nextTokenId">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1119.16,-848.72C1136.9,-821.16 1173.76,-770.22 1218.74,-743.54 1240.27,-730.77 1266.86,-723.43 1290.21,-719.22"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1290.49,-722.72 1299.81,-717.67 1289.38,-715.81 1290.49,-722.72"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1119.61,-790.89C1137.65,-764.13 1174.59,-715.24 1218.74,-689.54 1240.37,-676.94 1266.97,-669.63 1290.31,-665.39"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1290.59,-668.89 1299.9,-663.83 1289.46,-661.98 1290.59,-668.89"/>
 </g>
 <!-- NFTAccessControl.grantAccess -->
 <g id="node65" class="node" pointer-events="visible" data-name="NFTAccessControl.grantAccess">
@@ -593,38 +593,38 @@
 <!-- NFTContract.createNFT&#45;&gt;NFTAccessControl.grantAccess -->
 <g id="edge62" class="edge" data-name="NFTContract.createNFT-&gt;NFTAccessControl.grantAccess">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1136.78,-883.58C1155.88,-895.87 1179.37,-914.76 1190.74,-938.54 1237.38,-1036.12 1149.4,-1828.53 1218.74,-1911.54 1232.73,-1928.3 1254.26,-1936.28 1275.69,-1939.71"/>
-<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1275.25,-1943.18 1285.59,-1940.9 1276.08,-1936.23 1275.25,-1943.18"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1135.99,-825.67C1155.24,-838.39 1179.25,-858.04 1190.74,-882.54 1215.01,-934.32 1182.11,-1867.62 1218.74,-1911.54 1232.72,-1928.31 1254.24,-1936.29 1275.68,-1939.72"/>
+<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1275.23,-1943.19 1285.58,-1940.92 1276.07,-1936.24 1275.23,-1943.19"/>
 </g>
 <!-- NFTContract.burnNFT -->
 <g id="node40" class="node" pointer-events="visible" data-name="NFTContract.burnNFT">
 
-<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1106.74" cy="-965.54" rx="46.96" ry="18"/>
-<text text-anchor="middle" x="1106.74" y="-961.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">burnNFT</text>
+<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1106.74" cy="-909.54" rx="46.96" ry="18"/>
+<text text-anchor="middle" x="1106.74" y="-905.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">burnNFT</text>
 </g>
 <!-- NFTContract.burnNFT&#45;&gt;NFTContract.nfts -->
 <g id="edge19" class="edge" data-name="NFTContract.burnNFT-&gt;NFTContract.nfts">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1151.31,-973.2C1192.18,-980.38 1253.31,-991.12 1296.29,-998.67"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1295.57,-1002.1 1306.02,-1000.38 1296.78,-995.21 1295.57,-1002.1"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1150.75,-917.46C1191.68,-924.99 1253.25,-936.33 1296.44,-944.28"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1295.76,-947.71 1306.23,-946.08 1297.03,-940.83 1295.76,-947.71"/>
 </g>
 <!-- NFTContract.burnNFT&#45;&gt;NFTContract.collectionNFTCount -->
 <g id="edge20" class="edge" data-name="NFTContract.burnNFT-&gt;NFTContract.collectionNFTCount">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1133.28,-949.5C1151.71,-936.71 1175.86,-917.21 1190.74,-894.54 1213.95,-859.16 1187.81,-832.42 1218.74,-803.54 1232.29,-790.88 1250.14,-783.24 1268.19,-778.7"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1268.66,-782.18 1277.7,-776.66 1267.19,-775.33 1268.66,-782.18"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1132.8,-893.12C1151.22,-879.86 1175.58,-859.65 1190.74,-836.54 1213.01,-802.57 1188.87,-777.07 1218.74,-749.54 1232.24,-737.09 1249.9,-729.5 1267.77,-724.95"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1268.46,-728.39 1277.49,-722.85 1266.97,-721.54 1268.46,-728.39"/>
 </g>
 <!-- NFTContract.burnNFT&#45;&gt;NFTContract.balances -->
 <g id="edge21" class="edge" data-name="NFTContract.burnNFT-&gt;NFTContract.balances">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1129.21,-948.46C1146.36,-934.51 1170.76,-913.98 1190.74,-894.54 1204.04,-881.59 1202.75,-872.98 1218.74,-863.54 1242.15,-849.72 1271.49,-842.27 1296.17,-838.25"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.57,-841.73 1305.97,-836.83 1295.57,-834.8 1296.57,-841.73"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1128.1,-892.1C1145.04,-877.46 1169.71,-855.91 1190.74,-836.54 1203.45,-824.83 1203.55,-817.81 1218.74,-809.54 1242.53,-796.58 1271.77,-789.19 1296.3,-784.99"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.67,-788.48 1306.02,-783.49 1295.6,-781.56 1296.67,-788.48"/>
 </g>
 <!-- NFTContract.burnNFT&#45;&gt;NFTContract.balanceCollection -->
 <g id="edge22" class="edge" data-name="NFTContract.burnNFT-&gt;NFTContract.balanceCollection">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1154.4,-962.03C1188.69,-959.45 1235.94,-955.89 1275.02,-952.94"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1275.21,-956.44 1284.92,-952.2 1274.68,-949.46 1275.21,-956.44"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1141.41,-896.26C1163.24,-887.93 1192.42,-877.34 1218.74,-869.54 1236.88,-864.17 1256.69,-859.13 1275.19,-854.77"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1275.85,-858.21 1284.8,-852.55 1274.27,-851.39 1275.85,-858.21"/>
 </g>
 <!-- NFTAccessControl.revokeAccess -->
 <g id="node66" class="node" pointer-events="visible" data-name="NFTAccessControl.revokeAccess">
@@ -635,8 +635,8 @@
 <!-- NFTContract.burnNFT&#45;&gt;NFTAccessControl.revokeAccess -->
 <g id="edge65" class="edge" data-name="NFTContract.burnNFT-&gt;NFTAccessControl.revokeAccess">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1153.39,-970.12C1167.59,-973.91 1181.84,-980.65 1190.74,-992.54 1255.54,-1079.13 1149.4,-1882.53 1218.74,-1965.54 1231.34,-1980.63 1250.05,-1988.6 1269.3,-1992.55"/>
-<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1268.55,-1995.97 1278.98,-1994.11 1269.67,-1989.06 1268.55,-1995.97"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1153.4,-914.11C1167.6,-917.9 1181.85,-924.65 1190.74,-936.54 1259.2,-1028.16 1145.49,-1877.7 1218.74,-1965.54 1231.33,-1980.64 1250.03,-1988.61 1269.29,-1992.56"/>
+<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1268.54,-1995.98 1278.97,-1994.12 1269.65,-1989.07 1268.54,-1995.98"/>
 </g>
 <!-- NFTMetadata.metadataExists -->
 <g id="node89" class="node" pointer-events="visible" data-name="NFTMetadata.metadataExists">
@@ -647,8 +647,8 @@
 <!-- NFTContract.burnNFT&#45;&gt;NFTMetadata.metadataExists -->
 <g id="edge63" class="edge" data-name="NFTContract.burnNFT-&gt;NFTMetadata.metadataExists">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1150.63,-973.36C1164.45,-977.41 1179.16,-983.48 1190.74,-992.54 1209.28,-1007.06 1198.75,-1025.08 1218.74,-1037.54 1254.22,-1059.67 1841.54,-1107.39 2058.87,-1124.38"/>
-<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="2058.46,-1127.86 2068.7,-1125.15 2059,-1120.88 2058.46,-1127.86"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1152.53,-915.31C1166.49,-919.21 1180.81,-925.71 1190.74,-936.54 1228.03,-977.24 1176.92,-1021.51 1218.74,-1057.54 1219.73,-1058.4 1835.06,-1106.72 2058.79,-1124.26"/>
+<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="2058.43,-1127.75 2068.67,-1125.04 2058.97,-1120.77 2058.43,-1127.75"/>
 </g>
 <!-- NFTMetadata.deleteMetadata -->
 <g id="node90" class="node" pointer-events="visible" data-name="NFTMetadata.deleteMetadata">
@@ -659,105 +659,105 @@
 <!-- NFTContract.burnNFT&#45;&gt;NFTMetadata.deleteMetadata -->
 <g id="edge64" class="edge" data-name="NFTContract.burnNFT-&gt;NFTMetadata.deleteMetadata">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1152.64,-971.73C1166.44,-975.66 1180.64,-982.07 1190.74,-992.54 1222.18,-1025.15 1185.02,-1060.29 1218.74,-1090.54 1302.66,-1165.86 1364.03,-1091.8 1468.78,-1133.54 1486.65,-1140.66 1486.98,-1150.27 1504.78,-1157.54 1524.86,-1165.74 1547.56,-1171.48 1568.84,-1175.48"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1152.83,-915.04C1166.81,-918.92 1181.07,-925.47 1190.74,-936.54 1236.51,-988.93 1169.31,-1041.59 1218.74,-1090.54 1298.85,-1169.9 1364.03,-1091.8 1468.78,-1133.54 1486.65,-1140.66 1486.98,-1150.27 1504.78,-1157.54 1524.86,-1165.74 1547.56,-1171.48 1568.84,-1175.48"/>
 <polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1568.09,-1178.9 1578.54,-1177.18 1569.29,-1172.01 1568.09,-1178.9"/>
 </g>
 <!-- NFTContract.transferNFT -->
 <g id="node41" class="node" pointer-events="visible" data-name="NFTContract.transferNFT">
 
-<ellipse fill="rgb(255, 191, 120)" stroke="#2e2e38" stroke-width="3" cx="387.08" cy="-652.54" rx="58.54" ry="18"/>
-<text text-anchor="middle" x="387.08" y="-648.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">transferNFT</text>
+<ellipse fill="rgb(255, 191, 120)" stroke="#2e2e38" stroke-width="3" cx="387.08" cy="-743.54" rx="58.54" ry="18"/>
+<text text-anchor="middle" x="387.08" y="-739.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">transferNFT</text>
 </g>
 <!-- NFTContract.transferNFT&#45;&gt;NFTContract.safeTransferFrom -->
 <g id="edge66" class="edge" data-name="NFTContract.transferNFT-&gt;NFTContract.safeTransferFrom">
 
-<path fill="none" stroke="#40e7c8" stroke-width="2" d="M446.91,-652.54C468.77,-652.54 494.15,-652.54 518.35,-652.54"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="518.23,-656.04 528.23,-652.54 518.23,-649.04 518.23,-656.04"/>
+<path fill="none" stroke="#40e7c8" stroke-width="2" d="M446.91,-743.54C468.77,-743.54 494.15,-743.54 518.35,-743.54"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="518.23,-747.04 528.23,-743.54 518.23,-740.04 518.23,-747.04"/>
 </g>
 <!-- NFTContract.getNFTInfo -->
 <g id="node42" class="node" pointer-events="visible" data-name="NFTContract.getNFTInfo">
 
-<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-1007.54" rx="57.33" ry="18"/>
-<text text-anchor="middle" x="1648.3" y="-1003.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getNFTInfo</text>
+<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1648.3" cy="-993.54" rx="57.33" ry="18"/>
+<text text-anchor="middle" x="1648.3" y="-989.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getNFTInfo</text>
 </g>
 <!-- NFTContract.getCollectionNFTs -->
 <g id="node43" class="node" pointer-events="visible" data-name="NFTContract.getCollectionNFTs">
 
-<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="387.08" cy="-597.54" rx="85.13" ry="18"/>
-<text text-anchor="middle" x="387.08" y="-593.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getCollectionNFTs</text>
+<ellipse fill="rgb(255, 191, 120)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="387.08" cy="-615.54" rx="85.13" ry="18"/>
+<text text-anchor="middle" x="387.08" y="-611.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">getCollectionNFTs</text>
 </g>
 <!-- NFTContract.safeTransferFrom&#45;&gt;NFTContract.safeTransferFrom -->
 <g id="edge69" class="edge" data-name="NFTContract.safeTransferFrom-&gt;NFTContract.safeTransferFrom">
 
-<path fill="none" stroke="#40e7c8" stroke-width="2" d="M573.3,-669.21C564.47,-679.17 577.71,-688.54 613.01,-688.54 631.77,-688.54 644.29,-685.9 650.59,-681.92"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="654.02,-682.63 652.22,-672.19 647.12,-681.47 654.02,-682.63"/>
+<path fill="none" stroke="#40e7c8" stroke-width="2" d="M573.3,-760.21C564.47,-770.17 577.71,-779.54 613.01,-779.54 631.77,-779.54 644.29,-776.9 650.59,-772.92"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="654.02,-773.63 652.22,-763.19 647.12,-772.47 654.02,-773.63"/>
 </g>
 <!-- NFTContract.safeTransferFrom&#45;&gt;NFTContract.transferFrom -->
 <g id="edge67" class="edge" data-name="NFTContract.safeTransferFrom-&gt;NFTContract.transferFrom">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M694.9,-652.54C726.06,-652.54 761.47,-652.54 791.99,-652.54"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="791.71,-656.04 801.71,-652.54 791.71,-649.04 791.71,-656.04"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M694.9,-743.54C726.06,-743.54 761.47,-743.54 791.99,-743.54"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="791.71,-747.04 801.71,-743.54 791.71,-740.04 791.71,-747.04"/>
 </g>
 <!-- NFTContract._checkOnERC721Received -->
 <g id="node56" class="node" pointer-events="visible" data-name="NFTContract._checkOnERC721Received">
 
-<ellipse fill="rgb(255, 128, 128)" stroke="#2e2e38" stroke-width="3" cx="867.38" cy="-706.54" rx="119.25" ry="18"/>
-<text text-anchor="middle" x="867.38" y="-702.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_checkOnERC721Received</text>
+<ellipse fill="rgb(255, 128, 128)" stroke="#2e2e38" stroke-width="3" cx="867.38" cy="-797.54" rx="119.25" ry="18"/>
+<text text-anchor="middle" x="867.38" y="-793.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_checkOnERC721Received</text>
 </g>
 <!-- NFTContract.safeTransferFrom&#45;&gt;NFTContract._checkOnERC721Received -->
 <g id="edge68" class="edge" data-name="NFTContract.safeTransferFrom-&gt;NFTContract._checkOnERC721Received">
 
-<path fill="none" stroke="#40e7c8" stroke-width="2" d="M674.14,-665.41C706.21,-672.27 746.21,-680.83 781.41,-688.36"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="780.66,-691.78 791.17,-690.45 782.12,-684.93 780.66,-691.78"/>
+<path fill="none" stroke="#40e7c8" stroke-width="2" d="M674.14,-756.41C706.21,-763.27 746.21,-771.83 781.41,-779.36"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="780.66,-782.78 791.17,-781.45 782.12,-775.93 780.66,-782.78"/>
 </g>
 <!-- NFTContract._isApprovedOrOwner -->
 <g id="node54" class="node" pointer-events="visible" data-name="NFTContract._isApprovedOrOwner">
 
-<ellipse fill="rgb(255, 128, 128)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1347.76" cy="-656.54" rx="97.29" ry="18"/>
-<text text-anchor="middle" x="1347.76" y="-652.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_isApprovedOrOwner</text>
+<ellipse fill="rgb(255, 128, 128)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1347.76" cy="-1030.54" rx="97.29" ry="18"/>
+<text text-anchor="middle" x="1347.76" y="-1026.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_isApprovedOrOwner</text>
 </g>
 <!-- NFTContract.transferFrom&#45;&gt;NFTContract._isApprovedOrOwner -->
 <g id="edge70" class="edge" data-name="NFTContract.transferFrom-&gt;NFTContract._isApprovedOrOwner">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M929.94,-653.06C1007.26,-653.7 1141.32,-654.82 1236.52,-655.62"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1236.33,-659.12 1246.36,-655.7 1236.39,-652.12 1236.33,-659.12"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M929.98,-744.19C950.67,-747.55 972.17,-755.03 986.75,-770.54 1054.6,-842.74 951.33,-921.87 1022.75,-990.54 1085.58,-1050.94 1189.83,-1053.21 1263.07,-1045.4"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1263.38,-1048.88 1272.91,-1044.24 1262.57,-1041.93 1263.38,-1048.88"/>
 </g>
 <!-- NFTContract._transfer -->
 <g id="node55" class="node" pointer-events="visible" data-name="NFTContract._transfer">
 
-<ellipse fill="rgb(255, 128, 128)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1106.74" cy="-1019.54" rx="45.21" ry="18"/>
-<text text-anchor="middle" x="1106.74" y="-1015.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_transfer</text>
+<ellipse fill="rgb(255, 128, 128)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="1106.74" cy="-963.54" rx="45.21" ry="18"/>
+<text text-anchor="middle" x="1106.74" y="-959.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_transfer</text>
 </g>
 <!-- NFTContract.transferFrom&#45;&gt;NFTContract._transfer -->
 <g id="edge71" class="edge" data-name="NFTContract.transferFrom-&gt;NFTContract._transfer">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M930.08,-652.76C950.91,-656.06 972.48,-663.61 986.75,-679.54 1080.19,-783.84 934.12,-884.14 1022.75,-992.54 1029.65,-1000.97 1039.21,-1006.8 1049.4,-1010.82"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1048.06,-1014.06 1058.65,-1013.82 1050.22,-1007.4 1048.06,-1014.06"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M930.16,-744.71C950.62,-748.16 971.93,-755.56 986.75,-770.54 1039.85,-824.21 972.13,-880.53 1022.75,-936.54 1030.05,-944.62 1039.8,-950.29 1050.04,-954.27"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1048.7,-957.51 1059.29,-957.27 1050.86,-950.86 1048.7,-957.51"/>
 </g>
 <!-- NFTContract.approve&#45;&gt;NFTContract.ownerOf -->
 <g id="edge72" class="edge" data-name="NFTContract.approve-&gt;NFTContract.ownerOf">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1387.87,-882.99C1419.42,-876.91 1464.95,-868.14 1504.78,-860.54 1534.01,-854.96 1566.62,-848.78 1593.27,-843.74"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1593.68,-847.23 1602.85,-841.93 1592.38,-840.35 1593.68,-847.23"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1389.33,-902.39C1441.65,-909.92 1532.89,-923.06 1591.66,-931.53"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1591.01,-934.97 1601.41,-932.93 1592.01,-928.04 1591.01,-934.97"/>
 </g>
 <!-- NFTContract.approve&#45;&gt;NFTContract.isApprovedForAll -->
 <g id="edge73" class="edge" data-name="NFTContract.approve-&gt;NFTContract.isApprovedForAll">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1391.29,-891.04C1416.69,-889.12 1447.95,-882.54 1468.78,-863.54 1507.11,-828.6 1468.32,-789.42 1504.78,-752.54 1520.97,-736.17 1542.92,-725.38 1564.74,-718.27"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1565.66,-721.65 1574.26,-715.45 1563.68,-714.94 1565.66,-721.65"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1388.83,-889.81C1412.45,-885.29 1442.73,-878.5 1468.78,-869.54 1485.51,-863.79 1488.03,-858.24 1504.78,-852.54 1524.83,-845.72 1547,-840.05 1567.75,-835.51"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1568.44,-838.94 1577.5,-833.45 1566.99,-832.09 1568.44,-838.94"/>
 </g>
 <!-- NFTContract.tokenApprovals -->
 <g id="node61" class="node" pointer-events="visible" data-name="NFTContract.tokenApprovals">
 
-<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1701.23,-911.14 1595.38,-911.14 1595.38,-869.94 1701.23,-869.94 1701.23,-911.14"/>
-<text text-anchor="middle" x="1648.3" y="-894.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">tokenApprovals</text>
-<text text-anchor="middle" x="1648.3" y="-877.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
+<polygon fill="#76b7b2" stroke="#2e2e38" stroke-width="3" points="1701.23,-903.14 1595.38,-903.14 1595.38,-861.94 1701.23,-861.94 1701.23,-903.14"/>
+<text text-anchor="middle" x="1648.3" y="-886.74" font-family="Times,serif" font-size="14.00" fill="#0b192c">tokenApprovals</text>
+<text text-anchor="middle" x="1648.3" y="-869.94" font-family="Times,serif" font-size="14.00" fill="#0b192c">(mapping)</text>
 </g>
 <!-- NFTContract.approve&#45;&gt;NFTContract.tokenApprovals -->
 <g id="edge31" class="edge" data-name="NFTContract.approve-&gt;NFTContract.tokenApprovals">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1391.53,-890.54C1441.15,-890.54 1523.52,-890.54 1581.34,-890.54"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1580.99,-894.04 1590.99,-890.54 1580.99,-887.04 1580.99,-894.04"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1391.22,-894.55C1440.75,-892.23 1523.25,-888.36 1581.2,-885.64"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1581.05,-889.15 1590.87,-885.19 1580.72,-882.16 1581.05,-889.15"/>
 </g>
 <!-- NFTContract.operatorApprovals -->
 <g id="node62" class="node" pointer-events="visible" data-name="NFTContract.operatorApprovals">
@@ -775,74 +775,74 @@
 <!-- NFTContract._exists -->
 <g id="node53" class="node" pointer-events="visible" data-name="NFTContract._exists">
 
-<ellipse fill="rgb(255, 128, 128)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="2139.89" cy="-741.54" rx="37.72" ry="18"/>
-<text text-anchor="middle" x="2139.89" y="-737.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_exists</text>
+<ellipse fill="rgb(255, 128, 128)" stroke="rgb(46, 46, 56)" stroke-width="3" cx="2139.89" cy="-882.54" rx="37.72" ry="18"/>
+<text text-anchor="middle" x="2139.89" y="-878.34" font-family="Times,serif" font-size="14.00" fill="#0b192c">_exists</text>
 </g>
 <!-- NFTContract.getApproved&#45;&gt;NFTContract._exists -->
 <g id="edge74" class="edge" data-name="NFTContract.getApproved-&gt;NFTContract._exists">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1990.1,-741.54C2021.25,-741.54 2058.56,-741.54 2088.03,-741.54"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="2087.94,-745.04 2097.94,-741.54 2087.94,-738.04 2087.94,-745.04"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1990.1,-882.54C2021.25,-882.54 2058.56,-882.54 2088.03,-882.54"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="2087.94,-886.04 2097.94,-882.54 2087.94,-879.04 2087.94,-886.04"/>
 </g>
 <!-- NFTContract._isApprovedOrOwner&#45;&gt;NFTContract.ownerOf -->
 <g id="edge75" class="edge" data-name="NFTContract._isApprovedOrOwner-&gt;NFTContract.ownerOf">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1436.88,-664.8C1448.65,-669.04 1459.75,-675.06 1468.78,-683.54 1510.32,-722.52 1462.59,-768.28 1504.78,-806.54 1527.51,-827.15 1560.89,-834.26 1589.63,-836.05"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1589.31,-839.54 1599.43,-836.42 1589.57,-832.55 1589.31,-839.54"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1420.03,-1017.38C1436.61,-1012.75 1453.78,-1006.61 1468.78,-998.54 1487.63,-988.4 1485.57,-975.99 1504.78,-966.54 1530.9,-953.7 1562.49,-946.95 1589.29,-943.41"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1589.48,-946.91 1599,-942.27 1588.66,-939.96 1589.48,-946.91"/>
 </g>
 <!-- NFTContract._isApprovedOrOwner&#45;&gt;NFTContract.getApproved -->
 <g id="edge76" class="edge" data-name="NFTContract._isApprovedOrOwner-&gt;NFTContract.getApproved">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1430.98,-666.88C1444.27,-670.8 1457.4,-676.17 1468.78,-683.54 1491.17,-698.03 1481.07,-719.33 1504.78,-731.54 1534.72,-746.96 1739.34,-745.38 1852.12,-743.27"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1852.11,-746.77 1862.04,-743.08 1851.97,-739.78 1852.11,-746.77"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1417.06,-1044.37C1507.11,-1059.25 1668.53,-1074.18 1791.83,-1020.54 1843.51,-998.06 1885.43,-945.41 1908.06,-912.03"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1910.73,-914.32 1913.31,-904.05 1904.89,-910.48 1910.73,-914.32"/>
 </g>
 <!-- NFTContract._isApprovedOrOwner&#45;&gt;NFTContract.isApprovedForAll -->
 <g id="edge77" class="edge" data-name="NFTContract._isApprovedOrOwner-&gt;NFTContract.isApprovedForAll">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1424.48,-668.72C1468.03,-675.72 1522.72,-684.51 1567.02,-691.63"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1566.4,-695.08 1576.82,-693.21 1567.51,-688.17 1566.4,-695.08"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1415.84,-1016.46C1435.21,-1009.44 1454.86,-999.01 1468.78,-983.54 1509.18,-938.66 1460.95,-894.07 1504.78,-852.54 1518.22,-839.81 1535.62,-831.82 1553.6,-826.9"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1554.23,-830.35 1563.16,-824.66 1552.63,-823.54 1554.23,-830.35"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTContract.ownerOf -->
 <g id="edge78" class="edge" data-name="NFTContract._transfer-&gt;NFTContract.ownerOf">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1139.09,-1033.57C1207.55,-1061.85 1372.07,-1116.56 1468.78,-1037.54 1530.95,-986.75 1447.64,-916.92 1504.78,-860.54 1526.78,-838.84 1560.43,-831.74 1589.52,-830.23"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1589.57,-833.73 1599.47,-829.97 1589.39,-826.73 1589.57,-833.73"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1148.1,-972.6C1169.05,-976.85 1195.14,-981.43 1218.74,-983.54 1329.43,-993.43 1360.34,-1007.86 1468.78,-983.54 1486.05,-979.67 1487.95,-972.01 1504.78,-966.54 1532.57,-957.51 1564.44,-951.12 1590.99,-946.83"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1591.21,-950.34 1600.56,-945.35 1590.14,-943.42 1591.21,-950.34"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTContract.approve -->
 <g id="edge79" class="edge" data-name="NFTContract._transfer-&gt;NFTContract.approve">
 
-<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1150.88,-1013.24C1165.04,-1009.31 1179.9,-1002.92 1190.74,-992.54 1216.43,-967.93 1191.77,-940.75 1218.74,-917.54 1238.58,-900.46 1266.52,-893.29 1291.23,-890.56"/>
-<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1291.48,-894.05 1301.16,-889.74 1290.9,-887.08 1291.48,-894.05"/>
+<path fill="none" stroke="rgb(64, 231, 200)" stroke-width="2" d="M1144.85,-952.52C1159.31,-947.95 1175.93,-942.36 1190.74,-936.54 1203.5,-931.52 1205.72,-927.87 1218.74,-923.54 1242.81,-915.53 1270.25,-909.37 1293.53,-904.97"/>
+<polygon fill="#40e7c8" stroke="#40e7c8" stroke-width="2" points="1294.16,-908.41 1303.37,-903.18 1292.91,-901.53 1294.16,-908.41"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTContract.nfts -->
 <g id="edge28" class="edge" data-name="NFTContract._transfer-&gt;NFTContract.nfts">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1152.98,-1017.27C1193.86,-1015.22 1253.94,-1012.2 1296.35,-1010.07"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.34,-1013.58 1306.15,-1009.58 1295.99,-1006.59 1296.34,-1013.58"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1152.98,-961.65C1193.86,-959.94 1253.94,-957.42 1296.35,-955.65"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.3,-959.16 1306.15,-955.24 1296.01,-952.16 1296.3,-959.16"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTContract.balances -->
 <g id="edge29" class="edge" data-name="NFTContract._transfer-&gt;NFTContract.balances">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1151.32,-1014.2C1165.69,-1010.36 1180.58,-1003.78 1190.74,-992.54 1230.08,-949.02 1177.59,-905.37 1218.74,-863.54 1238.73,-843.22 1269.69,-835.58 1296.15,-833.09"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.34,-836.59 1306.09,-832.44 1295.88,-829.6 1296.34,-836.59"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1151.3,-958.19C1165.67,-954.34 1180.56,-947.76 1190.74,-936.54 1229.57,-893.73 1178.14,-850.68 1218.74,-809.54 1238.76,-789.25 1269.72,-781.62 1296.18,-779.12"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1296.36,-782.62 1306.11,-778.46 1295.9,-775.63 1296.36,-782.62"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTContract.balanceCollection -->
 <g id="edge30" class="edge" data-name="NFTContract._transfer-&gt;NFTContract.balanceCollection">
 
-<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1145.44,-1008.83C1159.83,-1004.34 1176.24,-998.72 1190.74,-992.54 1203.72,-987 1205.53,-982.53 1218.74,-977.54 1236.61,-970.79 1256.48,-965.25 1275.13,-960.85"/>
-<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1275.87,-964.27 1284.85,-958.65 1274.33,-957.44 1275.87,-964.27"/>
+<path fill="none" stroke="rgb(115, 236, 139)" stroke-width="2" d="M1150.66,-957C1164.8,-953.05 1179.71,-946.71 1190.74,-936.54 1214.47,-914.67 1194.11,-890.4 1218.74,-869.54 1234.46,-856.23 1255.01,-848.57 1275.03,-844.24"/>
+<polygon fill="#73ec8b" stroke="#73ec8b" stroke-width="2" points="1275.53,-847.71 1284.73,-842.45 1274.26,-840.82 1275.53,-847.71"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTAccessControl.grantAccess -->
 <g id="edge82" class="edge" data-name="NFTContract._transfer-&gt;NFTAccessControl.grantAccess">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1108.8,-1038.62C1115.83,-1162.06 1157.28,-1844.69 1218.74,-1911.54 1233.25,-1927.33 1254.48,-1935.15 1275.49,-1938.72"/>
-<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1274.76,-1942.16 1285.14,-1940 1275.68,-1935.22 1274.76,-1942.16"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1108.67,-982.98C1115.02,-1111.86 1153.6,-1840.17 1218.74,-1911.54 1233.26,-1927.46 1254.6,-1935.28 1275.7,-1938.83"/>
+<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1275.03,-1942.27 1285.4,-1940.1 1275.94,-1935.33 1275.03,-1942.27"/>
 </g>
 <!-- NFTContract._transfer&#45;&gt;NFTAccessControl.revokeAccess -->
 <g id="edge81" class="edge" data-name="NFTContract._transfer-&gt;NFTAccessControl.revokeAccess">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1108.68,-1038.94C1115.04,-1167.55 1153.73,-1894.32 1218.74,-1965.54 1231.74,-1979.79 1250.2,-1987.55 1269.07,-1991.57"/>
-<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1268.37,-1995 1278.82,-1993.23 1269.55,-1988.1 1268.37,-1995"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1108.54,-982.79C1114.18,-1115.32 1149.95,-1889.7 1218.74,-1965.54 1231.69,-1979.83 1250.14,-1987.61 1269,-1991.63"/>
+<polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1268.31,-1995.06 1278.76,-1993.29 1269.49,-1988.16 1268.31,-1995.06"/>
 </g>
 <!-- NFTAccessControl.getAccessLevel -->
 <g id="node67" class="node" pointer-events="visible" data-name="NFTAccessControl.getAccessLevel">
@@ -853,50 +853,50 @@
 <!-- NFTContract._transfer&#45;&gt;NFTAccessControl.getAccessLevel -->
 <g id="edge80" class="edge" data-name="NFTContract._transfer-&gt;NFTAccessControl.getAccessLevel">
 
-<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1108.14,-1038.83C1111.25,-1180.66 1133.85,-2058.68 1218.74,-2135.54 1275.58,-2187.01 1785.11,-2100.85 1791.83,-2097.54 1841.77,-2072.95 1883.62,-2022.03 1906.8,-1989.39"/>
+<path fill="none" stroke="rgb(11, 25, 44)" stroke-width="2" d="M1108.05,-982.86C1110.51,-1128.8 1129.63,-2054.48 1218.74,-2135.54 1275.41,-2187.1 1784.89,-2100.96 1791.83,-2097.54 1841.77,-2072.95 1883.62,-2022.03 1906.8,-1989.39"/>
 <polygon fill="#0b192c" stroke="#0b192c" stroke-width="2" points="1909.68,-1991.39 1912.49,-1981.18 1903.92,-1987.41 1909.68,-1991.39"/>
 </g>
 <!-- NFTContract.nfts&#45;&gt;NFTContract.getNFTInfo -->
 <g id="edge23" class="edge" data-name="NFTContract.nfts-&gt;NFTContract.getNFTInfo">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1386.57,-1007.54C1434.3,-1007.54 1517.34,-1007.54 1576.9,-1007.54"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1576.58,-1011.04 1586.58,-1007.54 1576.58,-1004.04 1576.58,-1011.04"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1386.57,-958.61C1435.39,-965.15 1521.18,-976.64 1580.96,-984.65"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1580.3,-988.1 1590.68,-985.95 1581.23,-981.16 1580.3,-988.1"/>
 </g>
 <!-- NFTContract.nfts&#45;&gt;NFTContract.ownerOf -->
 <g id="edge27" class="edge" data-name="NFTContract.nfts-&gt;NFTContract.ownerOf">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1386.35,-1007.43C1412.62,-1005.36 1446.8,-998.37 1468.78,-977.54 1508.27,-940.11 1464.23,-896.81 1504.78,-860.54 1527.57,-840.16 1560.8,-833.04 1589.44,-831.18"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1589.34,-834.69 1599.2,-830.79 1589.07,-827.69 1589.34,-834.69"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1386.57,-951.77C1437.73,-949.37 1529.48,-945.07 1589.37,-942.26"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1589.16,-945.77 1598.98,-941.81 1588.83,-938.78 1589.16,-945.77"/>
 </g>
 <!-- NFTContract.collectionNFTCount&#45;&gt;NFTContract.getCollectionNFTCount -->
 <g id="edge24" class="edge" data-name="NFTContract.collectionNFTCount-&gt;NFTContract.getCollectionNFTCount">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1414.89,-769.39C1434.33,-765.15 1454.26,-757.41 1468.78,-743.54 1509.06,-705.09 1463.41,-660.81 1504.78,-623.54 1513.21,-615.95 1523.09,-610.19 1533.64,-605.86"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1534.69,-609.2 1542.94,-602.56 1532.35,-602.6 1534.69,-609.2"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1415.08,-705.14C1432.71,-700.73 1451.62,-695.45 1468.78,-689.54 1485.34,-683.84 1488.39,-679.69 1504.78,-673.54 1528.11,-664.79 1554.03,-656.4 1577.31,-649.34"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1578.09,-652.76 1586.67,-646.54 1576.08,-646.06 1578.09,-652.76"/>
 </g>
 <!-- NFTContract.balances&#45;&gt;NFTContract.balanceOf -->
 <g id="edge25" class="edge" data-name="NFTContract.balances-&gt;NFTContract.balanceOf">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1386.48,-833.56C1412.81,-831.56 1447.01,-824.6 1468.78,-803.54 1510.65,-763.05 1461.77,-716.81 1504.78,-677.54 1525.98,-658.19 1556.54,-650.72 1583.94,-648.38"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1583.86,-651.9 1593.64,-647.81 1583.45,-644.91 1583.86,-651.9"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1386.36,-772.13C1410.3,-766.93 1441.78,-759.19 1468.78,-749.54 1485.45,-743.59 1488.05,-738.29 1504.78,-732.54 1531.45,-723.38 1561.85,-716.13 1587.7,-710.88"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1588.27,-714.33 1597.4,-708.96 1586.91,-707.46 1588.27,-714.33"/>
 </g>
 <!-- NFTContract.balanceCollection&#45;&gt;NFTContract.balanceOfCollection -->
 <g id="edge26" class="edge" data-name="NFTContract.balanceCollection-&gt;NFTContract.balanceOfCollection">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1407.57,-944.61C1429.14,-940.74 1452.3,-932.93 1468.78,-917.54 1506.69,-882.15 1465.87,-840.82 1504.78,-806.54 1516.08,-796.59 1529.86,-789.82 1544.37,-785.28"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1545.01,-788.73 1553.75,-782.75 1543.19,-781.97 1545.01,-788.73"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1407.56,-826.71C1427.21,-821.93 1449.11,-816.06 1468.78,-809.54 1485.24,-804.09 1488.32,-799.96 1504.78,-794.54 1525.82,-787.62 1549.01,-781.36 1570.46,-776.12"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1571,-779.59 1579.91,-773.85 1569.37,-772.78 1571,-779.59"/>
 </g>
 <!-- NFTContract.tokenApprovals&#45;&gt;NFTContract.getApproved -->
 <g id="edge33" class="edge" data-name="NFTContract.tokenApprovals-&gt;NFTContract.getApproved">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1702.58,-885.93C1730.33,-881.92 1764.15,-874.45 1791.83,-860.54 1836.49,-838.09 1877.97,-797.09 1902.74,-769.58"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1905.1,-772.2 1909.09,-762.38 1899.85,-767.57 1905.1,-772.2"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1702.72,-882.54C1745.12,-882.54 1804.89,-882.54 1851.98,-882.54"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1851.87,-886.04 1861.87,-882.54 1851.87,-879.04 1851.87,-886.04"/>
 </g>
 <!-- NFTContract.operatorApprovals&#45;&gt;NFTContract.isApprovedForAll -->
 <g id="edge34" class="edge" data-name="NFTContract.operatorApprovals-&gt;NFTContract.isApprovedForAll">
 
-<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1409.44,-606.41C1429.55,-610.77 1451.25,-617.9 1468.78,-629.54 1491,-644.29 1482.15,-663.44 1504.78,-677.54 1519.83,-686.92 1537.38,-693.18 1554.92,-697.33"/>
-<polygon fill="blue" stroke="blue" stroke-width="2" points="1554.19,-700.75 1564.69,-699.37 1555.62,-693.9 1554.19,-700.75"/>
+<path fill="none" stroke="rgb(0, 0, 255)" stroke-width="2" d="M1409.53,-601.95C1430.84,-605.8 1453.29,-613.75 1468.78,-629.54 1518.91,-680.65 1454.55,-735.53 1504.78,-786.54 1518.21,-800.18 1536.03,-808.82 1554.5,-814.24"/>
+<polygon fill="blue" stroke="blue" stroke-width="2" points="1553.53,-817.6 1564.09,-816.67 1555.26,-810.82 1553.53,-817.6"/>
 </g>
 <!-- IERC721Receiver.onERC721Received -->
 <g id="node64" class="node" pointer-events="visible" data-name="IERC721Receiver.onERC721Received">
