@@ -19,6 +19,11 @@ subgraph "clusterCollectionContract" {
   "CollectionContract.getAllCollections" [ label = "getAllCollections", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "CollectionContract.getCollectionNFTCount" [ label = "getCollectionNFTCount", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "CollectionContract.getCollectionUniqueHolders" [ label = "getCollectionUniqueHolders", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+
+"CollectionContract.collections" [ label = "collections\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"CollectionContract.collectionOwners" [ label = "collectionOwners\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"CollectionContract.totalCollections" [ label = "totalCollections\n(uint256)", shape = "rectangle", color = "#FFA500" ];
+
 }
 
 subgraph "clusterMasterAccessControl" {
@@ -31,6 +36,8 @@ subgraph "clusterMasterAccessControl" {
   "MasterAccessControl.revokeAccess" [ label = "revokeAccess", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "MasterAccessControl.revokeSelfAccess" [ label = "revokeSelfAccess", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "MasterAccessControl.hasAccess" [ label = "hasAccess", color = "#FF9797", fillcolor = "#FF9797" ];
+
+  "MasterAccessControl.accessRights" [ label = "accessRights\n(mapping)", shape = "rectangle", color = "#FFA500" ];
 }
 
 subgraph "clusterERC721Collection" {
@@ -44,6 +51,9 @@ subgraph "clusterERC721Collection" {
   "ERC721Collection.setApprovalForAll" [ label = "setApprovalForAll", color = "#FF9797", fillcolor = "#FF9797" ];
   "ERC721Collection.getApproved" [ label = "getApproved", color = "#FF9797", fillcolor = "#FF9797" ];
   "ERC721Collection.isApprovedForAll" [ label = "isApprovedForAll", color = "#FF9797", fillcolor = "#FF9797" ];
+
+
+
 }
 
 subgraph "clusterNFTContract" {
@@ -71,6 +81,15 @@ subgraph "clusterNFTContract" {
   "NFTContract._isApprovedOrOwner" [ label = "_isApprovedOrOwner", color = "#f2c383", fillcolor = "#f2c383" ];
   "NFTContract._transfer" [ label = "_transfer", color = "#f2c383", fillcolor = "#f2c383" ];
   "NFTContract._checkOnERC721Received" [ label = "_checkOnERC721Received", color = "#edad56", fillcolor = "#edad56" ];
+
+
+    "NFTContract.nfts" [ label = "nfts\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTContract.collectionNFTCount" [ label = "collectionNFTCount\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTContract.balances" [ label = "balances\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTContract.balanceCollection" [ label = "balanceCollection\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTContract.tokenApprovals" [ label = "tokenApprovals\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTContract.operatorApprovals" [ label = "operatorApprovals\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTContract.nextTokenId" [ label = "nextTokenId\n(mapping)", shape = "rectangle", color = "#FFA500" ];
 }
 
 subgraph "clusterIERC721Receiver" {
@@ -96,6 +115,17 @@ subgraph "clusterNFTAccessControl" {
   "NFTAccessControl.getAllAccessForUser" [ label = "getAllAccessForUser", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "NFTAccessControl.checkMinimumAccess" [ label = "checkMinimumAccess", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "NFTAccessControl.getAllUsersAccessForNFT" [ label = "getAllUsersAccessForNFT", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
+
+
+
+  "NFTAccessControl.nftAccess" [ label = "nftAccess\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.defaultAccessLevel" [ label = "defaultAccessLevel\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.maxAccessLevel" [ label = "maxAccessLevel\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.userAccess" [ label = "userAccess\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.userAccessList" [ label = "userAccessList\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.userAccessIndex" [ label = "userAccessIndex\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.nftAccessList" [ label = "nftAccessList\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTAccessControl.nftAccessIndex" [ label = "nftAccessIndex\n(mapping)", shape = "rectangle", color = "#FFA500" ];
 }
 
 subgraph "clusterNFTMetadata" {
@@ -110,6 +140,9 @@ subgraph "clusterNFTMetadata" {
   "NFTMetadata.updateMetadata" [ label = "updateMetadata", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "NFTMetadata.getMetadata" [ label = "getMetadata", color = "#ffbdb9", fillcolor = "#ffbdb9" ];
   "NFTMetadata._metadataExists" [ label = "_metadataExists", color = "#f2c383", fillcolor = "#f2c383" ];
+
+  "NFTMetadata.metadataMap" [ label = "metadataMap\n(mapping)", shape = "rectangle", color = "#FFA500" ];
+"NFTMetadata.replicaMap" [ label = "replicaMap\n(mapping)", shape = "rectangle", color = "#FFA500" ];
 }
 
   "CollectionContract.<Constructor>";
