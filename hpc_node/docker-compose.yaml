@@ -1,0 +1,45 @@
+services:
+  ollama:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    command: ["serve"]
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:11434"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    
+
+  # model_pull:
+  #   image: ollama/ollama:latest
+  #   depends_on:
+  #     ollama:
+  #       condition: service_healthy
+  #   command: ollama pull llama3.1
+  #   volumes:
+  #     - ollama_data:/root/.ollama
+
+  rag_service:
+    build:
+      context: .
+      dockerfile: Dockerfile.rag
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./documents:/app/documents
+    
+
+volumes:
+  ollama_data:

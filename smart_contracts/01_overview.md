@@ -59,6 +59,10 @@ Welcome to the comprehensive guide for developing on the Tron blockchain. This s
 - [Tron Scan](https://tronscan.org/#/)
 
 
+> how to get test token on shasta testnet
+- option 1: faucets `https://shasta.tronex.io/`
+- option 2: telegram bot, command `!shasta TFJGXg1C962aDqSyvdSZXZ9am2ETqwNQka`
+
 ### Tron Versions
 [Tron Box](https://github.com/tronprotocol/tronbox/releases)
 

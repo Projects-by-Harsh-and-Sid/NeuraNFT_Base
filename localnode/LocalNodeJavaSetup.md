@@ -86,10 +86,3 @@ This will open an interactive command-line interface where you can execute comma
 
 By following these steps, you should have a local Tron node running for development purposes. This setup allows you to test smart contracts, develop dApps, and experiment with the Tron blockchain in a controlled environment without interacting with the main network.
 
-Citations:
-[1] https://dev.to/axatbhardwaj/tron-private-network-setup-complete-guide-2022-2pa2
-[2] https://tronprotocol.github.io/documentation-en/developers/deployment/
-[3] https://nownodes.io/blog/how-to-run-a-tron-full-node-easy-way/
-[4] https://tronprotocol.github.io/documentation-en/getting_started/getting_started_with_javatron/
-[5] https://docs.ton.org/participate/run-nodes/nodes-troubleshooting
-[6] https://trondao.org/developers/resources/get-started/
