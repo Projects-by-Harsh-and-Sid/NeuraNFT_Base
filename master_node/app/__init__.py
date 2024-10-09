@@ -34,4 +34,4 @@ app.config["Load_balancer_Endpoints"] = {
 
 
 from app import routes
-
+from app import data_fetch

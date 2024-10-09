@@ -1,16 +1,18 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useCommonLogic } from "./CommonComponet";
 import { fetchData } from "../Utils/datafetch";
-import styles from './styles/allcollection.module.css';
-import classNames from 'classnames'; // Import classnames library
+import styles from "./styles/allcollection.module.css";
+import classNames from "classnames"; // Import classnames library
 
 // Adjust the path as needed
 function AllCollections({ activeTab, setActiveTab }) {
   useEffect(() => {
-    const allCollectionsData = fetchData("allCollections");
-    setCollectionsData(allCollectionsData);
-    const allNFTsData = fetchData("allNFTs");
-    setNftsData(allNFTsData);
+    (async () => {
+      const allCollectionsData = await fetchData("allCollections");
+      setCollectionsData(allCollectionsData);
+      const allNFTsData = await fetchData("allNFTs");
+      setNftsData(allNFTsData);
+    })();
   }, []);
 
   const {
@@ -19,7 +21,6 @@ function AllCollections({ activeTab, setActiveTab }) {
     scrollToSection,
     handleCreateCollection,
   } = useCommonLogic();
-
 
   const handlePageChange = (pageNumber) => {
     setCurrentPage(pageNumber);
@@ -51,17 +52,15 @@ function AllCollections({ activeTab, setActiveTab }) {
     }
   };
 
-  const handleNFTClick = (collectionid,nftid) => {
-
+  const handleNFTClick = (collectionid, nftid) => {
     navigate(`/collection/${collectionid}/nft/${nftid}`);
-
   };
 
   const formatAddress = (addr) => {
     if (addr && addr.length > 10) {
       return `${addr.slice(0, 6)}...${addr.slice(-4)}`;
     }
-    return addr || 'Connect to Wallet';
+    return addr || "Connect to Wallet";
   };
 
   return (
@@ -124,7 +123,9 @@ function AllCollections({ activeTab, setActiveTab }) {
                   />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
-                <div className={styles.rowItem}>{formatAddress(item.creator)}</div>
+                <div className={styles.rowItem}>
+                  {formatAddress(item.creator)}
+                </div>
                 <div className={styles.rowItem}>{item.model}</div>
                 <div className={styles.rowItem}>{item.noOfNFTs}</div>
                 <div className={styles.rowItem}>{item.contextWindow}</div>
@@ -144,7 +145,7 @@ function AllCollections({ activeTab, setActiveTab }) {
               <div
                 key={item.id}
                 className={styles.tableRow}
-                onClick={() => handleNFTClick(item.collectionaddress,item.id)}
+                onClick={() => handleNFTClick(item.collectionaddress, item.id)}
               >
                 <div className={styles.rowItem}>
                   {/* <span className={styles.itemNumber}>{index + 1}</span> */}
@@ -158,7 +159,9 @@ function AllCollections({ activeTab, setActiveTab }) {
                   />
                   <span className={styles.itemName}>{item.name}</span>
                 </div>
-                <div className={styles.rowItem}>{formatAddress(item.owner)}</div>
+                <div className={styles.rowItem}>
+                  {formatAddress(item.owner)}
+                </div>
 
                 <div className={styles.rowItem}>{item.collection}</div>
                 <div className={styles.rowItem}>{item.model}</div>

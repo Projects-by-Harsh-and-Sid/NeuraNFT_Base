@@ -26,11 +26,11 @@ const ViewCollectionNFTs = () => {
     try {
     //   setIsLoading(true);
     const collectionIdInt = parseInt(collectionId, 10);
-      const collectionData = fetchData('collection_from_id', collectionIdInt);
+      const collectionData = await fetchData('collection_from_id', collectionIdInt);
       if (collectionData && collectionData.myCollections && collectionData.myCollections.length > 0) {
         const fetchedCollection = collectionData.myCollections[0];
         setCollection(fetchedCollection);
-        fetchCollectionNFTs(fetchedCollection.collectionaddress);
+        await fetchCollectionNFTs(fetchedCollection.collectionaddress);
       } else {
         setError('Collection not found');
       }
@@ -40,9 +40,9 @@ const ViewCollectionNFTs = () => {
     } 
   };
 
-  const fetchCollectionNFTs = (collectionAddress) => {
+  const fetchCollectionNFTs = async (collectionAddress) => {
     try {
-      const collectionNFTs = fetchData('collection_nft', collectionAddress);
+      const collectionNFTs =await  fetchData('collection_nft', collectionAddress);
       if (collectionNFTs && collectionNFTs.myNFTs) {
         setNfts(collectionNFTs.myNFTs);
       } else {
