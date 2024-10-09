@@ -2,7 +2,7 @@ import collectionsData from '../HomePage/collections.json';
 import nftsData from '../HomePage/nfts.json';
 
 // export const fetchAllCollections = async() => {
-  
+
 //   console.log(collectionsData.collections);
 //   return collectionsData.collections;
 
@@ -35,7 +35,7 @@ export const fetchAllCollections = async () => {
 export const fetchAllNFTs = async () => {
   try {
     const response = await axios.get(`${baseURL}/get_all_nfts`);
-    console.log("NFT data: ",response.data);
+    console.log("NFT data: ", response.data);
     return response.data.nfts;
   } catch (error) {
     console.error('Error fetching NFTs:', error);
@@ -57,38 +57,42 @@ export const fetchMyData = (address) => {
   const myNFTs = nftsData.nfts.filter(
     nft => nft.owner === address
   );
-  
+
   return { myCollections, myNFTs };
 };
 
-export const collection_nft = (collection_address) => {
-    // const myCollections = collectionsData.collections.filter(
-    //     collection => collection.creator === collection_address
-    // );
-    const myNFTs = nftsData.nfts.filter(
-        nft => nft.collectionaddress === collection_address
-    );
-    
-    return { myNFTs };
-    };
-export const collection_from_id = (collection_id) => {
-    const myCollections = collectionsData.collections.filter(
-        collection => collection.id === collection_id
-    );
-    return { myCollections };
-    }
 
-    export const particular_nft = (nftid,collection_address) => {
-        const myNFTs = nftsData.nfts.filter(
-            nft => nft.id === nftid && nft.collectionaddress === collection_address
-        );
-        
-        return { myNFTs };
-        };
-  
+
+export const collection_nft = (collection_address) => {
+  // const myCollections = collectionsData.collections.filter(
+  //     collection => collection.creator === collection_address
+  // );
+  const myNFTs = nftsData.nfts.filter(
+    nft => nft.collectionaddress === collection_address
+  );
+
+  return { myNFTs };
+};
+
+
+export const collection_from_id = (collection_id) => {
+  const myCollections = collectionsData.collections.filter(
+    collection => collection.id === collection_id
+  );
+  return { myCollections };
+}
+
+export const particular_nft = (nftid, collection_address) => {
+  const myNFTs = nftsData.nfts.filter(
+    nft => nft.id === nftid && nft.collectionaddress === collection_address
+  );
+
+  return { myNFTs };
+};
+
 
 // datafetch.js
-export const fetchData = async(type, param1 = null, param2 = null)  => {
+export const fetchData = async (type, param1 = null, param2 = null) => {
   switch (type) {
     case 'allCollections':
       return await fetchAllCollections();
