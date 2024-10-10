@@ -1,11 +1,3 @@
-const TronWeb = require('tronweb');
-
-// Initialize TronWeb (replace with your actual configuration)
-const tronWeb = new TronWeb({
-    fullHost: 'https://api.nileex.io', // Use appropriate network
-    privateKey: 'your_private_key_here'
-});
-
 // Function to build the JSON file
 function buildTransactionJson(params) {
     return {
@@ -47,6 +39,11 @@ async function signJsonData(jsonData) {
 // Function to perform the transaction
 async function performTransaction(params) {
     try {
+        // Ensure TronLink is installed and connected
+        if (typeof window.tronWeb === 'undefined') {
+            throw new Error('TronLink is not installed or not connected');
+        }
+
         // Build the transaction JSON
         const transactionJson = buildTransactionJson(params);
 
@@ -58,7 +55,7 @@ async function performTransaction(params) {
 
         // Load the contract (replace with your contract's address and ABI)
         const contractAddress = 'TYour_Contract_Address';
-        const contract = await tronWeb.contract().at(contractAddress);
+        const contract = await window.tronWeb.contract().at(contractAddress);
 
         // Call the contract method (replace 'yourMethodName' with the actual method name)
         const result = await contract.yourMethodName(transactionJson, signatureData).send({
@@ -73,20 +70,17 @@ async function performTransaction(params) {
     }
 }
 
-// Example usage
-async function main() {
+// Example usage (you might want to call this function from a button click or form submission)
+async function handleTransaction(transactionParams) {
     try {
-        const transactionParams = {
-            amount: 100,
-            recipient: 'TRecipient_Address',
-            // Add more parameters as needed
-        };
-
         const result = await performTransaction(transactionParams);
         console.log('Transaction completed:', result);
+        // Handle successful transaction (e.g., show success message to user)
     } catch (error) {
         console.error('Transaction failed:', error);
+        // Handle error (e.g., show error message to user)
     }
 }
 
-main();
+// Export the functions so they can be imported in other files
+export { buildTransactionJson, signJsonData, performTransaction, handleTransaction };
