@@ -8,6 +8,8 @@ import { Alert, Snackbar } from '@mui/material';
 import { useAppContext } from '../../AppContext';
 import { fetchData } from '../Utils/datafetch';
 import ProgressBar from './ProgressBar'; // Adjust the path based on your file structure
+import { signJsonData } from './signData'; // Adjust the path based on your file structure
+
 
 
 
@@ -148,6 +150,24 @@ const CreateNFT = () => {
 
     try {
       setIsUploading(true);
+      const jsonData = {
+        name: name,
+        description: description,
+        selectedModel: selectedModel,
+        nftImageName: nftImage.name,
+        pdfFileNames: pdfFiles.map(file => file.name),
+        // Optionally include more data
+      };
+  
+      // Sign the jsonData using TronLink
+      const signatureResult = await signJsonData(jsonData);
+  
+      if (!signatureResult) {
+        alert('Error signing data');
+        setIsUploading(false);
+        return;
+      }
+  
 
     //   const textResults = await Promise.all(pdfFiles.map(file => convertPdfToText(file)));
 
