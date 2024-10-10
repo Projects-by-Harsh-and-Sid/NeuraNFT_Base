@@ -19,8 +19,10 @@
     align-items: center;
     border-radius: 5px;
     z-index: 1;
-    padding: 2rem 0;
+    padding: 3rem 0;
     overflow-y: hidden;
+    padding-bottom: 0px;
+    /* padding-top: 30px; */
   }
   
   /* .createNftContainer::before {

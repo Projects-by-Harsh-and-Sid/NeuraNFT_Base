@@ -99,7 +99,7 @@ const ProfilePage = () => {
     navigate(`/collection/${collectionsid}/nft/${nftid}`);
   };
   const handleBrowseNFTs = () => {
-    navigate('/browse-nfts'); // Implement this route in your application
+    navigate('/'); // Implement this route in your application
   };
 
   return (

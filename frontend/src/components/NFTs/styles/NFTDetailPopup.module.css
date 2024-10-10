@@ -288,14 +288,18 @@
   .accessListHeader {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    color: #a0a0a0;
-    border-bottom: 1px solid #202026;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #888;
+    margin-bottom: 0.5rem;
   }
   
   .accessListHeaderItem {
     flex: 1;
     font-weight: bold;
+  }
+  .accessListHeaderItem2{
+    text-align: right;
   }
   
   .accessListItem {
@@ -306,6 +310,7 @@
     padding: 10px;
     border-radius: 5px;
     margin-top: 10px;
+    
   }
   
   .address {
