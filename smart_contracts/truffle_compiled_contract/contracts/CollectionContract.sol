@@ -9,6 +9,8 @@ contract CollectionContract {
     NFTContract public nftContract;
 
     struct CollectionMetadata {
+        string name;
+        uint256 contextWindow;
         string baseModel;
         string image;
         string description;
@@ -43,6 +45,8 @@ contract CollectionContract {
     }
 
     function createCollection(
+        string memory _name,
+        uint256 _contextWindow,
         string memory _baseModel,
         string memory _image,
         string memory _description
@@ -51,6 +55,8 @@ contract CollectionContract {
         uint256 newCollectionId = totalCollections;
 
         collections[newCollectionId] = CollectionMetadata({
+            name : _name,
+            contextWindow : _contextWindow,
             baseModel: _baseModel,
             image: _image,
             description: _description,
@@ -68,15 +74,20 @@ contract CollectionContract {
 
     function updateCollection(
         uint256 _collectionId,
+        string memory _name,
+        uint256 _contextWindow,
         string memory _baseModel,
         string memory _image,
         string memory _description
     ) external onlyCollectionOwner(_collectionId) {
         CollectionMetadata storage collection = collections[_collectionId];
         
+        collection.name = _name;
+        collection.contextWindow = _contextWindow;
         collection.baseModel = _baseModel;
         collection.image = _image;
         collection.description = _description;
+
 
         emit CollectionUpdated(_collectionId, msg.sender);
     }

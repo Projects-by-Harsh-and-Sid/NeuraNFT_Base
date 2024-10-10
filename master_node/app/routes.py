@@ -1,14 +1,13 @@
 
 from app import app
 
-from flask import request, jsonify, send_from_directory
+from flask import request, jsonify
 
 
 import requests
 import PyPDF2  # For handling PDFs
 import tempfile
 from app.module.embeddings import get_embeddings, get_documents
-from werkzeug.utils import secure_filename
 
 from app.module.helper_functions import generate_api_key, allowed_file, api_key_required, generate_jwt_token, token_required
 
@@ -259,42 +258,3 @@ def test_data_model():
 
 
 
-import random
-import string
-
-
-
-
-# UPLOAD_FOLDER = 'image'
-os.makedirs(UPLOAD_FOLDER, exist_ok=True)
-# app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-
-def generate_random_string(length=10):
-    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
-
-@app.route('/upload', methods=['POST'])
-def upload_image():
-    if 'image' not in request.files:
-        return 'No image file in the request', 400
-    
-    file = request.files['image']
-    if file.filename == '':
-        return 'No selected file', 400
-    
-    if file:
-        # Get the file extension
-        _, ext = os.path.splitext(file.filename)
-        # Generate a random filename
-        random_filename = f"{generate_random_string()}{ext}"
-        # Secure the filename
-        filename = secure_filename(random_filename)
-        # Save the file
-        file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        return filename, 200
-
-@app.route('/image/<filename>')
-def get_image(filename):
-    
-    path_to_file = os.path.join(app.config['UPLOAD_FOLDER'], filename)
-    print("filename, UPLOAD_FOLDER", filename, UPLOAD_FOLDER)
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename)
