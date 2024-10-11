@@ -114,7 +114,7 @@ def get_collections_by_address():
         all_collections = json.load(f)
     
     my_collections = [collection for collection in all_collections['collections'] if collection['creator'] == address]
-    
+    # print("my_collections", my_collections)
     return jsonify({'myCollections': my_collections}), 200
 
 @app.route('/get_nfts_by_address', methods=['GET'])
@@ -132,7 +132,7 @@ def get_nfts_by_address():
         all_nfts = json.load(f)
     
     my_nfts = [nft for nft in all_nfts['nfts'] if nft['owner'] == address]
-    
+    # print("my_nfts", my_nfts)
     return jsonify({'myNFTs': my_nfts}), 200
 
 
@@ -167,7 +167,6 @@ def get_collection_by_id():
     
     with open(collections_path, 'r') as f:
         all_collections = json.load(f)
-    print("all_collections", all_collections)
     my_collection = [collection for collection in all_collections['collections'] if collection['id'] == int(collection_id)]
     
     return jsonify({'myCollections': my_collection}), 200

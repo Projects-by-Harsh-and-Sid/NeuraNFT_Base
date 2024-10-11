@@ -17,13 +17,26 @@ const ProfilePage = () => {
   const [collections, setCollections] = useState([]);
   const [nfts, setNFTs] = useState([]);
 
-  const temp_address = '0x8765...4321';
+  const temp_address = 'TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr';
   useEffect(() => {
     const loadData = async () => {
       if (temp_address) {
-        const { myCollections, myNFTs } = await fetchData('myData', temp_address);
-        setCollections(myCollections);
-        setNFTs(myNFTs);
+        const { myCollections, nfts } = await fetchData('myData', temp_address);
+        console.log(myCollections);
+        console.log(nfts);
+        if (!nfts) {
+          setNFTs([]);
+        }
+        else{
+          setNFTs(nfts);
+        }
+        if(!myCollections){
+          setCollections([]);
+        }
+        else{
+          setCollections(myCollections);
+        }
+
       }
     };
     loadData();

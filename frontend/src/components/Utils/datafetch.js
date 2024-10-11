@@ -43,29 +43,6 @@ export const fetchAllNFTs = async () => {
   }
 };
 
-export const getCollectionsByAddress = async (address) => {
-  try {
-    const response = await axios.get(`${baseURL}/get_collections_by_address`, {
-      params: { address }
-    });
-    return response.data.myCollections;
-  } catch (error) {
-    console.error('Error fetching collections by address:', error);
-    throw error;
-  }
-};
-
-export const getNFTsByAddress = async (address) => {
-  try {
-    const response = await axios.get(`${baseURL}/get_nfts_by_address`, {
-      params: { address }
-    });
-    return response.data.myNFTs.nfts;
-  } catch (error) {
-    console.error('Error fetching NFTs by address:', error);
-    throw error;
-  }
-};
 
 export const getCollectionById = async (collectionId) => {
   try {
@@ -104,6 +81,51 @@ export const getNFTsByCollection = async (collectionAddress) => { // done
     console.error('Error fetching NFTs by collection:', error);
     throw error;
   }
+};
+
+
+export const getCollectionsByAddress = async (address) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_collections_by_address`, {
+      params: { address }
+    });
+    return response.data.myCollections;
+  } catch (error) {
+    console.error('Error fetching collections by address:', error);
+    throw error;
+  }
+};
+
+export const getNFTsByAddress = async (address) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_nfts_by_address`, {
+      params: { address }
+    });
+    return response.data.myNFTs;
+  } catch (error) {
+    console.error('Error fetching NFTs by address:', error);
+    throw error;
+  }
+};
+
+export const getAllDataforAddress = async (address) => {
+  try {
+
+    const nfts = await getNFTsByAddress(address);
+    const myCollections = await getCollectionsByAddress(address);
+
+    // console.log('All data for address:', { myCollections, nfts });
+
+    return { myCollections, nfts };
+
+  } catch (error) {
+
+    console.error('Error fetching all data for address:', error);
+
+    throw error;
+
+  }
+
 };
 
 
@@ -162,7 +184,7 @@ export const fetchData = async(type, param1 = null, param2 = null)  => {
       return await fetchAllNFTs();
     case 'myData':
       if (!param1) throw new Error('Address is required for myData fetch');
-      return fetchMyData(param1);
+      return getAllDataforAddress(param1);
     case 'collection_nft':
       if (!param1) throw new Error('Collection address is required for collection_nft fetch');
       return getNFTsByCollection(param1);
