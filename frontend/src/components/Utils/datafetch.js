@@ -43,6 +43,72 @@ export const fetchAllNFTs = async () => {
   }
 };
 
+export const getCollectionsByAddress = async (address) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_collections_by_address`, {
+      params: { address }
+    });
+    return response.data.myCollections;
+  } catch (error) {
+    console.error('Error fetching collections by address:', error);
+    throw error;
+  }
+};
+
+export const getNFTsByAddress = async (address) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_nfts_by_address`, {
+      params: { address }
+    });
+    return response.data.myNFTs.nfts;
+  } catch (error) {
+    console.error('Error fetching NFTs by address:', error);
+    throw error;
+  }
+};
+
+export const getCollectionById = async (collectionId) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_collection_by_id`, {
+      params: { collection_id: collectionId }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching collection by ID:', error);
+    throw error;
+  }
+};
+
+export const getParticularNFT = async (nftId, collectionAddress) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_particular_nft`, {
+      params: { 
+        nft_id: nftId,
+        collection_address: collectionAddress
+      }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching particular NFT:', error);
+    throw error;
+  }
+};
+
+export const getNFTsByCollection = async (collectionAddress) => { // done
+  try {
+    const response = await axios.get(`${baseURL}/get_nfts_by_collection`, {
+      params: { collection_address: collectionAddress }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching NFTs by collection:', error);
+    throw error;
+  }
+};
+
+
+
+
 
 
 
@@ -61,31 +127,31 @@ export const fetchMyData = (address) => {
   return { myCollections, myNFTs };
 };
 
-export const collection_nft = (collection_address) => {
-    // const myCollections = collectionsData.collections.filter(
-    //     collection => collection.creator === collection_address
-    // );
-    const myNFTs = nftsData.nfts.filter(
-        nft => nft.collectionaddress === collection_address
-    );
+// export const collection_nft = (collection_address) => {
+//     // const myCollections = collectionsData.collections.filter(
+//     //     collection => collection.creator === collection_address
+//     // );
+//     const myNFTs = nftsData.nfts.filter(
+//         nft => nft.collectionaddress === collection_address
+//     );
     
-    return { myNFTs };
-    };
-export const collection_from_id = (collection_id) => {
-    const myCollections = collectionsData.collections.filter(
-        collection => collection.id === collection_id
-    );
-    return { myCollections };
-    }
+//     return { myNFTs };
+//     };
+// export const collection_from_id = (collection_id) => {
+//     const myCollections = collectionsData.collections.filter(
+//         collection => collection.id === collection_id
+//     );
+//     return { myCollections };
+//     }
 
-    export const particular_nft = (nftid,collection_address) => {
-        const myNFTs = nftsData.nfts.filter(
-            nft => nft.id === nftid && nft.collectionaddress === collection_address
-        );
+    // export const particular_nft = (nftid,collection_address) => {
+    //     const myNFTs = nftsData.nfts.filter(
+    //         nft => nft.id === nftid && nft.collectionaddress === collection_address
+    //     );
         
-        return { myNFTs };
-        };
-  
+    //     return { myNFTs };
+    //     };
+
 
 // datafetch.js
 export const fetchData = async(type, param1 = null, param2 = null)  => {
@@ -99,13 +165,15 @@ export const fetchData = async(type, param1 = null, param2 = null)  => {
       return fetchMyData(param1);
     case 'collection_nft':
       if (!param1) throw new Error('Collection address is required for collection_nft fetch');
-      return collection_nft(param1);
+      return getNFTsByCollection(param1);
     case 'collection_from_id':
       if (!param1) throw new Error('Collection ID is required for collection_from_id fetch');
-      return collection_from_id(param1);
+      // return collection_from_id(param1);
+      return getCollectionById(param1);
+
     case 'particular_nft':
       if (!param1 || !param2) throw new Error('NFT ID and Collection Address are required for particular_nft fetch');
-      return particular_nft(param1, param2);
+      return getParticularNFT(param1, param2);
     default:
       throw new Error('Invalid fetch type');
   }

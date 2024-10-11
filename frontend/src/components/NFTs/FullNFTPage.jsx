@@ -119,6 +119,7 @@ const openChat = () => {
   useEffect(() => {
     const fetchNFTData = async () => {
       const nftData = await fetchData('particular_nft', parseInt(nftId), collectionId);
+      console.log("particulardata",nftData)
       if (nftData && nftData.myNFTs && nftData.myNFTs.length > 0) {
         setNft(nftData.myNFTs[0]);
       }

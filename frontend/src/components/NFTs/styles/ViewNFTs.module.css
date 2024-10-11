@@ -103,6 +103,7 @@
     margin-top: -0.5rem;
     font-size: 0.9rem;
     color: #ccc;
+    max-width: 400px;
   }
   
   /* Rest of your existing CSS */
