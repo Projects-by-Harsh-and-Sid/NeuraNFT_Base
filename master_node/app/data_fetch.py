@@ -67,6 +67,8 @@ def upload_image_url():
         # Save the file
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],"images" ,filename))
         return f"http://localhost:5500/image/{filename}", 200
+    
+    
 
 @app.route('/image/<filename>')
 def get_image(filename):
@@ -122,17 +124,21 @@ def get_collections_by_address():
     if not address:
         return jsonify({'error': 'Address parameter is required'}), 400
 
-    collections_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
+    return blockchain_code.getAllCollections_by_address(address), 200
     
-    if not os.path.exists(collections_path):
-        return jsonify({'error': 'Collections data not found'}), 404
     
-    with open(collections_path, 'r') as f:
-        all_collections = json.load(f)
+    # collections_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
     
-    my_collections = [collection for collection in all_collections['collections'] if collection['creator'] == address]
-    # print("my_collections", my_collections)
-    return jsonify({'myCollections': my_collections}), 200
+    # if not os.path.exists(collections_path):
+    #     return jsonify({'error': 'Collections data not found'}), 404
+    
+    # with open(collections_path, 'r') as f:
+    #     all_collections = json.load(f)
+    
+    # my_collections = [collection for collection in all_collections['collections'] if collection['creator'] == address]
+    # # print("my_collections", my_collections)
+    # return jsonify({'myCollections': my_collections}), 200
+    
 
 
 @app.route('/get_collection_by_id', methods=['GET'])

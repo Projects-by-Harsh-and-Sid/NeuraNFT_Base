@@ -6,6 +6,7 @@ import DefaultImage from './DefaultImage.jpg';
 import { useAppContext } from '../../WalletContext';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../Utils/datafetch';
+// import { useAppContext } from '../WalletContext';
 
 
 const ProfilePage = () => {
@@ -17,11 +18,13 @@ const ProfilePage = () => {
   const [collections, setCollections] = useState([]);
   const [nfts, setNFTs] = useState([]);
 
-  const temp_address = 'TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr';
+  console.log(address);
+
+  // const address = 'TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr';
   useEffect(() => {
     const loadData = async () => {
-      if (temp_address) {
-        const { myCollections, nfts } = await fetchData('myData', temp_address);
+      if (address) {
+        const { myCollections, nfts } = await fetchData('myData', address);
         console.log(myCollections);
         console.log(nfts);
         if (!nfts) {
@@ -40,7 +43,7 @@ const ProfilePage = () => {
       }
     };
     loadData();
-  }, [temp_address]);
+  }, [address]);
 
   
 

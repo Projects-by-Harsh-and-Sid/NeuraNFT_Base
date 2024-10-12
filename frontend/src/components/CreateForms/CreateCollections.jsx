@@ -14,13 +14,14 @@ const CreateNFTCollection = () => {
   const [collectionName, setCollectionName] = useState('');
   const [collectionDescription, setCollectionDescription] = useState('');
   const [selectedModel, setSelectedModel] = useState('');
+  const [ImageType, setImageType] = useState('');
   const [collectionImagePreview, setCollectionImagePreview] = useState(null);
   const [collectionImage, setCollectionImage] = useState(null);
   const [isMinting, setIsMinting] = useState(false);
   const [mintResult, setMintResult] = useState('');
   const imageInputRef = useRef(null);
 
-  console.log('Address:', address);
+  // console.log('Address:', address);
 
   const handleCollectionNameChange = (event) => setCollectionName(event.target.value);
   const handleCollectionDescriptionChange = (event) => setCollectionDescription(event.target.value);
@@ -30,6 +31,7 @@ const CreateNFTCollection = () => {
     const file = event.target.files[0];
     if (file && file.type.startsWith('image/')) {
       setCollectionImage(file);
+      setImageType(file.type);
       const reader = new FileReader();
       reader.onloadend = () => {
         setCollectionImagePreview(reader.result);
@@ -54,7 +56,7 @@ const CreateNFTCollection = () => {
     try {
       const imageData = Array.from(new Uint8Array(await collectionImage.arrayBuffer()));
 
-      const image_url = await uploadImage(imageData);
+      const image_url = await uploadImage(imageData,ImageType); 
       console.log('Image URL:', image_url);
 
         try {
@@ -66,9 +68,12 @@ const CreateNFTCollection = () => {
                 collectionDescription
             );
             console.log('Collection created:', result);
+            setMintResult('NFT Collection minted successfully!');
+            navigate('/profile');
             // Handle successful creation (e.g., show success message to user)
         } catch (error) {
             console.error('Failed to create collection:', error);
+            setMintResult(`Error: ${error.message}`);
             // Handle error (e.g., show error message to user)
         }
       // console.log('Image Data:', imageData);
@@ -79,7 +84,8 @@ const CreateNFTCollection = () => {
       //   model: selectedModel,
       //   image: imageData,
       // });
-      setMintResult('NFT Collection minted successfully!');
+
+
     } catch (error) {
       console.error('Error minting NFT Collection:', error);
       setMintResult(`Error: ${error.message}`);
@@ -112,7 +118,7 @@ const CreateNFTCollection = () => {
         Back to Main
       </button>
 
-      <div className={styles['create-nft-form']}>
+      <div className={`${styles['create-nft-form']} ${isMinting ? styles.minting : ''}`}>
         <div className={styles['form-group']}>
           <label>Collection Image</label>
           <div className={styles['nft-image-preview']}>
