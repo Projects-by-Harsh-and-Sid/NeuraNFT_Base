@@ -29,10 +29,10 @@ const ViewCollectionNFTs = () => {
     const collectionIdInt = parseInt(collectionId, 10);
       const collectionData = await fetchData('collection_from_id', collectionIdInt);
       console.log("Collectiondata",collectionData);
-      if (collectionData && collectionData.myCollections && collectionData.myCollections.length > 0) {
-        const fetchedCollection = collectionData.myCollections[0];
+      if (collectionData) {
+        const fetchedCollection = collectionData;
         setCollection(fetchedCollection);
-        await fetchCollectionNFTs(fetchedCollection.collectionaddress);
+        await fetchCollectionNFTs(fetchedCollection.id);
       } else {
         setError('Collection not found');
       }
@@ -117,7 +117,10 @@ const ViewCollectionNFTs = () => {
             </div>
             <div className={styles.serverInfo}>
             <p className={styles.serverInfo}>Date Created: </p>
-              <span className={styles.serverCount}>{new Date(collection.date * 1000).toLocaleDateString()}</span>
+            
+              <span className={styles.serverCount}>{new Date(parseInt(collection.dateCreated,10) * 1000).toLocaleDateString()}</span>
+              {/* <span className={styles.serverCount}>{collection.dateCreated}</span> */}
+
             </div>
             <div className={styles.serverInfo}>
             <p className={styles.serverInfo}>ContextWindow: </p>
