@@ -122,7 +122,9 @@ def get_collection_details_by_id(collection_id):
             "owner": owner,
             "collectionaddress": f"#{collection_id}",
             "noOfNFTs": nft_count,
-            "uniqueHolders": unique_holders
+            "uniqueHolders": unique_holders,
+            "model": metadata[2],
+            "noOfServers": 5
         }
 
         return collection_details
