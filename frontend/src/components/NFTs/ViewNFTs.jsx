@@ -46,7 +46,7 @@ const ViewCollectionNFTs = () => {
 
   const fetchCollectionNFTs = async (id) => {
     try {
-      const collectionNFTs =await  fetchData('collection_nft', id);
+      const collectionNFTs = await fetchData('collection_nft', id);
       console.log("NFT DATA",collectionNFTs);
       if (collectionNFTs) {
         setNfts(collectionNFTs);
@@ -71,7 +71,7 @@ const ViewCollectionNFTs = () => {
 
 
 
-  if (!collection ) {
+  if (!collection) { 
     return <Loading />;
   }
   const handleCreateNFTs = () => {

@@ -101,9 +101,10 @@ const ProfilePage = () => {
   const handleConnectWallet = async () => {
     if (!tronWebState.loggedIn) {
       await connectWallet();
-    } else {
-      disconnectWallet();
     }
+    //  else {
+    //   disconnectWallet();
+    // }
   };
 
   const handleCollectionClick = (collectionId) => {

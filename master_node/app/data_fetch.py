@@ -53,6 +53,7 @@ def upload_image_url():
     if 'image' not in request.files:
         return 'No image file in the request', 400
     
+    
     file = request.files['image']
     if file.filename == '':
         return 'No selected file', 400
@@ -74,6 +75,8 @@ def upload_image_url():
 def get_image(filename):
     
     path_to_file = os.path.join(app.config['UPLOAD_FOLDER'],"images")
+    if not os.path.exists(os.path.join(path_to_file, filename)):
+        return send_from_directory(path_to_file, 'default.jpg')
     print("filename, UPLOAD_FOLDER", filename, UPLOAD_FOLDER)
     return send_from_directory(path_to_file, filename)
 

@@ -89,7 +89,7 @@ export const getCollectionsByAddress = async (address) => {
     const response = await axios.get(`${baseURL}/get_collections_by_address`, {
       params: { address }
     });
-    return response.data.myCollections;
+    return response.data;
   } catch (error) {
     console.error('Error fetching collections by address:', error);
     throw error;

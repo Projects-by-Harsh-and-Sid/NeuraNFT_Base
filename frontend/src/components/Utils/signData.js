@@ -106,7 +106,7 @@ async function createCollection(name, contextWindow, baseModel, image, descripti
         ).send({
             feeLimit: 1000000000,
             callValue: 0,
-            shouldPollResponse: true
+            shouldPollResponse: false
         });
 
         console.log('Collection created successfully:', transaction);
