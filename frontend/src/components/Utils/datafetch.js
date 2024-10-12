@@ -25,7 +25,7 @@ export const fetchAllCollections = async () => {
     const response = await axios.get(`${baseURL}/get_all_collections`);
     //   console.log("collection data expected", collectionsData.collections);
     // console.log("Collection data.collections: ",response.data.collections);
-    return response.data.collections;
+    return response.data;
   } catch (error) {
     console.error('Error fetching collections:', error);
     throw error;

@@ -9,6 +9,7 @@ function AllCollections({ activeTab, setActiveTab }) {
   useEffect(() => {
     (async () => {
       const allCollectionsData = await fetchData("allCollections");
+      console.log("Collectiondata",allCollectionsData);
       setCollectionsData(allCollectionsData);
       const allNFTsData = await fetchData("allNFTs");
       setNftsData(allNFTsData);
