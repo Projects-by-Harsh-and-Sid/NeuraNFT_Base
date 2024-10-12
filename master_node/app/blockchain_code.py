@@ -5,6 +5,7 @@ from tronpy.keys import PrivateKey
 import os 
 from app import app
 
+import concurrent.futures
 
 client = Tron(network="shasta")
 
@@ -144,6 +145,24 @@ def all_nft_information(nft_id, collection_id):
         nft_info = nft_contract.functions.getNFTInfo(collection_id, nft_id)
         metadata = nft_metadata_contract.functions.getMetadata(collection_id, nft_id)
         
+        # return {
+        #     "id": nft_id,
+        #     "collectionId": collection_id,
+        #     "levelOfOwnership": nft_info[0],
+        #     "name": nft_info[1],
+        #     "creator": nft_info[2],
+        #     "creationDate": nft_info[3],
+        #     "owner": nft_info[4],
+        #     "metadata": {
+        #         "image": metadata[0],
+        #         "baseModel": metadata[1],
+        #         "data": metadata[2],
+        #         "rag": metadata[3],
+        #         "fineTuneData": metadata[4],
+        #         "description": metadata[5]
+        #     }
+        # }
+        
         return {
             "id": nft_id,
             "collectionId": collection_id,
@@ -152,14 +171,12 @@ def all_nft_information(nft_id, collection_id):
             "creator": nft_info[2],
             "creationDate": nft_info[3],
             "owner": nft_info[4],
-            "metadata": {
-                "image": metadata[0],
-                "baseModel": metadata[1],
-                "data": metadata[2],
-                "rag": metadata[3],
-                "fineTuneData": metadata[4],
-                "description": metadata[5]
-            }
+            "image": metadata[0],
+            "baseModel": metadata[1],
+            "data": metadata[2],
+            "rag": metadata[3],
+            "fineTuneData": metadata[4],
+            "description": metadata[5]
         }
     except Exception as e:
         print(f"Error getting information for NFT ID {nft_id} in collection {collection_id}: {e}")
@@ -170,11 +187,23 @@ def all_nft_of_a_collection(collection_id):
         nft_count = nft_contract.functions.getCollectionNFTCount(collection_id)
         nft_ids = nft_contract.functions.getCollectionNFTs(collection_id)
         
+        # nfts = []
+        # for nft_id in nft_ids:
+        #     nft_info = all_nft_information(nft_id, collection_id)
+        #     if nft_info:
+        #         nfts.append(nft_info)
+        
+        def fetch_nft_info(nft_id, collection_id):
+            return all_nft_information(nft_id, collection_id)
+        
         nfts = []
-        for nft_id in nft_ids:
-            nft_info = all_nft_information(nft_id, collection_id)
-            if nft_info:
-                nfts.append(nft_info)
+        with concurrent.futures.ThreadPoolExecutor() as executor:
+            futures = [executor.submit(fetch_nft_info, nft_id, collection_id) for nft_id in nft_ids]
+            for future in concurrent.futures.as_completed(futures):
+                nft_info = future.result()
+                if nft_info:
+                    nfts.append(nft_info)
+        
         
         return nfts
     except Exception as e:
