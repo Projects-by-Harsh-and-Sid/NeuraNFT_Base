@@ -48,10 +48,6 @@ const ProfilePage = () => {
 
   
 
-  // Dummy data
-  const userAddress = '6Senu...HBX'; // get the real address
-  const fullAddress = '6SenuEHBX...'; // Replace with actual full address
-  const totalItems = '24';
 
   const formatAddress = (addr) => {
     if (addr && addr.length > 10) {
@@ -215,7 +211,7 @@ const ProfilePage = () => {
             {activeTab === 'nfts' && (
               <>
                 {nfts.map((nft) => (
-                  <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.collectionId,nft.id)}>
+                  <div key={(nft.collectionId,nft.id)} className={styles.gridItem} onClick={() => handleNFTClick(nft.collectionId,nft.id)}>
                     <img src={nft.image} alt={nft.name} className={styles.itemImage} />
                     <div className={styles.itemDetails}>
                       <h3>{nft.name}</h3>

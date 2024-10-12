@@ -1,5 +1,6 @@
-import constract_address_data from './shasta_addresses.json' 
-
+import constract_address_data from './shasta_addresses.json' ;
+import meatadata_contract_data from './contracts/NFTMetadata.json';
+import tronWeb from 'tronweb';
 
 // // Function to build the JSON file
 // function buildTransactionJson(params) {
@@ -136,7 +137,8 @@ async function createNFT(collectionId, name, levelOfOwnership) {
         ).send({
             feeLimit: 1000000000,
             callValue: 0,
-            shouldPollResponse: true
+            // shouldPollResponse: true
+            shouldPollResponse: false
         });
 
         console.log('NFT created successfully:', transaction);
@@ -147,7 +149,49 @@ async function createNFT(collectionId, name, levelOfOwnership) {
     }
 }
 
-// Function to create metadata for an NFT
+// // Function to create metadata for an NFT
+// async function createNFTMetadata(collectionId, nftId, metadata) {
+//     if (typeof window.tronWeb === 'undefined') {
+//         throw new Error('TronLink is not installed or not connected');
+//     }
+
+//     try {
+//         const contractAddress = constract_address_data.NFTMetadata;
+//         // const contract = await window.tronWeb.contract().at(contractAddress);
+
+//         // contract = meatadata_contract_data.abi;
+        
+//         const contract = await window.tronWeb.contract(meatadata_contract_data.abi, contractAddress);
+
+//         // contract.abi = 
+
+//         console.log('Collection ID:', collectionId);
+//         console.log('NFT ID:', nftId);
+//         console.log('Metadata:', metadata);
+
+
+
+//         const transaction = await contract.createMetadata(
+//             collectionId,
+//             nftId,
+//             metadata
+//         ).send({
+//             feeLimit: 1000000000,
+//             callValue: 0,
+//             // shouldPollResponse: true
+//             shouldPollResponse: false
+
+//         });
+
+//         console.log('Metadata created successfully:', transaction);
+//         return transaction;
+//     } catch (error) {
+//         console.error('Error creating metadata:', error);
+//         throw error;
+//     }
+// }
+
+
 async function createNFTMetadata(collectionId, nftId, metadata) {
     if (typeof window.tronWeb === 'undefined') {
         throw new Error('TronLink is not installed or not connected');
@@ -155,16 +199,30 @@ async function createNFTMetadata(collectionId, nftId, metadata) {
 
     try {
         const contractAddress = constract_address_data.NFTMetadata;
-        const contract = await window.tronWeb.contract().at(contractAddress);
+        const contract = await window.tronWeb.contract(meatadata_contract_data.abi, contractAddress);
+
+        // Convert metadata object to an array of values in the correct order
+        const metadataArray = [
+            metadata.image,         // image
+            metadata.baseModel,     // baseModel
+            metadata.data,          // data
+            metadata.rag,           // rag
+            metadata.fineTuneData,  // fineTuneData
+            metadata.description    // description
+        ];
+
+        console.log('Collection ID:', collectionId);
+        console.log('NFT ID:', nftId);
+        console.log('Metadata Array:', metadataArray);
 
         const transaction = await contract.createMetadata(
             collectionId,
             nftId,
-            metadata
+            metadataArray
         ).send({
             feeLimit: 1000000000,
             callValue: 0,
-            shouldPollResponse: true
+            shouldPollResponse: false
         });
 
         console.log('Metadata created successfully:', transaction);
@@ -176,38 +234,25 @@ async function createNFTMetadata(collectionId, nftId, metadata) {
 }
 
 
-function extractNFTIdFromTransaction(transaction) {
+async function extractNFTIdFromTransaction(transaction) {
+
+
     // Check if the transaction object has a 'receipt' property
-    if (transaction && transaction.receipt && transaction.receipt.result === 'SUCCESS') {
-        // Look for events in the transaction logs
-        const logs = transaction.log;
-        if (logs && logs.length > 0) {
-            for (const log of logs) {
-                // Assuming the event name is 'NFTCreated'
-                if (log.name === 'NFTCreated') {
-                    // The NFT ID should be one of the indexed parameters
-                    // Typically, it would be the second parameter (index 1)
-                    if (log.data && log.data.length > 1) {
-                        return parseInt(log.data[1], 16); // Convert hex to integer
-                    }
-                }
-            }
+    const events = await window.tronWeb.getEventByTransactionID(transaction);
+    console.log('Events:', events);
+
+    let nftId;
+    events.forEach(event => {
+        if (event.name === "NFTCreated") {
+            nftId = event.result.tokenId;
         }
-        
-        // If we couldn't find the ID in the logs, try to get it from the return value
-        if (transaction.ret && transaction.ret.length > 0) {
-            const returnValue = transaction.ret[0];
-            if (returnValue && returnValue.contractRet === 'SUCCESS') {
-                // The NFT ID might be in the return value
-                // You may need to decode this based on your contract's specific implementation
-                return parseInt(returnValue.result, 16); // Convert hex to integer
-            }
-        }
-    }
+    });
+
+    console.log('Minted NFT ID:', nftId);
+
+    return nftId;
+
     
-    // If we couldn't find the NFT ID, return null or throw an error
-    console.error('Could not extract NFT ID from transaction');
-    return null;
 }
 
 

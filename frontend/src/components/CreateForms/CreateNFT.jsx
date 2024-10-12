@@ -43,7 +43,7 @@ function CreateNFT ()
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   
   
-  console.log('Inside CreateNFT.jsx');
+  // console.log('Inside CreateNFT.jsx');
 
   useEffect(() => {
     console.log("Inside useEffect of CreateNFT.jsx");
@@ -168,7 +168,7 @@ function CreateNFT ()
       // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       setIsUploading(true);
 
-
+      // // // start
       // // Sign the jsonData using TronLink
       // const signatureResult = await signJsonData(jsonData);
   
@@ -198,22 +198,35 @@ function CreateNFT ()
                                       description: description
                                   }
 
+      // const metadata =  ( image_url,
+      //                     "llama-3.1",
+      //                     data_url,
+      //                     "",
+      //                     "",
+      //                     description
+      //                     );
+
+
+
       console.log("collectionID : ",collectionID);
       console.log("NFTname : ",NFTname);
       console.log("accesslevel : ",accesslevel);
       console.log("metadata : ",metadata);
 
       incrementStep();
+      // // // end
+
+
       // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       // ---------------------------------------------------Mininting NFT-------------------------------------------------------------------------------------------------------------------
       // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+      
+      // // // // // start
       
       console.log("-----------------------------------Minting NFT-----------------------------------");
 
 
       // wait for 5 seconds
-      // await new Promise(resolve => setTimeout(resolve, 5000));
       
       // collectionid, name, accesslevel = 6
       
@@ -221,7 +234,10 @@ function CreateNFT ()
       
       console.log('NFT created:', nftResult);
 
-      const newNFTId = extractNFTIdFromTransaction(nftResult);
+      await new Promise(resolve => setTimeout(resolve, 5000));
+
+
+      const newNFTId = await extractNFTIdFromTransaction(nftResult);
 
       console.log('New NFT ID:', newNFTId);
 
@@ -233,6 +249,9 @@ function CreateNFT ()
       }
 
       incrementStep();
+
+      // // // // end
+      
       // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
       // ---------------------------------------------------Creating MetaData-------------------------------------------------------------------------------------------------------------------
       // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -240,9 +259,24 @@ function CreateNFT ()
 
       // collectionid, nftid, metadata
 
-      // await new Promise(resolve => setTimeout(resolve, 5000));
+      await new Promise(resolve => setTimeout(resolve, 5000));
 
-      const metadataResult = await createNFTMetadata(collectionID, newNFTId, metadata);
+      // const collectionID    = 13;
+      // const accesslevel     = 6;
+      // const NFTname         = "name";
+
+      // const metadata =             {
+      //                                 "image": "image_url",
+      //                                 "baseModel": "llama-3.1",
+      //                                 "data": "data_url",
+      //                                 "rag": "",
+      //                                 "fineTuneData": "",
+      //                                 "description": "description"
+      //                             }
+
+      // const newNFTId = 1;
+
+      const metadataResult = await createNFTMetadata(collectionID, parseInt(newNFTId), metadata);
       console.log('Metadata created:', metadataResult);
 
 
