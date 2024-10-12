@@ -129,6 +129,18 @@ export const getAllDataforAddress = async (address) => {
 };
 
 
+export const getCompoundedNFTData = async (collectionid,nftid) => {
+  try {
+    const response = await axios.get(`${baseURL}/get_compounded_nft_by_collectionid_nft_id`, {
+      params: { "collection_id": collectionid, "nft_id": nftid }
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Error fetching compounded NFT data:', error);
+    throw error;
+  }
+}
+
 
 
 
@@ -177,6 +189,7 @@ export const fetchMyData = (address) => {
     //     };
 
 
+
 // datafetch.js
 export const fetchData = async (type, param1 = null, param2 = null) => {
   switch (type) {
@@ -198,7 +211,11 @@ export const fetchData = async (type, param1 = null, param2 = null) => {
     case 'particular_nft':
       if (!param1 || !param2) throw new Error('NFT ID and Collection Address are required for particular_nft fetch');
       return getParticularNFT(param1, param2);
+    case 'compounded_nft':
+      if (!param1 || !param2) throw new Error('Collection ID and NFT ID are required for compounded_nft fetch');
+      return getCompoundedNFTData(param1, param2);
     default:
       throw new Error('Invalid fetch type');
+  
   }
 };

@@ -15,6 +15,8 @@ const ViewCollectionNFTs = () => {
   const [collectionAddress, setCollectionAddress] = useState(null);
   const [nfts, setNfts] = useState([]);
   const [selectedNFT, setSelectedNFT] = useState(null);
+  // const [selectNFTidForPopup, setselectNFTidForPopup] = useState(null);
+  // const [selectCollectionidForPopup, setselectCollectionidForPopup] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [error, setError] = useState(null);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
@@ -58,18 +60,15 @@ const ViewCollectionNFTs = () => {
   };
 
   
-  const handleNFTClick = (nft) => {
-    setSelectedNFT(nft);
+  const handleNFTClick = async (nftid) => {
+    // setselectNFTidForPopup(nftid);
+    // setselectCollectionidForPopup(collectionid);
+    const fetchedNFT = await fetchData('compounded_nft',collectionId, nftid);
+    setSelectedNFT(fetchedNFT);
     setIsPopupOpen(true);
   };
 
-  const formatDate = (timestamp) => {
-    return new Date(timestamp * 1000).toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  };
+
 
 
   if (!collection ) {
@@ -123,6 +122,10 @@ const ViewCollectionNFTs = () => {
 
             </div>
             <div className={styles.serverInfo}>
+            <p className={styles.serverInfo}>Unique Holders</p>
+              <span className={styles.serverCount}>{collection.uniqueHolders}</span>
+            </div>
+            <div className={styles.serverInfo}>
             <p className={styles.serverInfo}>ContextWindow: </p>
               <span className={styles.serverCount}>{collection.contextWindow}</span>
             </div>
@@ -131,6 +134,7 @@ const ViewCollectionNFTs = () => {
               <span className={styles.serverCount}>{collection.noOfNFTs}</span>
             </div>
           </div>
+          
 
           <p className={styles.collectionDescription}>{collection.description}</p>
         </div>
@@ -146,7 +150,7 @@ const ViewCollectionNFTs = () => {
           </div>
         </div>
         {nfts.map((nft) => (
-           <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft)}>
+           <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.id)}>
             <img src={nft.image} alt={nft.name} className={styles.nftImage} />
             <div className={styles.nftDetails}>
               <h3>{nft.name}</h3>
@@ -155,8 +159,10 @@ const ViewCollectionNFTs = () => {
           </div>
         ))}
       </div>
-      {isPopupOpen && selectedNFT && (
+      {isPopupOpen && (
         <NFTDetailPopup
+          // nftid={selectNFTidForPopup}
+          // collectionid={collectionId}
           nft={selectedNFT}
           onClose={() => setIsPopupOpen(false)}
         />
