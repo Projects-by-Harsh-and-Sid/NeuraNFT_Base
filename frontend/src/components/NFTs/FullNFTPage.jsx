@@ -9,6 +9,7 @@ import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import AddAccessDialog from './AddAccessDialog';
 import UpdateAccessDialog from './UpdateAccessDialog';
+import Loading from './Loading';
 
 
 import APIDialog from './ApiDialog';
@@ -37,13 +38,21 @@ const FullNFTPage = () => {
   const [isTestApiLoading, setIsTestApiLoading] = useState(false);
 
   
+  // const accessLevelDescriptions = {
+  //   'Level 1': 'UseModel - Can use the model',
+  //   'Level 2': 'Resale - Can resell the NFT without replicating and data and model view',
+  //   'Level 3': 'CreateReplica - Can create a replica of the NFT but not data view',
+  //   'Level 4': 'ViewAndDownload - Can view and download the data and model but no absolute ownership',
+  //   'Level 5': 'EditData - Can NFT Metadata',
+  //   'Level 6': 'AbsoluteOwnership - Can view, download, create replica, resale, and use model, set access levels',
+  // };
   const accessLevelDescriptions = {
-    'Level 1': 'UseModel - Can use the model',
-    'Level 2': 'Resale - Can resell the NFT without replicating and data and model view',
-    'Level 3': 'CreateReplica - Can create a replica of the NFT but not data view',
-    'Level 4': 'ViewAndDownload - Can view and download the data and model but no absolute ownership',
-    'Level 5': 'EditData - Can NFT Metadata',
-    'Level 6': 'AbsoluteOwnership - Can view, download, create replica, resale, and use model, set access levels',
+    '1': 'UseModel - Can use the model',
+    '2': 'Resale - Can resell the NFT without replicating and data and model view',
+    '3': 'CreateReplica - Can create a replica of the NFT but not data view',
+    '4': 'ViewAndDownload - Can view and download the data and model but no absolute ownership',
+    '5': 'EditData - Can NFT Metadata',
+    '6': 'AbsoluteOwnership - Can view, download, create replica, resale, and use model, set access levels',
   };
 
   const handleConnectWallet = async () => {
@@ -112,16 +121,17 @@ const handleTestApiClick = async () => {
 };
 
 const openChat = () => {
-    navigate(`/chat/${nft.collectionaddress}/${nft.id}`);
+    navigate(`/chat/${nft.collectionId}/${nft.id}`);
 };
 
 
   useEffect(() => {
     const fetchNFTData = async () => {
-      const nftData = await fetchData('particular_nft', parseInt(nftId), collectionId);
+      // const nftData = await fetchData('particular_nft', parseInt(nftId), collectionId);
+      const nftData = await fetchData('compounded_nft',collectionId, parseInt(nftId));
       console.log("particulardata",nftData)
-      if (nftData && nftData.myNFTs && nftData.myNFTs.length > 0) {
-        setNft(nftData.myNFTs[0]);
+      if (nftData) {
+        setNft(nftData);
       }
     };
 
@@ -129,7 +139,7 @@ const openChat = () => {
   }, [nftId, collectionId]);
 
   if (!nft) {
-    return <div className={styles.loading}>Loading...</div>;
+    return <Loading />;
   }
 
   const handleBack = () => {
@@ -206,7 +216,7 @@ const openChat = () => {
                     <div className={styles.detailsContent}>
                       <div className={styles.detailItem}>
                         <span className={styles.detailLabel}>Collection Address</span>
-                        <span className={styles.detailValue}>{formatAddress(nft.collectionaddress)}</span>
+                        <span className={styles.detailValue}>{formatAddress(nft.collectionId)}</span>
                       </div>
                       <div className={styles.detailItem}>
                         <span className={styles.detailLabel}>Token ID</span>
@@ -246,11 +256,11 @@ const openChat = () => {
                   <div className={styles.accessDetailContent}>
                     <div className={styles.detailItem}>
                       <span className={styles.detailLabel}>Creator Address</span>
-                      <span className={styles.detailValue}>{formatAddress(nft.creatorAddress)}</span>
+                      <span className={styles.detailValue}>{formatAddress(nft.creator)}</span>
                     </div>
                     <div className={styles.detailItem}>
                       <span className={styles.detailLabel}>Owner Address</span>
-                      <span className={styles.detailValue}>{formatAddress(nft.ownerAddress)}</span>
+                      <span className={styles.detailValue}>{formatAddress(nft.owner)}</span>
                     </div>
                   </div>
                 </div>
@@ -263,9 +273,9 @@ const openChat = () => {
                   </div>
                   {nft.accessList.map((accessItem, index) => (
                     <div key={index} className={styles.accessListItem}>
-                      <div className={styles.address}>{formatAddress(accessItem.address)}</div>
+                      <div className={styles.address}>{formatAddress(accessItem.user)}</div>
                       <div className={styles.accessLevel} title={accessLevelDescriptions[accessItem.accessLevel]}>
-                        {accessItem.accessLevel}
+                        Level {accessItem.accessLevel}
                       </div>
                     </div>
                   ))}
