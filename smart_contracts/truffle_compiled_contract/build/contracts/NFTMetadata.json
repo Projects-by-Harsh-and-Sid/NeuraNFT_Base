@@ -198,7 +198,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [],
@@ -211,7 +212,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -423,7 +425,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     },
     {
       "inputs": [
@@ -447,7 +450,8 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function"
+      "type": "function",
+      "constant": true
     }
   ],
   "metadata": "{\"compiler\":{\"version\":\"0.8.19+commit.7dd6d404\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_accessControlAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_nftAccessControlAddress\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"collectionId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"nftId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"image\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"baseModel\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"rag\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fineTuneData\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"indexed\":false,\"internalType\":\"struct NFTMetadata.Metadata\",\"name\":\"metadata\",\"type\":\"tuple\"}],\"name\":\"MetadataCreated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"collectionId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"nftId\",\"type\":\"uint256\"}],\"name\":\"MetadataDeleted\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"collectionId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"nftId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"image\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"baseModel\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"rag\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fineTuneData\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"indexed\":false,\"internalType\":\"struct NFTMetadata.Metadata\",\"name\":\"metadata\",\"type\":\"tuple\"}],\"name\":\"MetadataUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"collectionId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"nftId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"uint256\",\"name\":\"replicaCollectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"replicaNFTId\",\"type\":\"uint256\"}],\"indexed\":false,\"internalType\":\"struct NFTMetadata.Replica\",\"name\":\"replica\",\"type\":\"tuple\"}],\"name\":\"ReplicaCreated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"accessControl\",\"outputs\":[{\"internalType\":\"contract MasterAccessControl\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_collectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_nftId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"image\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"baseModel\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"rag\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fineTuneData\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"internalType\":\"struct NFTMetadata.Metadata\",\"name\":\"_metadata\",\"type\":\"tuple\"}],\"name\":\"createMetadata\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_collectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_nftId\",\"type\":\"uint256\"}],\"name\":\"deleteMetadata\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_collectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_nftId\",\"type\":\"uint256\"}],\"name\":\"getMetadata\",\"outputs\":[{\"components\":[{\"internalType\":\"string\",\"name\":\"image\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"baseModel\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"rag\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fineTuneData\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"internalType\":\"struct NFTMetadata.Metadata\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_collectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_nftId\",\"type\":\"uint256\"}],\"name\":\"metadataExists\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"nftAccessControl\",\"outputs\":[{\"internalType\":\"contract NFTAccessControl\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_collectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_nftId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_replicaCollectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_replicaNFTId\",\"type\":\"uint256\"}],\"name\":\"replicateNFT\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_collectionId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"_nftId\",\"type\":\"uint256\"},{\"components\":[{\"internalType\":\"string\",\"name\":\"image\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"baseModel\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"data\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"rag\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"fineTuneData\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"description\",\"type\":\"string\"}],\"internalType\":\"struct NFTMetadata.Metadata\",\"name\":\"_metadata\",\"type\":\"tuple\"}],\"name\":\"updateMetadata\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/NFTMetadata.sol\":\"NFTMetadata\"},\"evmVersion\":\"paris\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/MasterAccessControl.sol\":{\"keccak256\":\"0x21210b2fddbbb0abfd4c05014d2a9af4b2331c12a4e3c67f5b68b520bbb8fd34\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://966ef3bef7e467478d2c4d7fa8a69da9981d3f2941fd4d39828b4e073b480f3a\",\"dweb:/ipfs/QmNc65LVABKLuhQBbDnpBPkX4AeZw1ozboSPbX6MVCjJaX\"]},\"project:/contracts/NFTAccessControl.sol\":{\"keccak256\":\"0xe04a676e090494fca82ae5de4759e88bbc6ff85e0fa55b95fcc1230c4efedbbc\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://644d1220ed350aea0bed931a98329d61d46bacc2752640347be0c06917d467c1\",\"dweb:/ipfs/Qmbw3jEELzGKqQQn4Muu9LbzewvXQnS42AYbHdoo5L5oay\"]},\"project:/contracts/NFTMetadata.sol\":{\"keccak256\":\"0x88524f8c76b22be7cc2ddedd06f8261cdba7d9d44bd93d59208a564b5fd9423e\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://810a26c5b41d90bff9f05e6064350bec2ed4b50812d7e8829a77f1f9869c3811\",\"dweb:/ipfs/QmeX3Svyhi6vhPiioYeoxyBuUF7xwDHmYPTDrNg9DLKXiA\"]}},\"version\":1}",
@@ -17175,12 +17179,13 @@
         }
       },
       "links": {},
-      "address": "0x21e903421c572a71bcE21735c1eF4e8B012c602A",
-      "transactionHash": "0x32c5e07b0ff8235e470d80382a7138f02b12c68dc4fedd577b9e21a820b9c2d4"
+      "address": "0x01A822E80Bf2A701eb8e62225e97B58111c24D94",
+      "transactionHash": "0x012c9bcb9fefd31def5468ca6b35b9fa543ffcfcacae19d325159c2ed0f594ff"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-09T02:08:08.650Z",
+  "updatedAt": "2024-10-11T12:33:50.942Z",
+  "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
     "methods": {},
