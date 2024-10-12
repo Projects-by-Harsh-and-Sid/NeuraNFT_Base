@@ -103,7 +103,7 @@ function AllCollections({ activeTab, setActiveTab }) {
               <div className={styles.headerItem}># Collection</div>
               <div className={styles.headerItem}>Creator</div>
               <div className={styles.headerItem}>Model</div>
-              <div className={styles.headerItem}>No. of NFTs</div>
+              <div className={styles.headerItem}>Description</div>
               <div className={styles.headerItem}>Context Window</div>
             </div>
             {currentCollections.map((item, index) => (
@@ -128,7 +128,7 @@ function AllCollections({ activeTab, setActiveTab }) {
                   {formatAddress(item.creator)}
                 </div>
                 <div className={styles.rowItem}>{item.model}</div>
-                <div className={styles.rowItem}>{item.noOfNFTs}</div>
+                <div className={styles.rowItem}>{String(item.description).substring(0,30)}...</div>
                 <div className={styles.rowItem}>{item.contextWindow}</div>
               </div>
             ))}

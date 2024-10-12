@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from '../styles/chainselector.module.css';
 
 const ChainSelector = () => {
-    const [selectedChain, setSelectedChain] = useState('All Chains');
-    const chains = ['All Chains', 'Tron'];
+    const [selectedChain, setSelectedChain] = useState('Shasta');
+    const chains = ['All Chains', 'Tron','Shasta'];
     const handleChainSelect = (chain) => {
         setSelectedChain(chain);
       };
@@ -31,6 +31,17 @@ const ChainSelector = () => {
               className={styles.chainIcon}
             />
             {selectedChain === 'Tron' && <span className={styles.chainText}>Tron</span>}
+          </div>
+          <div 
+            className={`${styles.chainOption} ${selectedChain === 'Shasta' ? styles.selected : ''}`}
+            onClick={() => handleChainSelect('Shasta')}
+          >
+            <img 
+              src={selectedChain === 'Shasta' ? '/tron-trx-logo.svg' : '/tron-grey.svg'} 
+              alt="Tron"
+              className={styles.chainIcon}
+            />
+            {selectedChain === 'Shasta' && <span className={styles.chainText}>Shasta</span>}
           </div>
         </div>
       );
