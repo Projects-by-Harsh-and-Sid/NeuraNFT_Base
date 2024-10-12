@@ -57,7 +57,9 @@ def get_image(filename):
 
 
 
-# to complete
+############################################################################################################
+################################## Collection Functions ####################################################
+############################################################################################################
 
 @app.route('/get_all_collections', methods=['GET'])
 def get_all_collections():
@@ -79,18 +81,6 @@ def get_all_collections():
     # return jsonify(collections), 200
 
 
-@app.route('/get_all_nfts', methods=['GET'])
-def get_all_nfts():
-    collection_path = os.path.join(UPLOAD_FOLDER, "temp", "all_nft.json")
-    if not os.path.exists(collection_path):
-        return jsonify({'error': 'Collection not found'}), 404
-    
-    with open(collection_path, 'r') as f:
-        nfts = json.load(f)
-    
-    return jsonify(nfts), 200
-
-
 @app.route('/get_popular_collections', methods=['GET'])
 def get_popular_collections():
     
@@ -104,6 +94,7 @@ def get_popular_collections():
         collections = json.load(f)
         
     return jsonify( collections), 200
+
 
 @app.route('/get_collections_by_address', methods=['GET'])
 def get_collections_by_address():
@@ -122,6 +113,50 @@ def get_collections_by_address():
     my_collections = [collection for collection in all_collections['collections'] if collection['creator'] == address]
     # print("my_collections", my_collections)
     return jsonify({'myCollections': my_collections}), 200
+
+
+@app.route('/get_collection_by_id', methods=['GET'])
+def get_collection_by_id():
+    
+    collection_id = request.args.get('collection_id')
+    if not collection_id:
+        return jsonify({'error': 'Collection ID parameter is required'}), 400
+
+    # collections_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
+    
+    # if not os.path.exists(collections_path):
+    #     return jsonify({'error': 'Collections data not found'}), 404
+    
+    # with open(collections_path, 'r') as f:
+    #     all_collections = json.load(f)
+    # my_collection = [collection for collection in all_collections['collections'] if collection['id'] == int(collection_id)]
+    
+    
+    return blockchain_code.get_collection_details_by_id(int(collection_id))
+    
+        
+    # return jsonify({'myCollections': my_collection}), 200
+
+
+
+
+############################################################################################################
+######################################### NFT Functions ####################################################
+############################################################################################################
+
+@app.route('/get_all_nfts', methods=['GET'])
+def get_all_nfts():
+    collection_path = os.path.join(UPLOAD_FOLDER, "temp", "all_nft.json")
+    if not os.path.exists(collection_path):
+        return jsonify({'error': 'Collection not found'}), 404
+    
+    with open(collection_path, 'r') as f:
+        nfts = json.load(f)
+    
+    return jsonify(nfts), 200
+
+
+
 
 @app.route('/get_nfts_by_address', methods=['GET'])
 def get_nfts_by_address():
@@ -160,22 +195,7 @@ def get_nfts_by_collection():
     
     return jsonify({'myNFTs': collection_nfts}), 200
 
-@app.route('/get_collection_by_id', methods=['GET'])
-def get_collection_by_id():
-    collection_id = request.args.get('collection_id')
-    if not collection_id:
-        return jsonify({'error': 'Collection ID parameter is required'}), 400
 
-    collections_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
-    
-    if not os.path.exists(collections_path):
-        return jsonify({'error': 'Collections data not found'}), 404
-    
-    with open(collections_path, 'r') as f:
-        all_collections = json.load(f)
-    my_collection = [collection for collection in all_collections['collections'] if collection['id'] == int(collection_id)]
-    
-    return jsonify({'myCollections': my_collection}), 200
 
 @app.route('/get_particular_nft', methods=['GET'])
 def get_particular_nft():
