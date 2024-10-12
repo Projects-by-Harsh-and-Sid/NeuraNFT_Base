@@ -279,6 +279,17 @@ def nft_of_a_collection_with_access(collection_id, nft_id):
     nft_information["attributes"] = attributes
     
     return nft_information
+
+
+def all_nfts():
     
     
-        
+    total_collections = collection_contract.functions.getAllCollections()
+    
+    all_nfts = []
+    
+    for collection_id in range(1, len(total_collections)+1):
+        nfts = all_nft_of_a_collection(collection_id)
+        for nft in nfts:
+            nft_info = nft_of_a_collection_with_access(collection_id, nft["id"])
+            all_nfts.append(nft_info)
