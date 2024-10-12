@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import styles from './styles/FullNFTPage.module.css';
 import { fetchData } from '../Utils/datafetch';
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../WalletContext';
 import TopBar from '../Common_Components/TopBar';
 import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';

@@ -146,10 +146,6 @@ export const getCompoundedNFTData = async (collectionid,nftid) => {
 
 
 
-
-
-
-
 export const fetchMyData = (address) => {
   const myCollections = collectionsData.collections.filter(
     collection => collection.creator === address

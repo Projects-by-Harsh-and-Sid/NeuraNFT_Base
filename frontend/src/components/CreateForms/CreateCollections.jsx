@@ -4,7 +4,9 @@ import { Alert, Snackbar } from '@mui/material';
 import { Image } from 'lucide-react';
 // import { mintNFTData } from './metagraph_scripts/mint_functions';
 import styles from './styles/nft_collections.module.css';
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../WalletContext';
+import uploadImage from '../Utils/imageupload';
+import {createCollection} from '../Utils/signData';
 
 const CreateNFTCollection = () => {
   const navigate = useNavigate();
@@ -38,6 +40,8 @@ const CreateNFTCollection = () => {
     }
   };
 
+  
+
   const handleMintCollection = async () => {
     if (!collectionImage || !collectionName || !selectedModel) {
       alert('Please fill in all fields and upload the collection image');
@@ -49,6 +53,26 @@ const CreateNFTCollection = () => {
   
     try {
       const imageData = Array.from(new Uint8Array(await collectionImage.arrayBuffer()));
+
+      const image_url = await uploadImage(imageData);
+      console.log('Image URL:', image_url);
+
+        try {
+            const result = await createCollection(
+                collectionName,
+                1024,
+                selectedModel,
+                image_url,
+                collectionDescription
+            );
+            console.log('Collection created:', result);
+            // Handle successful creation (e.g., show success message to user)
+        } catch (error) {
+            console.error('Failed to create collection:', error);
+            // Handle error (e.g., show error message to user)
+        }
+      // console.log('Image Data:', imageData);
+
       // await mintNFTData({
       //   name: collectionName,
       //   description: collectionDescription,

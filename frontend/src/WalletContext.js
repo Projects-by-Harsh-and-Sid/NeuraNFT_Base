@@ -1,4 +1,4 @@
-// src/AppContext.js
+// src/WalletContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const AppContext = createContext();
@@ -11,7 +11,7 @@ export const AppProvider = ({ children }) => {
   const [address, setAddress] = useState(null);
   const [balance, setBalance] = useState(null);
 
-// src/AppContext.js
+// src/WalletContext.js
 const checkTronWebState = () => {
   if (window.tronWeb) {
     setTronWebState((prevState) => ({
@@ -27,7 +27,7 @@ const checkTronWebState = () => {
 };
 
 
-// src/AppContext.js
+// src/WalletContext.js
 useEffect(() => {
   checkTronWebState();
   const interval = setInterval(checkTronWebState, 5000);

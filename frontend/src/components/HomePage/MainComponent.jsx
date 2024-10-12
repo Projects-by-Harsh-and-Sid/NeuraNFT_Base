@@ -8,7 +8,7 @@ import styles from './styles/maincomponent.module.css';
 
 import { Image, Paperclip, Brain, X } from 'lucide-react';
 import TopBar from '../Common_Components/TopBar'; // New import
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../WalletContext';
 import ChainSelector from '../ChainSelector';
 import ActionGrid from './ActionGrid';
 import { useCommonLogic } from './CommonComponet'; // Adjust the path as needed

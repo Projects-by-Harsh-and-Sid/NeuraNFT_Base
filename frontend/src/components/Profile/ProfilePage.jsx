@@ -3,7 +3,7 @@ import styles from './styles/ProfilePage.module.css';
 import TopBar from '../Common_Components/TopBar';
 import DefaultImage from './DefaultImage.jpg';
 // import gradient from './gradient.jpg';
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../WalletContext';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../Utils/datafetch';
 

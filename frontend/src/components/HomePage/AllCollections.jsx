@@ -146,7 +146,7 @@ function AllCollections({ activeTab, setActiveTab }) {
               <div
                 key={item.id}
                 className={styles.tableRow}
-                onClick={() => handleNFTClick(item.collectionaddress, item.id)}
+                onClick={() => handleNFTClick(item.collectionId, item.id)}
               >
                 <div className={styles.rowItem}>
                   {/* <span className={styles.itemNumber}>{index + 1}</span> */}

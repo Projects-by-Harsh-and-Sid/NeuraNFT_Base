@@ -4,7 +4,7 @@ import { Dialog, DialogContent, CircularProgress } from '@mui/material';
 import DOMPurify from 'dompurify';
 import { marked } from 'marked';
 import { useNavigate } from 'react-router-dom';
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../WalletContext';
 import APIDialog from './ApiDialog';
 import TestAPIDialog from './Apitestdialog';
 import AddAccessDialog from './AddAccessDialog';
