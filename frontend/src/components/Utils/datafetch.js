@@ -101,7 +101,7 @@ export const getNFTsByAddress = async (address) => {
     const response = await axios.get(`${baseURL}/get_nfts_by_address`, {
       params: { address }
     });
-    return response.data.myNFTs;
+    return response.data;
   } catch (error) {
     console.error('Error fetching NFTs by address:', error);
     throw error;
@@ -111,8 +111,8 @@ export const getNFTsByAddress = async (address) => {
 export const getAllDataforAddress = async (address) => {
   try {
 
-    const nfts = await getNFTsByAddress(address);
-    const myCollections = await getCollectionsByAddress(address);
+    const nfts            = await getNFTsByAddress(address);
+    const myCollections   = await getCollectionsByAddress(address);
 
     // console.log('All data for address:', { myCollections, nfts });
 

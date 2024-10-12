@@ -91,6 +91,7 @@ def convert_pdf():
 
 @app.route('/generate_key', methods=['POST'])
 def generate_key():
+    
     data = request.get_json()
     
     if not data or 'AI_Data' not in data or 'baseModel' not in data:

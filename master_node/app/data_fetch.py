@@ -19,7 +19,7 @@ CHAT_URL = app.config['CHAT_URL']
 MASTER_API_KEY = app.config['MASTER_API_KEY']
 UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
 
-
+FILE_STORAGE_ENDPOINT = app.config['filestorage_endpoint']
 
 # UPLOAD_FOLDER = 'image'
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
@@ -67,7 +67,7 @@ def upload_image_url():
         filename = secure_filename(random_filename)
         # Save the file
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],"images" ,filename))
-        return f"http://localhost:5500/image/{filename}", 200
+        return f"{FILE_STORAGE_ENDPOINT}/image/{filename}", 200
     
     
 
@@ -189,21 +189,35 @@ def get_all_nfts():
 
 @app.route('/get_nfts_by_address', methods=['GET'])
 def get_nfts_by_address():
+    # address = request.args.get('address') 
+    # if not address:
+    #     return jsonify({'error': 'Address parameter is required'}), 400
+
+    # nfts_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_nft.json")
+    
+    # if not os.path.exists(nfts_path):
+    #     return jsonify({'error': 'NFTs data not found'}), 404
+    
+    # with open(nfts_path, 'r') as f:
+    #     all_nfts = json.load(f)
+    
+    # my_nfts = [nft for nft in all_nfts['nfts'] if nft['owner'] == address]
+    # # print("my_nfts", my_nfts)
+    # return jsonify({'myNFTs': my_nfts}), 200
     address = request.args.get('address') 
     if not address:
         return jsonify({'error': 'Address parameter is required'}), 400
 
-    nfts_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_nft.json")
-    
-    if not os.path.exists(nfts_path):
-        return jsonify({'error': 'NFTs data not found'}), 404
-    
-    with open(nfts_path, 'r') as f:
-        all_nfts = json.load(f)
-    
-    my_nfts = [nft for nft in all_nfts['nfts'] if nft['owner'] == address]
-    # print("my_nfts", my_nfts)
-    return jsonify({'myNFTs': my_nfts}), 200
+    return blockchain_code.all_nfts_own_or_have_access_by_user(address), 200
+
+
+# @app.route('/get_nfts_by_address2', methods=['GET'])
+# def get_nfts_by_address2():
+#     address = request.args.get('address') 
+#     if not address:
+#         return jsonify({'error': 'Address parameter is required'}), 400
+
+#     return blockchain_code.all_nfts_own_or_have_access_by_user(address), 200
 
 
 @app.route('/get_nfts_by_collection', methods=['GET'])

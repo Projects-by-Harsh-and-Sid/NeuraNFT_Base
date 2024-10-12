@@ -66,6 +66,18 @@ Welcome to the comprehensive guide for developing on the Tron blockchain. This s
 ### Tron Versions
 [Tron Box](https://github.com/tronprotocol/tronbox/releases)
 
+### Hex to Base58 Converter
+[Hex to Base58](https://www.btcschools.net/tron/tron_tool_base58check_hex.php)
+>tron address genrally are in base58 format but when migrating contract its stored in hex format 
+
+### Tron Scan
+ What we can do with tron scan
+ - check transaction
+ - check block
+ - check account
+ - check contract
+ We can also read and execute contract on tron scan directly using tron link
+  
 
 
 # Tron Blockchain Overview and Setup

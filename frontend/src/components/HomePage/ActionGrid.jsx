@@ -2,7 +2,7 @@ import allnfts from "./Images/allnfts.jpg";
 import mynfts from "./Images/mynfts.jpg";
 import night from "./Images/night.jpg";
 import create from "./Images/create.jpg"; // Adjust the path based on your project structure
-import gradient from "./Images/gradient.jpg"; // Adjust the path based on your project structure
+import planet_image from "./Images/planet.jpg"; // Adjust the path based on your project structure
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useRef } from "react";
@@ -32,7 +32,7 @@ const actions = [
     {
       id: 2,
       name: "All Collections",
-      image: gradient,
+      image: planet_image,
       description: "See all the collections created by everyone",
       action: () => {
         setActiveTab("allCollections");

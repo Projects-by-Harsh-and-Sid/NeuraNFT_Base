@@ -37,6 +37,8 @@ async function uploadImage(imageData, imageType) {
 }
 
 
+
+
 export default uploadImage;
 
 

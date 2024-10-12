@@ -10,13 +10,13 @@ import { fetchData } from '../Utils/datafetch';
 
 
 const ProfilePage = () => {
-  const [activeTab, setActiveTab] = useState('collections');
-  const [viewMode, setViewMode] = useState('grid');
+  const [activeTab, setActiveTab]       = useState('collections');
+  const [viewMode, setViewMode]         = useState('grid');
+  const navigate                        = useNavigate();
+  const [collections, setCollections]   = useState([]);
+  const [nfts, setNFTs]                 = useState([]);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
-  const navigate = useNavigate();
 
-  const [collections, setCollections] = useState([]);
-  const [nfts, setNFTs] = useState([]);
 
   console.log(address);
 
@@ -27,6 +27,7 @@ const ProfilePage = () => {
         const { myCollections, nfts } = await fetchData('myData', address);
         console.log(myCollections);
         console.log(nfts);
+        
         if (!nfts) {
           setNFTs([]);
         }
@@ -214,7 +215,7 @@ const ProfilePage = () => {
             {activeTab === 'nfts' && (
               <>
                 {nfts.map((nft) => (
-                  <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.collectionaddress,nft.id)}>
+                  <div key={nft.id} className={styles.gridItem} onClick={() => handleNFTClick(nft.collectionId,nft.id)}>
                     <img src={nft.image} alt={nft.name} className={styles.itemImage} />
                     <div className={styles.itemDetails}>
                       <h3>{nft.name}</h3>

@@ -233,15 +233,30 @@ def all_nfts_own_or_have_access_by_user(user_address):
     try:
         user_access_entries = nft_access_control_contract.functions.getAllAccessForUser(user_address)
         
-        nfts = []
-        for entry in user_access_entries:
-            collection_id, nft_id, access_level = entry
+        
+        def fetch_nft_info(nft_id, collection_id, access_level):
             nft_info = all_nft_information(nft_id, collection_id)
+            
             if nft_info:
                 nft_info['accessLevel'] = access_level
-                nfts.append(nft_info)
+                return nft_info
+            return None
+        
+        nfts = []
+        
+        max_workers = 20        
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
+            futures = [executor.submit(fetch_nft_info, nft_id, collection_id, access_level) for ( collection_id, nft_id, access_level) in user_access_entries]
+            for future in concurrent.futures.as_completed(futures):
+                nft_info = future.result()
+                if nft_info:
+                    nfts.append(nft_info)
+            
+        
+        nfts.sort(key=lambda x: x["collectionId"]*10**7+x['id'] )
         
         return nfts
+    
     except Exception as e:
         print(f"Error getting NFTs for user {user_address}: {e}")
         return None

@@ -1,4 +1,4 @@
-import constractaddress_data from './shasta_addresses.json' 
+import constract_address_data from './shasta_addresses.json' 
 
 
 // // Function to build the JSON file
@@ -14,12 +14,15 @@ import constractaddress_data from './shasta_addresses.json'
 // }
 
 // Function to sign JSON data
-async function signJsonData(jsonData) {
-    if (typeof window.tronWeb === 'undefined') {
+async function signJsonData(jsonData) 
+
+{
+    if (typeof window.tronWeb === 'undefined') 
+        {
         console.error("TronLink is not installed or not connected");
         alert('Please install or connect TronLink');
         return null;
-    }
+        }
 
     const messageToSign = JSON.stringify(jsonData);
 
@@ -93,7 +96,7 @@ async function createCollection(name, contextWindow, baseModel, image, descripti
 
     try {
         // Load the CollectionContract
-        const contractAddress = constractaddress_data.CollectionContract; // Replace with your actual contract address
+        const contractAddress = constract_address_data.CollectionContract; // Replace with your actual contract address
         const contract = await window.tronWeb.contract().at(contractAddress);
 
         // Prepare the transaction
@@ -117,6 +120,98 @@ async function createCollection(name, contextWindow, baseModel, image, descripti
     }
 }
 
+async function createNFT(collectionId, name, levelOfOwnership) {
+    if (typeof window.tronWeb === 'undefined') {
+        throw new Error('TronLink is not installed or not connected');
+    }
+
+    try {
+        const contractAddress = constract_address_data.NFTContract;
+        const contract = await window.tronWeb.contract().at(contractAddress);
+
+        const transaction = await contract.createNFT(
+            collectionId,
+            name,
+            levelOfOwnership
+        ).send({
+            feeLimit: 1000000000,
+            callValue: 0,
+            shouldPollResponse: true
+        });
+
+        console.log('NFT created successfully:', transaction);
+        return transaction;
+    } catch (error) {
+        console.error('Error creating NFT:', error);
+        throw error;
+    }
+}
+
+// Function to create metadata for an NFT
+async function createNFTMetadata(collectionId, nftId, metadata) {
+    if (typeof window.tronWeb === 'undefined') {
+        throw new Error('TronLink is not installed or not connected');
+    }
+
+    try {
+        const contractAddress = constract_address_data.NFTMetadata;
+        const contract = await window.tronWeb.contract().at(contractAddress);
+
+        const transaction = await contract.createMetadata(
+            collectionId,
+            nftId,
+            metadata
+        ).send({
+            feeLimit: 1000000000,
+            callValue: 0,
+            shouldPollResponse: true
+        });
+
+        console.log('Metadata created successfully:', transaction);
+        return transaction;
+    } catch (error) {
+        console.error('Error creating metadata:', error);
+        throw error;
+    }
+}
+
+
+function extractNFTIdFromTransaction(transaction) {
+    // Check if the transaction object has a 'receipt' property
+    if (transaction && transaction.receipt && transaction.receipt.result === 'SUCCESS') {
+        // Look for events in the transaction logs
+        const logs = transaction.log;
+        if (logs && logs.length > 0) {
+            for (const log of logs) {
+                // Assuming the event name is 'NFTCreated'
+                if (log.name === 'NFTCreated') {
+                    // The NFT ID should be one of the indexed parameters
+                    // Typically, it would be the second parameter (index 1)
+                    if (log.data && log.data.length > 1) {
+                        return parseInt(log.data[1], 16); // Convert hex to integer
+                    }
+                }
+            }
+        }
+        
+        // If we couldn't find the ID in the logs, try to get it from the return value
+        if (transaction.ret && transaction.ret.length > 0) {
+            const returnValue = transaction.ret[0];
+            if (returnValue && returnValue.contractRet === 'SUCCESS') {
+                // The NFT ID might be in the return value
+                // You may need to decode this based on your contract's specific implementation
+                return parseInt(returnValue.result, 16); // Convert hex to integer
+            }
+        }
+    }
+    
+    // If we couldn't find the NFT ID, return null or throw an error
+    console.error('Could not extract NFT ID from transaction');
+    return null;
+}
+
+
+
 // Export the functions so they can be imported in other files
 // export { buildTransactionJson, signJsonData, performTransaction, handleTransaction };
-export { signJsonData, createCollection };
+export { signJsonData, createCollection, createNFT, createNFTMetadata, extractNFTIdFromTransaction };
