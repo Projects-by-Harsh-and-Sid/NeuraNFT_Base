@@ -47,6 +47,26 @@ def upload_image():
         # Save the file
         file.save(os.path.join(app.config['UPLOAD_FOLDER'],"images" ,filename))
         return filename, 200
+    
+@app.route('/upload_image_url', methods=['POST'])
+def upload_image_url():
+    if 'image' not in request.files:
+        return 'No image file in the request', 400
+    
+    file = request.files['image']
+    if file.filename == '':
+        return 'No selected file', 400
+    
+    if file:
+        # Get the file extension
+        _, ext = os.path.splitext(file.filename)
+        # Generate a random filename
+        random_filename = f"{generate_random_string()}{ext}"
+        # Secure the filename
+        filename = secure_filename(random_filename)
+        # Save the file
+        file.save(os.path.join(app.config['UPLOAD_FOLDER'],"images" ,filename))
+        return f"http://localhost:5500/image/{filename}", 200
 
 @app.route('/image/<filename>')
 def get_image(filename):

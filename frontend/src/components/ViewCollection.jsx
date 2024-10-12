@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/ViewCollection.module.css';
 import TopBar from './Common_Components/TopBar';
-import { useAppContext } from '../AppContext';
+import { useAppContext } from '../WalletContext';
 import DefaultImage from './DefaultImage.jpg'; // Placeholder image
 
 const ViewCollection = () => {

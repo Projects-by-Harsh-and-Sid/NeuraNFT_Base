@@ -1,5 +1,5 @@
 import React, { useState, useEffect,useRef } from 'react';
-// import { useAppContext } from './AppContext';
+// import { useAppContext } from './WalletContext';
 import { useParams, useNavigate } from 'react-router-dom';
 import { marked } from 'marked'; // Import the marked library
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization

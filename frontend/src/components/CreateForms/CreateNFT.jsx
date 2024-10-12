@@ -2,13 +2,13 @@
 import React, { useState, useRef ,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Paperclip, Upload, X, Image , Brain } from 'lucide-react';
-// import { useAppContext } from './AppContext';
+// import { useAppContext } from './WalletContext';
 import styles from './styles/CreateNFT.module.css'; // Updated import
 import { Alert, Snackbar } from '@mui/material';
-import { useAppContext } from '../../AppContext';
+import { useAppContext } from '../../WalletContext';
 import { fetchData } from '../Utils/datafetch';
 import ProgressBar from './ProgressBar'; // Adjust the path based on your file structure
-import { signJsonData } from './signData'; // Adjust the path based on your file structure
+import { signJsonData } from '../Utils/signData'; // Adjust the path based on your file structure
 
 
 
@@ -309,7 +309,7 @@ const CreateNFT = () => {
         </div>
 
         <div className={styles.formGroup}>
-          <label className={styles.selectLabel}>Select Custom Model</label>
+          <label className={styles.selectLabel}>Select Collection</label>
           {/* <select 
             value={selectedModel} 
             onChange={handleModelChange}

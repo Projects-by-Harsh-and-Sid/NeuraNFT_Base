@@ -4,7 +4,7 @@ import MainComponent from './components/HomePage/MainComponent';
 // import CreateCollection from './components/CreateCollection';
 // import ViewCollection from './components/ViewCollection';
 import Profile from './components/Profile/ProfilePage';
-import { AppProvider } from './AppContext';
+import { AppProvider } from './WalletContext';
 import CreateNFTCollection from './components/CreateForms/CreateCollections';
 import ViewCollection from './components/ViewCollection';
 import ViewNFTs from './components/NFTs/ViewNFTs';
