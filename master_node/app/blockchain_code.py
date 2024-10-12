@@ -197,7 +197,8 @@ def all_nft_of_a_collection(collection_id):
             return all_nft_information(nft_id, collection_id)
         
         nfts = []
-        with concurrent.futures.ThreadPoolExecutor() as executor:
+        max_workers = 20
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             futures = [executor.submit(fetch_nft_info, nft_id, collection_id) for nft_id in nft_ids]
             for future in concurrent.futures.as_completed(futures):
                 nft_info = future.result()
@@ -244,3 +245,40 @@ def all_nfts_own_or_have_access_by_user(user_address):
     except Exception as e:
         print(f"Error getting NFTs for user {user_address}: {e}")
         return None
+
+
+
+############################################################################################################################
+################################################## Compound Functions ######################################################
+############################################################################################################################
+
+
+def nft_of_a_collection_with_access(collection_id, nft_id):
+    
+    nft_information = all_nft_information(nft_id, collection_id)
+    collection_info = get_collection_details_by_id(collection_id)
+    access_levels   = all_access_levels_of_a_collection_nft(collection_id, nft_id)
+    
+    nft_information['accessList'] = access_levels
+    nft_information["model"] = nft_information["baseModel"]
+    
+    nft_information["collection"] = collection_info["name"]
+    
+    attributes = [
+        
+        {"trait_type": "Collection", "value": collection_info["name"]},
+        {"trait_type": "Context Window", "value": collection_info["contextWindow"]},
+        {"trait_type": "Model", "value": nft_information["model"]},
+        {"trait_type": "Total Access", "value": len(access_levels)},
+    ]
+    
+    nft_information["tokenId"] = nft_information["id"]
+    nft_information["tokenStandard"] = "NRC-101"
+    nft_information["tokenStandardFullform"] = "Neura Request for Comments 101"
+    
+    nft_information["attributes"] = attributes
+    
+    return nft_information
+    
+    
+        
