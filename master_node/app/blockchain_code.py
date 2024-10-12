@@ -204,6 +204,8 @@ def all_nft_of_a_collection(collection_id):
                 if nft_info:
                     nfts.append(nft_info)
         
+        nfts.sort(key=lambda x: x['id'])
+        
         
         return nfts
     except Exception as e:
