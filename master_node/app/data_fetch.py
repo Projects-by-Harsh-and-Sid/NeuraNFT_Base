@@ -98,3 +98,94 @@ def get_popular_collections():
         collections = json.load(f)
         
     return jsonify( collections), 200
+
+@app.route('/get_collections_by_address', methods=['GET'])
+def get_collections_by_address():
+    address = request.args.get('address') 
+    if not address:
+        return jsonify({'error': 'Address parameter is required'}), 400
+
+    collections_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
+    
+    if not os.path.exists(collections_path):
+        return jsonify({'error': 'Collections data not found'}), 404
+    
+    with open(collections_path, 'r') as f:
+        all_collections = json.load(f)
+    
+    my_collections = [collection for collection in all_collections['collections'] if collection['creator'] == address]
+    # print("my_collections", my_collections)
+    return jsonify({'myCollections': my_collections}), 200
+
+@app.route('/get_nfts_by_address', methods=['GET'])
+def get_nfts_by_address():
+    address = request.args.get('address') 
+    if not address:
+        return jsonify({'error': 'Address parameter is required'}), 400
+
+    nfts_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_nft.json")
+    
+    if not os.path.exists(nfts_path):
+        return jsonify({'error': 'NFTs data not found'}), 404
+    
+    with open(nfts_path, 'r') as f:
+        all_nfts = json.load(f)
+    
+    my_nfts = [nft for nft in all_nfts['nfts'] if nft['owner'] == address]
+    # print("my_nfts", my_nfts)
+    return jsonify({'myNFTs': my_nfts}), 200
+
+
+@app.route('/get_nfts_by_collection', methods=['GET'])
+def get_nfts_by_collection():
+    collection_address = request.args.get('collection_address')
+    if not collection_address:
+        return jsonify({'error': 'Collection address parameter is required'}), 400
+
+    nfts_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_nft.json")
+    
+    if not os.path.exists(nfts_path):
+        return jsonify({'error': 'NFTs data not found'}), 404
+    
+    with open(nfts_path, 'r') as f:
+        all_nfts = json.load(f)
+    
+    collection_nfts = [nft for nft in all_nfts['nfts'] if nft['collectionaddress'] == collection_address]
+    
+    return jsonify({'myNFTs': collection_nfts}), 200
+
+@app.route('/get_collection_by_id', methods=['GET'])
+def get_collection_by_id():
+    collection_id = request.args.get('collection_id')
+    if not collection_id:
+        return jsonify({'error': 'Collection ID parameter is required'}), 400
+
+    collections_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
+    
+    if not os.path.exists(collections_path):
+        return jsonify({'error': 'Collections data not found'}), 404
+    
+    with open(collections_path, 'r') as f:
+        all_collections = json.load(f)
+    my_collection = [collection for collection in all_collections['collections'] if collection['id'] == int(collection_id)]
+    
+    return jsonify({'myCollections': my_collection}), 200
+
+@app.route('/get_particular_nft', methods=['GET'])
+def get_particular_nft():
+    nft_id = request.args.get('nft_id')
+    collection_address = request.args.get('collection_address')
+    if not nft_id or not collection_address:
+        return jsonify({'error': 'Both NFT ID and Collection address parameters are required'}), 400
+
+    nfts_path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_nft.json")
+    
+    if not os.path.exists(nfts_path):
+        return jsonify({'error': 'NFTs data not found'}), 404
+    
+    with open(nfts_path, 'r') as f:
+        all_nfts = json.load(f)
+    
+    particular_nft = [nft for nft in all_nfts['nfts'] if nft['id'] == int(nft_id) and nft['collectionaddress'] == collection_address]
+    
+    return jsonify({'myNFTs': particular_nft}), 200

@@ -12,13 +12,17 @@
     min-height: 100vh;
     background-color: #000;
     color: #fff;
-    /* padding: 1rem; */
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     border-radius: 5px;
     z-index: 1;
+    padding: 3rem 0;
+    overflow-y: hidden;
+    padding-bottom: 0px;
+    /* padding-top: 30px; */
   }
   
   /* .createNftContainer::before {
@@ -61,6 +65,7 @@
     border-radius: 1rem;
     position: relative;
     /* z-index: 1; */
+    margin-top: 20px;
   }
   
   .createNftForm::before {
@@ -326,3 +331,5 @@
       left: -20px;
     }
   }
+
+

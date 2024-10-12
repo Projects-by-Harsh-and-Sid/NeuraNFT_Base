@@ -7,6 +7,9 @@ import styles from './styles/CreateNFT.module.css'; // Updated import
 import { Alert, Snackbar } from '@mui/material';
 import { useAppContext } from '../../AppContext';
 import { fetchData } from '../Utils/datafetch';
+import ProgressBar from './ProgressBar'; // Adjust the path based on your file structure
+import { signJsonData } from './signData'; // Adjust the path based on your file structure
+
 
 
 
@@ -19,9 +22,11 @@ const CreateNFT = () => {
   const [nftImage, setNftImage] = useState(null);
   const [pdfFiles, setPdfFiles] = useState([]);
   // const { actor, authClient } = useAppContext();
+  const totalSteps = 3; // Total number of steps (index starts from 0)
   const fileInputRef = useRef(null);
   const imageInputRef = useRef(null);
   const [nftCreated, setNftCreated] = useState(false);
+  const [currentStep, setCurrentStep] = useState(0);
   const [collectionsid, setCollectionsId] = useState({});
   console.log('Inside CreateNFT.jsx');
   const [isUploading, setIsUploading] = useState(false);
@@ -53,6 +58,11 @@ const CreateNFT = () => {
 
     fetchCollectionData();
   }, []);
+
+  const incrementStep = () => {
+    setCurrentStep((prevStep) => (prevStep < totalSteps ? prevStep + 1 : prevStep));
+  };
+  
     
 
 
@@ -140,6 +150,24 @@ const CreateNFT = () => {
 
     try {
       setIsUploading(true);
+      const jsonData = {
+        name: name,
+        description: description,
+        selectedModel: selectedModel,
+        nftImageName: nftImage.name,
+        pdfFileNames: pdfFiles.map(file => file.name),
+        // Optionally include more data
+      };
+  
+      // Sign the jsonData using TronLink
+      const signatureResult = await signJsonData(jsonData);
+  
+      if (!signatureResult) {
+        alert('Error signing data');
+        setIsUploading(false);
+        return;
+      }
+  
 
     //   const textResults = await Promise.all(pdfFiles.map(file => convertPdfToText(file)));
 
@@ -230,6 +258,7 @@ const CreateNFT = () => {
         Back to Main
       </button>
 
+    <ProgressBar currentStep={currentStep} />
      <div className={`${styles.createNftForm} ${isUploading ? styles.uploading : ''}`}>
         <div className={styles.formGroup}>
           <label>NFT Image</label>
@@ -342,6 +371,9 @@ const CreateNFT = () => {
             >
               <Brain size={20} /> {isUploading ? 'Tokenizing...' : 'Tokenize Knowledge'}
             </button>
+            <button onClick={incrementStep} className={styles.nextButton}>
+          Next Step
+        </button>
           </div>
         </div>
       </div>

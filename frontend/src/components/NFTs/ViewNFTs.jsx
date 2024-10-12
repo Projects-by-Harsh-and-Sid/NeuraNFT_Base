@@ -6,6 +6,7 @@ import DefaultImage from './DefaultImage.jpg'; // Placeholder image
 import { useAppContext } from '../../AppContext';
 import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
 import { fetchData } from '../Utils/datafetch';
+import Loading from './Loading';
 
 const ViewCollectionNFTs = () => {
   const { collectionId } = useParams();
@@ -27,6 +28,7 @@ const ViewCollectionNFTs = () => {
     //   setIsLoading(true);
     const collectionIdInt = parseInt(collectionId, 10);
       const collectionData = await fetchData('collection_from_id', collectionIdInt);
+      console.log("Collectiondata",collectionData);
       if (collectionData && collectionData.myCollections && collectionData.myCollections.length > 0) {
         const fetchedCollection = collectionData.myCollections[0];
         setCollection(fetchedCollection);
@@ -43,6 +45,7 @@ const ViewCollectionNFTs = () => {
   const fetchCollectionNFTs = async (collectionAddress) => {
     try {
       const collectionNFTs =await  fetchData('collection_nft', collectionAddress);
+      console.log("NFT DATA",collectionNFTs);
       if (collectionNFTs && collectionNFTs.myNFTs) {
         setNfts(collectionNFTs.myNFTs);
       } else {
@@ -70,7 +73,7 @@ const ViewCollectionNFTs = () => {
 
 
   if (!collection) {
-    return <div>Loading...</div>;
+    return <Loading />;
   }
   const handleCreateNFTs = () => {
     navigate('/create_nft');

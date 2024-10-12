@@ -119,6 +119,7 @@ const openChat = () => {
   useEffect(() => {
     const fetchNFTData = async () => {
       const nftData = await fetchData('particular_nft', parseInt(nftId), collectionId);
+      console.log("particulardata",nftData)
       if (nftData && nftData.myNFTs && nftData.myNFTs.length > 0) {
         setNft(nftData.myNFTs[0]);
       }
@@ -256,7 +257,9 @@ const openChat = () => {
                 <div className={styles.accessList}>
                   <div className={styles.accessListHeader}>
                     <div className={styles.accessListHeaderItem}>Address</div>
-                    <div className={styles.accessListHeaderItem}>Access Level</div>
+                    <div className={styles.accessListHeaderItem2}>
+                      <div className={styles.accessListHeaderItem}>Access Level</div>
+                    </div>
                   </div>
                   {nft.accessList.map((accessItem, index) => (
                     <div key={index} className={styles.accessListItem}>

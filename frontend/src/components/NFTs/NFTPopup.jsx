@@ -250,7 +250,9 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                   <div className={styles.accessList}>
                     <div className={styles.accessListHeader}>
                       <div className={styles.accessListHeaderItem}>Address</div>
-                      <div className={styles.accessListHeaderItem}>Access Level</div>
+                      <div className={styles.accessListHeaderItem2}>
+                        <div className={styles.accessListHeaderItem}>Access Level</div>
+                      </div>
                     </div>
                     {nft.accessList.map((accessItem, index) => (
                       <div key={index} className={styles.accessListItem}>
