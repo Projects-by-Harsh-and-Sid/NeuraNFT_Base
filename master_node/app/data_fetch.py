@@ -3,6 +3,8 @@ from app import app
 
 from flask import request, jsonify, send_from_directory
 
+from app import blockchain_code
+
 from werkzeug.utils import secure_filename
 
 
@@ -62,15 +64,19 @@ def get_all_collections():
     
     # curl -X GET http://localhost:5500/get_all_collections
     
-    path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
+    # path = os.path.join(app.config['UPLOAD_FOLDER'], "temp", "all_collections.json")
     
-    if not os.path.exists(path):
-        return jsonify({'error': 'No collections found'}), 404
+    # if not os.path.exists(path):
+    #     return jsonify({'error': 'No collections found'}), 404
     
-    with open(path, 'r') as f:
-        collections = json.load(f)
-        
-    return jsonify(collections), 200
+    # with open(path, 'r') as f:
+    #     collections = json.load(f)
+    
+    
+    return blockchain_code.getAllCollections()
+    
+    
+    # return jsonify(collections), 200
 
 
 @app.route('/get_all_nfts', methods=['GET'])
