@@ -8,6 +8,7 @@ app = Flask(__name__)
 CORS(app)
 
 UPLOAD_FOLDER = 'uploads'
+CONTRACT_FOLDER = 'contract_data_folder'
 ALLOWED_EXTENSIONS = {'txt', 'pdf', 'doc', 'docx'}
 
 SECRET_KEY = os.environ.get('JWT_SECRET_KEY', 'chatwithme')
@@ -25,7 +26,7 @@ app.config['ALLOWED_EXTENSIONS'] = ALLOWED_EXTENSIONS
 app.config['API_KEYS'] = {}
 app.config['CHAT_SESSIONS'] = {}
 app.config['TEMP_FILE_PATH'] = temp_file_path
-
+app.config['CONTRACT_FOLDER'] = os.path.join(os.path.dirname(__file__), CONTRACT_FOLDER)
 
 app.config["Load_balancer_Endpoints"] = {
     "hpcEndpoint": "http://localhost",

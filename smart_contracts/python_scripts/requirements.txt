@@ -1,0 +1,8 @@
+tronpy
+numpy
+pandas
+flask
+jupyter
+notebook
+matplotlib
+seaborn
