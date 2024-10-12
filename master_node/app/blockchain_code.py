@@ -275,7 +275,7 @@ def nft_of_a_collection_with_access(collection_id, nft_id):
     nft_information["tokenId"] = nft_information["id"]
     nft_information["tokenStandard"] = "NRC-101"
     nft_information["tokenStandardFullform"] = "Neura Request for Comments 101"
-    
+    nft_information["chain"] = "Tron"
     nft_information["attributes"] = attributes
     
     return nft_information
