@@ -42,12 +42,12 @@ const ViewCollectionNFTs = () => {
     } 
   };
 
-  const fetchCollectionNFTs = async (collectionAddress) => {
+  const fetchCollectionNFTs = async (id) => {
     try {
-      const collectionNFTs =await  fetchData('collection_nft', collectionAddress);
+      const collectionNFTs =await  fetchData('collection_nft', id);
       console.log("NFT DATA",collectionNFTs);
-      if (collectionNFTs && collectionNFTs.myNFTs) {
-        setNfts(collectionNFTs.myNFTs);
+      if (collectionNFTs) {
+        setNfts(collectionNFTs);
       } else {
         setNfts([]);
       }
@@ -72,7 +72,7 @@ const ViewCollectionNFTs = () => {
   };
 
 
-  if (!collection) {
+  if (!collection ) {
     return <Loading />;
   }
   const handleCreateNFTs = () => {
