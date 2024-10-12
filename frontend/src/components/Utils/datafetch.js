@@ -71,10 +71,10 @@ export const getParticularNFT = async (nftId, collectionAddress) => {
   }
 };
 
-export const getNFTsByCollection = async (collectionAddress) => { // done
+export const getNFTsByCollection = async (id) => { // done
   try {
     const response = await axios.get(`${baseURL}/get_nfts_by_collection`, {
-      params: { collection_address: collectionAddress }
+      params: { collection_id: id }
     });
     return response.data;
   } catch (error) {
