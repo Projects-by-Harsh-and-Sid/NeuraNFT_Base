@@ -10,7 +10,7 @@ import TestAPIDialog from './Apitestdialog';
 import AddAccessDialog from './AddAccessDialog';
 import UpdateAccessDialog from './UpdateAccessDialog';
 
-const NFTDetailPopup = ({ nft, onClose }) => {
+const NFTDetailPopup = ({nftid,collectionid, onClose }) => {
     const [activeTab, setActiveTab] = useState('overview');
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
     const [isAccessDetailExpanded, setIsAccessDetailExpanded] = useState(true);
@@ -259,9 +259,9 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                         <div className={styles.address}>{formatAddress(accessItem.address)}</div>
                         <div
                           className={styles.accessLevel}
-                          title={accessLevelDescriptions[accessItem.accessLevel]}
+                          title={accessLevelDescriptions[accessItem.user]}
                         >
-                          {accessItem.accessLevel}
+                          {accessItem.user}
                         </div>
                       </div>
                     ))}
