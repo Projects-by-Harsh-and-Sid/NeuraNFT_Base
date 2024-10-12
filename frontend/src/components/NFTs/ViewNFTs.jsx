@@ -15,8 +15,8 @@ const ViewCollectionNFTs = () => {
   const [collectionAddress, setCollectionAddress] = useState(null);
   const [nfts, setNfts] = useState([]);
   const [selectedNFT, setSelectedNFT] = useState(null);
-  const [selectNFTidForPopup, setselectNFTidForPopup] = useState(null);
-  const [selectCollectionidForPopup, setselectCollectionidForPopup] = useState(null);
+  // const [selectNFTidForPopup, setselectNFTidForPopup] = useState(null);
+  // const [selectCollectionidForPopup, setselectCollectionidForPopup] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [error, setError] = useState(null);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
@@ -60,9 +60,11 @@ const ViewCollectionNFTs = () => {
   };
 
   
-  const handleNFTClick = (nftid) => {
-    setselectNFTidForPopup(nftid);
+  const handleNFTClick = async (nftid) => {
+    // setselectNFTidForPopup(nftid);
     // setselectCollectionidForPopup(collectionid);
+    const fetchedNFT = await fetchData('compounded_nft',collectionId, nftid);
+    setSelectedNFT(fetchedNFT);
     setIsPopupOpen(true);
   };
 
@@ -159,8 +161,9 @@ const ViewCollectionNFTs = () => {
       </div>
       {isPopupOpen && (
         <NFTDetailPopup
-          nftid={selectNFTidForPopup}
-          collectionid={collectionId}
+          // nftid={selectNFTidForPopup}
+          // collectionid={collectionId}
+          nft={selectedNFT}
           onClose={() => setIsPopupOpen(false)}
         />
       )}
