@@ -81,9 +81,10 @@ const ViewCollectionNFTs = () => {
   const handleConnectWallet = async () => {
     if (!tronWebState.loggedIn) {
       await connectWallet();
-    } else {
-      disconnectWallet();
-    }
+    } 
+    // else {
+    //   disconnectWallet();
+    // }
   };
 
 

@@ -35,9 +35,10 @@ const ViewCollection = () => {
   const handleConnectWallet = async () => {
     if (!tronWebState.loggedIn) {
       await connectWallet();
-    } else {
-      disconnectWallet();
-    }
+    } 
+    // else {
+    //   disconnectWallet();
+    // }
   };
 
   // can make a function for selective rendering of collections based on user. if user clicks all collection then all collections will be shown

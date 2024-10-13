@@ -234,29 +234,153 @@ async function createNFTMetadata(collectionId, nftId, metadata) {
 }
 
 
-async function extractNFTIdFromTransaction(transaction) {
+// async function extractNFTIdFromTransaction(transaction) {
 
 
-    // Check if the transaction object has a 'receipt' property
-    const events = await window.tronWeb.getEventByTransactionID(transaction);
-    console.log('Events:', events);
+//     // Check if the transaction object has a 'receipt' property
+//     const events = await window.tronWeb.getEventByTransactionID(transaction);
+//     console.log('Events:', events);
 
-    let nftId;
-    events.forEach(event => {
-        if (event.name === "NFTCreated") {
-            nftId = event.result.tokenId;
-        }
-    });
+//     let nftId;
+//     events.forEach(event => {
+//         if (event.name === "NFTCreated") {
+//             nftId = event.result.tokenId;
+//         }
+//     });
 
-    console.log('Minted NFT ID:', nftId);
+//     console.log('Minted NFT ID:', nftId);
 
-    return nftId;
+//     return nftId;
 
     
+// }
+
+
+// async function waitForNFTCreatedEvent(transactionId) {
+//     return new Promise((resolve, reject) => {
+//         const contractAddress = constract_address_data.NFTContract;
+
+//         // Set up event listener
+//         const eventWatcher = window.tronWeb.eventServer.contract(contractAddress);
+
+//         const listener = eventWatcher.NFTCreated().watch((err, event) => {
+//             if (err) {
+//                 console.error('Error watching event:', err);
+//                 reject(err);
+//             } else {
+//                 console.log('Event detected:', event);
+
+//                 // Check if the event is from our transaction
+//                 if (event.transaction === transactionId) {
+//                     // Extract nftId from event result
+//                     // const nftId = event.result.tokenId || event.result._tokenId || event.result['0'];
+//                     const nftId = event.result.tokenId ;
+
+//                     console.log('Minted NFT ID:', nftId);
+
+//                     // Stop watching the event
+//                     listener.stop();
+
+//                     resolve(nftId);
+//                 }
+//             }
+//         });
+
+//         // Optional: Set a timeout to reject the promise if the event is not detected within a certain time
+//         setTimeout(() => {
+//             listener.stop();
+//             reject(new Error('Timeout waiting for NFTCreated event'));
+//         }, 60000); // 60 seconds timeout
+//     });
+// }
+
+
+async function extractNFTIdFromTransaction(transactionId) {
+    const maxAttempts = 20; // Maximum number of attempts
+    const delay = 5000;     // Delay between attempts in milliseconds (3 seconds)
+
+    for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+        try {
+            // Retrieve events associated with the transaction ID
+            const events = await window.tronWeb.getEventByTransactionID(transactionId);
+            console.log(`Attempt ${attempt}: Retrieved events:`, events);
+
+            if (events && events.length > 0) {
+                for (const event of events) {
+                    if (event.name === 'NFTCreated') {
+                        console.log('Event detected:', event);
+
+                        // Extract nftId from event result
+                        // const nftId = event.result.tokenId || event.result._tokenId || event.result['0'];
+                        const nftId = event.result.tokenId;
+                        
+                        console.log('Minted NFT ID:', nftId);
+
+                        if (nftId) {
+                            return nftId;
+                        } else {
+                            console.error('NFT ID not found in event result:', event.result);
+                            throw new Error('NFT ID not found in event result');
+                        }
+                    }
+                }
+                console.log('NFTCreated event not found in events.');
+            } else {
+                console.log('No events found for this transaction yet.');
+            }
+        } catch (error) {
+            console.error(`Error on attempt ${attempt}:`, error);
+            // Depending on the error, you may want to break the loop or continue
+            // For now, we'll continue to retry
+        }
+
+        // Wait before the next attempt
+        await new Promise(resolve => setTimeout(resolve, delay));
+    }
+
+    throw new Error('Failed to retrieve NFT ID after multiple attempts');
 }
 
 
 
+async function UpdateAcceess(collection_id, nft_id,user, access_level) {
+    // Check if TronLink is installed and connected
+    if (typeof window.tronWeb === 'undefined') {
+        throw new Error('TronLink is not installed or not connected');
+    }
+
+
+    // check if user id is valid tron address
+    if (!window.tronWeb.isAddress(user)) {
+        throw new Error('Invalid user address');
+    }
+
+    try {
+        // Load the CollectionContract
+        const contractAccess    = constract_address_data.NFTAccessControl; // Replace with your actual contract address
+        const contract          = await window.tronWeb.contract().at(contractAccess);
+
+        // Prepare the transaction
+        const transaction = await contract.grantAccess(
+            collection_id,
+            nft_id,
+            user,
+            access_level
+        ).send({
+            feeLimit: 1000000000,
+            callValue: 0,
+            shouldPollResponse: false
+        });
+
+        console.log('Collection created successfully:', transaction);
+        return transaction;
+    } catch (error) {
+        console.error('Error creating collection:', error);
+        throw error;
+    }
+}
+
+
 // Export the functions so they can be imported in other files
 // export { buildTransactionJson, signJsonData, performTransaction, handleTransaction };
-export { signJsonData, createCollection, createNFT, createNFTMetadata, extractNFTIdFromTransaction };
+export { signJsonData, createCollection, createNFT, createNFTMetadata, extractNFTIdFromTransaction, UpdateAcceess };

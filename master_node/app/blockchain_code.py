@@ -143,7 +143,11 @@ def get_collection_details_by_id(collection_id):
 def all_nft_information(nft_id, collection_id):
     try:
         nft_info = nft_contract.functions.getNFTInfo(collection_id, nft_id)
-        metadata = nft_metadata_contract.functions.getMetadata(collection_id, nft_id)
+        
+        try :
+            metadata = nft_metadata_contract.functions.getMetadata(collection_id, nft_id)
+        except Exception as e:
+            metadata = ["http://localhost:5500/image/default.jpg", "None", "None", "", "", "Metadata not available"]
         
         # return {
         #     "id": nft_id,
@@ -184,8 +188,8 @@ def all_nft_information(nft_id, collection_id):
 
 def all_nft_of_a_collection(collection_id):
     try:
-        nft_count = nft_contract.functions.getCollectionNFTCount(collection_id)
-        nft_ids = nft_contract.functions.getCollectionNFTs(collection_id)
+        nft_count   = nft_contract.functions.getCollectionNFTCount(collection_id)
+        nft_ids     = nft_contract.functions.getCollectionNFTs(collection_id)
         
         # nfts = []
         # for nft_id in nft_ids:

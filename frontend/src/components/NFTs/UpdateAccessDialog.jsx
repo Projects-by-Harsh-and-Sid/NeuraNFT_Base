@@ -61,7 +61,7 @@ const UpdateAccessDialog = ({ isOpen, onClose, onUpdateAccess, accessList }) => 
                 <span className={styles.placeholder}>Select Address</span>
               </MenuItem>
               {accessList.map((item, index) => (
-                <MenuItem key={index} value={item.address}>{item.address}</MenuItem>
+                <MenuItem key={index} value={item.user}>{item.user}</MenuItem>
               ))}
             </Select>
             <Select

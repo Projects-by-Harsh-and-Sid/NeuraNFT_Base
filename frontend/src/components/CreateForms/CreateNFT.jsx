@@ -242,11 +242,6 @@ function CreateNFT ()
       console.log('New NFT ID:', newNFTId);
 
 
-      if (!newNFTId) {
-        alert('Error minting NFT');
-        setIsUploading(false);
-        return;
-      }
 
       incrementStep();
 
@@ -287,11 +282,19 @@ function CreateNFT ()
       // ---------------------------------------------------Finalizing-------------------------------------------------------------------------------------------------------------------
       // --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-      await new Promise(resolve => setTimeout(resolve, 5000));
-
+      await new Promise(resolve => setTimeout(resolve, 3000));
 
 
       setIsUploading(false);
+
+      setNftCreated(true);
+      
+      await new Promise(resolve => setTimeout(resolve, 2000));
+
+      navigate(`/collection/${collectionID}`);
+
+
+
 
 
 

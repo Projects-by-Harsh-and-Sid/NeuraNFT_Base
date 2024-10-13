@@ -10,6 +10,10 @@ import TestAPIDialog from './Apitestdialog';
 import AddAccessDialog from './AddAccessDialog';
 import UpdateAccessDialog from './UpdateAccessDialog';
 
+
+import {UpdateAcceess} from '../Utils/signData';
+
+
 const NFTDetailPopup = ({ nft, onClose }) => {
     const [activeTab, setActiveTab] = useState('overview');
     const [isDetailsExpanded, setIsDetailsExpanded] = useState(false);
@@ -82,13 +86,20 @@ const NFTDetailPopup = ({ nft, onClose }) => {
         }, 1500);
     };
 
-    const handleAddAccess = (address, accessLevel) => {
+    async function handleAddAccess (address, accessLevel) 
+    {
       // Implement the logic to add access
-      console.log(`Adding access for ${address} with level ${accessLevel}`);
-  };
+      // get nftis and collection id and address and accesslevel
 
-  const handleUpdateAccess = (address, newAccessLevel) => {
+      await UpdateAcceess(nft.collectionId, nft.id, address, parseInt(accessLevel));
+
+      console.log(`Adding access for ${address} with level ${accessLevel}`);
+    };
+
+    async function handleUpdateAccess (address, newAccessLevel) {
       // Implement the logic to update access
+      // get nftis and collection id and address and accesslevel
+      await UpdateAcceess(nft.collectionId, nft.id, address, parseInt(newAccessLevel));
       console.log(`Updating access for ${address} to level ${newAccessLevel}`);
   };
 
@@ -325,6 +336,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                 isOpen={isAddAccessDialogOpen}
                 onClose={() => setIsAddAccessDialogOpen(false)}
                 onAddAccess={handleAddAccess}
+
             />
 
             <UpdateAccessDialog
@@ -332,6 +344,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                 onClose={() => setIsUpdateAccessDialogOpen(false)}
                 onUpdateAccess={handleUpdateAccess}
                 accessList={nft.accessList}
+
             />
       </div>
 

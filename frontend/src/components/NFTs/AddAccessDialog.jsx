@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Dialog, DialogContent, TextField, Select, MenuItem, Button, CircularProgress } from '@mui/material';
 import styles from './styles/AddAccessDialog.module.css';
 
-const AddAccessDialog = ({ isOpen, onClose, onAddAccess }) => {
+const AddAccessDialog = ({ isOpen, onClose, onAddAccess}) => {
   const [address, setAddress] = useState('');
   const [accessLevel, setAccessLevel] = useState('');
   const [isLoading, setIsLoading] = useState(true);
