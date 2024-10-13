@@ -2,7 +2,7 @@ import React from 'react';
 import styles from './styles/ProgressBar.module.css'; // We'll create a separate CSS module for the progress bar
 
 const ProgressBar = ({ currentStep }) => {
-    const steps = ['NFT Details', 'Create NFT', 'Tokanize Data', 'Complete'];
+    const steps = ['NFT Details', 'Create NFT', 'Tokenize Data', 'Complete'];
   
     return (
       <div className={styles.progress}>

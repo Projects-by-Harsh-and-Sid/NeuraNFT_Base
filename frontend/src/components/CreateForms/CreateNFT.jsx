@@ -470,9 +470,9 @@ function CreateNFT ()
             >
               <Brain size={20} /> {isUploading ? 'Tokenizing...' : 'Tokenize Knowledge'}
             </button>
-            <button onClick={incrementStep} className={styles.nextButton}>
+            {/* <button onClick={incrementStep} className={styles.nextButton}>
           Next Step
-        </button>
+        </button> */}
           </div>
         </div>
       </div>

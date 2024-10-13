@@ -58,10 +58,13 @@ const ProfilePage = () => {
           setCollections(myCollections);
         }
 
-        setShowCollectionModal(true);
-        setShowNFTModal(true);
 
+        // console.log(myCollections);
+        // console.log(nfts);
       }
+
+      setShowCollectionModal(true);
+      setShowNFTModal(true);
     };
     loadData();
   }, [address]);

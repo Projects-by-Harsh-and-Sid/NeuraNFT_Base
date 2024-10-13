@@ -379,9 +379,9 @@
     font-size: 14px;
   }
   
-  .actionButton2:hover {
+  /* .actionButton2:hover {
     background-color: #ff1493;
-  }
+  } */
   .expandedIcon, .collapsedIcon {
     color: #a0a0a0;
     /* margin-top: 10px; */
