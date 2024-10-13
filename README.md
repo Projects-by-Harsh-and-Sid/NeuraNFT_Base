@@ -1,37 +1,103 @@
-# NeuraNFT_Tron
+# NeuraNFT
 
+NeuraNFT is a pioneering platform built on the Tron blockchain that aims to tokenize intelligence. It enables the creation of NFTs representing AI models and data, with a sophisticated permission management system for granular control over access and usage rights. By addressing key challenges in the current AI ecosystem, NeuraNFT seeks to create a more equitable, secure, and innovative environment for AI development and deployment.
 
-for windows use wsl
+## Table of Contents
 
+- [Key Features](#key-features)
+- [Problem Statement](#problem-statement)
+- [Architecture](#architecture)
+- [Technologies Used](#technologies-used)
+- [Smart Contracts](#smart-contracts)
+- [Future Developments](#future-developments)
 
+## Key Features
 
-### Basic Setup
+1. **NFT Creation for AI Models and Data**: Tokenize AI models and datasets as unique digital assets.
+2. **Granular Permission Management**: Fine-tuned access control for different levels of data and model usage.
+3. **Secure, Encrypted Data Storage**: Utilizes BTFS (BitTorrent File System) for decentralized and secure storage.
+4. **Controlled Access to Models and Data**: Smart contract-based access control ensures only authorized users can interact with the assets.
+5. **Secure Model Deployment and Inference**: Enables secure deployment and use of AI models without compromising intellectual property.
+6. **AI Marketplace**: A decentralized marketplace for buying, selling, and leasing AI models and datasets.
 
-```
-conda create -n tron_neuranft python=3.12
+## Problem Statement
 
-conda activate tron_neuranft
+NeuraNFT addresses several key challenges in the current AI ecosystem:
 
-```
+- Lack of control and fair compensation for data owners
+- Difficulties for independent creators in monetizing their innovations
+- Limited data control and high costs for end users
+- Corporate hesitation to use centrally deployed models due to data privacy concerns
+- IP infringement risks for model owners when hosting on client servers
+- Limited true ownership and transferability of AI assets
+- Inefficient resource management for personalized AI
 
-### Update node
+## Architecture
 
-```
-conda update -n base -c defaults conda
-```
+NeuraNFT's architecture is designed with security, scalability, and user control at its forefront. It consists of several key components:
 
-### Install node
-```
-conda install conda-forge::nodejs
+### Smart Contracts
+- **MasterAccessControl**: Manages overall access rights across the platform.
+- **NFTAccessControl**: Handles granular permissions for individual NFTs.
+- **NFTMetadata**: Stores and manages metadata for NFTs.
+- **NFTContract**: Implements core NFT functionality (minting, transferring, etc.).
+- **CollectionContract**: Manages collections of NFTs.
 
-conda install -c "conda-forge/label/main/linux-64" nodejs==22.9.0=hf235a45_0
-```
-# Get path and version of node
-```
-node -v
+### BTFS (BitTorrent File System)
+Used for secure, decentralized storage of encrypted data and RAG (Retrieval-Augmented Generation) models.
 
-npm config get prefix
-```
+### Balancer Nodes
+Responsible for verifying access requests, ensuring only authorized parties can interact with the models and data.
+
+### Frontend
+- Provides user interface for interacting with the platform.
+- Handles message signing for verification purposes.
+
+### Backend
+- Manages signature verification.
+- Performs permission checks.
+- Handles data decryption and model deployment.
+
+### Operational Flow
+1. User creates an NFT representing their AI model or dataset.
+2. Owner grants varying levels of permissions to other users.
+3. Data is encrypted and stored on BTFS.
+4. For access requests, a balancer node sends a verification message.
+5. Frontend signs the message and sends it to the backend.
+6. Backend verifies the signature and checks permissions.
+7. If permissions match, data is decrypted or model is deployed for inference.
+
+## Technologies Used
+
+- **Tron Blockchain**: Foundation of the decentralized system.
+- **Smart Contracts (Solidity)**: Implements core logic for NFTs and permissions.
+- **BTFS (BitTorrent File System)**: Decentralized storage for encrypted data and models.
+- **React**: Powers the frontend user interface.
+- **Python**: Drives backend operations.
+- **Python Encryption Libraries**: Ensure data security throughout the system.
+
+## Smart Contracts
+
+The following smart contracts have been deployed on the Shasta testnet:
+
+- MasterAccessControl: [TPbvJsUGhCHGmqxvKHFoheXRLXq64jiX58](https://shasta.tronscan.org/#/address/TPbvJsUGhCHGmqxvKHFoheXRLXq64jiX58)
+- NFTAccessControl: [TNsS3gDQ8f21jUc3u43C8TydgBJuv1E9BS](https://shasta.tronscan.org/#/address/TNsS3gDQ8f21jUc3u43C8TydgBJuv1E9BS)
+- NFTMetadata: [TV4YumwT2x6h6LhyNXwo1xZAG6yRDRL9oe](https://shasta.tronscan.org/#/address/TV4YumwT2x6h6LhyNXwo1xZAG6yRDRL9oe)
+- NFTContract: [TAc8weMCEvi4WGq5LbXUGYMMWLWXK9HvKA](https://shasta.tronscan.org/#/address/TAc8weMCEvi4WGq5LbXUGYMMWLWXK9HvKA)
+- CollectionContract: [TKcJXQ32KMZhwZCccb6XQ51VJ79Yna4JhX](https://shasta.tronscan.org/#/address/TKcJXQ32KMZhwZCccb6XQ51VJ79Yna4JhX)
+
+## Future Developments
+
+1. **Smart Contract Optimization**: Refine contracts for better performance and lower fees.
+2. **Advanced NFT Functionalities**: Implement model combination and fractional ownership features.
+3. **Robust Marketplace Development**: Create a comprehensive marketplace with advanced search and discovery features.
+4. **Governance Mechanisms**: Introduce decentralized governance for community-driven decision-making.
+5. **Expanded Compute Network**: Develop a more efficient decentralized compute network for model deployment.
+6. **AI-to-AI Interaction Protocols**: Enable secure interactions between AI models within the ecosystem.
+7. **Cross-chain Interoperability**: Explore integration with other blockchain networks.
+8. **Industry Partnerships**: Establish partnerships with AI researchers, companies, and institutions.
+
+## Architecture Diagram
 
 ```mermaid
 graph LR
