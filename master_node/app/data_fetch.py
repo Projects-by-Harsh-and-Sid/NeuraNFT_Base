@@ -251,6 +251,9 @@ def get_nfts_by_collection():
 
 @app.route('/get_nft_by_collectionid_nft_id', methods=['GET'])
 def get_nft_data_by_collectionID_nftID():
+    
+    # curl -X GET http://localhost:5500/get_nft_by_collectionid_nft_id?nft_id=1&collection_id=1
+    
     nft_id          = request.args.get('nft_id')
     collection_id   = request.args.get('collection_id')
         

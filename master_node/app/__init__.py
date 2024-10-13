@@ -36,6 +36,7 @@ app.config["Load_balancer_Endpoints"] = {
 
 app.config["filestorage_endpoint"] = "http://localhost:5500"
 
-from app import routes
+# from app import routes
 from app import data_fetch
 from app import routesv2
+from app import chat_routes

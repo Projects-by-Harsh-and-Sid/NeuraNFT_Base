@@ -15,6 +15,8 @@ import {UpdateAcceess} from '../Utils/signData';
 import APIDialog from './ApiDialog';
 import TestAPIDialog from './Apitestdialog';
 
+import {get_api_key} from '../Utils/chat';
+
 const FullNFTPage = () => {
   const { collectionId, nftId } = useParams();
   const [nft, setNft] = useState(null);
@@ -100,9 +102,14 @@ const FullNFTPage = () => {
 
     
     // Simulating API call with dummy values
-    setTimeout(() => {
-        setApiKey('dummy_api_key_12345');
-        setApiEndpoint('https://api.example.com/v1/nft-data');
+    setTimeout(async() => {
+      const API_Keys = await get_api_key(nft.collectionId, nft.id);
+      const url = API_Keys['hpcEndpoint']+":"+API_Keys['hpcEndpointPort']+"/start_chat";
+      const apiKey = API_Keys['apiKey'];
+      setApiKey(apiKey);
+      setApiEndpoint(url);
+        // setApiKey('dummy_api_key_12345');
+        // setApiEndpoint('https://api.example.com/v1/nft-data');
         setIsApiLoading(false);
     }, 1000);
 };

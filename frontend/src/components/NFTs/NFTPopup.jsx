@@ -9,6 +9,7 @@ import APIDialog from './ApiDialog';
 import TestAPIDialog from './Apitestdialog';
 import AddAccessDialog from './AddAccessDialog';
 import UpdateAccessDialog from './UpdateAccessDialog';
+import { get_api_key } from '../Utils/chat';
 
 
 import {UpdateAcceess} from '../Utils/signData';
@@ -63,11 +64,16 @@ const NFTDetailPopup = ({ nft, onClose }) => {
       const handleApiClick = async () => {
         setIsApiDialogOpen(true);
         setIsApiLoading(true);
-        
+      
         // Simulating API call with dummy values
-        setTimeout(() => {
-            setApiKey('dummy_api_key_12345');
-            setApiEndpoint('https://api.example.com/v1/nft-data');
+        setTimeout(async() => {
+            const API_Keys = await get_api_key(nft.collectionId, nft.id);
+            const url = API_Keys['hpcEndpoint']+":"+API_Keys['hpcEndpointPort']+"/start_chat";
+            const apiKey = API_Keys['apiKey'];
+            setApiKey(apiKey);
+            setApiEndpoint(url);
+            // setApiKey('dummy_api_key_12345');
+            // setApiEndpoint('https://api.example.com/v1/nft-data');
             setIsApiLoading(false);
         }, 1000);
     };

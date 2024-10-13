@@ -285,7 +285,7 @@ def nft_of_a_collection_with_access(collection_id, nft_id):
     
     attributes = [
         
-        {"trait_type": "Collection", "value": collection_info["name"]},
+        {"trait_type": "MMLU", "value": "78.5"},
         {"trait_type": "Context Window", "value": collection_info["contextWindow"]},
         {"trait_type": "Model", "value": nft_information["model"]},
         {"trait_type": "Total Access", "value": len(access_levels)},

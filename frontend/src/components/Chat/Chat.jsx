@@ -5,13 +5,15 @@ import { marked } from 'marked'; // Import the marked library
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
 import styles from './styles/Chat.module.css';
 import { fetchData } from '../Utils/datafetch';
-
+import {get_jwt_decoded_response_for_chat} from '../Utils/chat';
+import Loading from '../NFTs/Loading'; 
 // import {get_api_key} from './helper_functions/get_chat_data';
 
 // import {get_collection_data , get_nft_data} from './helper_functions/get_chain_data';
 
 const NFTImage = ({ nftImage, name }) => {
   const [imageError, setImageError] = React.useState(false);
+
 
   const uint8ArrayToBase64 = (uint8Array) => {
     if (!(uint8Array instanceof Uint8Array)) {
@@ -67,6 +69,8 @@ const NFTImage = ({ nftImage, name }) => {
 };
 
 
+
+
 const Chat = () => {
   // const { actor, authClient } = useAppContext();
   const { collectionId, nftID } = useParams(); // Get nftId from URL
@@ -90,89 +94,68 @@ const Chat = () => {
   const [isModelFeaturesOpen, setIsModelFeaturesOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
+  const [nftdetailsloaded, setNftDetailsLoaded] = useState(false);
 
 
+  const fetchNFTDetails = async () => {
+    try {
+      const myNFTs = await fetchData('compounded_nft',collectionId, parseInt(nftID));
+      console.log("My NFTs:", myNFTs);
+      setNftDetails(myNFTs);
+      setNftDetailsLoaded(true);
+    } catch (error) {
+      console.error('Error fetching NFT details:', error);
+    }
+  };
+
+  async function initializeChat() {
+
+
+    setIsInitializing(true);
+
+  
+
+
+    const {jwt_Token,decoded_response} = await get_jwt_decoded_response_for_chat(collectionId, parseInt(nftID));
+
+
+    setJwtToken(jwt_Token);
+    setChatUrl(decoded_response['url']);
+
+
+
+    // // console.log("Response:", response);
+    setIsInitializing(false);
+
+  };
+
+  
 
   useEffect(() => {
-    if (collectionId) {
-      fetchNFTDetails();
-      initializeChat();
-      console.log("Collection ID:", collectionId);
-    } else {
-      navigate('/collections'); // Redirect to collections if no NFT ID is provided
-    }
-  }, [collectionId]);
+    const initializeData = async () => {
+      if (collectionId) {
+        const task1 = fetchNFTDetails();
+        const task2 = initializeChat();
+        await Promise.all([task1, task2]);
+        console.log("Collection ID:", collectionId);
+
+      } else {
+        navigate('/collections'); // Redirect to collections if no NFT ID is provided
+      }
+    };
+  
+    initializeData();
+  },[]);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatHistory]);
 
-
-  const initializeChat = async () => {
-
-
-
-    setIsInitializing(true);
-
-    // const API_Keys = await get_api_key(collectionId, nftID);
-    // const url = API_Keys['hpcEndpoint']+":"+API_Keys['hpcEndpointPort']+"/start_chat";
-    // const apiKey = API_Keys['apiKey'];
-
-    // // post request to get the jwt token and chat url
-
-    // console.log("---------------------------------------------------------------");
-    // console.log("API Keys:", apiKey);
-    // console.log("URL:", url);
+  if(!nftdetailsloaded){
+    return <Loading />;
+  }
 
 
-      
-    // const response = await fetch(url, {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'X-API-Key': apiKey
-    //   },}
-     
-    // );
-
-    // const decoded_response = await response.json();
-
-    // const jwt_Token = decoded_response['jwt_token'];
-
-    // console.log("JWT Token:", jwt_Token);
-
-    // setJwtToken(jwt_Token);
-    // setChatUrl(decoded_response['url']);
-
-
-
-    // // console.log("Response:", response);
-    // setIsInitializing(false);
-
-  };
-
-  const fetchNFTDetails = async () => {
-    try {
-      const { myNFTs } = await fetchData('particular_nft', parseInt(nftID), collectionId);
-  
-      if (myNFTs.length > 0) {
-        const nft = myNFTs[0];
-        setNftDetails({
-          name: nft.name,
-          description: nft.description,
-          model: `${nft.name} : ${nft.model}`,
-          image: nft.image,
-          contextWindow: '4096 tokens', // Update as needed
-          totalAccess: '1',             // Update as needed
-          collection: 're:generates',   // Update as needed
-          attributes: nft.attributes,   // Add this line
-        });
-      }
-    } catch (error) {
-      console.error('Error fetching NFT details:', error);
-    }
-  };
-  
 
   const toggleModelFeatures = () => {
     setIsModelFeaturesOpen(!isModelFeaturesOpen);
@@ -325,7 +308,10 @@ const Chat = () => {
 
       className={styles['nft-image']}
     />
+      <div className={styles.chatTitle}>
         <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
+        <h4>{nftDetails.collection || 'Unknown'}</h4>
+      </div>
         <p>{nftDetails.description || 'No description available'}</p>
         {/* <div className={styles['model-info']}>
         <div className={styles['model-tag']} onClick={toggleModelFeatures}>
@@ -359,7 +345,7 @@ const Chat = () => {
       <div className={styles['chat-messages']}>
       <div className={styles['chat-messages']}>
           {chatHistory.map((message, index) => (
-            <div key={index} className={styles['{`message ${message.type}-message`}']}>
+            <div key={index} className={`${styles.message} ${styles[`${message.type}-message`]}`}>
               {message.type === 'bot' ? (
                 <div className={styles['bot-para']} dangerouslySetInnerHTML={{ __html: message.content }} />
               ) : (
