@@ -81,8 +81,8 @@
   }
   
   .activeTab {
-    color: #ff69b4;
-    border-bottom-color: #ff69b4;
+    color: #e91e63;
+    border-bottom-color: #e91e63;
   }
   
   .tabContent {
@@ -293,7 +293,7 @@
   .accessLevel {
     flex: 1;
     text-align: right;
-    color: #ff69b4;
+    color: #fc588f;
     font-size: 14px;
     position: relative;
     cursor: pointer;
@@ -314,7 +314,7 @@
     transition: opacity 0.2s;
     margin-bottom: 5px;
     z-index: 10;
-    border: 1px solid #ff69b4;
+    border: 1px solid #e91e63;
   }
   
   .accessLevel:hover::after {
@@ -370,7 +370,7 @@
     padding: 10px;
   }
   .actionButton2 {
-    background-color: #ff69b4;
+    background-color: #e91e63;
     color: white;
     border: none;
     padding: 10px 20px;

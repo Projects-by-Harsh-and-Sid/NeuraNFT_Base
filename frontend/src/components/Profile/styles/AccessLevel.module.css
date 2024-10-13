@@ -1,0 +1,40 @@
+.accessLevel {
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 4px;
+    width: 70px;
+    background-color: opacity(0.5);
+  }
+  
+  .levelOne {
+    background-color: #0C1844;
+    color: white;
+  }
+  
+  .levelTwo {
+    background-color: #00224F;
+    color: white;
+  }
+  
+  .levelThree {
+    background-color: #2E236C;
+    color: white;
+  }
+  
+  .levelFour {
+    background-color: #5D0E41;
+    color: white;
+  }
+  
+  .levelFive {
+    background-color: #A0153E;
+    color: white;
+  }
+  
+  .levelSix {
+    background-color: #FF204E;
+    color: white;
+  }

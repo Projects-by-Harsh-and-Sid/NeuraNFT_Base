@@ -20,6 +20,7 @@ const ViewCollectionNFTs = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [error, setError] = useState(null);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const [nftLoaded, setNftLoaded] = useState(false);
 
   useEffect(() => {
     fetchCollectionData();
@@ -53,6 +54,7 @@ const ViewCollectionNFTs = () => {
       } else {
         setNfts([]);
       }
+      setNftLoaded(true);
     } catch (err) {
       console.error('Error fetching NFTs:', err);
       setNfts([]);
@@ -72,6 +74,10 @@ const ViewCollectionNFTs = () => {
 
 
   if (!collection) { 
+    return <Loading />;
+  }
+
+  if(!nftLoaded){
     return <Loading />;
   }
   const handleCreateNFTs = () => {

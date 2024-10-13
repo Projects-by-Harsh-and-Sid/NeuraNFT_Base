@@ -7,6 +7,9 @@ import { useAppContext } from '../../WalletContext';
 import { useNavigate } from 'react-router-dom';
 import { fetchData } from '../Utils/datafetch';
 // import { useAppContext } from '../WalletContext';
+import Loading from '../NFTs/Loading'; 
+import access_level from "./styles/AccessLevel.module.css";
+
 
 
 const ProfilePage = () => {
@@ -16,6 +19,20 @@ const ProfilePage = () => {
   const [collections, setCollections]   = useState([]);
   const [nfts, setNFTs]                 = useState([]);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const [showCollectionModal, setShowCollectionModal] = useState(false);
+  const [showNFTModal, setShowNFTModal] = useState(false);
+
+  const getAccessLevelClass = (level) => {
+    const levelMap = {
+      1: access_level.levelOne,
+      2: access_level.levelTwo,
+      3: access_level.levelThree,
+      4: access_level.levelFour,
+      5: access_level.levelFive,
+      6: access_level.levelSix
+    };
+    return `${access_level.accessLevel} ${levelMap[level] || ''}`;
+  };
 
 
   console.log(address);
@@ -41,12 +58,19 @@ const ProfilePage = () => {
           setCollections(myCollections);
         }
 
+        setShowCollectionModal(true);
+        setShowNFTModal(true);
+
       }
     };
     loadData();
   }, [address]);
 
-  
+
+  if(!showCollectionModal || !showNFTModal){
+    return <Loading />;
+
+  }
 
 
   const formatAddress = (addr) => {
@@ -215,6 +239,9 @@ const ProfilePage = () => {
                     <img src={nft.image} alt={nft.name} className={styles.itemImage} />
                     <div className={styles.itemDetails}>
                       <h3>{nft.name}</h3>
+                      <div className={getAccessLevelClass(nft.accessLevel)}>
+                        Level {nft.accessLevel}
+                      </div>
                     </div>
                   </div>
                 ))}
