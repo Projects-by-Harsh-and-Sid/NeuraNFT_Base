@@ -4,12 +4,32 @@ NeuraNFT is a pioneering platform built on the Tron blockchain that aims to toke
 
 ## Table of Contents
 
+- [Documentation](#documentation)
 - [Key Features](#key-features)
 - [Problem Statement](#problem-statement)
 - [Architecture](#architecture)
 - [Technologies Used](#technologies-used)
 - [Smart Contracts](#smart-contracts)
 - [Future Developments](#future-developments)
+
+## Documentation
+
+We have detailed documentation available in the `/smart_contracts/` directory to help you understand and work with the NeuraNFT smart contracts:
+
+1. [Overview](/smart_contracts/01_overview.md): Provides a general overview of the NeuraNFT smart contract system and its components.
+
+2. [Compiling Smart Contracts](/smart_contracts/02_compiling_smart_contracts.md): Explains the process of compiling the smart contracts and outlines the project structure.
+
+3. [Migration](/smart_contracts/03_migration.md): Details the deployment script and process, including updates to the Solidity version 0.8.7.
+
+4. [Testing on CLI](/smart_contracts/04_testing_on_cli.md): Guides you through testing the smart contracts using the command-line interface.
+
+5. [Code Testing](/smart_contracts/05_code_testing.md): Covers the code testing process and best practices for ensuring contract reliability.
+
+6. [Build Data Use in React WebApp](/smart_contracts/06_build_data_use_in_react_webapp.md): Explains how to integrate the compiled contract data into a React web application.
+
+These documents provide comprehensive guidance on working with the NeuraNFT smart contracts, from compilation to testing and integration with the frontend.
+
 
 ## Key Features
 
