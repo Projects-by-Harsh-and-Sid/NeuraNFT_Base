@@ -28,6 +28,10 @@ We have detailed documentation available in the `/smart_contracts/` directory to
 
 6. [Build Data Use in React WebApp](/smart_contracts/06_build_data_use_in_react_webapp.md): Explains how to integrate the compiled contract data into a React web application.
 
+For Information about the HPC node setup, please refer to the `/hpc_node/` document:
+
+1. [HPC Node Setup](/hpc_node/hpc_node.md): Provides a detailed guide on setting up the HPC nodes for the NeuraNFT platform.
+
 These documents provide comprehensive guidance on working with the NeuraNFT smart contracts, from compilation to testing and integration with the frontend.
 
 
