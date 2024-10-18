@@ -67,14 +67,20 @@
   position: relative;
   width: 100%;
   margin-bottom: 20px;
+  overflow: hidden;
+  max-height: 350px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  height: auto;
+  padding: 0px;
 }
 
 .nft-image {
   width: 100%;
   height: auto;
-  border-radius: 10px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-  max-height: 250px;
+  margin: 0;
+  border: none;
+  display: block; /* Add this line */
 }
 
 .nft-image::after {
@@ -440,3 +446,4 @@
   margin: 0;
   padding: 0;
 }
+

@@ -302,12 +302,13 @@ const Chat = () => {
     <div className={styles['sidebar']}>
     {nftDetails && (
       <>
+      <div className={styles['nft-image-container']}>
     <img
       src={nftDetails.image}
       alt={nftDetails.name || 'Unnamed NFT'}
-
       className={styles['nft-image']}
     />
+    </div>
       <div className={styles.chatTitle}>
         <h2>{nftDetails.name || 'Unnamed NFT'}</h2>
         <h4>{nftDetails.collection || 'Unknown'}</h4>
