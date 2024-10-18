@@ -50,7 +50,7 @@ contract CollectionContract {
         string memory _baseModel,
         string memory _image,
         string memory _description
-    ) external onlyAuthorized returns (uint256) {
+    ) external returns (uint256) {
         totalCollections++;
         uint256 newCollectionId = totalCollections;
 

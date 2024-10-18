@@ -71,7 +71,7 @@ contract NFTMetadata {
 
 
     // Create new metadata
-    function createMetadata(uint256 _collectionId, uint256 _nftId, Metadata memory _metadata) public onlyAuthorized {
+    function createMetadata(uint256 _collectionId, uint256 _nftId, Metadata memory _metadata) public  {
         metadataMap[_collectionId][_nftId] = _metadata;
         emit MetadataCreated(_collectionId, _nftId, _metadata);
     }
