@@ -21,7 +21,7 @@ const TopBar = ({ onConnectWallet }) => {
   };
 
   const handleWalletClick = () => {
-    window.open('https://tron.network', '_blank');
+    window.open('https://www.coinbase.com/wallet', '_blank');
   };
 
   const handleoptionclick = () => {
