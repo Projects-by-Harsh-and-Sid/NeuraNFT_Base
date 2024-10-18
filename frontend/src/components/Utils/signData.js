@@ -1,6 +1,5 @@
-import constract_address_data from './shasta_addresses.json' ;
+import constract_address_data from './base_addresses.json' ;
 import meatadata_contract_data from './contracts/NFTMetadata.json';
-import tronWeb from 'tronweb';
 
 // // Function to build the JSON file
 // function buildTransactionJson(params) {
