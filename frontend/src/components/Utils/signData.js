@@ -1,6 +1,23 @@
-import constract_address_data from './shasta_addresses.json' ;
-import meatadata_contract_data from './contracts/NFTMetadata.json';
-import tronWeb from 'tronweb';
+import constract_address_data from './base_addresses.json' ;
+import metadata_contract_data from './contracts/NFTMetadata.json';
+
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
+import Web3 from 'web3';
+
+const getWeb3 = () => {
+    const wallet = new CoinbaseWalletSDK({
+        appName: 'My Crypto App',
+        appLogoUrl: 'https://example.com/logo.png',
+        darkMode: false
+      });
+      
+      // Create Web3 provider
+      const ethereum = wallet.makeWeb3Provider('https://sepolia.infura.io/v3/f235e555751b4d639b04c01b5c9644fa', 1);
+  
+    return new Web3(ethereum);
+  };
+
+
 
 // // Function to build the JSON file
 // function buildTransactionJson(params) {
@@ -15,33 +32,30 @@ import tronWeb from 'tronweb';
 // }
 
 // Function to sign JSON data
-async function signJsonData(jsonData) 
-
-{
-    if (typeof window.tronWeb === 'undefined') 
-        {
-        console.error("TronLink is not installed or not connected");
-        alert('Please install or connect TronLink');
-        return null;
-        }
-
-    const messageToSign = JSON.stringify(jsonData);
-
-    try {
-        const signature = await window.tronWeb.trx.signMessageV2(messageToSign);
-        console.log("Signature:", signature);
-
-        // Optionally verify the signature
-        const signerAddress = await window.tronWeb.trx.verifyMessageV2(messageToSign, signature);
-        console.log("Signer Address:", signerAddress);
-
-        return { signature, signerAddress };
-    } catch (error) {
-        console.error("Error signing or verifying message:", error);
-        alert('Error signing data: ' + error.message);
-        return null;
+async function signJsonData(jsonData) {
+    const web3 = getWeb3();
+    const accounts = await web3.eth.getAccounts();
+    
+    if (accounts.length === 0) {
+      throw new Error('No account found. Please connect your wallet.');
     }
-}
+  
+    const messageToSign = JSON.stringify(jsonData);
+  
+    try {
+      const signature = await web3.eth.personal.sign(messageToSign, accounts[0]);
+      console.log("Signature:", signature);
+  
+      const signerAddress = web3.eth.accounts.recover(messageToSign, signature);
+      console.log("Signer Address:", signerAddress);
+  
+      return { signature, signerAddress };
+    } catch (error) {
+      console.error("Error signing or verifying message:", error);
+      alert('Error signing data: ' + error.message);
+      return null;
+    }
+  }
 
 // // Function to perform the transaction
 // async function performTransaction(params) {
@@ -90,65 +104,56 @@ async function signJsonData(jsonData)
 // }
 
 async function createCollection(name, contextWindow, baseModel, image, description) {
-    // Check if TronLink is installed and connected
-    if (typeof window.tronWeb === 'undefined') {
-        throw new Error('TronLink is not installed or not connected');
-    }
-
+    const web3 = getWeb3();
+    const accounts = await web3.eth.getAccounts();
+  
     try {
-        // Load the CollectionContract
-        const contractAddress = constract_address_data.CollectionContract; // Replace with your actual contract address
-        const contract = await window.tronWeb.contract().at(contractAddress);
-
-        // Prepare the transaction
-        const transaction = await contract.createCollection(
-            name,
-            contextWindow,
-            baseModel,
-            image,
-            description
-        ).send({
-            feeLimit: 1000000000,
-            callValue: 0,
-            shouldPollResponse: false
-        });
-
-        console.log('Collection created successfully:', transaction);
-        return transaction;
+      const contractAddress = constract_address_data.CollectionContract;
+      const contract = new web3.eth.Contract(constract_address_data.CollectionContractABI, contractAddress);
+  
+      const transaction = await contract.methods.createCollection(
+        name,
+        contextWindow,
+        baseModel,
+        image,
+        description
+      ).send({
+        from: accounts[0],
+        gas: 1000000 // Adjust as needed
+      });
+  
+      console.log('Collection created successfully:', transaction);
+      return transaction;
     } catch (error) {
-        console.error('Error creating collection:', error);
-        throw error;
+      console.error('Error creating collection:', error);
+      throw error;
     }
-}
+  }
 
 async function createNFT(collectionId, name, levelOfOwnership) {
-    if (typeof window.tronWeb === 'undefined') {
-        throw new Error('TronLink is not installed or not connected');
-    }
-
+    const web3 = getWeb3();
+    const accounts = await web3.eth.getAccounts();
+  
     try {
-        const contractAddress = constract_address_data.NFTContract;
-        const contract = await window.tronWeb.contract().at(contractAddress);
-
-        const transaction = await contract.createNFT(
-            collectionId,
-            name,
-            levelOfOwnership
-        ).send({
-            feeLimit: 1000000000,
-            callValue: 0,
-            // shouldPollResponse: true
-            shouldPollResponse: false
-        });
-
-        console.log('NFT created successfully:', transaction);
-        return transaction;
+      const contractAddress = constract_address_data.NFTContract;
+      const contract = new web3.eth.Contract(constract_address_data.NFTContractABI, contractAddress);
+  
+      const transaction = await contract.methods.createNFT(
+        collectionId,
+        name,
+        levelOfOwnership
+      ).send({
+        from: accounts[0],
+        gas: 1000000 // Adjust as needed
+      });
+  
+      console.log('NFT created successfully:', transaction);
+      return transaction;
     } catch (error) {
-        console.error('Error creating NFT:', error);
-        throw error;
+      console.error('Error creating NFT:', error);
+      throw error;
     }
-}
-
+  }
 // // Function to create metadata for an NFT
 // async function createNFTMetadata(collectionId, nftId, metadata) {
 //     if (typeof window.tronWeb === 'undefined') {
@@ -193,45 +198,43 @@ async function createNFT(collectionId, name, levelOfOwnership) {
 
 
 async function createNFTMetadata(collectionId, nftId, metadata) {
-    if (typeof window.tronWeb === 'undefined') {
-        throw new Error('TronLink is not installed or not connected');
-    }
-
+    const web3 = getWeb3();
+    const accounts = await web3.eth.getAccounts();
+  
     try {
-        const contractAddress = constract_address_data.NFTMetadata;
-        const contract = await window.tronWeb.contract(meatadata_contract_data.abi, contractAddress);
-
-        // Convert metadata object to an array of values in the correct order
-        const metadataArray = [
-            metadata.image,         // image
-            metadata.baseModel,     // baseModel
-            metadata.data,          // data
-            metadata.rag,           // rag
-            metadata.fineTuneData,  // fineTuneData
-            metadata.description    // description
-        ];
-
-        console.log('Collection ID:', collectionId);
-        console.log('NFT ID:', nftId);
-        console.log('Metadata Array:', metadataArray);
-
-        const transaction = await contract.createMetadata(
-            collectionId,
-            nftId,
-            metadataArray
-        ).send({
-            feeLimit: 1000000000,
-            callValue: 0,
-            shouldPollResponse: false
-        });
-
-        console.log('Metadata created successfully:', transaction);
-        return transaction;
+      const contractAddress = constract_address_data.NFTMetadata;
+      const contract = new web3.eth.Contract(metadata_contract_data.abi, contractAddress);
+  
+      const metadataArray = [
+        metadata.image,
+        metadata.baseModel,
+        metadata.data,
+        metadata.rag,
+        metadata.fineTuneData,
+        metadata.description
+      ];
+  
+      console.log('Collection ID:', collectionId);
+      console.log('NFT ID:', nftId);
+      console.log('Metadata Array:', metadataArray);
+  
+      const transaction = await contract.methods.createMetadata(
+        collectionId,
+        nftId,
+        metadataArray
+      ).send({
+        from: accounts[0],
+        gas: 1000000 // Adjust as needed
+      });
+  
+      console.log('Metadata created successfully:', transaction);
+      return transaction;
     } catch (error) {
-        console.error('Error creating metadata:', error);
-        throw error;
+      console.error('Error creating metadata:', error);
+      throw error;
     }
-}
+  }
+  
 
 
 // async function extractNFTIdFromTransaction(transaction) {
@@ -295,91 +298,70 @@ async function createNFTMetadata(collectionId, nftId, metadata) {
 // }
 
 
-async function extractNFTIdFromTransaction(transactionId) {
-    const maxAttempts = 20; // Maximum number of attempts
-    const delay = 5000;     // Delay between attempts in milliseconds (3 seconds)
-
+async function extractNFTIdFromTransaction(transactionHash) {
+    const web3 = getWeb3();
+    const maxAttempts = 20;
+    const delay = 5000;
+  
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
-        try {
-            // Retrieve events associated with the transaction ID
-            const events = await window.tronWeb.getEventByTransactionID(transactionId);
-            console.log(`Attempt ${attempt}: Retrieved events:`, events);
-
-            if (events && events.length > 0) {
-                for (const event of events) {
-                    if (event.name === 'NFTCreated') {
-                        console.log('Event detected:', event);
-
-                        // Extract nftId from event result
-                        // const nftId = event.result.tokenId || event.result._tokenId || event.result['0'];
-                        const nftId = event.result.tokenId;
-                        
-                        console.log('Minted NFT ID:', nftId);
-
-                        if (nftId) {
-                            return nftId;
-                        } else {
-                            console.error('NFT ID not found in event result:', event.result);
-                            throw new Error('NFT ID not found in event result');
-                        }
-                    }
-                }
-                console.log('NFTCreated event not found in events.');
-            } else {
-                console.log('No events found for this transaction yet.');
+      try {
+        const receipt = await web3.eth.getTransactionReceipt(transactionHash);
+        console.log(`Attempt ${attempt}: Retrieved receipt:`, receipt);
+  
+        if (receipt && receipt.logs) {
+          for (const log of receipt.logs) {
+            // Assuming the NFTCreated event is emitted by the contract
+            if (log.topics[0] === web3.utils.sha3('NFTCreated(uint256,uint256,address)')) {
+              const nftId = web3.utils.hexToNumber(log.topics[2]);
+              console.log('Minted NFT ID:', nftId);
+              return nftId;
             }
-        } catch (error) {
-            console.error(`Error on attempt ${attempt}:`, error);
-            // Depending on the error, you may want to break the loop or continue
-            // For now, we'll continue to retry
+          }
+          console.log('NFTCreated event not found in logs.');
+        } else {
+          console.log('Transaction receipt not available yet.');
         }
-
-        // Wait before the next attempt
-        await new Promise(resolve => setTimeout(resolve, delay));
+      } catch (error) {
+        console.error(`Error on attempt ${attempt}:`, error);
+      }
+  
+      await new Promise(resolve => setTimeout(resolve, delay));
     }
-
+  
     throw new Error('Failed to retrieve NFT ID after multiple attempts');
-}
+  }
+  
 
 
-
-async function UpdateAcceess(collection_id, nft_id,user, access_level) {
-    // Check if TronLink is installed and connected
-    if (typeof window.tronWeb === 'undefined') {
-        throw new Error('TronLink is not installed or not connected');
+  async function UpdateAcceess(collection_id, nft_id, user, access_level) {
+    const web3 = getWeb3();
+    const accounts = await web3.eth.getAccounts();
+  
+    if (!web3.utils.isAddress(user)) {
+      throw new Error('Invalid user address');
     }
-
-
-    // check if user id is valid tron address
-    if (!window.tronWeb.isAddress(user)) {
-        throw new Error('Invalid user address');
-    }
-
+  
     try {
-        // Load the CollectionContract
-        const contractAccess    = constract_address_data.NFTAccessControl; // Replace with your actual contract address
-        const contract          = await window.tronWeb.contract().at(contractAccess);
-
-        // Prepare the transaction
-        const transaction = await contract.grantAccess(
-            collection_id,
-            nft_id,
-            user,
-            access_level
-        ).send({
-            feeLimit: 1000000000,
-            callValue: 0,
-            shouldPollResponse: false
-        });
-
-        console.log('Collection created successfully:', transaction);
-        return transaction;
+      const contractAccess = constract_address_data.NFTAccessControl;
+      const contract = new web3.eth.Contract(constract_address_data.NFTAccessControlABI, contractAccess);
+  
+      const transaction = await contract.methods.grantAccess(
+        collection_id,
+        nft_id,
+        user,
+        access_level
+      ).send({
+        from: accounts[0],
+        gas: 1000000 // Adjust as needed
+      });
+  
+      console.log('Access updated successfully:', transaction);
+      return transaction;
     } catch (error) {
-        console.error('Error creating collection:', error);
-        throw error;
+      console.error('Error updating access:', error);
+      throw error;
     }
-}
-
+  }
 
 // Export the functions so they can be imported in other files
 // export { buildTransactionJson, signJsonData, performTransaction, handleTransaction };

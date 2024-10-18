@@ -124,7 +124,8 @@ const updateBalance = async (userAddress, currentProvider) => {
     address,
     balance,
     connectWallet,
-    disconnectWallet
+    disconnectWallet,
+    provider
   };
 
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
