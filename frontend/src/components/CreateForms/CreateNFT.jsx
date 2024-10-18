@@ -15,6 +15,8 @@ import convertPdfToText from '../Utils/upload_data';
 import { createNFT, createNFTMetadata } from '../Utils/signData';
 import { extractNFTIdFromTransaction } from '../Utils/signData';
 
+import { sha3 } from 'web3-utils';
+
 
 
 
@@ -70,6 +72,8 @@ function CreateNFT ()
 
     fetchCollectionData();
   }, []);
+
+  // console.log("----------------------------------PRINTING THE HASHED VALUE USING SHA3---------------------",sha3('NFTCreated(uint256,uint256,string,address)'));
 
   const incrementStep           = () => {setCurrentStep((prevStep) => (prevStep < totalSteps ? prevStep + 1 : prevStep));};
   const handleNameChange        = (event) => setName(event.target.value);
@@ -237,7 +241,7 @@ function CreateNFT ()
       await new Promise(resolve => setTimeout(resolve, 5000));
 
 
-      const newNFTId = await extractNFTIdFromTransaction(nftResult);
+      const newNFTId = await extractNFTIdFromTransaction(nftResult.transactionHash);
 
       console.log('New NFT ID:', newNFTId);
 

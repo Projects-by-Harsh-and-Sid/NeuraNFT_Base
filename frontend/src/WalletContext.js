@@ -45,7 +45,7 @@ useEffect(() => {
       darkMode: false
     });
 
-    const ethereum = wallet.makeWeb3Provider('https://sepolia.infura.io/v3/f235e555751b4d639b04c01b5c9644fa', 1);
+    const ethereum = wallet.makeWeb3Provider('https://base-sepolia-rpc.publicnode.com', 84532);
 
     setCoinbaseWallet(wallet);
     setProvider(ethereum);

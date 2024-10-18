@@ -1,18 +1,23 @@
 import constract_address_data from './base_addresses.json' ;
 import metadata_contract_data from './contracts/NFTMetadata.json';
+import collection_contract_data from './contracts/CollectionContract.json';
+import nft_contract_data from './contracts/NFTContract.json';
+import nftaccess_control_contract_data from './contracts/NFTAccessControl.json';
 
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 import Web3 from 'web3';
 
+import { sha3 } from 'web3-utils';
+
 const getWeb3 = () => {
     const wallet = new CoinbaseWalletSDK({
-        appName: 'My Crypto App',
+        appName: 'NeuraNFT',
         appLogoUrl: 'https://example.com/logo.png',
-        darkMode: false
+        darkMode: true
       });
       
       // Create Web3 provider
-      const ethereum = wallet.makeWeb3Provider('https://sepolia.infura.io/v3/f235e555751b4d639b04c01b5c9644fa', 1);
+      const ethereum = wallet.makeWeb3Provider('https://base-sepolia-rpc.publicnode.com', 84532);
   
     return new Web3(ethereum);
   };
@@ -109,7 +114,7 @@ async function createCollection(name, contextWindow, baseModel, image, descripti
   
     try {
       const contractAddress = constract_address_data.CollectionContract;
-      const contract = new web3.eth.Contract(constract_address_data.CollectionContractABI, contractAddress);
+      const contract = new web3.eth.Contract(collection_contract_data.abi, contractAddress);
   
       const transaction = await contract.methods.createCollection(
         name,
@@ -133,10 +138,12 @@ async function createCollection(name, contextWindow, baseModel, image, descripti
 async function createNFT(collectionId, name, levelOfOwnership) {
     const web3 = getWeb3();
     const accounts = await web3.eth.getAccounts();
+
+
   
     try {
       const contractAddress = constract_address_data.NFTContract;
-      const contract = new web3.eth.Contract(constract_address_data.NFTContractABI, contractAddress);
+      const contract = new web3.eth.Contract(nft_contract_data.abi, contractAddress);
   
       const transaction = await contract.methods.createNFT(
         collectionId,
@@ -298,10 +305,49 @@ async function createNFTMetadata(collectionId, nftId, metadata) {
 // }
 
 
+// async function extractNFTIdFromTransaction(transactionHash) {
+//     const web3 = getWeb3();
+//     const maxAttempts = 20;
+//     const delay = 5000;
+  
+//     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+//       try {
+//         const receipt = await web3.eth.getTransactionReceipt(transactionHash);
+//         console.log(`Attempt ${attempt}: Retrieved receipt:`, receipt);
+  
+//         if (receipt && receipt.logs) {
+//           for (const log of receipt.logs) {
+//             // Assuming the NFTCreated event is emitted by the contract
+//             if (log.topics[0] === web3.utils.sha3('NFTCreated(uint256,uint256,address)')) {
+//               const nftId = web3.utils.hexToNumber(log.topics[2]);
+//               console.log('Minted NFT ID:', nftId);
+//               return nftId;
+//             }
+//           }
+//           console.log('NFTCreated event not found in logs.');
+//         } else {
+//           console.log('Transaction receipt not available yet.');
+//         }
+//       } catch (error) {
+//         console.error(`Error on attempt ${attempt}:`, error);
+//       }
+  
+//       await new Promise(resolve => setTimeout(resolve, delay));
+//     }
+  
+//     throw new Error('Failed to retrieve NFT ID after multiple attempts');
+//   }
+
 async function extractNFTIdFromTransaction(transactionHash) {
     const web3 = getWeb3();
     const maxAttempts = 20;
     const delay = 5000;
+
+    console.log('Transaction Hash:', transactionHash);
+  
+    if (!transactionHash || typeof transactionHash !== 'string' || !transactionHash.startsWith('0x') || transactionHash.length !== 66) {
+      throw new Error('Invalid transaction hash format');
+    }
   
     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
       try {
@@ -310,8 +356,9 @@ async function extractNFTIdFromTransaction(transactionHash) {
   
         if (receipt && receipt.logs) {
           for (const log of receipt.logs) {
-            // Assuming the NFTCreated event is emitted by the contract
-            if (log.topics[0] === web3.utils.sha3('NFTCreated(uint256,uint256,address)')) {
+            // if (log.topics[0] === sha3('NFTCreated(uint256,uint256,string,address)')) {
+            if (log.topics[0] === web3.utils.sha3('NFTCreated(uint256,uint256,string,address)')) {
+
               const nftId = web3.utils.hexToNumber(log.topics[2]);
               console.log('Minted NFT ID:', nftId);
               return nftId;
@@ -323,6 +370,9 @@ async function extractNFTIdFromTransaction(transactionHash) {
         }
       } catch (error) {
         console.error(`Error on attempt ${attempt}:`, error);
+        if (error.message.includes('Web3ValidatorError')) {
+          throw new Error('Invalid transaction hash: ' + error.message);
+        }
       }
   
       await new Promise(resolve => setTimeout(resolve, delay));
@@ -343,7 +393,7 @@ async function extractNFTIdFromTransaction(transactionHash) {
   
     try {
       const contractAccess = constract_address_data.NFTAccessControl;
-      const contract = new web3.eth.Contract(constract_address_data.NFTAccessControlABI, contractAccess);
+      const contract = new web3.eth.Contract(nftaccess_control_contract_data.abi, contractAccess);
   
       const transaction = await contract.methods.grantAccess(
         collection_id,

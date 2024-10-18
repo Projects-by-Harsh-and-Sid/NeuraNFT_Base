@@ -7,8 +7,10 @@ from app import blockchain_code
 
 from werkzeug.utils import secure_filename
 
+from web3 import Web3
 
 import random
+
 import string
 
 import json
@@ -126,6 +128,11 @@ def get_collections_by_address():
     address = request.args.get('address') 
     if not address:
         return jsonify({'error': 'Address parameter is required'}), 400
+    
+    try:
+        address = Web3.to_checksum_address(str(address).lower())
+    except:
+        return jsonify({'error': 'Invalid address'}), 400
 
     return blockchain_code.getAllCollections_by_address(address), 200
     
@@ -208,6 +215,10 @@ def get_nfts_by_address():
     if not address:
         return jsonify({'error': 'Address parameter is required'}), 400
 
+    try:
+        address = Web3.to_checksum_address(str(address).lower())
+    except:
+        return jsonify({'error': 'Invalid address'}), 400
     return blockchain_code.all_nfts_own_or_have_access_by_user(address), 200
 
 
