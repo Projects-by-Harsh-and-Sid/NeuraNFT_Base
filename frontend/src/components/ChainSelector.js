@@ -3,7 +3,7 @@ import styles from '../styles/chainselector.module.css';
 
 const ChainSelector = () => {
     const [selectedChain, setSelectedChain] = useState('Sepolia');
-    const chains = ['All Chains', 'Tron','Sepolia'];
+    const chains = ['All Chains','Sepolia'];
     const handleChainSelect = (chain) => {
         setSelectedChain(chain);
       };
@@ -21,7 +21,7 @@ const ChainSelector = () => {
             />
             {selectedChain === 'All Chains' && <span className={styles.chainText}>All Chains</span>}
           </div>
-          <div 
+          {/* <div 
             className={`${styles.chainOption} ${selectedChain === 'Tron' ? styles.selected : ''}`}
             onClick={() => handleChainSelect('Tron')}
           >
@@ -31,7 +31,7 @@ const ChainSelector = () => {
               className={styles.chainIcon}
             />
             {selectedChain === 'Tron' && <span className={styles.chainText}>Tron</span>}
-          </div>
+          </div> */}
           <div 
             className={`${styles.chainOption} ${selectedChain === 'Sepolia' ? styles.selected : ''}`}
             onClick={() => handleChainSelect('Sepolia')}
