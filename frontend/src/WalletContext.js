@@ -1,5 +1,6 @@
 // src/WalletContext.js
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 
 const AppContext = createContext();
 
@@ -10,45 +11,94 @@ export const AppProvider = ({ children }) => {
   });
   const [address, setAddress] = useState(null);
   const [balance, setBalance] = useState(null);
+  const [coinbaseWallet, setCoinbaseWallet] = useState(null);
+  const [provider, setProvider] = useState(null);
 
 // src/WalletContext.js
-const checkTronWebState = () => {
-  if (window.tronWeb) {
+// const checkTronWebState = () => {
+//   if (window.tronWeb) {
+//     setTronWebState((prevState) => ({
+//       ...prevState,
+//       installed: true,
+//     }));
+//   } else {
+//     setTronWebState({
+//       installed: false,
+//       loggedIn: false,
+//     });
+//   }
+// };
+
+
+// // src/WalletContext.js
+// useEffect(() => {
+//   checkTronWebState();
+//   const interval = setInterval(checkTronWebState, 5000);
+//   return () => clearInterval(interval);
+// }, []);
+
+useEffect(() => {
+  const initializeCoinbaseWallet = () => {
+    const wallet = new CoinbaseWalletSDK({
+      appName: 'My Crypto App',
+      appLogoUrl: 'https://example.com/logo.png',
+      darkMode: false
+    });
+
+    const ethereum = wallet.makeWeb3Provider('https://sepolia.infura.io/v3/f235e555751b4d639b04c01b5c9644fa', 1);
+
+    setCoinbaseWallet(wallet);
+    setProvider(ethereum);
     setTronWebState((prevState) => ({
       ...prevState,
       installed: true,
     }));
-  } else {
-    setTronWebState({
-      installed: false,
-      loggedIn: false,
+  };
+
+  initializeCoinbaseWallet();
+}, []);
+
+const updateBalance = async (userAddress, currentProvider) => {
+  try {
+    const balanceInWei = await currentProvider.request({
+      method: 'eth_getBalance',
+      params: [userAddress, 'latest']
     });
+    
+    // Convert balance from Wei to Ether
+    const balanceInEth = parseInt(balanceInWei, 16) / 1e18;
+    
+    // Set balance with 6 decimal places
+    setBalance(balanceInEth.toFixed(6));
+  } catch (error) {
+    console.error('Error fetching balance:', error);
+    setBalance('Error');
   }
 };
 
 
-// src/WalletContext.js
-useEffect(() => {
-  checkTronWebState();
-  const interval = setInterval(checkTronWebState, 5000);
-  return () => clearInterval(interval);
-}, []);
-
 
   const connectWallet = async () => {
-    if (!window.tronWeb) {
-      alert('Please install TronLink wallet extension.');
+    if (!provider) {
+      alert('Coinbase Wallet is not initialized.');
       return;
     }
-
+    
     try {
-      await window.tronWeb.request({ method: 'tron_requestAccounts' });
-      const userAddress = window.tronWeb.defaultAddress.base58;
+      const accounts = await provider.request({
+        method: 'eth_requestAccounts'
+      });
+
+      const userAddress = accounts[0];
       setAddress(userAddress);
       
-      const balanceInSun = await window.tronWeb.trx.getBalance(userAddress);
-      const balanceInTRX = window.tronWeb.fromSun(balanceInSun);
-      setBalance(parseFloat(balanceInTRX).toFixed(3));
+      console.log('User address:', userAddress);
+      
+      // const balanceInSun = await window.tronWeb.trx.getBalance(userAddress);
+      // const balanceInTRX = window.tronWeb.fromSun(balanceInSun);
+      // setBalance(parseFloat(balanceInTRX).toFixed(3));
+
+      await updateBalance(userAddress, provider);
 
       setTronWebState({
         installed: true,

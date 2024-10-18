@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import DefaultImage from './DefaultImage.jpg';
 import styles from './styles/ProfileMenu.module.css';
 import classNames from 'classnames';
-import TronLinkLogo from './styles/trn-link.png';
+import TronLinkLogo from './styles/base.svg';
 import { Copy } from 'lucide-react'; // Import the Copy icon from lucide-react
 
 function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
@@ -52,7 +52,7 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
               alt="Tron"
               className={styles.WalletIcon}
               />
-            <span className={styles.Walletheader}>TronLink (1 wallet)</span>
+            <span className={styles.Walletheader}>Base Wallet(1 wallet)</span>
             <div className={styles.activeStatus}>
               <span className={styles.walletStatus}>Active</span>
             </div>
@@ -60,13 +60,13 @@ function ProfileMenu({ isOpen, onClose, address, balance,onDisconnect  }) {
           <div className={styles.tronBalance}>
 
                         <img 
-              src={'/tron-trx-logo.svg' } 
+              src={'/base-logo-in-blue.svg' } 
               alt="Tron"
               className={styles.chainIcon}
               // className={styles.chainIcon}
             />
           <div className={styles.tronInfo}>
-            <span>{balance} TRX</span>
+            <span>{balance} ETH</span>
             <div className={styles.addressContainer}>
               <h3 className={styles.addressMenusmall}>{formatAddress(address)}</h3>
               <button 

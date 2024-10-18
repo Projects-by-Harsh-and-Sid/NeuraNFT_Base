@@ -384,3 +384,204 @@ async function UpdateAcceess(collection_id, nft_id,user, access_level) {
 // Export the functions so they can be imported in other files
 // export { buildTransactionJson, signJsonData, performTransaction, handleTransaction };
 export { signJsonData, createCollection, createNFT, createNFTMetadata, extractNFTIdFromTransaction, UpdateAcceess };
+
+
+// Base Implementation
+
+// import constract_address_data from './base_addresses.json';
+// import metadata_contract_data from './contracts/NFTMetadata.json';
+// import Web3 from 'web3';
+
+// async function signJsonData(jsonData) {
+//     if (typeof window.ethereum === 'undefined') {
+//         console.error("MetaMask is not installed or not connected");
+//         alert('Please install or connect MetaMask');
+//         return null;
+//     }
+
+//     const web3 = new Web3(window.ethereum);
+//     const messageToSign = JSON.stringify(jsonData);
+
+//     try {
+//         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+//         const signature = await web3.eth.personal.sign(messageToSign, accounts[0]);
+//         console.log("Signature:", signature);
+
+//         // Optionally verify the signature
+//         const signerAddress = web3.eth.accounts.recover(messageToSign, signature);
+//         console.log("Signer Address:", signerAddress);
+
+//         return { signature, signerAddress };
+//     } catch (error) {
+//         console.error("Error signing or verifying message:", error);
+//         alert('Error signing data: ' + error.message);
+//         return null;
+//     }
+// }
+
+// async function createCollection(name, contextWindow, baseModel, image, description) {
+//     if (typeof window.ethereum === 'undefined') {
+//         throw new Error('MetaMask is not installed or not connected');
+//     }
+
+//     try {
+//         const web3 = new Web3(window.ethereum);
+//         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+//         const contractAddress = constract_address_data.CollectionContract;
+//         const contract = new web3.eth.Contract(constract_address_data.CollectionContractABI, contractAddress);
+
+//         const transaction = await contract.methods.createCollection(
+//             name,
+//             contextWindow,
+//             baseModel,
+//             image,
+//             description
+//         ).send({
+//             from: accounts[0],
+//             gas: 1000000
+//         });
+
+//         console.log('Collection created successfully:', transaction);
+//         return transaction;
+//     } catch (error) {
+//         console.error('Error creating collection:', error);
+//         throw error;
+//     }
+// }
+
+// async function createNFT(collectionId, name, levelOfOwnership) {
+//     if (typeof window.ethereum === 'undefined') {
+//         throw new Error('MetaMask is not installed or not connected');
+//     }
+
+//     try {
+//         const web3 = new Web3(window.ethereum);
+//         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+//         const contractAddress = constract_address_data.NFTContract;
+//         const contract = new web3.eth.Contract(constract_address_data.NFTContractABI, contractAddress);
+
+//         const transaction = await contract.methods.createNFT(
+//             collectionId,
+//             name,
+//             levelOfOwnership
+//         ).send({
+//             from: accounts[0],
+//             gas: 1000000
+//         });
+
+//         console.log('NFT created successfully:', transaction);
+//         return transaction;
+//     } catch (error) {
+//         console.error('Error creating NFT:', error);
+//         throw error;
+//     }
+// }
+
+// async function createNFTMetadata(collectionId, nftId, metadata) {
+//     if (typeof window.ethereum === 'undefined') {
+//         throw new Error('MetaMask is not installed or not connected');
+//     }
+
+//     try {
+//         const web3 = new Web3(window.ethereum);
+//         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+//         const contractAddress = constract_address_data.NFTMetadata;
+//         const contract = new web3.eth.Contract(metadata_contract_data.abi, contractAddress);
+
+//         const metadataArray = [
+//             metadata.image,
+//             metadata.baseModel,
+//             metadata.data,
+//             metadata.rag,
+//             metadata.fineTuneData,
+//             metadata.description
+//         ];
+
+//         console.log('Collection ID:', collectionId);
+//         console.log('NFT ID:', nftId);
+//         console.log('Metadata Array:', metadataArray);
+
+//         const transaction = await contract.methods.createMetadata(
+//             collectionId,
+//             nftId,
+//             metadataArray
+//         ).send({
+//             from: accounts[0],
+//             gas: 1000000
+//         });
+
+//         console.log('Metadata created successfully:', transaction);
+//         return transaction;
+//     } catch (error) {
+//         console.error('Error creating metadata:', error);
+//         throw error;
+//     }
+// }
+
+// async function extractNFTIdFromTransaction(transactionHash) {
+//     const web3 = new Web3(window.ethereum);
+//     const maxAttempts = 20;
+//     const delay = 5000;
+
+//     for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+//         try {
+//             const receipt = await web3.eth.getTransactionReceipt(transactionHash);
+//             console.log(`Attempt ${attempt}: Retrieved receipt:`, receipt);
+
+//             if (receipt && receipt.logs) {
+//                 for (const log of receipt.logs) {
+//                     // Assuming the NFTCreated event is emitted by the contract
+//                     if (log.topics[0] === web3.utils.sha3('NFTCreated(uint256,uint256,address)')) {
+//                         const nftId = web3.utils.hexToNumber(log.topics[2]);
+//                         console.log('Minted NFT ID:', nftId);
+//                         return nftId;
+//                     }
+//                 }
+//                 console.log('NFTCreated event not found in logs.');
+//             } else {
+//                 console.log('Transaction receipt not available yet.');
+//             }
+//         } catch (error) {
+//             console.error(`Error on attempt ${attempt}:`, error);
+//         }
+
+//         await new Promise(resolve => setTimeout(resolve, delay));
+//     }
+
+//     throw new Error('Failed to retrieve NFT ID after multiple attempts');
+// }
+
+// async function UpdateAccess(collection_id, nft_id, user, access_level) {
+//     if (typeof window.ethereum === 'undefined') {
+//         throw new Error('MetaMask is not installed or not connected');
+//     }
+
+//     const web3 = new Web3(window.ethereum);
+//     if (!web3.utils.isAddress(user)) {
+//         throw new Error('Invalid user address');
+//     }
+
+//     try {
+//         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+//         const contractAccess = constract_address_data.NFTAccessControl;
+//         const contract = new web3.eth.Contract(constract_address_data.NFTAccessControlABI, contractAccess);
+
+//         const transaction = await contract.methods.grantAccess(
+//             collection_id,
+//             nft_id,
+//             user,
+//             access_level
+//         ).send({
+//             from: accounts[0],
+//             gas: 1000000
+//         });
+
+//         console.log('Access updated successfully:', transaction);
+//         return transaction;
+//     } catch (error) {
+//         console.error('Error updating access:', error);
+//         throw error;
+//     }
+// }
+
+// export { signJsonData, createCollection, createNFT, createNFTMetadata, extractNFTIdFromTransaction, UpdateAccess };

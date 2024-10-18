@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import styles from '../styles/chainselector.module.css';
 
 const ChainSelector = () => {
-    const [selectedChain, setSelectedChain] = useState('Shasta');
-    const chains = ['All Chains', 'Tron','Shasta'];
+    const [selectedChain, setSelectedChain] = useState('Sepolia');
+    const chains = ['All Chains', 'Tron','Sepolia'];
     const handleChainSelect = (chain) => {
         setSelectedChain(chain);
       };
@@ -26,22 +26,22 @@ const ChainSelector = () => {
             onClick={() => handleChainSelect('Tron')}
           >
             <img 
-              src={selectedChain === 'Tron' ? '/tron-trx-logo.svg' : '/tron-grey.svg'} 
+              src={selectedChain === 'Tron' ? '/base-logo-in-blue.svg' : '/tron-grey.svg'} 
               alt="Tron"
               className={styles.chainIcon}
             />
             {selectedChain === 'Tron' && <span className={styles.chainText}>Tron</span>}
           </div>
           <div 
-            className={`${styles.chainOption} ${selectedChain === 'Shasta' ? styles.selected : ''}`}
-            onClick={() => handleChainSelect('Shasta')}
+            className={`${styles.chainOption} ${selectedChain === 'Sepolia' ? styles.selected : ''}`}
+            onClick={() => handleChainSelect('Sepolia')}
           >
             <img 
-              src={selectedChain === 'Shasta' ? '/tron-trx-logo.svg' : '/tron-grey.svg'} 
+              src={selectedChain === 'Sepolia' ? '/base-logo-in-blue.svg' : '/tron-grey.svg'} 
               alt="Tron"
               className={styles.chainIcon}
             />
-            {selectedChain === 'Shasta' && <span className={styles.chainText}>Shasta</span>}
+            {selectedChain === 'Sepolia' && <span className={styles.chainText}>Sepolia</span>}
           </div>
         </div>
       );

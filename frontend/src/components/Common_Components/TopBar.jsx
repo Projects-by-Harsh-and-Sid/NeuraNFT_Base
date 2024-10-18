@@ -92,7 +92,7 @@ const TopBar = ({ onConnectWallet }) => {
         ) : (
           <div className={styles.walletInfo}>
             <div className={styles.balanceDisplay} onClick={toggleMenu}>
-              <span className={styles.balance}>{balance} TRX</span>
+              <span className={styles.balance}>{balance} ETH</span>
               <img src={UserProfileImage} alt="Profile" className={styles.profileImage} />
             </div>
           </div>
