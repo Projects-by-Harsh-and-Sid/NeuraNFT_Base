@@ -350,7 +350,7 @@ const Chat = () => {
               {message.type === 'bot' ? (
                 <div className={styles['bot-para']} dangerouslySetInnerHTML={{ __html: message.content }} />
               ) : (
-                <p>{message.content}</p>
+                <p className={styles['message']}>{message.content}</p>
               )}
             </div>
           ))}
