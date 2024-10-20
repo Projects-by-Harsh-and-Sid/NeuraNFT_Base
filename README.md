@@ -137,7 +137,7 @@ The following smart contracts have been deployed on the Shasta testnet:
 ```mermaid
 graph LR
     UI[User Interface]
-    TW[Tron Wallet]
+    TW[Base Wallet]
 
     UI --> TW
     UI --"User Actions"-->BS
@@ -179,7 +179,7 @@ graph LR
         HPC --> SN3
     end
 
-    subgraph "Tron Network Smart Contracts"
+    subgraph "Base Network Smart Contracts"
         SC[Smart Contracts]
         NFT[NFT Contract]
         ACC[Access Control Contract]
@@ -199,13 +199,13 @@ graph LR
     end
 
     classDef default fill:#f0f0f0,stroke:#333,stroke-width:2px,color:#000;
-    classDef tron fill:#ffd700,stroke:#333,stroke-width:2px,color:#000;
+    classDef Base fill:#ffd700,stroke:#333,stroke-width:2px,color:#000;
     classDef computing fill:#87cefa,stroke:#333,stroke-width:2px,color:#000;
     classDef storage fill:#90EE90,stroke:#333,stroke-width:2px,color:#000;
     classDef backend fill:#ff6347,stroke:#333,stroke-width:2px,color:#000;
     classDef user fill:#c8a2c8,stroke:#333,stroke-width:2px,color:#000;
 
-    class SC,NFT,ACC,MD,CC,MAC tron;
+    class SC,NFT,ACC,MD,CC,MAC Base;
     class HPC,SN1,SN2,SN3 computing;
     class BTFS storage;
     class BS,UV,AC,ED,MI,API backend;
