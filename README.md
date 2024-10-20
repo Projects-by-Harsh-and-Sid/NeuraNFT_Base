@@ -1,6 +1,6 @@
 # NeuraNFT
 
-NeuraNFT is a pioneering platform built on the Tron blockchain that aims to tokenize intelligence. It enables the creation of NFTs representing AI models and data, with a sophisticated permission management system for granular control over access and usage rights. By addressing key challenges in the current AI ecosystem, NeuraNFT seeks to create a more equitable, secure, and innovative environment for AI development and deployment.
+NeuraNFT is a pioneering platform built on the Base blockchain that aims to tokenize intelligence. It enables the creation of NFTs representing AI models and data, with a sophisticated permission management system for granular control over access and usage rights. By addressing key challenges in the current AI ecosystem, NeuraNFT seeks to create a more equitable, secure, and innovative environment for AI development and deployment.
 
 ## Table of Contents
 
@@ -104,7 +104,7 @@ Responsible for verifying access requests, ensuring only authorized parties can 
 
 ## Technologies Used
 
-- **Tron Blockchain**: Foundation of the decentralized system.
+- **Base Blockchain**: Foundation of the decentralized system.
 - **Smart Contracts (Solidity)**: Implements core logic for NFTs and permissions.
 - **BTFS (BitTorrent File System)**: Decentralized storage for encrypted data and models.
 - **React**: Powers the frontend user interface.
@@ -115,11 +115,11 @@ Responsible for verifying access requests, ensuring only authorized parties can 
 
 The following smart contracts have been deployed on the Shasta testnet:
 
-- MasterAccessControl: [TPbvJsUGhCHGmqxvKHFoheXRLXq64jiX58](https://shasta.tronscan.org/#/address/TPbvJsUGhCHGmqxvKHFoheXRLXq64jiX58)
-- NFTAccessControl: [TNsS3gDQ8f21jUc3u43C8TydgBJuv1E9BS](https://shasta.tronscan.org/#/address/TNsS3gDQ8f21jUc3u43C8TydgBJuv1E9BS)
-- NFTMetadata: [TV4YumwT2x6h6LhyNXwo1xZAG6yRDRL9oe](https://shasta.tronscan.org/#/address/TV4YumwT2x6h6LhyNXwo1xZAG6yRDRL9oe)
-- NFTContract: [TAc8weMCEvi4WGq5LbXUGYMMWLWXK9HvKA](https://shasta.tronscan.org/#/address/TAc8weMCEvi4WGq5LbXUGYMMWLWXK9HvKA)
-- CollectionContract: [TKcJXQ32KMZhwZCccb6XQ51VJ79Yna4JhX](https://shasta.tronscan.org/#/address/TKcJXQ32KMZhwZCccb6XQ51VJ79Yna4JhX)
+- MasterAccessControl: [0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A](https://sepolia.basescan.org/address/0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A)
+- NFTAccessControl: [0xf9179350E92092F283dC34B5E99F53BfF96effbf](https://sepolia.basescan.org/address/0xf9179350E92092F283dC34B5E99F53BfF96effbf)
+- NFTMetadata: [0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026](https://sepolia.basescan.org/address/0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026)
+- NFTContract: [0x112bC2e4d638839162686B8EAb2F1161562BDbAB](https://sepolia.basescan.org/address/0x112bC2e4d638839162686B8EAb2F1161562BDbAB)
+- CollectionContract: [0xc367B82Aed2625e0e592283954E6079B01f0cD48](https://sepolia.basescan.org/address/0xc367b82aed2625e0e592283954e6079b01f0cd48)
 
 ## Future Developments
 
@@ -137,7 +137,7 @@ The following smart contracts have been deployed on the Shasta testnet:
 ```mermaid
 graph LR
     UI[User Interface]
-    TW[Tron Wallet]
+    TW[Base Wallet]
 
     UI --> TW
     UI --"User Actions"-->BS
@@ -179,7 +179,7 @@ graph LR
         HPC --> SN3
     end
 
-    subgraph "Tron Network Smart Contracts"
+    subgraph "Base Network Smart Contracts"
         SC[Smart Contracts]
         NFT[NFT Contract]
         ACC[Access Control Contract]
@@ -199,19 +199,22 @@ graph LR
     end
 
     classDef default fill:#f0f0f0,stroke:#333,stroke-width:2px,color:#000;
-    classDef tron fill:#ffd700,stroke:#333,stroke-width:2px,color:#000;
+    classDef Base fill:#ffd700,stroke:#333,stroke-width:2px,color:#000;
     classDef computing fill:#87cefa,stroke:#333,stroke-width:2px,color:#000;
     classDef storage fill:#90EE90,stroke:#333,stroke-width:2px,color:#000;
     classDef backend fill:#ff6347,stroke:#333,stroke-width:2px,color:#000;
     classDef user fill:#c8a2c8,stroke:#333,stroke-width:2px,color:#000;
 
-    class SC,NFT,ACC,MD,CC,MAC tron;
+    class SC,NFT,ACC,MD,CC,MAC Base;
     class HPC,SN1,SN2,SN3 computing;
     class BTFS storage;
     class BS,UV,AC,ED,MI,API backend;
     class UI,TW user;
 ```
 
+### Smart Contract Architecture
+> Kindly open the image in a new tab to see in detial
+![Smart Contract Architecture](https://raw.githubusercontent.com/Projects-by-Harsh-and-Sid/NeuraNFT_Base/refs/heads/main/smart_contracts/smartContractFlow-white.svg?token=GHSAT0AAAAAACVLNDR6PMXCJJLL6R7VZZBSZYFBSBA? "Smart Contract Architecture")
 
 # Migration Output
 ```shell
