@@ -1,6 +1,6 @@
 # NeuraNFT
 
-NeuraNFT is a pioneering platform built on the Tron blockchain that aims to tokenize intelligence. It enables the creation of NFTs representing AI models and data, with a sophisticated permission management system for granular control over access and usage rights. By addressing key challenges in the current AI ecosystem, NeuraNFT seeks to create a more equitable, secure, and innovative environment for AI development and deployment.
+NeuraNFT is a pioneering platform built on the Base blockchain that aims to tokenize intelligence. It enables the creation of NFTs representing AI models and data, with a sophisticated permission management system for granular control over access and usage rights. By addressing key challenges in the current AI ecosystem, NeuraNFT seeks to create a more equitable, secure, and innovative environment for AI development and deployment.
 
 ## Table of Contents
 
@@ -104,7 +104,7 @@ Responsible for verifying access requests, ensuring only authorized parties can 
 
 ## Technologies Used
 
-- **Tron Blockchain**: Foundation of the decentralized system.
+- **Base Blockchain**: Foundation of the decentralized system.
 - **Smart Contracts (Solidity)**: Implements core logic for NFTs and permissions.
 - **BTFS (BitTorrent File System)**: Decentralized storage for encrypted data and models.
 - **React**: Powers the frontend user interface.
