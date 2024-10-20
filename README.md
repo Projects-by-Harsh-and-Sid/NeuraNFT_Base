@@ -115,11 +115,11 @@ Responsible for verifying access requests, ensuring only authorized parties can 
 
 The following smart contracts have been deployed on the Shasta testnet:
 
-- MasterAccessControl: [TPbvJsUGhCHGmqxvKHFoheXRLXq64jiX58](https://shasta.tronscan.org/#/address/TPbvJsUGhCHGmqxvKHFoheXRLXq64jiX58)
-- NFTAccessControl: [TNsS3gDQ8f21jUc3u43C8TydgBJuv1E9BS](https://shasta.tronscan.org/#/address/TNsS3gDQ8f21jUc3u43C8TydgBJuv1E9BS)
-- NFTMetadata: [TV4YumwT2x6h6LhyNXwo1xZAG6yRDRL9oe](https://shasta.tronscan.org/#/address/TV4YumwT2x6h6LhyNXwo1xZAG6yRDRL9oe)
-- NFTContract: [TAc8weMCEvi4WGq5LbXUGYMMWLWXK9HvKA](https://shasta.tronscan.org/#/address/TAc8weMCEvi4WGq5LbXUGYMMWLWXK9HvKA)
-- CollectionContract: [TKcJXQ32KMZhwZCccb6XQ51VJ79Yna4JhX](https://shasta.tronscan.org/#/address/TKcJXQ32KMZhwZCccb6XQ51VJ79Yna4JhX)
+- MasterAccessControl: [0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A](https://sepolia.basescan.org/address/0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A)
+- NFTAccessControl: [0xf9179350E92092F283dC34B5E99F53BfF96effbf](https://sepolia.basescan.org/address/0xf9179350E92092F283dC34B5E99F53BfF96effbf)
+- NFTMetadata: [0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026](https://sepolia.basescan.org/address/0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026)
+- NFTContract: [0x112bC2e4d638839162686B8EAb2F1161562BDbAB](https://sepolia.basescan.org/address/0x112bC2e4d638839162686B8EAb2F1161562BDbAB)
+- CollectionContract: [0xc367B82Aed2625e0e592283954E6079B01f0cD48](https://sepolia.basescan.org/address/0xc367b82aed2625e0e592283954e6079b01f0cd48)
 
 ## Future Developments
 
@@ -212,6 +212,9 @@ graph LR
     class UI,TW user;
 ```
 
+### Smart Contract Architecture
+> Kindly open the image in a new tab to see in detial
+![Smart Contract Architecture](https://raw.githubusercontent.com/Projects-by-Harsh-and-Sid/NeuraNFT_Base/refs/heads/main/smart_contracts/smartContractFlow-white.svg?token=GHSAT0AAAAAACVLNDR6PMXCJJLL6R7VZZBSZYFBSBA? "Smart Contract Architecture")
 
 # Migration Output
 ```shell
