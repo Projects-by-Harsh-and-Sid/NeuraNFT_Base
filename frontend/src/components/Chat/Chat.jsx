@@ -6,7 +6,8 @@ import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
 import styles from './styles/Chat.module.css';
 import { fetchData } from '../Utils/datafetch';
 import {get_jwt_decoded_response_for_chat} from '../Utils/chat';
-import Loading from '../NFTs/Loading'; 
+import Loading from '../NFTs/Loading';
+import endpoints from '../../../endpoints.json';
 // import {get_api_key} from './helper_functions/get_chat_data';
 
 // import {get_collection_data , get_nft_data} from './helper_functions/get_chain_data';
@@ -14,6 +15,7 @@ import Loading from '../NFTs/Loading';
 const NFTImage = ({ nftImage, name }) => {
   const [imageError, setImageError] = React.useState(false);
 
+  const baseURL = endpoints.BACKEND_URL;
 
   const uint8ArrayToBase64 = (uint8Array) => {
     if (!(uint8Array instanceof Uint8Array)) {
@@ -268,7 +270,7 @@ const Chat = () => {
     console.log("JWT Token:", jwtToken);
 
     try {
-      const response = await fetch('http://localhost:5500/chat', {
+      const response = await fetch(`${baseURL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

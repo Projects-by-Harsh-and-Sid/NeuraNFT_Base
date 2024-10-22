@@ -1,7 +1,8 @@
 
 import axios from 'axios';
+import endpoints from '../../../endpoints';
 
-const baseURL = 'http://localhost:5500';
+const baseURL = endpoints.BACKEND_URL;
 
 
 export async function get_api_key(collectionId, nftID){ 

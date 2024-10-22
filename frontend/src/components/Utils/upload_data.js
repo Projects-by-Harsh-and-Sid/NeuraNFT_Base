@@ -1,11 +1,13 @@
+import endpoints from '../../../endpoints.json';
 
+const baseURL = endpoints.BACKEND_URL;
 
 
 
 async function convertPdfToText(file) {
     const formData = new FormData();
     formData.append('file', file);
-    const response = await fetch('http://localhost:5500/convertpdfToLink', {
+    const response = await fetch(`${baseURL}/convertpdfToLink`, {
       method: 'POST',
       body: formData
     });

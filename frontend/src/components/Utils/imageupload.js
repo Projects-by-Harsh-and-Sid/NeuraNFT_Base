@@ -1,6 +1,7 @@
 import axios from 'axios';
+import endpoints from '../../../endpoints';
 
-const baseURL = 'http://localhost:5500';
+const baseURL = endpoints.BACKEND_URL;
 
 async function uploadImage(imageData, imageType) {
   // Validate the input imageType or determine it from imageData if possible

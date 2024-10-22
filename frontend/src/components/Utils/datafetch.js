@@ -1,5 +1,6 @@
 import collectionsData from '../HomePage/collections.json';
 import nftsData from '../HomePage/nfts.json';
+import endpoints from '../../../endpoints.json';
 
 // export const fetchAllCollections = async() => {
 
@@ -18,7 +19,7 @@ import nftsData from '../HomePage/nfts.json';
 
 import axios from 'axios';
 
-const baseURL = 'http://localhost:5500';
+const baseURL = endpoints.BACKEND_URL;
 
 export const fetchAllCollections = async () => {
   try {
