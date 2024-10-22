@@ -4,7 +4,7 @@ services:
     build:
       context: ./master_node  # Build the image from the Dockerfile in ./master_node
     ports:
-      - "6010:5500"  # Map host port 6010 to container port 5500
+      - "0.0.0.0:6010:5500"  # Map host port 6010 to container port 5500
     volumes:
       - ./master_node:/app  # Mount the ./master_node folder into the container
       - ./master_node/.logs:/app/.logs  # Mount the .logs folder to persist logs

@@ -2,7 +2,7 @@ import numpy as np
 from llama_index.core import SimpleDirectoryReader, Document
 from llama_index.embeddings.langchain import LangchainEmbedding
 from langchain.embeddings import HuggingFaceEmbeddings
-from llama_index.llms.ollama import Ollama
+# from llama_index.llms.ollama import Ollama
 
 # def get_embeddings(directory):
 #     documents = SimpleDirectoryReader(directory).load_data()
