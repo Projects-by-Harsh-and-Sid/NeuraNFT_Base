@@ -25,19 +25,19 @@ else:
 
 
 #collection json
-with open(os.path.join(contract_folder,r'contracts\CollectionContract.json')) as f:
+with open(os.path.join(contract_folder,r'contracts/CollectionContract.json')) as f:
     collection_json = json.load(f)
 
-with open(os.path.join(contract_folder,r'contracts\NFTContract.json')) as f:
+with open(os.path.join(contract_folder,r'contracts/NFTContract.json')) as f:
     nft_json = json.load(f)
 
-with open(os.path.join(contract_folder,r'contracts\NFTAccessControl.json')) as f:
+with open(os.path.join(contract_folder,r'contracts/NFTAccessControl.json')) as f:
     NFTAccessControl_json = json.load(f)
 
-with open(os.path.join(contract_folder,r'contracts\NFTMetadata.json')) as f:
+with open(os.path.join(contract_folder,r'contracts/NFTMetadata.json')) as f:
     NFTMetadata_json = json.load(f)
     
-with open(os.path.join(contract_folder,r'contractAddresses\base_addresses.json')) as f:
+with open(os.path.join(contract_folder,r'contractAddresses/base_addresses.json')) as f:
     address_json= json.load(f)
 
 

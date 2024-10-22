@@ -4,3 +4,5 @@
 *.env
 /.logs/app.log
 
+/.logs/access.log
+/.logs/error.log

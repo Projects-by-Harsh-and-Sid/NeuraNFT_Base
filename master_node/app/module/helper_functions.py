@@ -14,7 +14,7 @@ SECRET_KEY          = app.config['SECRET_KEY']
 ALLOWED_EXTENSIONS  = app.config['ALLOWED_EXTENSIONS']
 MASTER_API_KEY      = app.config['MASTER_API_KEY']
 
-import PyPDF2
+# import PyPDF2
 
 UPLOAD_FOLDER = app.config['UPLOAD_FOLDER']
 
