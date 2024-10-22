@@ -11,7 +11,6 @@ NeuraNFT is a pioneering platform built on the Base blockchain that aims to toke
   - [Problem Statement](#problem-statement)
   - [Architecture](#architecture)
     - [Smart Contracts](#smart-contracts)
-    - [BTFS (BitTorrent File System)](#btfs-bittorrent-file-system)
     - [Balancer Nodes](#balancer-nodes)
     - [Frontend](#frontend)
     - [Backend](#backend)
@@ -20,6 +19,7 @@ NeuraNFT is a pioneering platform built on the Base blockchain that aims to toke
   - [Smart Contracts](#smart-contracts-1)
   - [Future Developments](#future-developments)
   - [Architecture Diagram](#architecture-diagram)
+    - [Smart Contract Architecture](#smart-contract-architecture)
 - [Migration Output](#migration-output)
 
 ## Documentation
@@ -214,7 +214,7 @@ graph LR
 # Migration Output
 ```shell
 
-❯ truffle migrate --network base --reset
+truffle migrate --network base --reset
 
 Compiling your contracts...
 ===========================
@@ -241,120 +241,120 @@ Starting migrations...
 
    Replacing 'Migrations'
    ----------------------
-   > transaction hash:    0xed5323590392a907c14c14dbcbc8563c4668d2525301e9cfc2d691ef880c1e05
-   > Blocks: 2            Seconds: 4
-   > contract address:    0x8439be0d2BF79485831471a24223D88E21613D50
-   > block number:        16746771
-   > block timestamp:     1729261830
+   > transaction hash:    0x705ea50d0abf8bb25256c4c20f759cd0dbf5ce07e751e180b8f290972787f7b7
+   > Blocks: 4            Seconds: 8
+   > contract address:    0x596522432614C2ee07284A964077B9974D6744e5
+   > block number:        16934410
+   > block timestamp:     1729637108
    > account:             0x43ADAc5516f8E2D3d2BD31276BeC343547ee6612
-   > balance:             0.097383119699514622
+   > balance:             0.10950934976490596
    > gas used:            250212 (0x3d164)
-   > gas price:           2.500610524 gwei
+   > gas price:           2.500204425 gwei
    > value sent:          0 ETH
-   > total cost:          0.000625682760431088 ETH
+   > total cost:          0.0006255811495881 ETH
 
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.000625682760431088 ETH
+   > Total cost:     0.0006255811495881 ETH
 
 
 2_deploy_master_access_control.js
 =================================
 
-   Deploying 'MasterAccessControl'
+   Replacing 'MasterAccessControl'
    -------------------------------
-   > transaction hash:    0xd01184efb45d69b687059ec505356d654d625d6b98686cc18797668a95d3bbb5
-   > Blocks: 2            Seconds: 4
-   > contract address:    0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A
-   > block number:        16746779
-   > block timestamp:     1729261846
+   > transaction hash:    0x336cb581d5e4fc3cba9ba94bb4f88838989e35e6f0c1721d21dac2f25e88d6f9
+   > Blocks: 2            Seconds: 5
+   > contract address:    0xEAD39C0363378B3100cB8C89820f71353136EBd0
+   > block number:        16934421
+   > block timestamp:     1729637130
    > account:             0x43ADAc5516f8E2D3d2BD31276BeC343547ee6612
-   > balance:             0.095883231191535678
+   > balance:             0.108009885253774519
    > gas used:            553822 (0x8735e)
-   > gas price:           2.500614434 gwei
+   > gas price:           2.500201361 gwei
    > value sent:          0 ETH
-   > total cost:          0.001384895287066748 ETH
+   > total cost:          0.001384666518151742 ETH
 
-MasterAccessControl deployed at: 0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A
+MasterAccessControl deployed at: 0xEAD39C0363378B3100cB8C89820f71353136EBd0
 Addresses saved to base_addresses.json
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.001384895287066748 ETH
+   > Total cost:     0.001384666518151742 ETH
 
 
 3_deploy_nft_access_control.js
 ==============================
 
-   Deploying 'NFTAccessControl'
+   Replacing 'NFTAccessControl'
    ----------------------------
-   > transaction hash:    0x05307c72660dee5a53787f8515a57ccf16c40f335fa89e883044c599dfdd3fe1
+   > transaction hash:    0x83d60c74feb818b19f92524d86b4e337961f493da0e13f6aaab3fe243cdd9ba5
    > Blocks: 2            Seconds: 4
-   > contract address:    0xf9179350E92092F283dC34B5E99F53BfF96effbf
-   > block number:        16746786
-   > block timestamp:     1729261860
+   > contract address:    0x2c6993608197B40ae0d0D1042829541067ac761e
+   > block number:        16934428
+   > block timestamp:     1729637144
    > account:             0x43ADAc5516f8E2D3d2BD31276BeC343547ee6612
-   > balance:             0.089755565879314336
-   > gas used:            2421337 (0x24f259)
-   > gas price:           2.500615893 gwei
+   > balance:             0.10188402270196456
+   > gas used:            2421325 (0x24f24d)
+   > gas price:           2.500200422 gwei
    > value sent:          0 ETH
-   > total cost:          0.006054833784508941 ETH
+   > total cost:          0.00605379778679915 ETH
 
-NFTAccessControl deployed at: 0xf9179350E92092F283dC34B5E99F53BfF96effbf
+NFTAccessControl deployed at: 0x2c6993608197B40ae0d0D1042829541067ac761e
 Granted access to NFTAccessControl in MasterAccessControl
 Addresses saved to base_addresses.json
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.006054833784508941 ETH
+   > Total cost:     0.00605379778679915 ETH
 
 
 4_deploy_nft_metadata.js
 ========================
 
-   Deploying 'NFTMetadata'
+   Replacing 'NFTMetadata'
    -----------------------
-   > transaction hash:    0xe7a0abf64eb68a8d27fb4ae8a56f92ec4f5c7d68c3ceb706d1ddd6c635839aa0
-   > Blocks: 2            Seconds: 4
-   > contract address:    0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026
-   > block number:        16746798
-   > block timestamp:     1729261884
+   > transaction hash:    0xa8dfe12625c2da58d66b85f604ec52990d23284734bcde3a863f8ed3232f6795
+   > Blocks: 4            Seconds: 8
+   > contract address:    0x13846e6fDe06853f6CC822A58f97AdbEbF1e6AFd
+   > block number:        16934443
+   > block timestamp:     1729637174
    > account:             0x43ADAc5516f8E2D3d2BD31276BeC343547ee6612
-   > balance:             0.085315345654359792
-   > gas used:            1697697 (0x19e7a1)
-   > gas price:           2.500617558 gwei
+   > balance:             0.097445312598784868
+   > gas used:            1697685 (0x19e795)
+   > gas price:           2.500197063 gwei
    > value sent:          0 ETH
-   > total cost:          0.004245290926363926 ETH
+   > total cost:          0.004244547050899155 ETH
 
-NFTMetadata deployed at: 0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026
+NFTMetadata deployed at: 0x13846e6fDe06853f6CC822A58f97AdbEbF1e6AFd
 Granted access to NFTMetadata in MasterAccessControl
 Granted access to NFTMetadata in NFTAccessControl
 Addresses saved to base_addresses.json
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.004245290926363926 ETH
+   > Total cost:     0.004244547050899155 ETH
 
 
 5_deploy_nft_contract.js
 ========================
 
-   Deploying 'NFTContract'
+   Replacing 'NFTContract'
    -----------------------
-   > transaction hash:    0xdc5b9275491f047500f35126f235f6c37d68869cc0cd6b7d203daca5d7cc9e00
+   > transaction hash:    0x45ca808cfcccdcb21bbf6fdd083ce1eb3ba540298c1e7a43ad8fc862cef7bbb9
    > Blocks: 2            Seconds: 4
-   > contract address:    0x112bC2e4d638839162686B8EAb2F1161562BDbAB
-   > block number:        16746812
-   > block timestamp:     1729261912
+   > contract address:    0xAc537d070AcfA1F0C6df29a87b5d63c26Fff6DcE
+   > block number:        16934472
+   > block timestamp:     1729637232
    > account:             0x43ADAc5516f8E2D3d2BD31276BeC343547ee6612
-   > balance:             0.076284277023009844
+   > balance:             0.088417104019242902
    > gas used:            3307161 (0x327699)
-   > gas price:           2.500638826 gwei
+   > gas price:           2.500188987 gwei
    > value sent:          0 ETH
-   > total cost:          0.008270015200432986 ETH
+   > total cost:          0.008268527510435907 ETH
 
-NFTContract deployed at: 0x112bC2e4d638839162686B8EAb2F1161562BDbAB
+NFTContract deployed at: 0xAc537d070AcfA1F0C6df29a87b5d63c26Fff6DcE
 Granted access to NFTContract in MasterAccessControl
 Granted access of NFTAccessControl to NFTContract in MasterAccessControl
 Granted access of NFTMetadata to NFTContract in MasterAccessControl
@@ -364,27 +364,27 @@ Addresses saved to base_addresses.json
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.008270015200432986 ETH
+   > Total cost:     0.008268527510435907 ETH
 
 
 6_deploy_collection_contract.js
 ===============================
 
-   Deploying 'CollectionContract'
+   Replacing 'CollectionContract'
    ------------------------------
-   > transaction hash:    0xd538eaef475f266985b4fffb7dca493b2ac8bbf71b0f34d8a4d13254731a70a7
-   > Blocks: 3            Seconds: 4
-   > contract address:    0xc367B82Aed2625e0e592283954E6079B01f0cD48
-   > block number:        16746832
-   > block timestamp:     1729261952
+   > transaction hash:    0x89b1bf28cebf843b88f57c376f7639250a0907f6e56bcd838ffe7c6e54649f3a
+   > Blocks: 2            Seconds: 4
+   > contract address:    0x536446035eF24cb011a3B55f0627df2Fad083F67
+   > block number:        16934502
+   > block timestamp:     1729637292
    > account:             0x43ADAc5516f8E2D3d2BD31276BeC343547ee6612
-   > balance:             0.070279539672854803
-   > gas used:            1987550 (0x1e53de)
-   > gas price:           2.50064705 gwei
+   > balance:             0.082414437489235472
+   > gas used:            1987538 (0x1e53d2)
+   > gas price:           2.500183222 gwei
    > value sent:          0 ETH
-   > total cost:          0.0049701610442275 ETH
+   > total cost:          0.004969209160687436 ETH
 
-CollectionContract deployed at: 0xc367B82Aed2625e0e592283954E6079B01f0cD48
+CollectionContract deployed at: 0x536446035eF24cb011a3B55f0627df2Fad083F67
 Granted access to CollectionContract in MasterAccessControl
 Granted access to CollectionContract in NFTContract
 Addresses saved to base_addresses.json
@@ -392,11 +392,11 @@ All contracts deployed and set up successfully
    > Saving migration to chain.
    > Saving artifacts
    -------------------------------------
-   > Total cost:     0.0049701610442275 ETH
+   > Total cost:     0.004969209160687436 ETH
 
 Summary
 =======
 > Total deployments:   6
-> Final cost:          0.025550879003031189 ETH
+> Final cost:          0.02554632917656149 ETH
 
 ```

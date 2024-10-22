@@ -17166,14 +17166,185 @@
       "transactionHash": "0x012c9bcb9fefd31def5468ca6b35b9fa543ffcfcacae19d325159c2ed0f594ff"
     },
     "84532": {
-      "events": {},
+      "events": {
+        "0x03f37875a30d73ff3ec38e4597342ebf44d54b2097441e1e23ca00a68a9ff692": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "image",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "baseModel",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "data",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "rag",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "fineTuneData",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "description",
+                  "type": "string"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct NFTMetadata.Metadata",
+              "name": "metadata",
+              "type": "tuple"
+            }
+          ],
+          "name": "MetadataCreated",
+          "type": "event"
+        },
+        "0x03bc490bb78e04caa417a0c6b35ba462d8233a8e018a487d3c85504e55d6941c": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            }
+          ],
+          "name": "MetadataDeleted",
+          "type": "event"
+        },
+        "0x5c8fd35de2e0598f91dcb7b08c6cfd56153f6239a9a0bc5ba963d3f016dc1ef0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "string",
+                  "name": "image",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "baseModel",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "data",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "rag",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "fineTuneData",
+                  "type": "string"
+                },
+                {
+                  "internalType": "string",
+                  "name": "description",
+                  "type": "string"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct NFTMetadata.Metadata",
+              "name": "metadata",
+              "type": "tuple"
+            }
+          ],
+          "name": "MetadataUpdated",
+          "type": "event"
+        },
+        "0x5dde2dde5bddd24d6808b98f5421e48ae6bd316d5fb072cc479d7f2e2ad75c3e": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "nftId",
+              "type": "uint256"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "uint256",
+                  "name": "replicaCollectionId",
+                  "type": "uint256"
+                },
+                {
+                  "internalType": "uint256",
+                  "name": "replicaNFTId",
+                  "type": "uint256"
+                }
+              ],
+              "indexed": false,
+              "internalType": "struct NFTMetadata.Replica",
+              "name": "replica",
+              "type": "tuple"
+            }
+          ],
+          "name": "ReplicaCreated",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x62B5C46B0eCDda777B98d3ca5100DCa4d0532026",
-      "transactionHash": "0xe7a0abf64eb68a8d27fb4ae8a56f92ec4f5c7d68c3ceb706d1ddd6c635839aa0"
+      "address": "0x13846e6fDe06853f6CC822A58f97AdbEbF1e6AFd",
+      "transactionHash": "0xa8dfe12625c2da58d66b85f604ec52990d23284734bcde3a863f8ed3232f6795"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-18T14:32:25.681Z",
+  "updatedAt": "2024-10-22T22:48:04.201Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

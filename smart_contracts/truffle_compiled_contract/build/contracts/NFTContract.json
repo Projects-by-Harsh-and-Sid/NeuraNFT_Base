@@ -37573,14 +37573,152 @@
       "transactionHash": "0x7284213535042f73c08a86448755340fd5e877615acff7fdc6ee780640bf87fe"
     },
     "84532": {
-      "events": {},
+      "events": {
+        "0xb3fd5071835887567a0671151121894ddccc2842f1d10bedad13e0d17cace9a7": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "approved",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Approval",
+          "type": "event"
+        },
+        "0x17307eab39ab6107e8899845ad3d59bd9653f200f220920489ca2b5937696c31": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "owner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "operator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "bool",
+              "name": "approved",
+              "type": "bool"
+            }
+          ],
+          "name": "ApprovalForAll",
+          "type": "event"
+        },
+        "0x401ca505317eed77a11d86cfdf8adc682b4c9cb9855ab9b951515e1b371c67ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "NFTBurned",
+          "type": "event"
+        },
+        "0x70c783e7a8d1b78c0efffba9d45d314bfe7a85f6388c8e9a32536a97949a0f2a": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "creator",
+              "type": "address"
+            }
+          ],
+          "name": "NFTCreated",
+          "type": "event"
+        },
+        "0x9ed053bb818ff08b8353cd46f78db1f0799f31c9e4458fdb425c10eccd2efc44": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "to",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "tokenId",
+              "type": "uint256"
+            }
+          ],
+          "name": "Transfer",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x112bC2e4d638839162686B8EAb2F1161562BDbAB",
-      "transactionHash": "0xdc5b9275491f047500f35126f235f6c37d68869cc0cd6b7d203daca5d7cc9e00"
+      "address": "0xAc537d070AcfA1F0C6df29a87b5d63c26Fff6DcE",
+      "transactionHash": "0x45ca808cfcccdcb21bbf6fdd083ce1eb3ba540298c1e7a43ad8fc862cef7bbb9"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-18T14:32:53.812Z",
+  "updatedAt": "2024-10-22T22:48:42.203Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

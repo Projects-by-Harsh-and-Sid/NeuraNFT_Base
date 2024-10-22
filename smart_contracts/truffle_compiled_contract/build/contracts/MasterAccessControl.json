@@ -4044,12 +4044,12 @@
         }
       },
       "links": {},
-      "address": "0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A",
-      "transactionHash": "0xd01184efb45d69b687059ec505356d654d625d6b98686cc18797668a95d3bbb5"
+      "address": "0xEAD39C0363378B3100cB8C89820f71353136EBd0",
+      "transactionHash": "0x336cb581d5e4fc3cba9ba94bb4f88838989e35e6f0c1721d21dac2f25e88d6f9"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-18T14:32:53.806Z",
+  "updatedAt": "2024-10-22T22:48:42.196Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",
