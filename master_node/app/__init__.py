@@ -28,13 +28,25 @@ app.config['CHAT_SESSIONS'] = {}
 app.config['TEMP_FILE_PATH'] = temp_file_path
 app.config['CONTRACT_FOLDER'] = os.path.join(os.path.dirname(__file__), CONTRACT_FOLDER)
 
+
+
+
+# app.config["Load_balancer_Endpoints"] = {
+#     "hpcEndpoint": "http://localhost",
+#     "hpcEndpointPort": "5500",
+# }
+
+# app.config["filestorage_endpoint"] = "http://localhost:5500"
+
+
 app.config["Load_balancer_Endpoints"] = {
-    "hpcEndpoint": "http://localhost",
-    "hpcEndpointPort": "5500",
+    "hpcEndpoint": "https://base.backend.neuranft.com",
+    "hpcEndpointPort": "443",
 }
 
+app.config["filestorage_endpoint"] = "https://base.backend.neuranft.com"
 
-app.config["filestorage_endpoint"] = "http://localhost:5500"
+
 
 # from app import routes
 from app import data_fetch
