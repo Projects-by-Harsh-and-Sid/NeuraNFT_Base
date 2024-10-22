@@ -1,0 +1,18 @@
+version: '1.0'
+services:
+  coinbase_neuranft_backend:
+    build:
+      context: ./master_node  # Build the image from the Dockerfile in ./master_node
+    ports:
+      - "6010:5500"  # Map host port 6010 to container port 5500
+    volumes:
+      - ./master_node:/app  # Mount the ./master_node folder into the container
+      - ./master_node/.logs:/app/.logs  # Mount the .logs folder to persist logs
+    # environment:
+      # - FLASK_ENV=development  # Optional: Set Flask to development mode
+    container_name: coinbase_neuranft_backend_container
+
+    command: >
+      gunicorn -w 1 -b 0.0.0.0:5500 app:app 
+      --access-logfile /app/.logs/access.log 
+      --error-logfile /app/.logs/error.log
