@@ -78,9 +78,6 @@ NeuraNFT's architecture is designed with security, scalability, and user control
 - **NFTContract**: Implements core NFT functionality (minting, transferring, etc.).
 - **CollectionContract**: Manages collections of NFTs.
 
-### BTFS (BitTorrent File System)
-Used for secure, decentralized storage of encrypted data and RAG (Retrieval-Augmented Generation) models.
-
 ### Balancer Nodes
 Responsible for verifying access requests, ensuring only authorized parties can interact with the models and data.
 
@@ -96,24 +93,22 @@ Responsible for verifying access requests, ensuring only authorized parties can 
 ### Operational Flow
 1. User creates an NFT representing their AI model or dataset.
 2. Owner grants varying levels of permissions to other users.
-3. Data is encrypted and stored on BTFS.
-4. For access requests, a balancer node sends a verification message.
-5. Frontend signs the message and sends it to the backend.
-6. Backend verifies the signature and checks permissions.
-7. If permissions match, data is decrypted or model is deployed for inference.
+3. For access requests, a balancer node sends a verification message.
+4. Frontend signs the message and sends it to the backend.
+5. Backend verifies the signature and checks permissions.
+6. If permissions match, data is decrypted or model is deployed for inference.
 
 ## Technologies Used
 
 - **Base Blockchain**: Foundation of the decentralized system.
 - **Smart Contracts (Solidity)**: Implements core logic for NFTs and permissions.
-- **BTFS (BitTorrent File System)**: Decentralized storage for encrypted data and models.
 - **React**: Powers the frontend user interface.
 - **Python**: Drives backend operations.
 - **Python Encryption Libraries**: Ensure data security throughout the system.
 
 ## Smart Contracts
 
-The following smart contracts have been deployed on the Shasta testnet:
+The following smart contracts have been deployed on the Base testnet:
 
 - MasterAccessControl: [0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A](https://sepolia.basescan.org/address/0x52AD5a6D11a1D68736894F4eab33CCD594E1db5A)
 - NFTAccessControl: [0xf9179350E92092F283dC34B5E99F53BfF96effbf](https://sepolia.basescan.org/address/0xf9179350E92092F283dC34B5E99F53BfF96effbf)
