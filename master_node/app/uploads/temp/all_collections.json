@@ -3,12 +3,12 @@
     {
       "id": 1,
       "name": "Neural Mint Hub",
-      "image": "http://localhost:5500/image/temp7.png",
-      "creator": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+      "image": "https://base.backend.neuranft.com/image/temp7.png",
+      "creator": "0xa1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 42,
       "contextWindow": 4096,
-      "collectionaddress": "0x123488888888888885678",
+      "collectionaddress": "#1",
       "date": 1697059200,
       "description": "Discover the fusion of neural networks and blockchain at the Neural Mint Hub. This collection offers unique AI-generated NFTs crafted by advanced neural models.",
       "noOfServers": 12
@@ -16,7 +16,7 @@
     {
       "id": 2,
       "name": "Quantum Rewards",
-      "image": "http://localhost:5500/image/temp2.png",
+      "image": "https://base.backend.neuranft.com/image/temp2.png",
       "creator": "0xfedcba9876543210abcdef1234567890fedcba98",
       "model": "Llama 3.1",
       "noOfNFTs": 50,
@@ -29,7 +29,7 @@
     {
       "id": 3,
       "name": "AI Profile Architect",
-      "image": "http://localhost:5500/image/temp3.png",
+      "image": "https://base.backend.neuranft.com/image/temp3.png",
       "creator": "0xabcdef1234567890abcdef1234567890abcdef12",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 30,
@@ -42,7 +42,7 @@
     {
       "id": 4,
       "name": "Algorithmic Daily Drops",
-      "image": "http://localhost:5500/image/temp4.png",
+      "image": "https://base.backend.neuranft.com/image/temp4.png",
       "creator": "0x0123456789abcdef0123456789abcdef01234567",
       "model": "Llama 3.1",
       "noOfNFTs": 70,
@@ -55,7 +55,7 @@
     {
       "id": 5,
       "name": "Digital Personas",
-      "image": "http://localhost:5500/image/temp5.png",
+      "image": "https://base.backend.neuranft.com/image/temp5.png",
       "creator": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 60,
@@ -68,7 +68,7 @@
     {
       "id": 6,
       "name": "Synthetic Sidekicks",
-      "image": "http://localhost:5500/image/temp6.png",
+      "image": "https://base.backend.neuranft.com/image/temp6.png",
       "creator": "0xcafebabe0123456789abcdef0123456789abcdef",
       "model": "Llama 3.1",
       "noOfNFTs": 25,
@@ -81,7 +81,7 @@
     {
       "id": 7,
       "name": "Virtual Companions",
-      "image": "http://localhost:5500/image/temp.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp321654.jpg",
       "creator": "0xfeedfacefeedfacefeedfacefeedfacefeedface",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 80,
@@ -94,7 +94,7 @@
     {
       "id": 8,
       "name": "Cyber Entities",
-      "image": "http://localhost:5500/image/temp.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp87945.jpg",
       "creator": "0xbaadf00dbaadf00dbaadf00dbaadf00dbaadf00d",
       "model": "Llama 3.1",
       "noOfNFTs": 35,
@@ -103,6 +103,164 @@
       "date": 1697664000,
       "description": "Explore the realm of AI with Cyber Entities. This collection showcases AI-generated NFTs representing diverse digital beings from the cyber world.",
       "noOfServers": 9
+    },
+
+    {
+      "id": 9,
+      "name": "AI Guardians",
+      "image": "https://base.backend.neuranft.com/image/temp92475.png",
+      "creator": "0x9f8b7a6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a",
+      "model": "Llama 3.1 70B",
+      "noOfNFTs": 55,
+      "contextWindow": 5120,
+      "collectionaddress": "#9",
+      "date": 1697750400,
+      "description": "Protect the digital realm with AI Guardians. Each NFT embodies an AI sentinel safeguarding cyberspace with advanced algorithms.",
+      "noOfServers": 11
+    },
+    {
+      "id": 10,
+      "name": "Synthetic Sages",
+      "image": "https://base.backend.neuranft.com/image/temp83746.jpg",
+      "creator": "0x1234abcd5678efgh9012ijkl3456mnop7890qrst",
+      "model": "Llama 3.1",
+      "noOfNFTs": 40,
+      "contextWindow": 6144,
+      "collectionaddress": "#10",
+      "date": 1697836800,
+      "description": "Delve into wisdom with Synthetic Sages. This collection features AI bots with profound knowledge and insights, encapsulated in NFTs.",
+      "noOfServers": 13
+    },
+    {
+      "id": 11,
+      "name": "Virtual Visionaries",
+      "image": "https://base.backend.neuranft.com/image/temp75839.png",
+      "creator": "0xdeadbeefcafebabe8badf00dfeedfacebaadf00d",
+      "model": "Llama 3.1 70B",
+      "noOfNFTs": 65,
+      "contextWindow": 4096,
+      "collectionaddress": "#11",
+      "date": 1697923200,
+      "description": "Meet the Virtual Visionaries, AI bots that pioneer the frontier of technology and art. Each NFT represents an innovative AI persona.",
+      "noOfServers": 12
+    },
+    {
+      "id": 12,
+      "name": "Cybernetic Companions",
+      "image": "https://base.backend.neuranft.com/image/temp64528.jpg",
+      "creator": "0xcafebabef00dfeeddeadbeeffeedfacecafed00d",
+      "model": "Llama 3.1",
+      "noOfNFTs": 50,
+      "contextWindow": 8192,
+      "collectionaddress": "#12",
+      "date": 1698009600,
+      "description": "Experience friendship in the digital age with Cybernetic Companions. AI bots designed to interact and grow with their owners.",
+      "noOfServers": 8
+    },
+    {
+      "id": 13,
+      "name": "Algorithmic Artisans",
+      "image": "https://base.backend.neuranft.com/image/temp53647.png",
+      "creator": "0xbeadfeedbeadfeedbeadfeedbeadfeedbeadfeed",
+      "model": "Llama 3.1 70B",
+      "noOfNFTs": 38,
+      "contextWindow": 3072,
+      "collectionaddress": "#13",
+      "date": 1698096000,
+      "description": "Algorithmic Artisans bring creativity to code. This collection showcases AI bots that craft art and music through algorithms.",
+      "noOfServers": 10
+    },
+    {
+      "id": 14,
+      "name": "Digital Dreamers",
+      "image": "https://base.backend.neuranft.com/image/temp42719.jpg",
+      "creator": "0xfeedfacecafebabe8badf00ddeadbeefbaadf00d",
+      "model": "Llama 3.1",
+      "noOfNFTs": 45,
+      "contextWindow": 2560,
+      "collectionaddress": "#14",
+      "date": 1698182400,
+      "description": "Unlock the imagination of AI with Digital Dreamers. Each NFT represents an AI bot exploring the boundaries between reality and virtuality.",
+      "noOfServers": 9
+    },
+    {
+      "id": 15,
+      "name": "Neural Navigators",
+      "image": "https://base.backend.neuranft.com/image/temp31820.png",
+      "creator": "0x0123456789abcdef0123456789abcdef01234567",
+      "model": "Llama 3.1 70B",
+      "noOfNFTs": 60,
+      "contextWindow": 4096,
+      "collectionaddress": "#15",
+      "date": 1698268800,
+      "description": "Embark on a journey with Neural Navigators. AI bots designed to explore and map the vast landscapes of digital universes.",
+      "noOfServers": 14
+    },
+    {
+      "id": 16,
+      "name": "Quantum Questers",
+      "image": "https://base.backend.neuranft.com/image/temp20901.jpg",
+      "creator": "0xbaadf00ddeadbeefcafebabe8badf00dfeedface",
+      "model": "Llama 3.1",
+      "noOfNFTs": 33,
+      "contextWindow": 6144,
+      "collectionaddress": "#16",
+      "date": 1698355200,
+      "description": "Join the Quantum Questers on their adventures. AI bots that delve into the mysteries of quantum realms, captured in unique NFTs.",
+      "noOfServers": 7
+    },
+    {
+      "id": 17,
+      "name": "Synth Symphonies",
+      "image": "https://base.backend.neuranft.com/image/temp19082.png",
+      "creator": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "model": "Llama 3.1 70B",
+      "noOfNFTs": 70,
+      "contextWindow": 5120,
+      "collectionaddress": "#17",
+      "date": 1698441600,
+      "description": "Experience music like never before with Synth Symphonies. AI bots composing and performing music, each NFT is a unique audio-visual experience.",
+      "noOfServers": 13
+    },
+    {
+      "id": 18,
+      "name": "Digital Defenders",
+      "image": "https://base.backend.neuranft.com/image/temp28173.jpg",
+      "creator": "0x1234567890abcdef1234567890abcdef12345678",
+      "model": "Llama 3.1",
+      "noOfNFTs": 58,
+      "contextWindow": 8192,
+      "collectionaddress": "#18",
+      "date": 1698528000,
+      "description": "Secure the cyberspace with Digital Defenders. This collection features AI bots specializing in cybersecurity, guarding the digital frontier.",
+      "noOfServers": 11
+    },
+    {
+      "id": 19,
+      "name": "Neural Nomads",
+      "image": "https://base.backend.neuranft.com/image/temp37264.png",
+      "creator": "0xcafebabecafebabecafebabecafebabecafebabe",
+      "model": "Llama 3.1 70B",
+      "noOfNFTs": 47,
+      "contextWindow": 3072,
+      "collectionaddress": "#19",
+      "date": 1698614400,
+      "description": "Travel the virtual world with Neural Nomads. AI bots that wander the digital landscapes, collecting and sharing experiences.",
+      "noOfServers": 8
+    },
+    {
+      "id": 20,
+      "name": "Cyber Sorcerers",
+      "image": "https://base.backend.neuranft.com/image/temp46355.jpg",
+      "creator": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
+      "model": "Llama 3.1",
+      "noOfNFTs": 52,
+      "contextWindow": 2560,
+      "collectionaddress": "#20",
+      "date": 1698700800,
+      "description": "Unleash digital magic with Cyber Sorcerers. AI bots mastering the arcane arts of code and algorithms, each NFT a spell in cyberspace.",
+      "noOfServers": 12
     }
+    
   ]
 }

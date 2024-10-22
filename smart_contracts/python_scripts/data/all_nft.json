@@ -5,7 +5,7 @@
         "name": "Cognitive Llama",
         "collection": "Neural Mint Hub",
         "collection_id": 1,
-        "image": "http://localhost:5500/image/temp11.jpg",
+        "image": "https://base.backend.neuranft.com/image/temp11.jpg",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
@@ -36,7 +36,7 @@
         "name": "Cyborg Bored Ape",
         "collection": "onchain gaias",
         "collection_id": 1,
-        "image": "http://localhost:5500/image/temp10.jpg",
+        "image": "https://base.backend.neuranft.com/image/temp10.jpg",
         "model": "GPT-4",
         "attributes": [
           { "trait_type": "Model", "value": "GPT-4" },
@@ -62,7 +62,7 @@
         "name": "Thinker Primate",
         "collection": "Rebel Monkes",
         "collection_id": 1,
-        "image": "http://localhost:5500/image/temp9.jpg",
+        "image": "https://base.backend.neuranft.com/image/temp9.jpg",
         "model": "DALL-E",
         "attributes": [
           { "trait_type": "Model", "value": "DALL-E" },
@@ -141,7 +141,7 @@
         "name": "Dark Llama",
         "collection": "re:generates",
         "collection_id": 1,
-        "image": "http://localhost:5500/image/temp8.jpg",
+        "image": "https://base.backend.neuranft.com/image/temp8.jpg",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
@@ -166,7 +166,7 @@
         "id": 5,
         "name": "Tron Cells",
         "collection": "re:generates",
-        "image": "http://localhost:5500/image/temp12.png",
+        "image": "https://base.backend.neuranft.com/image/temp12.png",
         "collection_id": 1,
         "model": "Llama 3.1",
         "attributes": [
@@ -193,7 +193,7 @@
         "name": "Corrupted Cyborg",
         "collection": "re:generates",
         "collection_id": 1,
-        "image": "http://localhost:5500/image/temp13.png",
+        "image": "https://base.backend.neuranft.com/image/temp13.png",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
@@ -219,7 +219,7 @@
         "name": "Skynet",
         "collection": "re:generates",
         "collection_id": 1,
-        "image": "http://localhost:5500/image/temp14.png",
+        "image": "https://base.backend.neuranft.com/image/temp14.png",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },

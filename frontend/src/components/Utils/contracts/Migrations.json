@@ -1926,12 +1926,12 @@
     "84532": {
       "events": {},
       "links": {},
-      "address": "0x8439be0d2BF79485831471a24223D88E21613D50",
-      "transactionHash": "0xed5323590392a907c14c14dbcbc8563c4668d2525301e9cfc2d691ef880c1e05"
+      "address": "0x596522432614C2ee07284A964077B9974D6744e5",
+      "transactionHash": "0x705ea50d0abf8bb25256c4c20f759cd0dbf5ce07e751e180b8f290972787f7b7"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-18T14:32:53.828Z",
+  "updatedAt": "2024-10-22T22:48:42.218Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

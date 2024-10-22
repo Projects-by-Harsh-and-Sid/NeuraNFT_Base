@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "Neural Mint Hub",
-      "image": "http://localhost:5500/image/temp7.png",
+      "image": "https://base.backend.neuranft.com/image/temp7.png",
       "creator": "0xa1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6e7f8a9b0",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 42,
@@ -16,7 +16,7 @@
     {
       "id": 2,
       "name": "Quantum Rewards",
-      "image": "http://localhost:5500/image/temp2.png",
+      "image": "https://base.backend.neuranft.com/image/temp2.png",
       "creator": "0xfedcba9876543210abcdef1234567890fedcba98",
       "model": "Llama 3.1",
       "noOfNFTs": 50,
@@ -29,7 +29,7 @@
     {
       "id": 3,
       "name": "AI Profile Architect",
-      "image": "http://localhost:5500/image/temp3.png",
+      "image": "https://base.backend.neuranft.com/image/temp3.png",
       "creator": "0xabcdef1234567890abcdef1234567890abcdef12",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 30,
@@ -42,7 +42,7 @@
     {
       "id": 4,
       "name": "Algorithmic Daily Drops",
-      "image": "http://localhost:5500/image/temp4.png",
+      "image": "https://base.backend.neuranft.com/image/temp4.png",
       "creator": "0x0123456789abcdef0123456789abcdef01234567",
       "model": "Llama 3.1",
       "noOfNFTs": 70,
@@ -55,7 +55,7 @@
     {
       "id": 5,
       "name": "Digital Personas",
-      "image": "http://localhost:5500/image/temp5.png",
+      "image": "https://base.backend.neuranft.com/image/temp5.png",
       "creator": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 60,
@@ -68,7 +68,7 @@
     {
       "id": 6,
       "name": "Synthetic Sidekicks",
-      "image": "http://localhost:5500/image/temp6.png",
+      "image": "https://base.backend.neuranft.com/image/temp6.png",
       "creator": "0xcafebabe0123456789abcdef0123456789abcdef",
       "model": "Llama 3.1",
       "noOfNFTs": 25,
@@ -81,7 +81,7 @@
     {
       "id": 7,
       "name": "Virtual Companions",
-      "image": "http://localhost:5500/image/temp321654.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp321654.jpg",
       "creator": "0xfeedfacefeedfacefeedfacefeedfacefeedface",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 80,
@@ -94,7 +94,7 @@
     {
       "id": 8,
       "name": "Cyber Entities",
-      "image": "http://localhost:5500/image/temp87945.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp87945.jpg",
       "creator": "0xbaadf00dbaadf00dbaadf00dbaadf00dbaadf00d",
       "model": "Llama 3.1",
       "noOfNFTs": 35,
@@ -108,7 +108,7 @@
     {
       "id": 9,
       "name": "AI Guardians",
-      "image": "http://localhost:5500/image/temp92475.png",
+      "image": "https://base.backend.neuranft.com/image/temp92475.png",
       "creator": "0x9f8b7a6c5d4e3f2a1b0c9d8e7f6a5b4c3d2e1f0a",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 55,
@@ -121,7 +121,7 @@
     {
       "id": 10,
       "name": "Synthetic Sages",
-      "image": "http://localhost:5500/image/temp83746.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp83746.jpg",
       "creator": "0x1234abcd5678efgh9012ijkl3456mnop7890qrst",
       "model": "Llama 3.1",
       "noOfNFTs": 40,
@@ -134,7 +134,7 @@
     {
       "id": 11,
       "name": "Virtual Visionaries",
-      "image": "http://localhost:5500/image/temp75839.png",
+      "image": "https://base.backend.neuranft.com/image/temp75839.png",
       "creator": "0xdeadbeefcafebabe8badf00dfeedfacebaadf00d",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 65,
@@ -147,7 +147,7 @@
     {
       "id": 12,
       "name": "Cybernetic Companions",
-      "image": "http://localhost:5500/image/temp64528.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp64528.jpg",
       "creator": "0xcafebabef00dfeeddeadbeeffeedfacecafed00d",
       "model": "Llama 3.1",
       "noOfNFTs": 50,
@@ -160,7 +160,7 @@
     {
       "id": 13,
       "name": "Algorithmic Artisans",
-      "image": "http://localhost:5500/image/temp53647.png",
+      "image": "https://base.backend.neuranft.com/image/temp53647.png",
       "creator": "0xbeadfeedbeadfeedbeadfeedbeadfeedbeadfeed",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 38,
@@ -173,7 +173,7 @@
     {
       "id": 14,
       "name": "Digital Dreamers",
-      "image": "http://localhost:5500/image/temp42719.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp42719.jpg",
       "creator": "0xfeedfacecafebabe8badf00ddeadbeefbaadf00d",
       "model": "Llama 3.1",
       "noOfNFTs": 45,
@@ -186,7 +186,7 @@
     {
       "id": 15,
       "name": "Neural Navigators",
-      "image": "http://localhost:5500/image/temp31820.png",
+      "image": "https://base.backend.neuranft.com/image/temp31820.png",
       "creator": "0x0123456789abcdef0123456789abcdef01234567",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 60,
@@ -199,7 +199,7 @@
     {
       "id": 16,
       "name": "Quantum Questers",
-      "image": "http://localhost:5500/image/temp20901.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp20901.jpg",
       "creator": "0xbaadf00ddeadbeefcafebabe8badf00dfeedface",
       "model": "Llama 3.1",
       "noOfNFTs": 33,
@@ -212,7 +212,7 @@
     {
       "id": 17,
       "name": "Synth Symphonies",
-      "image": "http://localhost:5500/image/temp19082.png",
+      "image": "https://base.backend.neuranft.com/image/temp19082.png",
       "creator": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 70,
@@ -225,7 +225,7 @@
     {
       "id": 18,
       "name": "Digital Defenders",
-      "image": "http://localhost:5500/image/temp28173.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp28173.jpg",
       "creator": "0x1234567890abcdef1234567890abcdef12345678",
       "model": "Llama 3.1",
       "noOfNFTs": 58,
@@ -238,7 +238,7 @@
     {
       "id": 19,
       "name": "Neural Nomads",
-      "image": "http://localhost:5500/image/temp37264.png",
+      "image": "https://base.backend.neuranft.com/image/temp37264.png",
       "creator": "0xcafebabecafebabecafebabecafebabecafebabe",
       "model": "Llama 3.1 70B",
       "noOfNFTs": 47,
@@ -251,7 +251,7 @@
     {
       "id": 20,
       "name": "Cyber Sorcerers",
-      "image": "http://localhost:5500/image/temp46355.jpg",
+      "image": "https://base.backend.neuranft.com/image/temp46355.jpg",
       "creator": "0xdeadbeefdeadbeefdeadbeefdeadbeefdeadbeef",
       "model": "Llama 3.1",
       "noOfNFTs": 52,

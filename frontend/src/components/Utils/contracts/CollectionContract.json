@@ -20560,14 +20560,84 @@
       "transactionHash": "0xa2e64fa0b810ac2c340bff911268f284a470f6ddff3fb34e674953cdde5d51c0"
     },
     "84532": {
-      "events": {},
+      "events": {
+        "0xb0b7b214963f2e16da9cf6ed5851757dfed306875edf1d59e030881102ef24ef": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "creator",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "baseModel",
+              "type": "string"
+            }
+          ],
+          "name": "CollectionCreated",
+          "type": "event"
+        },
+        "0x9b6a32f3cd7b15e8a1bfb25410c1b783cf20a9fcfee4b3b070770f5c09c0646f": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "CollectionTransferred",
+          "type": "event"
+        },
+        "0xdc3665dfa360896ba80f3f0a287f3fab1df037f080190fd39f5b39281b5cef33": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "uint256",
+              "name": "collectionId",
+              "type": "uint256"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "updater",
+              "type": "address"
+            }
+          ],
+          "name": "CollectionUpdated",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0xc367B82Aed2625e0e592283954E6079B01f0cD48",
-      "transactionHash": "0xd538eaef475f266985b4fffb7dca493b2ac8bbf71b0f34d8a4d13254731a70a7"
+      "address": "0x536446035eF24cb011a3B55f0627df2Fad083F67",
+      "transactionHash": "0x89b1bf28cebf843b88f57c376f7639250a0907f6e56bcd838ffe7c6e54649f3a"
     }
   },
   "schemaVersion": "3.4.16",
-  "updatedAt": "2024-10-18T14:32:53.823Z",
+  "updatedAt": "2024-10-22T22:48:42.213Z",
   "networkType": "ethereum",
   "devdoc": {
     "kind": "dev",

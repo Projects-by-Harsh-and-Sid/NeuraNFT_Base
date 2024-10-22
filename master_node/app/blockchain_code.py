@@ -11,7 +11,7 @@ web3_provider = "https://base-sepolia-rpc.publicnode.com"
 w3 = Web3(Web3.HTTPProvider(web3_provider))
 
 
-
+FILE_STORAGE_ENDPOINT = app.config['filestorage_endpoint']
 
 
 contract_folder = app.config['CONTRACT_FOLDER']
@@ -136,7 +136,7 @@ def all_nft_information(nft_id, collection_id):
         try :
             metadata = nft_metadata_contract.functions.getMetadata(collection_id, nft_id).call()
         except Exception as e:
-            metadata = ["http://localhost:5500/image/default.jpg", "None", "None", "", "", "Metadata not available"]
+            metadata = [f"{FILE_STORAGE_ENDPOINT}/image/default.jpg", "None", "None", "", "", "Metadata not available"]
         
         # return {
         #     "id": nft_id,

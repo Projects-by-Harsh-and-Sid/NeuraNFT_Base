@@ -4,7 +4,8 @@
         "id": 1,
         "name": "Cognitive Llama",
         "collection": "Neural Mint Hub",
-        "image": "http://localhost:5500/image/temp11.jpg",
+        "collection_id": 1,
+        "image": "https://base.backend.neuranft.com/image/temp11.jpg",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
@@ -13,15 +14,14 @@
           { "trait_type": "Collection", "value": "Neural Mint Hub" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 6" },
-          { "address": "TFJGXg1C962aDqSyvdSZXZ9am2ETqwNQka", "accessLevel": "Level 5" },
-          { "address": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7", "accessLevel": "Level 2" },
-          { "address": "TJfqnAUwX2ViGTP1J81itXWhuJhUYa8RwK", "accessLevel": "Level 2" },
-          { "address": "TVh65XCYkerBch3WtgY9kwLqrtH64MhiFe", "accessLevel": "Level 3" },
-          { "address": "TMVQGm1qAQYVdetCeGRRkTWYYrLXuHK2HC", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 6},
+          { "address": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7", "accessLevel": 2 },
+          { "address": "TJfqnAUwX2ViGTP1J81itXWhuJhUYa8RwK", "accessLevel": 2 },
+          { "address": "TVh65XCYkerBch3WtgY9kwLqrtH64MhiFe", "accessLevel": 3 },
+          { "address": "TMVQGm1qAQYVdetCeGRRkTWYYrLXuHK2HC", "accessLevel": 1 }
 
         ],
-        "collectionaddress": "0x123488888888888885678",
+        
         "tokenId": "1234",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
@@ -35,7 +35,8 @@
         "id": 2,
         "name": "Cyborg Bored Ape",
         "collection": "onchain gaias",
-        "image": "http://localhost:5500/image/temp10.jpg",
+        "collection_id": 1,
+        "image": "https://base.backend.neuranft.com/image/temp10.jpg",
         "model": "GPT-4",
         "attributes": [
           { "trait_type": "Model", "value": "GPT-4" },
@@ -44,9 +45,9 @@
           { "trait_type": "Collection", "value": "onchain gaias" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 }
         ],
-        "collectionaddress": "0x123488888888888885678",
+        
         "tokenId": "5678",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
@@ -60,7 +61,8 @@
         "id": 3,
         "name": "Thinker Primate",
         "collection": "Rebel Monkes",
-        "image": "http://localhost:5500/image/temp9.jpg",
+        "collection_id": 1,
+        "image": "https://base.backend.neuranft.com/image/temp9.jpg",
         "model": "DALL-E",
         "attributes": [
           { "trait_type": "Model", "value": "DALL-E" },
@@ -69,10 +71,10 @@
           { "trait_type": "Collection", "value": "Rebel Monkes" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" },
-          { "address": "0x1111...2222", "accessLevel": "Level 2" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 },
+          { "address": "TJfqnAUwX2ViGTP1J81itXWhuJhUYa8RwK", "accessLevel": 2 }
         ],
-        "collectionaddress": "0x123488888888888885678",
+        
         "tokenId": "9101",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
@@ -83,9 +85,10 @@
         "numberOfOwners": 2
       },
       {
-        "id": 4,
+        "id": 1,
         "name": "MankiBean",
         "collection": "MankiBeanz",
+        "collection_id": 2,
         "image": "https://picsum.photos/200",
         "model": "Stable Diffusion",
         "attributes": [
@@ -95,9 +98,8 @@
           { "trait_type": "Collection", "value": "MankiBeanz" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 }
         ],
-        "collectionaddress": "0x1234...5878",
         "tokenId": "1121",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
@@ -108,9 +110,10 @@
         "numberOfOwners": 1
       },
       {
-        "id": 5,
+        "id": 2,
         "name": "based punk",
         "collection": "based punks",
+        "collection_id": 2,
         "image": "https://picsum.photos/200",
         "model": "Midjourney",
         "attributes": [
@@ -120,11 +123,10 @@
           { "trait_type": "Collection", "value": "based punks" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" },
-          { "address": "0x2222...3333", "accessLevel": "Level 2" },
-          { "address": "0x3333...4444", "accessLevel": "Level 3" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 6},
+          { "address": "TJfqnAUwX2ViGTP1J81itXWhuJhUYa8RwK", "accessLevel": 2 }
+          
         ],
-        "collectionaddress": "0x1234...5578",
         "tokenId": "3141",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
@@ -135,10 +137,11 @@
         "numberOfOwners": 3
       },
       {
-        "id": 6,
+        "id": 4,
         "name": "Dark Llama",
         "collection": "re:generates",
-        "image": "http://localhost:5500/image/temp8.jpg",
+        "collection_id": 1,
+        "image": "https://base.backend.neuranft.com/image/temp8.jpg",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
@@ -147,73 +150,76 @@
           { "trait_type": "Collection", "value": "re:generates" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 }
         ],
-        "collectionaddress": "0x123488888888888885678",
+        
         "tokenId": "1234",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
         "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
-        "creatorAddress": "0x123488888888888885678",
+        "creatorAddress": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 5,
+        "name": "Tron Cells",
+        "collection": "re:generates",
+        "image": "https://base.backend.neuranft.com/image/temp12.png",
+        "collection_id": 1,
+        "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 }
+        ],
+        
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "chain": "Ethereum",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7",
+        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "numberOfOwners": 1
+      },
+      {
+        "id": 6,
+        "name": "Corrupted Cyborg",
+        "collection": "re:generates",
+        "collection_id": 1,
+        "image": "https://base.backend.neuranft.com/image/temp13.png",
+        "model": "Llama 3.1",
+        "attributes": [
+          { "trait_type": "Model", "value": "Llama 3.1" },
+          { "trait_type": "Context Window", "value": "4096 tokens" },
+          { "trait_type": "Total Access", "value": "1" },
+          { "trait_type": "Collection", "value": "re:generates" }
+        ],
+        "accessList": [
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 }
+        ],
+        
+        "tokenId": "1234",
+        "tokenStandard": "ERC-721",
+        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
+        "chain": "Ethereum",
+        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
+        "creatorAddress": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7",
         "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 1
       },
       {
         "id": 7,
-        "name": "Tron Cells",
-        "collection": "re:generates",
-        "image": "http://localhost:5500/image/temp12.png",
-        "model": "Llama 3.1",
-        "attributes": [
-          { "trait_type": "Model", "value": "Llama 3.1" },
-          { "trait_type": "Context Window", "value": "4096 tokens" },
-          { "trait_type": "Total Access", "value": "1" },
-          { "trait_type": "Collection", "value": "re:generates" }
-        ],
-        "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
-        ],
-        "collectionaddress": "0x123488888888888885678",
-        "tokenId": "1234",
-        "tokenStandard": "ERC-721",
-        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
-        "chain": "Ethereum",
-        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
-        "creatorAddress": "0x123488888888888885678",
-        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
-        "numberOfOwners": 1
-      },
-      {
-        "id": 8,
-        "name": "Corrupted Cyborg",
-        "collection": "re:generates",
-        "image": "http://localhost:5500/image/temp13.png",
-        "model": "Llama 3.1",
-        "attributes": [
-          { "trait_type": "Model", "value": "Llama 3.1" },
-          { "trait_type": "Context Window", "value": "4096 tokens" },
-          { "trait_type": "Total Access", "value": "1" },
-          { "trait_type": "Collection", "value": "re:generates" }
-        ],
-        "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
-        ],
-        "collectionaddress": "0x123488888888888885678",
-        "tokenId": "1234",
-        "tokenStandard": "ERC-721",
-        "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
-        "chain": "Ethereum",
-        "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
-        "creatorAddress": "0x123488888888888885678",
-        "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
-        "numberOfOwners": 1
-      },
-      {
-        "id": 9,
         "name": "Skynet",
         "collection": "re:generates",
-        "image": "http://localhost:5500/image/temp14.png",
+        "collection_id": 1,
+        "image": "https://base.backend.neuranft.com/image/temp14.png",
         "model": "Llama 3.1",
         "attributes": [
           { "trait_type": "Model", "value": "Llama 3.1" },
@@ -222,15 +228,15 @@
           { "trait_type": "Collection", "value": "re:generates" }
         ],
         "accessList": [
-          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": "Level 1" }
+          { "address": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr", "accessLevel": 1 }
         ],
-        "collectionaddress": "0x123488888888888885678",
+        
         "tokenId": "1234",
         "tokenStandard": "ERC-721",
         "owner": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "chain": "Ethereum",
         "description": "An AI-generated creation, part of the re:generates collection. This is a unique NFT from the re:generates collection, featuring Llama 3.1 model.",
-        "creatorAddress": "0x123488888888888885678",
+        "creatorAddress": "TThwHjyzx2E1TNN4GdSoaHeCRJVi3EuKS7",
         "ownerAddress": "TLTtQz2Njap4nPAQGPGJn5EEksoM1uw4Qr",
         "numberOfOwners": 1
       }

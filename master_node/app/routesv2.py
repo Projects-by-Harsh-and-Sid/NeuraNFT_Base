@@ -150,7 +150,7 @@ def generate_key():
     
     
     if not check_urk_format(data_link) :
-        data_link = "http://localhost:5500/data/default.data"
+        data_link = f"{FILE_STORAGE_ENDPOINT}/data/default.data"
 
     data = requests.get(data_link).json()
     
