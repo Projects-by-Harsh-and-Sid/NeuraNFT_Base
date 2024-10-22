@@ -1,343 +1,217 @@
-Base resource https://developers.tron.network/docs/getting-start
+# Ethereum Blockchain Development Guide
 
-Chrome Extension https://www.tronlink.org/
-
-Get test token https://nileex.io/join/getJoinPage
-
-tron documentation https://developers.tron.network/ 
-
-youtube : https://www.youtube.com/watch?v=1z5M12tcSdQ&list=PLL5pYVd8AWtRDnTTKWzPpFcBT9nrPCQt6
-
-
-# Tron Blockchain Development Guide
-
-Welcome to the comprehensive guide for developing on the Tron blockchain. This series of README files will walk you through the entire process of setting up your environment, writing smart contracts, deploying them, and interacting with them using various tools.
+Welcome to the comprehensive guide for developing on the Ethereum blockchain. This guide will walk you through the entire process of setting up your environment, writing smart contracts, deploying them, and interacting with them using various tools.
 
 ## Table of Contents
 
-1. [Overview and Setup](#tron-blockchain-overview-and-setup)
+1. [Overview and Setup](#ethereum-blockchain-overview-and-setup)
 2. [Compiling Smart Contracts](02_compiling_smart_contracts.md)
 3. [Migration and Deployment](03_migration.md)
-4. [Testing on CLI](04_testing_on_cli.md)
-5. [Code Testing](05_code_testing.md)
-6. [Using Build Data in React Web App](06_build_data_use_in_react_webapp.md)
-7. [Using Build Data in Python Code](07_build_data_use_in_python_code.md)
+4. [Testing](04_testing.md)
+5. [Using Smart Contracts in React](05_using_contracts_in_react.md)
+6. [Using Smart Contracts in Python](06_using_contracts_in_python.md)
 
 ## Additional Resources
 
-### Tron Documentation
-
-- [Tron Developer Hub](https://developers.tron.network/)
-- [TronBox Documentation](https://developers.tron.network/docs/tron-box-user-guide)
+### Ethereum Documentation
+- [Ethereum Developer Documentation](https://ethereum.org/developers)
+- [Truffle Documentation](https://trufflesuite.com/docs/)
 - [Solidity Documentation](https://docs.soliditylang.org/)
-- [TronWeb Documentation](https://developers.tron.network/docs/tron-web-intro)
-- [Tronbox CLI Reference](https://developers.tron.network/reference/interact-with-a-contract)
+- [Web3.js Documentation](https://web3js.readthedocs.io/)
+- [Ethers.js Documentation](https://docs.ethers.org/)
 
+### Ethereum Networks
+- [Sepolia Testnet](https://sepolia.dev/)
+- [Goerli Testnet](https://goerli.net/)
+- [Ethereum Mainnet](https://ethereum.org/)
 
-### Tron Private Node Setup
+### Block Explorers
+- [Etherscan](https://etherscan.io/)
+- [Sepolia Etherscan](https://sepolia.etherscan.io/)
+- [Goerli Etherscan](https://goerli.etherscan.io/)
 
-- [Tron-docker-private-node-doc](https://developers.tron.network/docs/tron-private-chain)
-- [Tron-docker-private-blog](https://dev.to/axatbhardwaj/tron-private-network-setup-complete-guide-2022-2pa2)
-- [Java Tron Git](https://github.com/tronprotocol/java-tron)
-- [Java Tron Version](https://github.com/tronprotocol/java-tron/releases/)
-- [Java Tron Doceker](https://hub.docker.com/r/tronprotocol/java-tron/tags)
-- [Mainnet Configuration](https://raw.githubusercontent.com/tronprotocol/tron-deployment/master/main_net_config.conf)
+# Ethereum Blockchain Overview and Setup
 
+## What is Ethereum?
 
-### Tron Docker Quickstart (Deprecated)
-
-- [Tron-docker-quick-start-github](https://github.com/tronprotocol/docker-tron-quickstart)
-- [Tron-docker-quik-start-doc](https://developers.tron.network/v3.7/docs/quickstart)
-- [Tron-docker-quik-start-version](https://hub.docker.com/r/trontools/quickstart/tags)
-
-
-### Tron Testnets
-
-- [shasta testnet](https://api.shasta.trongrid.io/) -> https://api.shasta.trongrid.io/
-- [nile testnet](https://api.nileex.io/) -> https://api.nileex.io/
-- [Faucet Information](https://www.reddit.com/r/Tronix/comments/1fa9jtf/tron_shasta_faucet/)
-- [Tron Scan](https://tronscan.org/#/)
-
-
-> how to get test token on shasta testnet
-- option 1: faucets `https://shasta.tronex.io/`
-- option 2: telegram bot, command `!shasta TFJGXg1C962aDqSyvdSZXZ9am2ETqwNQka`
-
-### Tron Versions
-[Tron Box](https://github.com/tronprotocol/tronbox/releases)
-
-### Hex to Base58 Converter
-[Hex to Base58](https://www.btcschools.net/tron/tron_tool_base58check_hex.php)
->tron address genrally are in base58 format but when migrating contract its stored in hex format 
-
-### Tron Scan
- What we can do with tron scan
- - check transaction
- - check block
- - check account
- - check contract
- We can also read and execute contract on tron scan directly using tron link
-  
-
-
-# Tron Blockchain Overview and Setup
-
-<!-- Tron Overview Index -->
-
-- [Tron Overview](#tron-overview)
-- [Setting Up Your Development Environment](#setting-up-your-development-environment)
-- [Tron Local Node Setup/ Quickstart](#tron-local-node-setup-quickstart)
-- [Tron Docker Quickstart](#tron-docker-quickstart)
-
-
-## What is Tron?
-
-Tron is a decentralized, open-source blockchain platform that aims to create a global entertainment system for the cost-effective sharing of digital content. It uses a Delegated Proof of Stake (DPoS) consensus mechanism and supports smart contracts.
+Ethereum is a decentralized, open-source blockchain platform that supports smart contracts and decentralized applications (dApps). It uses a Proof of Stake (PoS) consensus mechanism and is the most widely used blockchain for smart contract development.
 
 ## Setting Up Your Development Environment
 
-### 1. Install Anaconda
+### 1. Install Node.js and npm
 
-Anaconda is a distribution of Python and R programming languages for scientific computing that aims to simplify package management and deployment.
-
-1. Download Anaconda from [https://www.anaconda.com/products/distribution](https://www.anaconda.com/products/distribution)
-2. Follow the installation instructions for your operating system.
-
-### 2. Create a Tron Development Environment
-
-Open your terminal or Anaconda prompt and run:
-
+1. Download and install Node.js from [nodejs.org](https://nodejs.org/)
+2. Verify installation:
 ```bash
-conda create -n tron_dev python=3.8
-conda activate tron_dev
+node --version
+npm --version
 ```
 
-### 3. Install Required Packages
-
-With your `tron_dev` environment activated, install the following packages:
+### 2. Install Development Tools
 
 ```bash
-pip install tronapi tronbox
-npm install -g tronbox
-npm install -g tronweb
+# Install Truffle globally
+npm install -g truffle
+
+# Install Ganache for local blockchain
+npm install -g ganache
+
+# Install web3.js
+npm install web3
 ```
 
+### 3. Install MetaMask
 
-#### For Versioned TronBox
+1. Download MetaMask browser extension from [metamask.io](https://metamask.io/)
+2. Create a new wallet or import existing one
+3. Connect to desired network (Mainnet, Sepolia, or local network)
+
+### 4. Set Up a New Truffle Project
 
 ```bash
-npm install -g tronbox@2.1.9
+# Create a new directory
+mkdir my_ethereum_project
+cd my_ethereum_project
+
+# Initialize a new Truffle project
+truffle init
 ```
 
-get current version of tronbox
+### 5. Configure Truffle
 
-```bash
-tronbox --version
-```
-
-List of all version
-
-`https://github.com/tronprotocol/tronbox/releases`
-
-### 4. Install Additional Tools
-
-- **Node.js and npm**: Download and install from [nodejs.org](https://nodejs.org/)
-- **TronLink**: Browser extension for interacting with Tron dApps. [Download here](https://www.tronlink.org/)
-
-### 5. Set Up TronBox
-
-TronBox is a development framework for Tron, similar to Truffle for Ethereum.
-
-1. Install TronBox globally:
-   ```bash
-   npm install -g tronbox
-   ```
-2. Create a new TronBox project:
-   ```bash
-   mkdir my_tron_project
-   cd my_tron_project
-   tronbox init
-   ```
-
-### 6. Configure TronBox
-
-Edit the `tronbox.js` file in your project root to include network configurations:
+Edit the `truffle-config.js` file in your project root:
 
 ```javascript
+require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
 module.exports = {
   networks: {
     development: {
-      privateKey: 'your_private_key_here',
-      userFeePercentage: 30,
-      feeLimit: 1000000000,
-      fullHost: 'http://127.0.0.1:9090',
-      network_id: '*'
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*"
     },
-    shasta: {
-      privateKey: 'your_private_key_here',
-      userFeePercentage: 50,
-      feeLimit: 1000000000,
-      fullHost: 'https://api.shasta.trongrid.io',
-      network_id: '2'
+    sepolia: {
+      provider: () => new HDWalletProvider(
+        process.env.MNEMONIC,
+        `https://sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
+      ),
+      network_id: 11155111,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    }
+  },
+  compilers: {
+    solc: {
+      version: "0.8.19"
     }
   }
 };
 ```
 
-Replace `'your_private_key_here'` with your actual private key from TronLink.
+### 6. Set Up Environment Variables
 
-### 7. Using .env file
-
-you can store your private key in a `.env` file and use it in the `tronbox.js` file.
+Create a `.env` file in your project root:
 
 ```bash
 touch .env
 ```
 
-Add your private key to the `.env` file:
+Add your configuration:
+
+```plaintext
+MNEMONIC=your twelve word mnemonic phrase here
+INFURA_PROJECT_ID=your_infura_project_id_here
+```
+
+Install required dependencies:
 
 ```bash
-export SHASTA_PRIVATE_KEY=your_private_key_here
+npm install dotenv @truffle/hdwallet-provider
 ```
 
-Then modify the `tronbox.js` file to use the private key from the `.env` file:
+### 7. Get Test Ether
 
-```javascript
-require('dotenv').config();
+To deploy contracts and interact with testnets, you'll need test ETH:
 
-module.exports = {
-  networks: {
-    shasta: {
-      privateKey: process.env.SHASTA_PRIVATE_KEY,
-      userFeePercentage: 50,
-      feeLimit: 1000000000,
-      fullHost: 'https://api.shasta.trongrid.io',
-      network_id: '2'
-    }
-  }
-};
-```
+1. Create a wallet using MetaMask
+2. For Sepolia:
+   - Visit [Sepolia Faucet](https://sepoliafaucet.com/)
+   - Or [Alchemy Sepolia Faucet](https://sepoliafaucet.com/)
+3. For Goerli:
+   - Visit [Goerli Faucet](https://goerlifaucet.com/)
 
-to use the private key from the `.env` file, run the following command:
+### 8. Start Local Development Blockchain
+
+Start Ganache for local development:
 
 ```bash
-source .env && tronbox migrate --network shasta
+# CLI version
+ganache
+
+# Or with specific configuration
+ganache --deterministic --networkId 5777 --port 8545
 ```
 
-the `source .env` command will load the environment variables from the `.env` file before running the `tronbox migrate --network shasta` command.
-
-
-### 8. Get Testnet TRX
-
-To deploy contracts and interact with the Shasta testnet, you'll need some test TRX:
-
-1. Create a wallet using TronLink
-2. Visit the [Shasta Testnet Faucet](https://www.trongrid.io/shasta/)
-3. Enter your wallet address and request test TRX
-
-You're now ready to start developing on the Tron blockchain!
-
-
-# Tron Local Node Setup/ Quickstart
-
-## Docker Quickstart
-
-1. Pull the Tron Docker image:
+### 9. Basic Commands
 
 ```bash
-docker pull trontools/quickstart
+# Compile contracts
+truffle compile
+
+# Deploy contracts
+truffle migrate
+
+# Deploy to specific network
+truffle migrate --network sepolia
+
+# Run tests
+truffle test
+
+# Start truffle console
+truffle console
+
+# Start truffle console on specific network
+truffle console --network sepolia
 ```
 
-for version 2.0.0:
+## Development Best Practices
 
-```bash
-docker pull trontools/quickstart:2.0.0
+1. Always use `.gitignore` to exclude sensitive files:
+```plaintext
+node_modules
+.env
+build/
 ```
 
-2. Run the container:
+2. Use the latest stable Solidity version
+3. Test contracts thoroughly before deployment
+4. Always verify contracts on Etherscan after deployment
+5. Use OpenZeppelin contracts for common patterns
+6. Follow gas optimization practices
 
-```bash
-docker run -it -p 9090:9090 --rm --name tron trontools/quickstart
-```
+## Common Development Tools
 
-Optionally, you can specify the number of accounts and the default balance:
+1. **Hardhat**: Advanced Ethereum development environment
+   ```bash
+   npm install --save-dev hardhat
+   ```
 
-```bash
-docker run -it -p 9090:9090 --rm --name tron -e "accounts=1" -e "defaultBalance=10000000000000" trontools/quickstart
-```
+2. **OpenZeppelin**: Smart contract library
+   ```bash
+   npm install @openzeppelin/contracts
+   ```
 
+3. **Web3.js/Ethers.js**: JavaScript libraries for Ethereum interaction
+   ```bash
+   npm install web3
+   # or
+   npm install ethers
+   ```
 
-## Quickstart options:
-Use `-e` flag to pass environmental variables to the docker.
-Example:
-```bash
-docker run -it \
-  -p 9090:9090 \
-  --rm \
-  --name tron \
-  -e "accounts=20" \
-  trontools/quickstart
-```
+4. **Remix IDE**: Browser-based Solidity IDE at [remix.ethereum.org](https://remix.ethereum.org)
 
-__List of options:__
-* `accounts=12` sets the number of generated accounts
-* `useDefaultPrivateKey=true` tells Quickstart to use the default account as `accounts[0]`
-* `mnemonic=wrong bit chicken kitchen rat` uses a specified mnemonic
-* `defaultBalance=100000` sets the initial balance for the generated accounts (in the example to 100,000 TRX)
-* `seed=ushwe63hgeWUS` sets the seed to be used to generate the mnemonic (if none is passed)
-* `hdPath=m/44'/60'/0'/0` sets a custom bit39 hdPath
-* `formatJson=true` formats the output
-* `preapprove=...` pre approved proposals (see below for more help)
-
-
-### Getting the sample accounts generated by the quickstart
-
-```bash
-docker run -it \
-  -p 9090:9090 \
-  --rm \
-  --name tron \
-  -e "accounts=20" \
-  -e "formatJson=true" \
-  -e "defaultBalance=10000000000000" \
-  -e "seed=ushwe63hgeXUS" \
-  trontools/quickstart
-  ```
-
-### Version 2.0.0
-
-```bash
-docker run -it \
-  -p 9090:9090 \
-  --rm \
-  --name tron \
-  -e "accounts=20" \
-  -e "formatJson=true" \
-  -e "defaultBalance=10000000000000" \
-  -e "seed=ushwe63hgeXUS" \
-  trontools/quickstart:2.0.0
-  ```
-
-
-  `https://github.com/TRON-US/docker-tron-quickstart/tree/master`
-
-#### Available accounts
-
-At any moment, to see the generated accounts, run
-```
-curl http://127.0.0.1:9090/admin/accounts
-```
-
-If you prefer to see the addresses in hex format you can run
-```
-curl http://127.0.0.1:9090/admin/accounts?format=hex
-```
-And if you like to see both formats, you can run
-```
-curl http://127.0.0.1:9090/admin/accounts?format=all
-```
-
-get node info:
-```
-http://127.0.0.1:9090/wallet/getnodeinfo
-```
+You're now ready to start developing on the Ethereum blockchain!

@@ -1,265 +1,315 @@
+# Creating and Deploying Applications on the Ethereum Blockchain
 
+This guide walks through creating and deploying a "Hello World" smart contract on Ethereum using Truffle.
 
-## Basic ENV setup
+## Prerequisites
 
-go to `wsl` and conda env 
+1. **Node.js & npm**: Install from [nodejs.org](https://nodejs.org/)
+2. **Truffle**: Install globally:
+   ```bash
+   npm install -g truffle
+   ```
+3. **MetaMask**: Install the MetaMask browser extension and create an Ethereum wallet
+4. **Ganache**: Install for local blockchain development:
+   ```bash
+   npm install -g ganache
+   ```
 
+## Environment Setup
+
+### 1. Create Development Environment
 ```bash
-conda activate tron_neuranft
+# Using conda (optional)
+conda create -n eth_dev python=3.8
+conda activate eth_dev
+
+# Install additional tools
+npm install -g eth-gas-reporter
+npm install -g solidity-coverage
 ```
 
+### 2. Get Test ETH
+- For Sepolia: Use [Sepolia Faucet](https://sepoliafaucet.com/)
+- For Goerli: Use [Goerli Faucet](https://goerlifaucet.com/)
 
-get test tokens https://shasta.tronex.io/
-generate address on tronlink
+## Project Creation and Setup
 
+### 1. Initialize Project
+```bash
+mkdir HelloWorldEth && cd HelloWorldEth
+truffle init
+```
 
-## Creating and Deploying Applications on the Tron Blockchain
-To deploy a simple "Hello World" application on the Tron blockchain using TronBox, follow these steps:
+This creates:
+```
+HelloWorldEth/
+├── contracts/
+│   └── Migrations.sol
+├── migrations/
+│   └── 1_initial_migration.js
+├── test/
+├── truffle-config.js
+└── package.json
+```
 
-### Prerequisites
-1. **Node.js & npm**: Make sure you have Node.js installed as well as npm, which comes bundled with Node.js.
-2. **TronBox**: Install TronBox globally using the following command:
-    ```bash
-    npm install -g tronbox
-    ```
-3. **TronLink Wallet**: Install the TronLink extension in your browser and set up a Tron account. You'll need TRX to deploy a contract (get some TRX from a faucet if you are using the testnet).
+### 2. Create Smart Contract
+```solidity
+// contracts/HelloWorld.sol
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
 
-4. **Tron Quickstart or Shasta Testnet**: You need a network to deploy the smart contract on. You can use Tron Quickstart for a local environment or Shasta, which is the Tron public testnet.
+contract HelloWorld {
+    string public message;
 
-### Step 1: Set Up a TronBox Project
-1. Create a new directory for your project:
-    ```bash
-    mkdir HelloWorldTron && cd HelloWorldTron
-    ```
-2. Initialize a new TronBox project:
-    ```bash
-    tronbox init
-    ```
-3. This command will create the following structure:
-
-    ```
-    HelloWorldTron/
-    ├── contracts/
-    │   └── Migrations.sol
-    ├── migrations/
-    │   └── 1_initial_migration.js
-    ├── tronbox-config.js
-    └── package.json
-    ```
-
-### Step 2: Create the "Hello World" Smart Contract
-1. Inside the `contracts` folder, create a new Solidity file called `HelloWorld.sol`:
-    ```bash
-    touch contracts/HelloWorld.sol
-    ```
-
-2. Add the following code to `HelloWorld.sol`:
-    ```solidity
-    // SPDX-License-Identifier: MIT
-    pragma solidity ^0.8.6;
-
-    contract HelloWorld {
-        string public message;
-
-        constructor() public {
-            message = "Hello World";
-        }
-
-        function setMessage(string memory newMessage) public {
-            message = newMessage;
-        }
-
-        function getMessage() public view returns (string memory) {
-            return message;
-        }
+    constructor() {
+        message = "Hello World";
     }
-    ```
 
-### Step 3: Create Migration Script
-1. Create a new migration script to deploy the contract in the `migrations` folder:
-    ```bash
-    touch migrations/2_deploy_helloworld.js
-    ```
+    function setMessage(string memory newMessage) public {
+        message = newMessage;
+    }
 
-2. Add the following deployment code to `2_deploy_helloworld.js`:
-    ```javascript
-    const HelloWorld = artifacts.require("HelloWorld");
+    function getMessage() public view returns (string memory) {
+        return message;
+    }
+}
+```
 
-    module.exports = function(deployer) {
-        deployer.deploy(HelloWorld);
-    };
-    ```
-
-### Step 4: Configure `tronbox-config.js`
-1. Open `tronbox-config.js` and add network configurations for deployment. Add the following configuration for Shasta testnet and Tron Quickstart:
-
-    ```javascript
-    module.exports = {
-        networks: {
-            // Configuration for Shasta Testnet
-            shasta: {
-                privateKey: 'YOUR_PRIVATE_KEY_HERE', // Add your private key here (TronLink private key)
-                userFeePercentage: 30,
-                feeLimit: 1000000000,
-                fullHost: "https://api.shasta.trongrid.io",
-                network_id: "*"
-            },
-            // Configuration for Tron Quickstart (Local Development)
-            development: {
-                privateKey: 'YOUR_PRIVATE_KEY_HERE', // Add your private key here
-                userFeePercentage: 30,
-                feeLimit: 1000000000,
-                fullHost: "http://127.0.0.1:9090",
-                network_id: "*"
-            }
-        }
-    };
-    ```
-
-> **Note**: Replace `'YOUR_PRIVATE_KEY_HERE'` with your TronLink wallet private key.
-
-### Step 5: Compile the Smart Contract
-1. Compile the `HelloWorld.sol` contract by running:
-    ```bash
-    tronbox compile
-    ```
-2. This command will generate the necessary ABI and bytecode.
-3. All the abis and bytecodes will be stored in the `build` folder under the contract name.
-4. when you migrate the contract, the contract will be deployed to the network and the address will be stored in the `build` folder `json` file as well. It is under `networks -> network id -> address`.
-
-### Step 6: Deploy the Smart Contract
-1. To deploy the contract, use the following command:
-    ```bash
-    
-    tronbox migrate --network shasta
-
-    # if using .env to store private key
-    source .env && tronbox migrate --network shasta
-    ```
-   Or if you want to deploy it locally using Tron Quickstart:
-    ```bash
-    tronbox migrate --network development
-    ```
-
-2. After deployment, you will see an address where the contract has been deployed.
-
-### Step 7: Interact with the Smart Contract
-
-To interact with the smart contract, you can use the TronBox console or TronWeb. Here's how to do it using the TronBox console:
-
-**Note**:
-> when pasting the code in the console, make sure to paste as `one line`  in vscode terminal
-> or you can use the `.editor` command in the console to paste multiline code and `ctrl + d` to run the code
-
-1. **TronBox Console**: Use the TronBox console to interact with the contract.
-
-    ```bash
-    tronbox console --network shasta
-    ```
-
-2. **Get the Contract Instance**:
-    ```javascript
-    HelloWorld.deployed().then(instance => {
-      // Store the instance in a variable for further use
-      global.contractInstance = instance;
-      console.log("Contract instance obtained and stored in global.contractInstance");
-    }).catch(error => {
-      console.error("Error getting contract instance:", error);
-    });
-    ```
-
-3. **Call the `getMessage` function**:
-    ```javascript
-    global.contractInstance.getMessage().then(message => {
-      console.log("Current message:", message);
-    }).catch(error => {
-      console.error("Error getting message:", error);
-    });
-    ```
-
-4. **Call the `setMessage` function**:
-    ```javascript
-    global.contractInstance.setMessage("Hello Tron").then(() => {
-      console.log("Message set to 'Hello Tron'");
-      // Get the new message
-      return global.contractInstance.getMessage();
-    }).then(newMessage => {
-      console.log("New message:", newMessage);
-    }).catch(error => {
-      console.error("Error setting or getting message:", error);
-    });
-    ```
-
-Note: The `global.contractInstance` is used to store the contract instance across multiple commands in the console. This allows you to interact with the contract without having to redeploy it for each command.
-
-If you want to chain these operations together, you can do so like this:
-
+### 3. Create Migration Script
 ```javascript
-HelloWorld.deployed().then(instance => {
-  return instance.getMessage();
-}).then(message => {
-  console.log("Initial message:", message);
-  return HelloWorld.deployed();
-}).then(instance => {
-  return instance.setMessage("Hello Tron");
-}).then(() => {
-  return HelloWorld.deployed();
-}).then(instance => {
-  return instance.getMessage();
-}).then(newMessage => {
-  console.log("New message:", newMessage);
-}).catch(error => {
-  console.error("An error occurred:", error);
+// migrations/2_deploy_helloworld.js
+const HelloWorld = artifacts.require("HelloWorld");
+
+module.exports = function(deployer) {
+    deployer.deploy(HelloWorld);
+};
+```
+
+### 4. Configure Truffle
+```javascript
+// truffle-config.js
+require('dotenv').config();
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+module.exports = {
+  networks: {
+    development: {
+      host: "127.0.0.1",
+      port: 8545,
+      network_id: "*"
+    },
+    sepolia: {
+      provider: () => new HDWalletProvider(
+        process.env.MNEMONIC,
+        `https://sepolia.infura.io/v3/${process.env.INFURA_PROJECT_ID}`
+      ),
+      network_id: 11155111,
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
+    }
+  },
+  compilers: {
+    solc: {
+      version: "0.8.19",
+      settings: {
+        optimizer: {
+          enabled: true,
+          runs: 200
+        }
+      }
+    }
+  },
+  plugins: ["solidity-coverage"]
+};
+```
+
+### 5. Set Up Environment Variables
+```bash
+# .env
+MNEMONIC=your twelve word mnemonic phrase here
+INFURA_PROJECT_ID=your_infura_project_id
+```
+
+## Compilation and Deployment
+
+### 1. Compile Contract
+```bash
+truffle compile
+```
+
+This generates:
+- ABI and bytecode in `build/contracts/HelloWorld.json`
+- Contract artifacts for deployment
+
+### 2. Deploy Contract
+```bash
+# Local development
+truffle migrate
+
+# Sepolia testnet
+truffle migrate --network sepolia
+```
+
+## Contract Interaction
+
+### 1. Using Truffle Console
+```bash
+# Connect to local network
+truffle console
+
+# Connect to Sepolia
+truffle console --network sepolia
+```
+
+### 2. Basic Interactions
+```javascript
+// Get contract instance
+let instance = await HelloWorld.deployed()
+
+// Get message
+let message = await instance.getMessage()
+console.log("Current message:", message)
+
+// Set new message
+await instance.setMessage("Hello Ethereum")
+message = await instance.getMessage()
+console.log("New message:", message)
+```
+
+### 3. Advanced Interaction Pattern
+```javascript
+// Promise chain pattern
+HelloWorld.deployed()
+  .then(instance => {
+    return instance.getMessage();
+  })
+  .then(message => {
+    console.log("Initial message:", message);
+    return HelloWorld.deployed();
+  })
+  .then(instance => {
+    return instance.setMessage("Hello Ethereum");
+  })
+  .then(() => {
+    return HelloWorld.deployed();
+  })
+  .then(instance => {
+    return instance.getMessage();
+  })
+  .then(newMessage => {
+    console.log("New message:", newMessage);
+  })
+  .catch(error => {
+    console.error("Error:", error);
+  });
+```
+
+## Testing
+
+### 1. Create Test File
+```javascript
+// test/HelloWorld.test.js
+const HelloWorld = artifacts.require("HelloWorld");
+
+contract("HelloWorld", accounts => {
+  const [owner, user1] = accounts;
+  let instance;
+
+  beforeEach(async () => {
+    instance = await HelloWorld.new();
+  });
+
+  describe("Initialization", () => {
+    it("should initialize with 'Hello World'", async () => {
+      const message = await instance.getMessage();
+      assert.equal(message, "Hello World", "Wrong initial message");
+    });
+  });
+
+  describe("Message operations", () => {
+    it("should set new message", async () => {
+      await instance.setMessage("Hello Ethereum");
+      const message = await instance.getMessage();
+      assert.equal(message, "Hello Ethereum", "Message not updated");
+    });
+
+    it("should emit event on message change", async () => {
+      const result = await instance.setMessage("Hello Ethereum");
+      assert.equal(result.logs.length, 1, "Should emit one event");
+    });
+  });
 });
 ```
 
-This chain of operations will:
-1. Get the deployed contract
-2. Call `getMessage` and log the initial message
-3. Set a new message to "Hello Tron"
-4. Call `getMessage` again and log the new message
+### 2. Run Tests
+```bash
+# Run all tests
+truffle test
 
-Remember to replace `HelloWorld` with your actual contract name if it's different. Also, make sure your contract is deployed to the network you're connecting to before trying to interact with it.
+# Run specific test file
+truffle test ./test/HelloWorld.test.js
 
-### Step 8: Testing the Smart Contract
-To write automated tests for the smart contract, you can use Mocha and Chai (which are already included in the TronBox setup).
+# Run with gas reporting
+truffle test --reporter eth-gas-reporter
+```
 
-1. Create a test file inside the `test` folder:
-    ```bash
-    mkdir test && touch test/helloworld.js
-    ```
+## Best Practices
 
-2. Add the following test code to `test/helloworld.js`:
+1. **Gas Optimization**:
+   - Use string length validation
+   - Consider using bytes32 for fixed-length strings
+   - Implement access control for state-changing functions
 
-    ```javascript
-    const HelloWorld = artifacts.require("HelloWorld");
+2. **Security**:
+   - Use SafeMath for arithmetic (though not needed for Solidity ≥0.8.0)
+   - Implement access control patterns
+   - Add events for state changes
 
-    contract("HelloWorld", accounts => {
-        it("should deploy the contract and return 'Hello World'", async () => {
-            let instance = await HelloWorld.deployed();
-            let message = await instance.getMessage();
-            assert.equal(message, "Hello World", "The initial message should be 'Hello World'");
-        });
+3. **Testing**:
+   - Test all function paths
+   - Test access control
+   - Test edge cases
+   - Use gas reporter to optimize
 
-        it("should set a new message", async () => {
-            let instance = await HelloWorld.deployed();
-            await instance.setMessage("Hello Tron");
-            let newMessage = await instance.getMessage();
-            assert.equal(newMessage, "Hello Tron", "The new message should be 'Hello Tron'");
-        });
-    });
-    ```
+4. **Development Flow**:
+   - Always test locally first
+   - Use testnet before mainnet
+   - Verify contracts on Etherscan
+   - Document contract interactions
 
-3. Run the tests using:
-    ```bash
-    tronbox test --network shasta
-    ```
+## Extended Contract Version
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.19;
 
-### Summary
-- **Smart Contract**: Created a simple smart contract with functions to set and get a message.
-- **Compile**: Used `tronbox compile` to generate the ABI and bytecode.
-- **Deploy**: Deployed using `tronbox migrate`.
-- **Interact**: Used `tronbox console` or JavaScript to interact with the contract.
-- **Test**: Wrote and executed tests using Mocha and Chai.
+contract HelloWorld {
+    string public message;
+    address public owner;
+    
+    event MessageChanged(string newMessage, address changer);
+    
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Not owner");
+        _;
+    }
+    
+    constructor() {
+        message = "Hello World";
+        owner = msg.sender;
+    }
+    
+    function setMessage(string memory newMessage) public {
+        require(bytes(newMessage).length > 0, "Empty message");
+        message = newMessage;
+        emit MessageChanged(newMessage, msg.sender);
+    }
+    
+    function getMessage() public view returns (string memory) {
+        return message;
+    }
+}
+```
 
-This is a basic example of deploying a "Hello World" application on the Tron blockchain using TronBox. It helps you understand the fundamental workflow of developing, deploying, and testing smart contracts on Tron.
+By following this guide, you'll have a basic understanding of developing, deploying, and testing smart contracts on Ethereum using Truffle.

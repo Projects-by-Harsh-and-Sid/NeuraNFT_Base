@@ -1,191 +1,328 @@
-# Using Tron Smart Contract Build Data in a React Web App
+# Using Ethereum Smart Contract Build Data in a React Web App
 
-This guide provides detailed information on how to use the build data from your Tron smart contracts in a React web application.
+This guide provides detailed information on how to use the build data from your Ethereum smart contracts in a React web application.
 
 ## Prerequisites
 
-- A compiled Tron smart contract
-- React development environment set up
-- TronWeb library
+- A compiled Ethereum smart contract
+- React development environment
+- MetaMask wallet extension
 
-## Setting Up TronWeb
+## Initial Setup
 
-First, install TronWeb in your React project:
-
+### 1. Install Dependencies
 ```bash
-npm install tronweb
+# Install Web3.js and ethers.js
+npm install web3 ethers
+
+# Install useful utilities
+npm install @metamask/providers
+npm install @web3-react/core @web3-react/injected-connector
 ```
 
-Then, initialize TronWeb in your React app:
-
+### 2. Contract Setup
 ```javascript
-import TronWeb from 'tronweb';
-
-const tronWeb = new TronWeb({
-  fullHost: 'https://api.shasta.trongrid.io',
-  headers: { "TRON-PRO-API-KEY": 'your-api-key-here' },
-  privateKey: 'your-private-key-here' // Optional, needed for signing transactions
-});
-```
-
-## Importing Contract ABI and Address
-
-After compiling your contract with TronBox, you'll find the build data in the `build/contracts/` directory. Import this data into your React app:
-
-```javascript
+// contractConfig.js
 import ContractBuild from './build/contracts/YourContract.json';
 
-const contractAddress = ContractBuild.networks['2'].address; // '2' is the network ID for Shasta testnet
-const contractABI = ContractBuild.abi;
+export const CONTRACT_ADDRESS = "0x1234..."; // Your deployed contract address
+export const CONTRACT_ABI = ContractBuild.abi;
 ```
 
-## Creating a Contract Instance
+## Web3 Provider Setup
 
-Use the ABI and address to create a contract instance:
-
+### 1. Web3 Context Provider
 ```javascript
-const contract = await tronWeb.contract(contractABI, contractAddress);
-```
+// Web3Context.js
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import Web3 from 'web3';
 
-## Calling Contract Functions
+const Web3Context = createContext(null);
 
-### View Functions
-
-For functions that don't modify the contract state:
-
-```javascript
-const result = await contract.yourViewFunction().call();
-console.log(result);
-```
-
-### Transaction Functions
-
-For functions that modify the contract state:
-
-```javascript
-const result = await contract.yourFunction(param1, param2).send({
-  feeLimit: 100000000,
-  callValue: 0,
-  shouldPollResponse: true
-});
-console.log(result);
-```
-
-## Handling Events
-
-To listen for events emitted by your contract:
-
-```javascript
-contract.YourEvent().watch((err, event) => {
-  if(err) return console.error('Error with "YourEvent" event:', err);
-  console.log('YourEvent: ', event.result);
-});
-```
-
-## Example React Component
-
-Here's an example of a React component that interacts with a Tron smart contract:
-
-```jsx
-import React, { useState, useEffect } from 'react';
-import TronWeb from 'tronweb';
-import ContractBuild from './build/contracts/YourContract.json';
-
-const ContractInteraction = () => {
-  const [tronWeb, setTronWeb] = useState(null);
-  const [contract, setContract] = useState(null);
-  const [value, setValue] = useState('');
+export function Web3Provider({ children }) {
+  const [web3, setWeb3] = useState(null);
+  const [account, setAccount] = useState(null);
+  const [networkId, setNetworkId] = useState(null);
 
   useEffect(() => {
-    const initTronWeb = async () => {
-      // Initialize TronWeb
-      const tronWebInstance = new TronWeb({
-        fullHost: 'https://api.shasta.trongrid.io',
-        headers: { "TRON-PRO-API-KEY": 'your-api-key-here' },
-      });
+    const initWeb3 = async () => {
+      // Modern browsers with MetaMask
+      if (window.ethereum) {
+        const web3Instance = new Web3(window.ethereum);
+        try {
+          // Request account access
+          await window.ethereum.request({ method: 'eth_requestAccounts' });
+          const accounts = await web3Instance.eth.getAccounts();
+          const netId = await web3Instance.eth.net.getId();
+          
+          setWeb3(web3Instance);
+          setAccount(accounts[0]);
+          setNetworkId(netId);
 
-      setTronWeb(tronWebInstance);
+          // Listen for account changes
+          window.ethereum.on('accountsChanged', (accounts) => {
+            setAccount(accounts[0]);
+          });
 
-      // Initialize contract
-      const contractAddress = ContractBuild.networks['2'].address;
-      const contractInstance = await tronWebInstance.contract(ContractBuild.abi, contractAddress);
-      setContract(contractInstance);
+          // Listen for network changes
+          window.ethereum.on('chainChanged', (chainId) => {
+            window.location.reload();
+          });
+        } catch (error) {
+          console.error("User denied account access");
+        }
+      }
+      // Legacy browsers or no web3 provider
+      else {
+        console.log('Please install MetaMask!');
+      }
     };
 
-    initTronWeb();
+    initWeb3();
   }, []);
 
-  const getValue = async () => {
-    if (contract) {
-      const result = await contract.getValue().call();
-      setValue(result.toString());
+  return (
+    <Web3Context.Provider value={{ web3, account, networkId }}>
+      {children}
+    </Web3Context.Provider>
+  );
+}
+
+export function useWeb3() {
+  return useContext(Web3Context);
+}
+```
+
+## Contract Integration
+
+### 1. Contract Hook
+```javascript
+// useContract.js
+import { useState, useEffect } from 'react';
+import { useWeb3 } from './Web3Context';
+import { CONTRACT_ADDRESS, CONTRACT_ABI } from './contractConfig';
+
+export function useContract() {
+  const { web3, account } = useWeb3();
+  const [contract, setContract] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    if (web3) {
+      const contractInstance = new web3.eth.Contract(
+        CONTRACT_ABI,
+        CONTRACT_ADDRESS
+      );
+      setContract(contractInstance);
+    }
+  }, [web3]);
+
+  const callContract = async (method, ...args) => {
+    if (!contract) return;
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const result = await method(...args).call({ from: account });
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+      throw err;
     }
   };
 
-  const setValue = async (newValue) => {
-    if (contract) {
-      await contract.setValue(newValue).send({
-        feeLimit: 100000000,
-        callValue: 0,
-        shouldPollResponse: true
-      });
-      getValue(); // Refresh the value
+  const sendTransaction = async (method, ...args) => {
+    if (!contract) return;
+    setLoading(true);
+    setError(null);
+    
+    try {
+      const result = await method(...args).send({ from: account });
+      setLoading(false);
+      return result;
+    } catch (err) {
+      setError(err.message);
+      setLoading(false);
+      throw err;
     }
   };
+
+  return { contract, loading, error, callContract, sendTransaction };
+}
+```
+
+### 2. Example React Component
+```javascript
+// ContractInteraction.js
+import React, { useState, useEffect } from 'react';
+import { useWeb3 } from './Web3Context';
+import { useContract } from './useContract';
+
+function ContractInteraction() {
+  const { account } = useWeb3();
+  const { contract, loading, error, callContract, sendTransaction } = useContract();
+  const [value, setValue] = useState('');
+  const [balance, setBalance] = useState('0');
+
+  useEffect(() => {
+    fetchBalance();
+  }, [account]);
+
+  const fetchBalance = async () => {
+    try {
+      const result = await callContract(contract.methods.balanceOf, account);
+      setBalance(web3.utils.fromWei(result, 'ether'));
+    } catch (err) {
+      console.error('Error fetching balance:', err);
+    }
+  };
+
+  const handleTransfer = async () => {
+    try {
+      await sendTransaction(
+        contract.methods.transfer,
+        recipient,
+        web3.utils.toWei(amount, 'ether')
+      );
+      await fetchBalance();
+    } catch (err) {
+      console.error('Error transferring tokens:', err);
+    }
+  };
+
+  if (!account) return <div>Please connect your wallet</div>;
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error}</div>;
 
   return (
     <div>
-      <h1>Contract Interaction</h1>
-      <p>Current Value: {value}</p>
-      <button onClick={getValue}>Get Value</button>
-      <input type="text" onChange={(e) => setValue(e.target.value)} />
-      <button onClick={() => setValue(value)}>Set Value</button>
+      <h2>Contract Interaction</h2>
+      <p>Connected Account: {account}</p>
+      <p>Balance: {balance} ETH</p>
+      <div>
+        <input
+          type="text"
+          value={value}
+          onChange={(e) => setValue(e.target.value)}
+          placeholder="Enter value"
+        />
+        <button onClick={handleTransfer}>Transfer</button>
+      </div>
     </div>
   );
-};
+}
 
 export default ContractInteraction;
 ```
 
-## Best Practices
+## Event Handling
 
-1. **Error Handling**: Always wrap your contract interactions in try-catch blocks to handle potential errors gracefully.
-
-2. **Loading States**: Use React state to manage loading states during contract interactions.
-
-3. **Wallet Connection**: Implement a way for users to connect their TronLink wallet to your dApp.
-
-4. **Network Check**: Ensure your app is connected to the correct network (mainnet or testnet).
-
-5. **Gas Estimation**: For complex transactions, estimate the energy cost before sending the transaction.
-
-6. **Event Handling**: Implement proper event listeners to update your UI in response to contract events.
-
-7. **Security**: Never expose private keys in your frontend code. Use secure key management practices.
-
-## Connecting to TronLink Wallet
-
-To interact with a user's TronLink wallet:
-
+### 1. Event Hook
 ```javascript
-useEffect(() => {
-  const connectWallet = async () => {
-    if (window.tronWeb && window.tronWeb.ready) {
-      setTronWeb(window.tronWeb);
-    } else {
-      const timer = setInterval(() => {
-        if (window.tronWeb && window.tronWeb.ready) {
-          clearInterval(timer);
-          setTronWeb(window.tronWeb);
-        }
-      }, 1000);
-    }
-  };
+// useContractEvents.js
+import { useEffect, useState } from 'react';
+import { useContract } from './useContract';
 
-  connectWallet();
-}, []);
+export function useContractEvents(eventName, options = {}) {
+  const { contract } = useContract();
+  const [events, setEvents] = useState([]);
+
+  useEffect(() => {
+    if (!contract) return;
+
+    const subscription = contract.events[eventName](options)
+      .on('data', (event) => {
+        setEvents((prev) => [...prev, event]);
+      })
+      .on('error', (error) => {
+        console.error(`Error in ${eventName} event:`, error);
+      });
+
+    return () => {
+      subscription.unsubscribe();
+    };
+  }, [contract, eventName]);
+
+  return events;
+}
 ```
 
-This code checks for the presence of TronLink and connects to it when available.
+## Utility Functions
 
-By following these guidelines and best practices, you can effectively integrate your Tron smart contracts into a React web application, creating powerful and interactive decentralized applications.
+### 1. Transaction Helper
+```javascript
+// txHelper.js
+export async function sendTransaction(contract, method, account, ...args) {
+  const gas = await method(...args).estimateGas({ from: account });
+  const gasPrice = await web3.eth.getGasPrice();
+  
+  return method(...args).send({
+    from: account,
+    gas: Math.floor(gas * 1.1), // Add 10% buffer
+    gasPrice
+  });
+}
+```
+
+### 2. Network Helper
+```javascript
+// networkHelper.js
+export const NETWORKS = {
+  1: 'Ethereum Mainnet',
+  3: 'Ropsten',
+  4: 'Rinkeby',
+  5: 'Goerli',
+  42: 'Kovan'
+};
+
+export function getNetworkName(networkId) {
+  return NETWORKS[networkId] || 'Unknown Network';
+}
+```
+
+## Best Practices
+
+### 1. Error Handling
+```javascript
+function handleError(error) {
+  if (error.code === 4001) {
+    return 'Transaction rejected by user';
+  }
+  if (error.message.includes('insufficient funds')) {
+    return 'Insufficient funds for gas';
+  }
+  return error.message;
+}
+```
+
+### 2. Transaction Monitoring
+```javascript
+async function monitorTransaction(txHash) {
+  let receipt = null;
+  while (receipt === null) {
+    receipt = await web3.eth.getTransactionReceipt(txHash);
+    await new Promise(resolve => setTimeout(resolve, 1000));
+  }
+  return receipt;
+}
+```
+
+### 3. MetaMask Connection
+```javascript
+async function checkAndConnectMetaMask() {
+  if (typeof window.ethereum === 'undefined') {
+    throw new Error('Please install MetaMask');
+  }
+  
+  try {
+    await window.ethereum.request({ method: 'eth_requestAccounts' });
+  } catch (error) {
+    throw new Error('User rejected connection');
+  }
+}
+```
+
+By following these patterns and best practices, you can create robust and user-friendly dApps that interact seamlessly with Ethereum smart contracts.

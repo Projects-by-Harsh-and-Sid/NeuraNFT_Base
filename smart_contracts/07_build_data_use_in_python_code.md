@@ -1,201 +1,300 @@
-# Using Tron Smart Contract Build Data in Python Code
+# Using Ethereum Smart Contract Build Data in Python Code
 
-This guide provides detailed information on how to use the build data from your Tron smart contracts in Python code. This is particularly useful for building backend services, scripts, or bots that interact with your deployed smart contracts.
+This guide provides detailed information on how to use the build data from your Ethereum smart contracts in Python code, useful for building backend services, scripts, or bots.
 
 ## Prerequisites
 
-- Python 3.6 or higher
-- `tronpy` library
-- Compiled Tron smart contract
+- Python 3.7 or higher
+- `web3.py` library
+- Compiled Ethereum smart contract
 
-## Setting Up the Environment
+## Initial Setup
 
-First, install the `tronpy` library:
-
+### 1. Install Dependencies
 ```bash
-pip install tronpy
+# Install Web3.py
+pip install web3
+
+# Install additional utilities
+pip install python-dotenv eth-account
 ```
 
-## Importing Contract ABI and Address
-
-After compiling your contract with TronBox, you'll find the build data in the `build/contracts/` directory. In your Python script, import this data:
-
+### 2. Load Contract Data
 ```python
 import json
+import os
+from web3 import Web3
+from dotenv import load_dotenv
 
-# Load the contract build data
-with open('build/contracts/YourContract.json', 'r') as file:
-    contract_data = json.load(file)
+# Load environment variables
+load_dotenv()
 
-# Extract ABI and address
-contract_abi = contract_data['abi']
-contract_address = contract_data['networks']['2']['address']  # '2' is the network ID for Shasta testnet
+# Load contract build data
+def load_contract(contract_name):
+    with open(f'build/contracts/{contract_name}.json', 'r') as file:
+        contract_data = json.load(file)
+    return contract_data['abi'], contract_data['networks']['5']['address']  # 5 for Goerli
 ```
 
-## Connecting to Tron Network
+## Web3 Connection Setup
 
-Use `tronpy` to connect to the Tron network:
-
+### 1. Basic Setup
 ```python
-from tronpy import Tron
-from tronpy.providers import HTTPProvider
+from web3 import Web3
+from web3.middleware import geth_poa_middleware
 
-# Connect to Shasta testnet
-client = Tron(HTTPProvider('https://api.shasta.trongrid.io'))
+def get_web3():
+    # Infura connection
+    infura_url = f"https://goerli.infura.io/v3/{os.getenv('INFURA_PROJECT_ID')}"
+    w3 = Web3(Web3.HTTPProvider(infura_url))
+    
+    # Add PoA middleware for testnets
+    w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+    
+    return w3
+
+def get_contract(w3, abi, address):
+    return w3.eth.contract(address=address, abi=abi)
 ```
 
-## Creating a Contract Instance
-
-Use the ABI and address to create a contract instance:
-
+### 2. Account Management
 ```python
-contract = client.get_contract(contract_address)
+from eth_account import Account
+import secrets
+
+def create_account():
+    # Generate a private key
+    private_key = "0x" + secrets.token_hex(32)
+    account = Account.from_key(private_key)
+    return account
+
+def load_account(w3):
+    private_key = os.getenv('ETH_PRIVATE_KEY')
+    account = Account.from_key(private_key)
+    return account
 ```
 
-## Calling Contract Functions
+## Contract Interaction
 
-### View Functions
-
-For functions that don't modify the contract state:
-
+### 1. Basic Contract Class
 ```python
-result = contract.functions.yourViewFunction()
-print(result)
+class EthereumContract:
+    def __init__(self, w3, abi, address):
+        self.w3 = w3
+        self.contract = w3.eth.contract(address=address, abi=abi)
+        self.account = load_account(w3)
+
+    def call_function(self, func_name, *args):
+        """Call a view function"""
+        function = getattr(self.contract.functions, func_name)
+        return function(*args).call()
+
+    def send_transaction(self, func_name, *args):
+        """Send a transaction"""
+        function = getattr(self.contract.functions, func_name)
+        
+        # Get nonce
+        nonce = self.w3.eth.get_transaction_count(self.account.address)
+        
+        # Build transaction
+        transaction = function(*args).build_transaction({
+            'from': self.account.address,
+            'nonce': nonce,
+            'gas': 2000000,
+            'gasPrice': self.w3.eth.gas_price
+        })
+        
+        # Sign and send transaction
+        signed_txn = self.w3.eth.account.sign_transaction(
+            transaction, self.account.key)
+        tx_hash = self.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+        
+        # Wait for transaction receipt
+        return self.w3.eth.wait_for_transaction_receipt(tx_hash)
 ```
 
-### Transaction Functions
-
-For functions that modify the contract state, you'll need a private key to sign the transaction:
-
+### 2. Example Implementation
 ```python
-from tronpy.keys import PrivateKey
+class TokenContract(EthereumContract):
+    def get_balance(self, address):
+        balance = self.call_function('balanceOf', address)
+        return self.w3.from_wei(balance, 'ether')
 
-private_key = PrivateKey(bytes.fromhex('your_private_key_here'))
+    def transfer(self, to_address, amount):
+        amount_wei = self.w3.to_wei(amount, 'ether')
+        return self.send_transaction('transfer', to_address, amount_wei)
 
-txn = (
-    contract.functions.yourFunction(param1, param2)
-    .with_owner(private_key.public_key.to_address())
-    .fee_limit(100_000_000)
-    .build()
-    .sign(private_key)
-)
-
-result = client.broadcast(txn)
-print(result)
+    def get_events(self, event_name, from_block=0):
+        event = getattr(self.contract.events, event_name)
+        return event.get_logs(fromBlock=from_block)
 ```
 
-## Handling Events
+## Advanced Features
 
-To get past events emitted by your contract:
-
+### 1. Event Handling
 ```python
-events = contract.events.YourEvent.get_logs(from_block=0, to_block='latest')
-for event in events:
-    print(event)
+class EventListener:
+    def __init__(self, contract):
+        self.contract = contract
+        self.w3 = contract.w3
+
+    async def listen_to_events(self, event_name, callback):
+        event_filter = self.contract.events[event_name].create_filter(fromBlock='latest')
+        while True:
+            for event in event_filter.get_new_entries():
+                await callback(event)
+            await asyncio.sleep(2)  # Poll every 2 seconds
+
+    def get_past_events(self, event_name, from_block, to_block='latest'):
+        event = getattr(self.contract.events, event_name)
+        return event.get_logs(fromBlock=from_block, toBlock=to_block)
 ```
 
-## Example Python Script
+### 2. Transaction Management
+```python
+class TransactionManager:
+    def __init__(self, w3, account):
+        self.w3 = w3
+        self.account = account
 
-Here's an example of a Python script that interacts with a Tron smart contract:
+    def estimate_gas(self, transaction):
+        return self.w3.eth.estimate_gas(transaction)
+
+    def get_gas_price(self):
+        return self.w3.eth.gas_price
+
+    async def wait_for_transaction(self, tx_hash, timeout=120):
+        start_time = time.time()
+        while time.time() - start_time < timeout:
+            try:
+                receipt = self.w3.eth.get_transaction_receipt(tx_hash)
+                if receipt:
+                    return receipt
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+        raise TimeoutError("Transaction not mined within timeout period")
+```
+
+## Complete Example
 
 ```python
-import json
-from tronpy import Tron
-from tronpy.keys import PrivateKey
-from tronpy.providers import HTTPProvider
+import asyncio
+from web3 import Web3
+from eth_account import Account
+import os
+from dotenv import load_dotenv
 
-# Load contract data
-with open('build/contracts/YourContract.json', 'r') as file:
-    contract_data = json.load(file)
+class EthereumApp:
+    def __init__(self):
+        load_dotenv()
+        self.w3 = self.setup_web3()
+        self.account = self.setup_account()
+        self.contract = self.setup_contract()
 
-contract_abi = contract_data['abi']
-contract_address = contract_data['networks']['2']['address']
+    def setup_web3(self):
+        infura_url = f"https://mainnet.infura.io/v3/{os.getenv('INFURA_PROJECT_ID')}"
+        w3 = Web3(Web3.HTTPProvider(infura_url))
+        w3.middleware_onion.inject(geth_poa_middleware, layer=0)
+        return w3
 
-# Connect to Shasta testnet
-client = Tron(HTTPProvider('https://api.shasta.trongrid.io'))
+    def setup_account(self):
+        private_key = os.getenv('ETH_PRIVATE_KEY')
+        return Account.from_key(private_key)
 
-# Get contract instance
-contract = client.get_contract(contract_address)
+    def setup_contract(self):
+        abi, address = self.load_contract('YourContract')
+        return self.w3.eth.contract(address=address, abi=abi)
 
-# Call a view function
-def get_value():
-    return contract.functions.getValue()
+    async def main(self):
+        try:
+            # Get current value
+            value = await self.contract.functions.getValue().call()
+            print(f"Current value: {value}")
 
-# Call a transaction function
-def set_value(new_value):
-    private_key = PrivateKey(bytes.fromhex('your_private_key_here'))
-    txn = (
-        contract.functions.setValue(new_value)
-        .with_owner(private_key.public_key.to_address())
-        .fee_limit(100_000_000)
-        .build()
-        .sign(private_key)
-    )
-    result = client.broadcast(txn)
-    return result
+            # Set new value
+            tx_hash = await self.set_value(42)
+            receipt = await self.wait_for_transaction(tx_hash)
+            print(f"Transaction mined: {receipt.transactionHash.hex()}")
 
-# Main execution
+            # Listen for events
+            await self.listen_for_events()
+
+        except Exception as e:
+            print(f"Error: {e}")
+
+    async def set_value(self, new_value):
+        nonce = self.w3.eth.get_transaction_count(self.account.address)
+        
+        transaction = self.contract.functions.setValue(new_value).build_transaction({
+            'from': self.account.address,
+            'nonce': nonce,
+            'gas': 2000000,
+            'gasPrice': self.w3.eth.gas_price
+        })
+        
+        signed_txn = self.account.sign_transaction(transaction)
+        return self.w3.eth.send_raw_transaction(signed_txn.rawTransaction)
+
+    async def wait_for_transaction(self, tx_hash):
+        while True:
+            try:
+                receipt = self.w3.eth.get_transaction_receipt(tx_hash)
+                if receipt:
+                    return receipt
+            except Exception:
+                pass
+            await asyncio.sleep(1)
+
+    async def listen_for_events(self):
+        event_filter = self.contract.events.ValueChanged.create_filter(fromBlock='latest')
+        while True:
+            for event in event_filter.get_new_entries():
+                print(f"New value set: {event['args']['value']}")
+            await asyncio.sleep(2)
+
 if __name__ == "__main__":
-    print("Current value:", get_value())
-    
-    new_value = 42
-    set_value(new_value)
-    print(f"Value set to {new_value}")
-    
-    print("New value:", get_value())
+    app = EthereumApp()
+    asyncio.run(app.main())
 ```
 
 ## Best Practices
 
-1. **Error Handling**: Use try-except blocks to handle potential errors gracefully.
+### 1. Environment Configuration
+```python
+# .env file
+INFURA_PROJECT_ID=your_infura_project_id
+ETH_PRIVATE_KEY=your_private_key
+CONTRACT_ADDRESS=your_contract_address
+```
 
-   ```python
-   try:
-       result = contract.functions.yourFunction()
-   except Exception as e:
-       print(f"An error occurred: {e}")
-   ```
+### 2. Error Handling
+```python
+def handle_transaction_error(error):
+    if 'insufficient funds' in str(error):
+        raise ValueError("Insufficient funds for gas")
+    if 'nonce too low' in str(error):
+        raise ValueError("Nonce too low - transaction already processed")
+    raise error
+```
 
-2. **Environment Variables**: Store sensitive information like private keys in environment variables.
+### 3. Gas Management
+```python
+def estimate_gas_with_buffer(w3, transaction, buffer=1.2):
+    estimated_gas = w3.eth.estimate_gas(transaction)
+    return int(estimated_gas * buffer)
+```
 
-   ```python
-   import os
-   private_key = PrivateKey(bytes.fromhex(os.getenv('TRON_PRIVATE_KEY')))
-   ```
+### 4. Logging
+```python
+import logging
 
-3. **Gas Estimation**: For complex transactions, estimate the energy cost before sending the transaction.
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
 
-   ```python
-   estimated_energy = contract.functions.yourFunction().estimateEnergy()
-   print(f"Estimated energy: {estimated_energy}")
-   ```
+logger = logging.getLogger(__name__)
+```
 
-4. **Asynchronous Operations**: For better performance in applications handling multiple requests, consider using asynchronous libraries like `asyncio` and `aiohttp`.
-
-5. **Logging**: Implement proper logging for easier debugging and monitoring.
-
-   ```python
-   import logging
-   logging.basicConfig(level=logging.INFO)
-   logger = logging.getLogger(__name__)
-
-   logger.info("Calling contract function")
-   ```
-
-6. **Network Check**: Ensure your script is connected to the correct network (mainnet or testnet).
-
-   ```python
-   network = client.get_chain_parameters()['chain_id']
-   print(f"Connected to network: {network}")
-   ```
-
-7. **Batch Requests**: If you need to make multiple calls, consider using batch requests to improve efficiency.
-
-   ```python
-   with client.batch_call():
-       result1 = contract.functions.function1()
-       result2 = contract.functions.function2()
-   print(result1, result2)
-   ```
-
-By following these guidelines and best practices, you can effectively interact with your Tron smart contracts using Python, enabling you to build powerful backend services, automated scripts, or bots that leverage the capabilities of your smart contracts.
+By following these patterns and best practices, you can create robust Python applications that interact with Ethereum smart contracts effectively and reliably.
