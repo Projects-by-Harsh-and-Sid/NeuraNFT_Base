@@ -10,13 +10,15 @@
     /* margin-bottom: 20px ; */
     margin-top: -50px ;
   }
+
+  
   
   .progress .circle {
     position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #333;
+    background: #333; 
     width: 40px;
     height: 40px;
     border-radius: 50%;

@@ -390,6 +390,26 @@
     /* margin-top: 10px; */
   }
 
+    /* Add additional breakpoint for medium screens */
+    @media (max-width: 1024px) {
+      .imageContainer img {
+        width: 100%;
+        max-width: 400px;
+      }
+    
+      .content {
+        gap: 20px;
+      }
+    
+      .detailsContainer {
+        margin-right: 0;
+        width: 100%;
+      }
+    
+      .attributesGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
 
   @media (max-width: 768px) {
     .fullPageContainer {
@@ -488,25 +508,7 @@
     }
   }
   
-  /* Add additional breakpoint for medium screens */
-  @media (max-width: 1024px) {
-    .imageContainer img {
-      width: 100%;
-      max-width: 400px;
-    }
-  
-    .content {
-      gap: 20px;
-    }
-  
-    .detailsContainer {
-      margin-right: 0;
-    }
-  
-    .attributesGrid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+
   
   /* Add styles for very small screens */
   @media (max-width: 480px) {

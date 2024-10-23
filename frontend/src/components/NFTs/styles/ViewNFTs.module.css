@@ -60,6 +60,7 @@
     gap: 24px;
     padding: 24px;
     background-color: #0D0D0D;
+    align-items: center;
   }
   
   .collectionImage {
@@ -134,10 +135,12 @@
 .serverInfoGrid {
   flex: 1;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   gap: 16px;
   margin-left: auto;
-  max-width: 600px;
+  max-width: 900px;
+  max-height: 50px;
+  margin-top: -50px;
 }
 
 .serverInfoItem {
@@ -313,6 +316,19 @@
     display: flex;
     flex-direction: column;
     gap: 1rem;
+}
+
+@media screen and (max-width: 1383px) {
+  .serverInfoGrid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-left: auto;
+    max-width: 600px;
+    max-height: none;
+    margin-top: 0;
+  }
 }
 
 /* === MODIFICATIONS TO EXISTING MEDIA QUERY === */
