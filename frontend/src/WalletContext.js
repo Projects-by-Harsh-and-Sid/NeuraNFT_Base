@@ -37,6 +37,43 @@ export const AppProvider = ({ children }) => {
 //   return () => clearInterval(interval);
 // }, []);
 
+// UUID v4 implementation
+function generateUUID() {
+  // Use crypto.getRandomValues instead of randomUUID
+  const getRandomValues = (arr) => {
+    if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
+      return crypto.getRandomValues(arr);
+    }
+    // Fallback to Math.random()
+    for (let i = 0; i < arr.length; i++) {
+      arr[i] = Math.floor(Math.random() * 256);
+    }
+    return arr;
+  };
+
+  const randomBytes = new Uint8Array(16);
+  getRandomValues(randomBytes);
+
+  // Set version (4) and variant (RFC4122)
+  randomBytes[6] = (randomBytes[6] & 0x0f) | 0x40;
+  randomBytes[8] = (randomBytes[8] & 0x3f) | 0x80;
+
+  // Convert to hex string
+  let uuid = '';
+  for (let i = 0; i < 16; i++) {
+    uuid += randomBytes[i].toString(16).padStart(2, '0');
+    if (i === 3 || i === 5 || i === 7 || i === 9) {
+      uuid += '-';
+    }
+  }
+  return uuid;
+}
+
+const redirectToWalletInstall = () => {
+  // Open Coinbase Wallet download page in a new tab
+  window.open('https://www.coinbase.com/wallet/downloads', '_blank');
+};
+
 useEffect(() => {
   const initializeCoinbaseWallet = () => {
     const wallet = new CoinbaseWalletSDK({
@@ -80,9 +117,24 @@ const updateBalance = async (userAddress, currentProvider) => {
 
   const connectWallet = async () => {
     if (!provider) {
-      alert('Coinbase Wallet is not initialized.');
+      // Check if the provider is available in window.ethereum
+      if (!window.ethereum) {
+        const shouldInstall = window.confirm(
+          'Coinbase Wallet is not installed. Would you like to install it now?'
+        );
+        if (shouldInstall) {
+          redirectToWalletInstall();
+        }
+        return;
+      }
+      alert('Initializing wallet connection...');
       return;
     }
+
+    await provider.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: '0x14A34' }], // 84532 in hex
+    });
     
     try {
       const accounts = await provider.request({
