@@ -6,7 +6,7 @@
     padding-bottom: 2rem;
   }
   
-  .collectionInfo {
+  /* .collectionInfo {
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
@@ -25,10 +25,67 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+  } */
+
+    /* .collectionName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  } */
+
+  /* .collectionDescription {
+    margin-top: -0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 400px;
+  } */
+
+.collectionDescription {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+  .collectionName {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+
+  .collectionInfo {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    background-color: #0D0D0D;
+  }
+  
+  .collectionImage {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 120px;
+  }
+  
+  .collectionImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  
   }
 
-
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+  }
   
+
+
   .collectionDetails {
     display: flex;
     flex-direction: column;
@@ -42,30 +99,21 @@
     
   }
   
-  .collectionName {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .serverInfo {
+
+  /* .serverInfo {
     text-align: right;
     margin-bottom: 0% !important;
-    /* margin-right: ; */
+
   }
   .serverInfo2{
     text-align: right;
     margin-bottom: 0% !important;
-    /* margin-left: 300px;
-     */
     margin-left: 20%;
 
   }
   .serverInfo3{
     text-align: right;
     margin-bottom: 0% !important;
-    /* margin-right: 400px; */
-    /* margin-right: 20%; */
   }
   
   .serverHeading {
@@ -73,13 +121,43 @@
     color: #888;
     margin: 0;
   }
-  
-  .serverCount {
+   */
+
+     /* .serverCount {
     font-size: 0.9rem;
     font-weight: bold;
     margin: 0;
   }
-  
+   */
+
+
+.serverInfoGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-left: auto;
+  max-width: 600px;
+}
+
+.serverInfoItem {
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.serverInfo {
+  color: #888;
+  font-size: 12px;
+  margin: 0 0 4px 0;
+}
+
+.serverCount {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
   .additionalInfo {
     display: flex;
     margin-top: 0.5rem;
@@ -99,12 +177,7 @@
     font-size: 0.9rem;
   }
   
-  .collectionDescription {
-    margin-top: -0.5rem;
-    font-size: 0.9rem;
-    color: #ccc;
-    max-width: 400px;
-  }
+
   
   /* Rest of your existing CSS */
   .collectionStats {
@@ -136,6 +209,10 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
     padding: 0 2rem;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
   }
   
   .gridItem {

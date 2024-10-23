@@ -128,7 +128,7 @@ const ViewCollectionNFTs = () => {
         </div>
       </div> */}
             <div className={styles.collectionInfo}>
-              <div className={styles.collectionImage}>
+              {/* <div className={styles.collectionImage}>
               <img src={collection.image || DefaultImage} alt={collection.name}  />
         </div>
         <div className={styles.collectionDetails}>
@@ -146,7 +146,6 @@ const ViewCollectionNFTs = () => {
             <p className={styles.serverInfo}>Date Created: </p>
             
               <span className={styles.serverCount}>{new Date(parseInt(collection.dateCreated,10) * 1000).toLocaleDateString()}</span>
-              {/* <span className={styles.serverCount}>{collection.dateCreated}</span> */}
 
             </div>
             <div className={styles.serverInfo}>
@@ -162,10 +161,52 @@ const ViewCollectionNFTs = () => {
               <span className={styles.serverCount}>{collection.noOfNFTs}</span>
             </div>
           </div>
-          
-
           <p className={styles.collectionDescription}>{collection.description}</p>
-        </div>
+        </div> */}
+        <div className={styles.collectionImage}>
+    <img src={collection.image || DefaultImage} alt={collection.name} />
+  </div>
+
+  {/* Middle: Name and Description */}
+  <div className={styles.mainContent}>
+    <h2 className={styles.collectionName}>{collection.name}</h2>
+    <p className={styles.collectionDescription}>{collection.description}</p>
+  </div>
+
+  {/* Right: Server Info Grid */}
+  <div className={styles.serverInfoGrid}>
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>No. of Servers</p>
+      <p className={styles.serverCount}>{collection.noOfServers}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Model</p>
+      <p className={styles.serverCount}>{collection.model}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Date Created</p>
+      <p className={styles.serverCount}>
+        {new Date(parseInt(collection.dateCreated,10) * 1000).toLocaleDateString()}
+      </p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Unique Holders</p>
+      <p className={styles.serverCount}>{collection.uniqueHolders}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Context Window</p>
+      <p className={styles.serverCount}>{collection.contextWindow}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Number of NFTs</p>
+      <p className={styles.serverCount}>{collection.noOfNFTs}</p>
+    </div>
+  </div>
 
         {/* <div className={styles.mobileDropdown}>
             <button 
