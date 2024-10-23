@@ -221,3 +221,40 @@
       left: -20px;
     }
   }
+
+
+  @media (max-width: 680px) {
+    .create-nft-container {
+      padding: 0;
+      min-height: 100vh;
+    }
+  
+    .create-nft-form {
+      max-width: 100%;
+      width: 100%;
+      height: 100vh;
+      margin: 0;
+      padding: 1rem;
+      border-radius: 0;
+    }
+  
+  
+    .create-nft-form::before {
+      border-radius: 0;
+    }
+  
+    .back-button {
+      display: none;
+    }
+    
+    .create-nft-form::before {
+      display: none;  /* This removes the gradient border effect */
+    }
+  
+  }
+
+  @media (max-height:760px) {
+    .create-nft-form {
+      height: 100%;
+    }
+  }
