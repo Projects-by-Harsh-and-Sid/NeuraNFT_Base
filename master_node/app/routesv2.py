@@ -1,6 +1,6 @@
 from app import app
 
-from flask import request, jsonify
+from flask import request, jsonify, render_template
 
 
 import requests
@@ -28,6 +28,13 @@ DATA_FOLDER = os.path.join(UPLOAD_FOLDER,"data")
 #  to be replace by reddis or on chain session management storage
 api_keys            = app.config['API_KEYS'] 
 chat_sessions       = app.config['CHAT_SESSIONS']
+
+
+@app.route("/")
+def index():
+    return render_template("index.html")
+
+
 
 ########################## converting PDF to text ##########################
 
