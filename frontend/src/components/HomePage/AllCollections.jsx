@@ -91,12 +91,7 @@ function AllCollections({ activeTab, setActiveTab }) {
         </button>
       </div>
       <div className={styles.dataTable}>
-        {/* <div className={styles.tableHeader}>
-  <div className={styles.headerItem}># Collection</div>
-  <div className={styles.headerItem}>Owner</div>
-  <div className={styles.headerItem}>Model</div>
-  <div className={styles.headerItem}>No. of NFTs</div>
-</div> */}
+      <div className={styles.tableContainer}>
         {activeTab === "allCollections" ? (
           <>
             <div className={styles.tableHeader}>
@@ -171,6 +166,7 @@ function AllCollections({ activeTab, setActiveTab }) {
             ))}
           </>
         )}
+        </div>
       </div>
       <div className={styles.pagination}>
         {Array.from({ length: totalPages }, (_, i) => i + 1).map(
