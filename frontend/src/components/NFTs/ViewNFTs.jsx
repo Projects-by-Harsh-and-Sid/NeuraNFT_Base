@@ -7,6 +7,8 @@ import { useAppContext } from '../../WalletContext';
 import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
 import { fetchData } from '../Utils/datafetch';
 import Loading from './Loading';
+import MobileCollectionHeader from './MobileCollectionHeader';
+
 
 const ViewCollectionNFTs = () => {
   const { collectionId } = useParams();
@@ -116,7 +118,7 @@ const ViewCollectionNFTs = () => {
   return (
     <div className={styles.container}>
    <TopBar onConnectWallet={handleConnectWallet} />
-      
+   <MobileCollectionHeader collection={collection} DefaultImage={DefaultImage} />
    {/* <div className={styles.collectionInfo}>
         <img src={collection.image || DefaultImage} alt={collection.name} className={styles.collectionImage} />
         <div className={styles.collectionDetails}>
@@ -165,7 +167,7 @@ const ViewCollectionNFTs = () => {
           <p className={styles.collectionDescription}>{collection.description}</p>
         </div>
 
-        <div className={styles.mobileDropdown}>
+        {/* <div className={styles.mobileDropdown}>
             <button 
               className={styles.dropdownButton}
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
@@ -206,7 +208,7 @@ const ViewCollectionNFTs = () => {
               </div>
               
             </div>
-          </div>
+          </div> */}
       </div>
 
       

@@ -94,12 +94,14 @@
   
   .mainContent {
     flex-grow: 1;
-    padding: 24px 32px;
+    /* padding: 24px 32px; */
   }
   
   .tabs {
     display: flex;
     border-bottom: 1px solid #333;
+    padding: 24px 32px;
+    padding-bottom: 0px;
   }
   
   .tabButton {
@@ -164,6 +166,8 @@
     background-color: rgba(255, 255, 255, 0.05);
     border-radius: 8px;
     margin-top: 1rem;
+    margin-right: 32px;
+    margin-left: 32px;
   }
   
   .emptyState h3 {
@@ -196,6 +200,7 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1.5rem;
     padding: 1rem 0;
+    padding: 24px 32px;
   }
   
   .gridItem {
@@ -204,6 +209,9 @@
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     cursor: pointer;
+    max-width: 215px;
+    width: 50vw;
+    margin: 10px;
   }
   
   .gridItem:hover {
@@ -252,6 +260,8 @@
     margin-bottom: 0.5rem;
   }
 
+
+  
   @media screen and (max-width: 450px) {
     .profileInfo {
         margin-top: -200px;
@@ -266,10 +276,34 @@
   .profileStats p{
     margin: 5px;
   }
+
+  .gridContainer{
+    padding: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    justify-items: center;
+    gap: 10px;
+  }
+  .gridItem{
+    width: 45vw;
+  }
 }
 
-@media screen and (max-width: 430px) {
+@media screen and (max-width: 399px) {
   .profileInfo {
       margin-top: -230px;
   }
+
+  .gridContainer{
+    padding: 0;
+    padding-left: 1px;
+    padding-right: 2px;
+    justify-items: center;
+    gap: 10px;
+  }
+  .gridItem{
+    width: 45vw;
+    height: 70vw;
+  }
 }
+

@@ -144,6 +144,8 @@
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     cursor: pointer;
+    max-width: 185px;
+    width: 50vw;
   }
   
   .gridItem:hover {
@@ -242,6 +244,7 @@
   .collectionInfo {
       flex-direction: column;
       padding: 1rem;
+      display: none; /* Hide on mobile */
   }
 
   .collectionImage {
@@ -279,5 +282,13 @@
   /* Hide desktop info */
   .desktopInfo {
       display: none;
+  }
+  .gridContainer{
+    padding: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    justify-items: center;
+    gap: 10px;
+    margin-top: 20px;
   }
 }
