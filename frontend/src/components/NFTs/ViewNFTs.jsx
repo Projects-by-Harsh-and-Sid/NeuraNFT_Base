@@ -25,6 +25,7 @@ const ViewCollectionNFTs = () => {
   const [nftLoaded, setNftLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLoadingNFT, setIsLoadingNFT] = useState(false);
 
   useEffect(() => {
     // Existing collection data fetch
@@ -82,11 +83,17 @@ const ViewCollectionNFTs = () => {
 
   
   const handleNFTClick = async (nftid) => {
-    // setselectNFTidForPopup(nftid);
-    // setselectCollectionidForPopup(collectionid);
-    const fetchedNFT = await fetchData('compounded_nft',collectionId, nftid);
-    setSelectedNFT(fetchedNFT);
-    setIsPopupOpen(true);
+    setIsLoadingNFT(true);
+    try {
+      const fetchedNFT = await fetchData('compounded_nft', collectionId, nftid);
+      setSelectedNFT(fetchedNFT);
+      setIsLoadingNFT(false);
+      setIsPopupOpen(true);
+    } catch (error) {
+      console.error('Error fetching NFT details:', error);
+    } finally {
+      setIsLoadingNFT(false);
+    }
   };
 
   
@@ -273,10 +280,17 @@ const ViewCollectionNFTs = () => {
           </div>
         ))}
       </div>
-      {isPopupOpen && (
+      {isLoadingNFT && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner}>
+            <div className={styles.spinner}></div>
+            <p>Loading NFT details...</p>
+          </div>
+        </div>
+      )}
+
+      {isPopupOpen && !isLoadingNFT && (
         <NFTDetailPopup
-          // nftid={selectNFTidForPopup}
-          // collectionid={collectionId}
           nft={selectedNFT}
           onClose={() => setIsPopupOpen(false)}
         />
