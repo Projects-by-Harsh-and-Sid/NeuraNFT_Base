@@ -267,7 +267,7 @@
   align-items: center; /* Added for better alignment */
 }
 
-@media (max-width: 900px) {
+@media (max-width: 948px) {
   .menuButton {
     display: block;  /* Show menu button on mobile */
   }

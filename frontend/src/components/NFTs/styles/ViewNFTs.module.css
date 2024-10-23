@@ -316,7 +316,7 @@
 }
 
 /* === MODIFICATIONS TO EXISTING MEDIA QUERY === */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 791px) {
   /* Modify existing classes */
   .collectionInfo {
       flex-direction: column;

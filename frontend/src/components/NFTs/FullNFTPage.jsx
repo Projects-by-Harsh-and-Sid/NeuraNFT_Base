@@ -169,8 +169,10 @@ const openChat = () => {
     <div className={styles.fullPageContainer}>
       <div className={styles.header}>
         <button onClick={handleBack} className={styles.backButton}>←</button>
+      <div>
         <h1 className={styles.title}>{nft.name}</h1>
         <p className={styles.collection}>{nft.collection}</p>
+      </div>
       </div>
 
       <div className={styles.content}>

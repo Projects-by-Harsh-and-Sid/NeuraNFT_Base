@@ -416,4 +416,75 @@
 
 /* ---------------------------FULL PAGE ----------------------------------- */
 
+/* Add media query for mobile responsiveness */
+@media (max-width: 768px) {
+  .popup {
+    width: 95%;
+    height: 95vh;
+    max-height: none;
+  }
+
+  .content {
+    flex-direction: column;
+    overflow-y: auto;
+  }
+
+  .imageContainer {
+    flex: none;
+    padding: 10px;
+    max-height: 40vh;
+  }
+
+  .nftImage {
+    min-width: unset;
+    max-height: 100%;
+    width: auto;
+  }
+
+  .detailsContainer {
+    flex: none;
+    border-left: none;
+    border-top: 1px solid #202026;
+  }
+
+  .tabContent {
+    padding: 15px;
+  }
+
+  /* Adjust attributes grid for mobile */
+  .attributesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Adjust listing status section width */
+  .listingStatusSection {
+    width: 94%;
+  }
+
+  /* Adjust button container for mobile */
+  .buttonContainer {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .actionButton2 {
+    width: 100%;
+  }
+
+  /* Adjust header for mobile */
+  .header {
+    padding: 15px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  /* Make tabs more touch-friendly */
+  .tab {
+    padding: 12px 15px;
+    flex: 1;
+    text-align: center;
+  }
+}
 
