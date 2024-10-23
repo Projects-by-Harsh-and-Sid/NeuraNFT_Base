@@ -21,9 +21,26 @@ const ViewCollectionNFTs = () => {
   const [error, setError] = useState(null);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   const [nftLoaded, setNftLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   useEffect(() => {
+    // Existing collection data fetch
     fetchCollectionData();
+
+    // Add mobile check
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkIfMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkIfMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
   }, [collectionId]);
 
   const fetchCollectionData = async () => {
@@ -69,6 +86,8 @@ const ViewCollectionNFTs = () => {
     setSelectedNFT(fetchedNFT);
     setIsPopupOpen(true);
   };
+
+  
 
 
 
@@ -145,7 +164,52 @@ const ViewCollectionNFTs = () => {
 
           <p className={styles.collectionDescription}>{collection.description}</p>
         </div>
+
+        <div className={styles.mobileDropdown}>
+            <button 
+              className={styles.dropdownButton}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <span>Collection Info</span>
+              <span className={`${styles.dropdownIcon} ${isDropdownOpen ? styles.open : ''}`}>
+                ▼
+              </span>
+            </button>
+            
+            <div className={`${styles.dropdownContent} ${isDropdownOpen ? styles.open : ''}`}>
+            <p className={styles.collectionDescription}>{collection.description}</p>
+              <div className={styles.serverInfo}>
+                <p>No. of Servers</p>
+                <p className={styles.serverCount}>{collection.noOfServers}</p>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Model:</p>
+                <span className={styles.serverCount}>{collection.model}</span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Date Created: </p>
+                <span className={styles.serverCount}>
+                  {new Date(parseInt(collection.dateCreated, 10) * 1000).toLocaleDateString()}
+                </span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Unique Holders</p>
+                <span className={styles.serverCount}>{collection.uniqueHolders}</span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>ContextWindow: </p>
+                <span className={styles.serverCount}>{collection.contextWindow}</span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Number of NFTs: </p>
+                <span className={styles.serverCount}>{collection.noOfNFTs}</span>
+              </div>
+              
+            </div>
+          </div>
       </div>
+
+      
 
       
 
