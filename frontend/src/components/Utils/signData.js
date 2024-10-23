@@ -4,6 +4,8 @@ import collection_contract_data from './contracts/CollectionContract.json';
 import nft_contract_data from './contracts/NFTContract.json';
 import nftaccess_control_contract_data from './contracts/NFTAccessControl.json';
 
+import {withChainCheck, ensureBaseSepolia} from './wallet_utils';
+
 import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 import Web3 from 'web3';
 
@@ -413,6 +415,19 @@ async function extractNFTIdFromTransaction(transactionHash) {
     }
   }
 
+
+
+
+
+
+
+
+
+  
+  export const createCollectionWithChainCheck = withChainCheck(createCollection);
+  export const createNFTWithChainCheck = withChainCheck(createNFT);
+  export const createNFTMetadataWithChainCheck = withChainCheck(createNFTMetadata);
+  export const UpdateAcceessWithChainCheck = withChainCheck(UpdateAcceess);
 // Export the functions so they can be imported in other files
 // export { buildTransactionJson, signJsonData, performTransaction, handleTransaction };
 export { signJsonData, createCollection, createNFT, createNFTMetadata, extractNFTIdFromTransaction, UpdateAcceess };
