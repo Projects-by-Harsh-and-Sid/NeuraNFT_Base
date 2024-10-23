@@ -98,7 +98,7 @@ const Chat = () => {
   const [isTyping, setIsTyping] = useState(false);
   const chatEndRef = useRef(null);
   const [nftdetailsloaded, setNftDetailsLoaded] = useState(false);
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const fetchNFTDetails = async () => {
     try {
@@ -302,7 +302,21 @@ const Chat = () => {
 
   return (
   <div className={styles['chat-page']}>
-    <div className={styles['sidebar']}>
+<button 
+  className={styles['menu-button']} 
+  onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+>
+  <svg viewBox="0 0 24 24">
+    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/>
+  </svg>
+</button>
+
+<div 
+  className={`${styles['sidebar-overlay']} ${isSidebarOpen ? styles.open : ''}`}
+  onClick={() => setIsSidebarOpen(false)}
+></div>
+
+<div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
     {nftDetails && (
       <>
       <div className={styles['nft-image-container']}>
