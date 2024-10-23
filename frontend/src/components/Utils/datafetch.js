@@ -1,6 +1,6 @@
+import endpoints from '../../endpoints.json';
 import collectionsData from '../HomePage/collections.json';
 import nftsData from '../HomePage/nfts.json';
-import endpoints from '../../../endpoints.json';
 
 // export const fetchAllCollections = async() => {
 

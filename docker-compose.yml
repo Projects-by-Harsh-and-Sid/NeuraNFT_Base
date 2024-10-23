@@ -1,5 +1,6 @@
 version: '1.0'
 services:
+
   coinbase_neuranft_backend:
     build:
       context: ./master_node  # Build the image from the Dockerfile in ./master_node
@@ -16,3 +17,18 @@ services:
       gunicorn -w 1 -b 0.0.0.0:5500 app:app 
       --access-logfile /app/.logs/access.log 
       --error-logfile /app/.logs/error.log
+
+  coinbase_neuranft_frontend:
+    build: 
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "6011:80"
+    volumes:
+      - ./frontend/.logs:/var/log/nginx
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+    command: ["nginx", "-g", "daemon off;"]

@@ -1,4 +1,4 @@
-import endpoints from '../../../endpoints.json';
+import endpoints from '../../endpoints.json';
 
 const baseURL = endpoints.BACKEND_URL;
 

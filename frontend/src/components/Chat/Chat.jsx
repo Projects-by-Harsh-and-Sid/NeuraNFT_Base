@@ -1,21 +1,22 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import { useAppContext } from './WalletContext';
-import { useParams, useNavigate } from 'react-router-dom';
-import { marked } from 'marked'; // Import the marked library
 import DOMPurify from 'dompurify'; // Import DOMPurify for sanitization
-import styles from './styles/Chat.module.css';
-import { fetchData } from '../Utils/datafetch';
-import {get_jwt_decoded_response_for_chat} from '../Utils/chat';
+import { marked } from 'marked'; // Import the marked library
+import { useNavigate, useParams } from 'react-router-dom';
+import endpoints from '../../endpoints.json';
 import Loading from '../NFTs/Loading';
-import endpoints from '../../../endpoints.json';
+import { get_jwt_decoded_response_for_chat } from '../Utils/chat';
+import { fetchData } from '../Utils/datafetch';
+import styles from './styles/Chat.module.css';
 // import {get_api_key} from './helper_functions/get_chat_data';
 
 // import {get_collection_data , get_nft_data} from './helper_functions/get_chain_data';
+const baseURL = endpoints.BACKEND_URL;
 
 const NFTImage = ({ nftImage, name }) => {
   const [imageError, setImageError] = React.useState(false);
 
-  const baseURL = endpoints.BACKEND_URL;
+
 
   const uint8ArrayToBase64 = (uint8Array) => {
     if (!(uint8Array instanceof Uint8Array)) {
