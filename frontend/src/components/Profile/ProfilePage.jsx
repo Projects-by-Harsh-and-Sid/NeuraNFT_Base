@@ -75,6 +75,10 @@ const ProfilePage = () => {
 
   }
 
+  const handleDisconnectWallet = async () => {
+    await disconnectWallet();
+  };
+
 
   const formatAddress = (addr) => {
     if (addr && addr.length > 10) {
