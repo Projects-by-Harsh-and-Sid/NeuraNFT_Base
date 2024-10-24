@@ -110,4 +110,20 @@
   right: 10px;
 }
 
+@media (max-width:768px) {
+  .actionCardContent p{
+    display: none;
+  }
+
+  .actionCardContent{
+    transform: translateY(0%);
+  }
+
+  .actionCardTitle{
+    font-size: 14px;
+  }
+
+}
+
+
 

@@ -153,6 +153,11 @@
     background-color: #d63c2c;
   }
   
-  
-  
+  @media (max-width:768px) {
+
+    .collectionheader{
+        font-size: 25px;
+    }
+    
+  }
 
