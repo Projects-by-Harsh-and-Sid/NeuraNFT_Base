@@ -7,6 +7,7 @@ NeuraNFT is a pioneering platform built on the Base blockchain that aims to toke
 - [NeuraNFT](#neuranft)
   - [Table of Contents](#table-of-contents)
   - [Documentation](#documentation)
+  - [How to run the project](#how-to-run-the-project)
   - [Key Features](#key-features)
   - [Problem Statement](#problem-statement)
   - [Architecture](#architecture)
@@ -45,6 +46,39 @@ For Information about the HPC node setup, please refer to the `/hpc_node/` docum
 1. [HPC Node Setup](/hpc_node/hpc_node.md): Provides a detailed guide on setting up the HPC nodes for the NeuraNFT platform.
 
 
+
+## How to run the project
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:Projects-by-Harsh-and-Sid/NeuraNFT_Base.git
+   ```
+2. Run docker-compose to start the HPc node
+
+   ```bash
+   cd hpc_node
+   docker-compose up
+   ```
+
+3. Run the following command to deploy the smart contracts on the Base blockchain:
+
+   ```bash
+   cd smart_contracts/truffle_compiled_contract
+   truffle migrate --network base --reset
+   ```
+
+4. Start the React frontend and backend
+
+   ```bash
+   docker-compose up --build
+   ```
+
+5. Stop containers
+   
+   ```bash
+   docker-compose down
+   ```
 
 ## Key Features
 
