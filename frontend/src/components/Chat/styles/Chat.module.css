@@ -86,7 +86,7 @@
 
     background-color: rgba(0,0,0,0.5);
     transition: transform 0.3s ease-in-out; /* Add this line only */
-    touch-action: pan-x; /* Enable horizontal touch gestures */
+    touch-action: pan-y pan-x; /* Enable both vertical and horizontal touch gestures */
     will-change: transform; /* Optimize for animations */
   
     
@@ -501,6 +501,7 @@
     display: block;
   }
 
+
   .sidebar {
     position: fixed;
     left: 0;
@@ -510,16 +511,21 @@
     transform: translateX(-100%);
     width: 80%;
     max-width: 300px;
-    /* Add these properties for smoother animations */
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000;
-    perspective: 1000;
+    height: 100vh; /* Set explicit height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    padding-bottom: 40px; /* Add some padding at bottom for better scroll experience */
   }
 
   .sidebar.open {
     transform: translateX(0);
+    overflow-y: auto;
   }
+
+    /* Ensure the content is scrollable */
+    .attributesGrid {
+      padding-bottom: 60px; /* Add some space at the bottom */
+    }
 
   .chat-container {
     width: 100%;
