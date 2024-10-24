@@ -111,6 +111,8 @@ const CreateNFTCollection = () => {
         </Alert>
       </Snackbar>
 
+
+
       <button 
         className={styles['back-button']}
         onClick={() => navigate('/')}
@@ -119,8 +121,9 @@ const CreateNFTCollection = () => {
       </button>
 
       <div className={`${styles['create-nft-form']} ${isMinting ? styles.minting : ''}`}>
+        <h1 className={styles['nft-mint-collection-header']} >Mint NFT Collection</h1>
         <div className={styles['form-group']}>
-          <label>Collection Image</label>
+          <label className={styles['collection-image-label']}>Collection Image</label>
           <div className={styles['nft-image-preview']}>
             <div className={styles['nft-image-circle']}>
               {collectionImagePreview ? (
