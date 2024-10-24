@@ -2,12 +2,97 @@
 
 NeuraNFT is a pioneering platform built on the Base blockchain that aims to tokenize intelligence. It enables the creation of NFTs representing AI models and data, with a sophisticated permission management system for granular control over access and usage rights. By addressing key challenges in the current AI ecosystem, NeuraNFT seeks to create a more equitable, secure, and innovative environment for AI development and deployment.
 
+
+## How to run the project
+
+1. Clone the repository:
+
+   ```bash
+   git clone git@github.com:Projects-by-Harsh-and-Sid/NeuraNFT_Base.git
+   ```
+2. Run docker-compose to start the HPc node
+
+   ```bash
+   cd hpc_node
+   docker-compose up
+   ```
+
+3. Run the following command to deploy the smart contracts on the Base blockchain:
+
+   ```bash
+   cd smart_contracts/truffle_compiled_contract
+   truffle migrate --network base --reset
+   ```
+
+4. Start the React frontend and backend
+
+   ```bash
+   docker-compose up --build
+   ```
+
+5. Stop containers
+   
+   ```bash
+   docker-compose down
+   ```
+
+### Note check these files for local deployment
+
+<u>__Frontend__</u>
+
+`frontend\src\endpoints.json`
+
+for local deployment, the file should look like this:
+
+```json
+{"BACKEND_URL": "http://loclahost:6010"}
+```
+for web deployment, the file should look like this:
+
+```json
+{"BACKEND_URL": "https://base.backend.neuranft.com"}
+```
+> replace `https://base.backend.neuranft.com` with the actual backend URL
+
+<u>__Backend__</u>
+
+`master_node\app\__init__.py`
+
+for local deployment, the file should look like this:
+
+```python
+
+app.config["Load_balancer_Endpoints"] = {
+    "hpcEndpoint": "http://localhost",
+    "hpcEndpointPort": "5500",
+}
+
+app.config["filestorage_endpoint"] = "http://localhost:5500"
+```
+
+for web deployment, the file should look like this:
+
+```python
+
+app.config["Load_balancer_Endpoints"] = {
+    "hpcEndpoint": "https://base.backend.neuranft.com",
+    "hpcEndpointPort": "443",
+}
+
+app.config["filestorage_endpoint"] = "https://base.backend.neuranft.com"
+```
+> replace `https://base.backend.neuranft.com` with the actual backend URL
+
+_____
+
+
 ## Table of Contents
 
 - [NeuraNFT](#neuranft)
+  - [How to run the project](#how-to-run-the-project)
+    - [Note check these files for local deployment](#note-check-these-files-for-local-deployment)
   - [Table of Contents](#table-of-contents)
   - [Documentation](#documentation)
-  - [How to run the project](#how-to-run-the-project)
   - [Key Features](#key-features)
   - [Problem Statement](#problem-statement)
   - [Architecture](#architecture)
@@ -47,38 +132,7 @@ For Information about the HPC node setup, please refer to the `/hpc_node/` docum
 
 
 
-## How to run the project
 
-1. Clone the repository:
-
-   ```bash
-   git clone git@github.com:Projects-by-Harsh-and-Sid/NeuraNFT_Base.git
-   ```
-2. Run docker-compose to start the HPc node
-
-   ```bash
-   cd hpc_node
-   docker-compose up
-   ```
-
-3. Run the following command to deploy the smart contracts on the Base blockchain:
-
-   ```bash
-   cd smart_contracts/truffle_compiled_contract
-   truffle migrate --network base --reset
-   ```
-
-4. Start the React frontend and backend
-
-   ```bash
-   docker-compose up --build
-   ```
-
-5. Stop containers
-   
-   ```bash
-   docker-compose down
-   ```
 
 ## Key Features
 
