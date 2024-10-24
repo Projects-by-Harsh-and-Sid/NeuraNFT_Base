@@ -103,6 +103,12 @@ const Chat = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [chatinfo, setChatInfo] = useState(null);
 
+  const [touchStart, setTouchStart] = useState(null);
+  const [touchEnd, setTouchEnd] = useState(null);
+  const sidebarRef = useRef(null);
+
+  const minSwipeDistance = 50;
+
   const handleCloseAlert = () => {
     setChatInfo('');
   };
@@ -137,6 +143,26 @@ const Chat = () => {
     // // console.log("Response:", response);
     setIsInitializing(false);
 
+  };
+
+  const onTouchStart = (e) => {
+    setTouchEnd(null);
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const onTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const onTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > minSwipeDistance;
+    
+    if (isLeftSwipe) {
+      setIsSidebarOpen(false);
+    }
   };
 
   
@@ -195,7 +221,7 @@ const Chat = () => {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter' && !event.shiftKey) {
       event.preventDefault(); // Prevents default behavior (like adding a newline)
-      // sendMessage();
+      sendMessage();
     }
   };
 
@@ -333,9 +359,16 @@ const Chat = () => {
 <div 
   className={`${styles['sidebar-overlay']} ${isSidebarOpen ? styles.open : ''}`}
   onClick={() => setIsSidebarOpen(false)}
+  
 ></div>
 
-<div className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}>
+  <div 
+  className={`${styles.sidebar} ${isSidebarOpen ? styles.open : ''}`}
+  ref={sidebarRef}
+  onTouchStart={onTouchStart}
+  onTouchMove={onTouchMove}
+  onTouchEnd={onTouchEnd}
+  >
     {nftDetails && (
       <>
       <div className={styles['nft-image-container']}>
