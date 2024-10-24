@@ -9,6 +9,8 @@ import { get_jwt_decoded_response_for_chat } from '../Utils/chat';
 import { fetchData } from '../Utils/datafetch';
 import styles from './styles/Chat.module.css';
 // import {get_api_key} from './helper_functions/get_chat_data';
+import Snackbar from '@mui/material/Snackbar';
+import Alert from '@mui/material/Alert';
 
 // import {get_collection_data , get_nft_data} from './helper_functions/get_chain_data';
 const baseURL = endpoints.BACKEND_URL;
@@ -99,6 +101,11 @@ const Chat = () => {
   const chatEndRef = useRef(null);
   const [nftdetailsloaded, setNftDetailsLoaded] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [chatinfo, setChatInfo] = useState(null);
+
+  const handleCloseAlert = () => {
+    setChatInfo('');
+  };
 
   const fetchNFTDetails = async () => {
     try {
@@ -138,8 +145,10 @@ const Chat = () => {
     const initializeData = async () => {
       if (collectionId) {
         const task1 = fetchNFTDetails();
-        const task2 = initializeChat();
-        await Promise.all([task1, task2]);
+        // const task2 = initializeChat();
+        // await Promise.all([task1, task2]);
+        await Promise.all([task1]);
+        setChatInfo("Chatbot is currently disabled due to resource constraints. Please check back later.");
         console.log("Collection ID:", collectionId);
 
       } else {
@@ -302,6 +311,16 @@ const Chat = () => {
 
   return (
   <div className={styles['chat-page']}>
+    <Snackbar 
+        open={!!chatinfo}
+        autoHideDuration={6000} 
+        onClose={handleCloseAlert}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <Alert onClose={handleCloseAlert} severity="info" sx={{ width: '100%' }}>
+          Due to Resource constraints, the chatbot is currently disabled. Please check back later.
+        </Alert>
+      </Snackbar>
 <button 
   className={styles['menu-button']} 
   onClick={() => setIsSidebarOpen(!isSidebarOpen)}
