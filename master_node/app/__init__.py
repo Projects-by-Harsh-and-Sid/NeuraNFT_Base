@@ -33,10 +33,10 @@ app.config['CONTRACT_FOLDER'] = os.path.join(os.path.dirname(__file__), CONTRACT
 
 app.config["Load_balancer_Endpoints"] = {
     "hpcEndpoint": "http://localhost",
-    "hpcEndpointPort": "5500",
+    "hpcEndpointPort": "6010",
 }
 
-app.config["filestorage_endpoint"] = "http://localhost:5500"
+app.config["filestorage_endpoint"] = "http://localhost:6010"
 
 
 # app.config["Load_balancer_Endpoints"] = {

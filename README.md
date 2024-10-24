@@ -45,7 +45,7 @@ NeuraNFT is a pioneering platform built on the Base blockchain that aims to toke
 for local deployment, the file should look like this:
 
 ```json
-{"BACKEND_URL": "http://loclahost:6010"}
+{"BACKEND_URL": "http://localhost:6010"}
 ```
 for web deployment, the file should look like this:
 
