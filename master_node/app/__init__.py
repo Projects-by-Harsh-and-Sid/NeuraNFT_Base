@@ -31,20 +31,20 @@ app.config['CONTRACT_FOLDER'] = os.path.join(os.path.dirname(__file__), CONTRACT
 
 
 
-app.config["Load_balancer_Endpoints"] = {
-    "hpcEndpoint": "http://localhost",
-    "hpcEndpointPort": "6010",
-}
-
-app.config["filestorage_endpoint"] = "http://localhost:6010"
-
-
 # app.config["Load_balancer_Endpoints"] = {
-#     "hpcEndpoint": "https://base.backend.neuranft.com",
-#     "hpcEndpointPort": "443",
+#     "hpcEndpoint": "http://localhost",
+#     "hpcEndpointPort": "6010",
 # }
 
-# app.config["filestorage_endpoint"] = "https://base.backend.neuranft.com"
+# app.config["filestorage_endpoint"] = "http://localhost:6010"
+
+
+app.config["Load_balancer_Endpoints"] = {
+    "hpcEndpoint": "https://base.backend.neuranft.com",
+    "hpcEndpointPort": "443",
+}
+
+app.config["filestorage_endpoint"] = "https://base.backend.neuranft.com"
 
 
 
