@@ -365,6 +365,7 @@ function CreateNFT ()
 
     <ProgressBar currentStep={currentStep} />
      <div className={`${styles.createNftForm} ${isUploading ? styles.uploading : ''}`}>
+        <p className={styles.create_nft_title}>Create NFT</p>
         <div className={styles.formGroup}>
           <label>NFT Image</label>
           <div className={styles.nftImagePreview}>

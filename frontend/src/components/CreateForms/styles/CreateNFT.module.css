@@ -332,6 +332,12 @@
     }
   }
 
+  .create_nft_title{
+    font-size: 30px;
+    margin-top: 20px;
+    display: none;
+  }
+
 
   @media (max-width: 768px) {
     .createNftContainer {
@@ -349,3 +355,95 @@
       flex-direction: column;       /* Added */
     }
   }
+
+  @media (max-width: 768px) {
+    .createNftContainer {
+        /* padding: 0; */
+        height: 100vh;
+        justify-content: flex-start;
+        padding-top: 0;
+    }
+  
+    .createNftForm {
+        width: 100%;
+        height: 100vh;
+        margin: 0;
+        padding: 1rem;
+        border-radius: 0;
+        max-width: none;
+        overflow-y: auto;
+        background-color: #000000;
+    }
+
+    .createNftForm::before {
+        display: none;
+    }
+  
+    .backButton {
+        display: none;
+    }
+
+    /* Hide progress bar on mobile */
+    .createNftContainer > :not(.createNftForm) {
+        display: none;
+    }
+
+    .buttonGroup {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .buttonGroup button {
+        width: 100%;
+    }
+
+
+
+    .changePhotoButton {
+        margin-top: 1rem;
+        width: 108px;
+    }
+
+    .formGroup {
+        margin-bottom: 1rem;
+    }
+
+    .uploadButton{
+      justify-content: center;
+    }
+    .attachButton{
+      justify-content: center;
+      background-color: #121212;
+    }
+
+    .textInputname{
+      background-color: #121212;
+    }
+
+    .textInputdesc{
+      background-color: #121212;
+
+    }
+
+    .selectInput{
+      background-color: #121212;
+
+    }
+
+    .nftImageCircle{
+      background-color: #121212;
+    }
+
+    .changePhotoButton{
+      background-color: #121212;
+    }
+
+    .create_nft_title{
+      display: block;
+      text-align: center;
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      margin-top: 30px;
+    }
+
+}

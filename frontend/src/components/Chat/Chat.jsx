@@ -359,7 +359,7 @@ const Chat = () => {
   </div>
     <div className={styles['chat-container']}>
       
-      <h2 className={styles['chat-header']}>Chat with NFT: {nftDetails.name}</h2>
+      <h2 className={styles['chat-header']}>{nftDetails.name}</h2>
       <div className={styles['chat-messages']}>
       <div className={styles['chat-messages']}>
           {chatHistory.map((message, index) => (
