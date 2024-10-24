@@ -14,9 +14,9 @@
 }
 
 .actionCard {
-  min-width: 300px;
-  max-width: 200px;
-  height: 300px;
+  min-width: 150px;
+  max-width: 300px;
+  height: 30dvw;
   flex-shrink: 0;
   background-color: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
@@ -24,6 +24,10 @@
   transition: transform 0.3s ease;
   position: relative;
   cursor: pointer;
+  width: 30dvw;
+  min-height: 150px;
+  max-height: 300px;
+  justify-content: center;
 }
 
 .actionCard:hover {
@@ -105,3 +109,5 @@
 .actionsContainer .scrollArrowRight {
   right: 10px;
 }
+
+

@@ -333,3 +333,19 @@
   }
 
 
+  @media (max-width: 768px) {
+    .createNftContainer {
+      padding: 1rem;                /* Changed from 3rem 0 */
+      height: 100vh;                /* Added */
+      justify-content: flex-start;  /* Changed from center */
+    }
+  
+    .createNftForm {
+      height: calc(100vh - 2rem);   /* Added for full height */
+      margin-top: 0;                /* Changed from 20px */
+      padding: 1rem;                /* Changed from 2rem */
+      overflow-y: auto;             /* Added */
+      display: flex;                /* Added */
+      flex-direction: column;       /* Added */
+    }
+  }

@@ -14,6 +14,7 @@
     display: flex;
     align-items: center;
     margin-bottom: 20px;
+    align-items: flex-start;
   }
 
   
@@ -34,12 +35,14 @@
   .collection {
     font-size: 16px;
     color: #a0a0a0;
-    margin-left: 20px;
+    /* margin-left: 20px; */
+    margin-top: 0;
   }
   
   .content {
     display: flex;
     gap: 40px;
+    align-items: center;
   }
   
   .imageContainer {
@@ -50,7 +53,7 @@
   }
   .imageContainer img {
     width: 500px;
-    margin-top: 80px;
+    /* margin-top: 80px; */
   }
   
   .nftImage {
@@ -385,4 +388,155 @@
   .expandedIcon, .collapsedIcon {
     color: #a0a0a0;
     /* margin-top: 10px; */
+  }
+
+    /* Add additional breakpoint for medium screens */
+    @media (max-width: 1024px) {
+      .imageContainer img {
+        width: 100%;
+        max-width: 400px;
+      }
+    
+      .content {
+        gap: 20px;
+      }
+    
+      .detailsContainer {
+        margin-right: 0;
+        width: 100%;
+      }
+    
+      .attributesGrid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+  @media (max-width: 768px) {
+    .fullPageContainer {
+      padding: 10px;
+    }
+  
+    .header {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+  
+    .title {
+      font-size: 24px;
+    }
+  
+    .collection {
+      margin-left: 0;
+      width: 100%;
+    }
+  
+    .content {
+      flex-direction: column;
+      gap: 20px;
+    }
+  
+    .imageContainer {
+      width: 100%;
+    }
+  
+    .imageContainer img {
+      width: 100%;
+      margin-top: 20px;
+      max-width: 400px;
+    }
+  
+    .detailsContainer {
+      margin-right: 0;
+    }
+  
+    /* Adjust tabs for mobile */
+    .tabs {
+      justify-content: stretch;
+    }
+  
+    .tab {
+      flex: 1;
+      text-align: center;
+    }
+  
+    /* Adjust attributes grid */
+    .attributesGrid {
+      grid-template-columns: repeat(1, 1fr);
+    }
+  
+    /* Make buttons stack on mobile */
+    .buttonContainer,
+    .buttonContainer2 {
+      flex-direction: column;
+      gap: 10px;
+    }
+  
+    .actionButton2 {
+      width: 100%;
+    }
+  
+    /* Adjust listing status section */
+    .listingStatusSection {
+      padding: 15px;
+    }
+  
+    /* Adjust details sections */
+    .detailsContent,
+    .accessDetailContent {
+      padding: 15px;
+    }
+  
+    .detailItem {
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .detailValue {
+      text-align: left;
+    }
+  
+    /* Adjust access list */
+    .accessListHeader,
+    .accessListItem {
+      flex-direction: column;
+      gap: 5px;
+    }
+  
+    .accessListHeaderItem2,
+    .accessLevel {
+      text-align: left;
+    }
+  }
+  
+
+  
+  /* Add styles for very small screens */
+  @media (max-width: 480px) {
+    .fullPageContainer {
+      padding: 5px;
+    }
+  
+    .header {
+      padding: 10px;
+    }
+  
+    .backButton {
+      font-size: 20px;
+    }
+  
+    .title {
+      font-size: 20px;
+    }
+  
+    .imageContainer img {
+      margin-top: 10px;
+    }
+  
+    .attributesGrid {
+      grid-template-columns: 1fr;
+    }
+  
+    .tabContent {
+      padding: 10px;
+    }
   }

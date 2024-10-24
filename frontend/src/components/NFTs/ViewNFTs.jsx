@@ -7,6 +7,8 @@ import { useAppContext } from '../../WalletContext';
 import NFTDetailPopup from './NFTPopup'; // Import the NFTDetailPopup component
 import { fetchData } from '../Utils/datafetch';
 import Loading from './Loading';
+import MobileCollectionHeader from './MobileCollectionHeader';
+
 
 const ViewCollectionNFTs = () => {
   const { collectionId } = useParams();
@@ -21,9 +23,27 @@ const ViewCollectionNFTs = () => {
   const [error, setError] = useState(null);
   const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   const [nftLoaded, setNftLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isLoadingNFT, setIsLoadingNFT] = useState(false);
 
   useEffect(() => {
+    // Existing collection data fetch
     fetchCollectionData();
+
+    // Add mobile check
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+
+    // Initial check
+    checkIfMobile();
+
+    // Add resize listener
+    window.addEventListener('resize', checkIfMobile);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIfMobile);
   }, [collectionId]);
 
   const fetchCollectionData = async () => {
@@ -63,12 +83,20 @@ const ViewCollectionNFTs = () => {
 
   
   const handleNFTClick = async (nftid) => {
-    // setselectNFTidForPopup(nftid);
-    // setselectCollectionidForPopup(collectionid);
-    const fetchedNFT = await fetchData('compounded_nft',collectionId, nftid);
-    setSelectedNFT(fetchedNFT);
-    setIsPopupOpen(true);
+    setIsLoadingNFT(true);
+    try {
+      const fetchedNFT = await fetchData('compounded_nft', collectionId, nftid);
+      setSelectedNFT(fetchedNFT);
+      setIsLoadingNFT(false);
+      setIsPopupOpen(true);
+    } catch (error) {
+      console.error('Error fetching NFT details:', error);
+    } finally {
+      setIsLoadingNFT(false);
+    }
   };
+
+  
 
 
 
@@ -97,7 +125,7 @@ const ViewCollectionNFTs = () => {
   return (
     <div className={styles.container}>
    <TopBar onConnectWallet={handleConnectWallet} />
-      
+   <MobileCollectionHeader collection={collection} DefaultImage={DefaultImage} />
    {/* <div className={styles.collectionInfo}>
         <img src={collection.image || DefaultImage} alt={collection.name} className={styles.collectionImage} />
         <div className={styles.collectionDetails}>
@@ -107,7 +135,7 @@ const ViewCollectionNFTs = () => {
         </div>
       </div> */}
             <div className={styles.collectionInfo}>
-              <div className={styles.collectionImage}>
+              {/* <div className={styles.collectionImage}>
               <img src={collection.image || DefaultImage} alt={collection.name}  />
         </div>
         <div className={styles.collectionDetails}>
@@ -125,7 +153,6 @@ const ViewCollectionNFTs = () => {
             <p className={styles.serverInfo}>Date Created: </p>
             
               <span className={styles.serverCount}>{new Date(parseInt(collection.dateCreated,10) * 1000).toLocaleDateString()}</span>
-              {/* <span className={styles.serverCount}>{collection.dateCreated}</span> */}
 
             </div>
             <div className={styles.serverInfo}>
@@ -141,11 +168,98 @@ const ViewCollectionNFTs = () => {
               <span className={styles.serverCount}>{collection.noOfNFTs}</span>
             </div>
           </div>
-          
-
           <p className={styles.collectionDescription}>{collection.description}</p>
-        </div>
+        </div> */}
+        <div className={styles.collectionImage}>
+    <img src={collection.image || DefaultImage} alt={collection.name} />
+  </div>
+
+  {/* Middle: Name and Description */}
+  <div className={styles.mainContent}>
+    <h2 className={styles.collectionName}>{collection.name}</h2>
+    <p className={styles.collectionDescription}>{collection.description}</p>
+  </div>
+
+  {/* Right: Server Info Grid */}
+  <div className={styles.serverInfoGrid}>
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>No. of Servers</p>
+      <p className={styles.serverCount}>{collection.noOfServers}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Model</p>
+      <p className={styles.serverCount}>{collection.model}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Date Created</p>
+      <p className={styles.serverCount}>
+        {new Date(parseInt(collection.dateCreated,10) * 1000).toLocaleDateString()}
+      </p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Unique Holders</p>
+      <p className={styles.serverCount}>{collection.uniqueHolders}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Context Window</p>
+      <p className={styles.serverCount}>{collection.contextWindow}</p>
+    </div>
+    
+    <div className={styles.serverInfoItem}>
+      <p className={styles.serverInfo}>Number of NFTs</p>
+      <p className={styles.serverCount}>{collection.noOfNFTs}</p>
+    </div>
+  </div>
+
+        {/* <div className={styles.mobileDropdown}>
+            <button 
+              className={styles.dropdownButton}
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            >
+              <span>Collection Info</span>
+              <span className={`${styles.dropdownIcon} ${isDropdownOpen ? styles.open : ''}`}>
+                ▼
+              </span>
+            </button>
+            
+            <div className={`${styles.dropdownContent} ${isDropdownOpen ? styles.open : ''}`}>
+            <p className={styles.collectionDescription}>{collection.description}</p>
+              <div className={styles.serverInfo}>
+                <p>No. of Servers</p>
+                <p className={styles.serverCount}>{collection.noOfServers}</p>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Model:</p>
+                <span className={styles.serverCount}>{collection.model}</span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Date Created: </p>
+                <span className={styles.serverCount}>
+                  {new Date(parseInt(collection.dateCreated, 10) * 1000).toLocaleDateString()}
+                </span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Unique Holders</p>
+                <span className={styles.serverCount}>{collection.uniqueHolders}</span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>ContextWindow: </p>
+                <span className={styles.serverCount}>{collection.contextWindow}</span>
+              </div>
+              <div className={styles.serverInfo}>
+                <p>Number of NFTs: </p>
+                <span className={styles.serverCount}>{collection.noOfNFTs}</span>
+              </div>
+              
+            </div>
+          </div> */}
       </div>
+
+      
 
       
 
@@ -166,10 +280,17 @@ const ViewCollectionNFTs = () => {
           </div>
         ))}
       </div>
-      {isPopupOpen && (
+      {isLoadingNFT && (
+        <div className={styles.loadingOverlay}>
+          <div className={styles.loadingSpinner}>
+            <div className={styles.spinner}></div>
+            <p>Loading NFT details...</p>
+          </div>
+        </div>
+      )}
+
+      {isPopupOpen && !isLoadingNFT && (
         <NFTDetailPopup
-          // nftid={selectNFTidForPopup}
-          // collectionid={collectionId}
           nft={selectedNFT}
           onClose={() => setIsPopupOpen(false)}
         />

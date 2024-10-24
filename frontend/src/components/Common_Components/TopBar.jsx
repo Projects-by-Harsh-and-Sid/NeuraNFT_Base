@@ -10,7 +10,7 @@ import { useNavigate,Link  } from 'react-router-dom';
 
 const TopBar = ({ onConnectWallet }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { tronWebState, balance, address } = useAppContext();
+  const { tronWebState, balance, address,disconnectWallet } = useAppContext();
   const [isDiscoverOpen, setIsDiscoverOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -35,6 +35,17 @@ const TopBar = ({ onConnectWallet }) => {
   const handleoptionclick = () => {
     navigate('/');
   };
+
+  const handleDisconnectWallet = async () => {
+    try {
+      await disconnectWallet();
+      setIsMenuOpen(false);
+      console.log('Wallet disconnected successfully');
+    } catch (error) {
+      console.error('Error disconnecting wallet:', error);
+    }
+  };
+
 
   // useEffect(() => {
   //   const handleScroll = () => {
@@ -192,12 +203,12 @@ const TopBar = ({ onConnectWallet }) => {
         <div className={styles.overlay} onClick={toggleSidebar}></div>
       )}
 
-      <ProfileMenu 
+<ProfileMenu 
         isOpen={isMenuOpen} 
         onClose={() => setIsMenuOpen(false)}
         address={address}
         balance={balance}
-        onDisconnect={onConnectWallet}
+        onDisconnect={handleDisconnectWallet}
       />
     </nav>
   );

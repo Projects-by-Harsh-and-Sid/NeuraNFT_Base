@@ -6,7 +6,7 @@
     padding-bottom: 2rem;
   }
   
-  .collectionInfo {
+  /* .collectionInfo {
     display: flex;
     align-items: center;
     padding: 1rem 2rem;
@@ -25,10 +25,68 @@
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
+  } */
+
+    /* .collectionName {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin: 0;
+  } */
+
+  /* .collectionDescription {
+    margin-top: -0.5rem;
+    font-size: 0.9rem;
+    color: #ccc;
+    max-width: 400px;
+  } */
+
+.collectionDescription {
+  color: #ccc;
+  font-size: 14px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+
+  .collectionName {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+
+  .collectionInfo {
+    display: flex;
+    gap: 24px;
+    padding: 24px;
+    background-color: #0D0D0D;
+    align-items: center;
+  }
+  
+  .collectionImage {
+    flex: 0 0 auto;
+    width: 120px;
+    height: 120px;
+  }
+  
+  .collectionImage img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+  
   }
 
-
+  .mainContent {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    max-width: 400px;
+  }
   
+
+
   .collectionDetails {
     display: flex;
     flex-direction: column;
@@ -42,30 +100,21 @@
     
   }
   
-  .collectionName {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin: 0;
-  }
-  
-  .serverInfo {
+
+  /* .serverInfo {
     text-align: right;
     margin-bottom: 0% !important;
-    /* margin-right: ; */
+
   }
   .serverInfo2{
     text-align: right;
     margin-bottom: 0% !important;
-    /* margin-left: 300px;
-     */
     margin-left: 20%;
 
   }
   .serverInfo3{
     text-align: right;
     margin-bottom: 0% !important;
-    /* margin-right: 400px; */
-    /* margin-right: 20%; */
   }
   
   .serverHeading {
@@ -73,13 +122,45 @@
     color: #888;
     margin: 0;
   }
-  
-  .serverCount {
+   */
+
+     /* .serverCount {
     font-size: 0.9rem;
     font-weight: bold;
     margin: 0;
   }
-  
+   */
+
+
+.serverInfoGrid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 16px;
+  margin-left: auto;
+  max-width: 900px;
+  max-height: 50px;
+  margin-top: -50px;
+}
+
+.serverInfoItem {
+  padding: 12px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+}
+
+.serverInfo {
+  color: #888;
+  font-size: 12px;
+  margin: 0 0 4px 0;
+}
+
+.serverCount {
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+}
+
   .additionalInfo {
     display: flex;
     margin-top: 0.5rem;
@@ -99,12 +180,7 @@
     font-size: 0.9rem;
   }
   
-  .collectionDescription {
-    margin-top: -0.5rem;
-    font-size: 0.9rem;
-    color: #ccc;
-    max-width: 400px;
-  }
+
   
   /* Rest of your existing CSS */
   .collectionStats {
@@ -136,6 +212,10 @@
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     gap: 1rem;
     padding: 0 2rem;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
   }
   
   .gridItem {
@@ -144,6 +224,8 @@
     overflow: hidden;
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     cursor: pointer;
+    max-width: 185px;
+    width: 50vw;
   }
   
   .gridItem:hover {
@@ -197,3 +279,149 @@
     margin: 0;
   }
   
+
+  .mobileDropdown {
+    display: none;  /* Hidden by default on desktop */
+}
+
+.dropdownButton {
+    display: none;  /* Hidden by default on desktop */
+    width: 100%;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 1rem;
+}
+
+.dropdownIcon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.dropdownIcon.open {
+    transform: rotate(180deg);
+}
+
+.dropdownContent {
+    display: none;
+    padding: 1rem 0;
+}
+
+.dropdownContent.open {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+@media screen and (max-width: 1383px) {
+  .serverInfoGrid {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-left: auto;
+    max-width: 600px;
+    max-height: none;
+    margin-top: 0;
+  }
+}
+
+/* === MODIFICATIONS TO EXISTING MEDIA QUERY === */
+@media screen and (max-width: 791px) {
+  /* Modify existing classes */
+  .collectionInfo {
+      flex-direction: column;
+      padding: 1rem;
+      display: none; /* Hide on mobile */
+  }
+
+  .collectionImage {
+      margin-bottom: 1rem;
+  }
+
+  .collectionDetails {
+      margin-left: 0;
+      width: 100%;
+      display: none;
+  }
+
+  .collectionHeader {
+      flex-direction: column;
+      align-items: flex-start;
+  }
+
+  .serverInfo, 
+  .serverInfo2, 
+  .serverInfo3 {
+      text-align: left;
+      margin-left: 0;
+      width: 100%;
+  }
+
+  /* Show mobile dropdown */
+  .mobileDropdown {
+      display: block;
+  }
+
+  .dropdownButton {
+      display: flex;
+  }
+
+  /* Hide desktop info */
+  .desktopInfo {
+      display: none;
+  }
+  .gridContainer{
+    padding: 0;
+    padding-left: 6px;
+    padding-right: 6px;
+    justify-items: center;
+    gap: 10px;
+    margin-top: 20px;
+  }
+}
+
+
+.loadingOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loadingSpinner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.loadingSpinner p {
+  color: white;
+  font-size: 1rem;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

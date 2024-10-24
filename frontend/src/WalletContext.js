@@ -161,14 +161,58 @@ const updateBalance = async (userAddress, currentProvider) => {
       alert('Failed to connect wallet. Please try again.');
     }
   };
+  const handleAccountsChanged = (accounts) => {
+    if (accounts.length === 0) {
+      // User has disconnected
+      handleDisconnect();
+    } else {
+      // User switched accounts
+      setAddress(accounts[0]);
+      updateBalance(accounts[0], provider);
+    }
+  };
 
-  const disconnectWallet = () => {
+  const handleChainChanged = () => {
+    // Reload the page when chain changes
+    window.location.reload();
+  };
+  const handleDisconnect = () => {
+    // Reset all state
     setTronWebState({
       installed: true,
       loggedIn: false,
     });
     setAddress(null);
     setBalance(null);
+  };
+
+  const disconnectWallet = async () => {
+    try {
+      // For Coinbase Wallet, we can force disconnect by clearing localStorage
+      // and resetting the provider state
+      if (provider) {
+        // Remove event listeners
+        provider.removeListener('accountsChanged', handleAccountsChanged);
+        provider.removeListener('chainChanged', handleChainChanged);
+      }
+
+      // Clear any stored connection data
+      localStorage.clear(); // This will clear all localStorage items
+      
+      // If you want to be more specific about what you clear:
+      // localStorage.removeItem('walletconnect');
+      // localStorage.removeItem('WALLETCONNECT_DEEPLINK_CHOICE');
+      // localStorage.removeItem('-cbwsdb-'); // Coinbase Wallet specific storage
+
+      // Reset all state
+      handleDisconnect();
+
+
+    } catch (error) {
+      console.error('Error disconnecting wallet:', error);
+      // Even if there's an error, try to reset the state
+      handleDisconnect();
+    }
   };
 
   const value = {

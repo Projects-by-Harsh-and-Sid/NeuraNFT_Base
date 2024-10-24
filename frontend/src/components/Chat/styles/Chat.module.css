@@ -5,7 +5,31 @@
   height: 100vh;
   background: black;
   color: white;
+  position: relative; /* Add this line only */
 }
+
+
+.menu-button {
+  display: none;
+  position: fixed;
+  top: 17px;
+  left: 20px;
+  z-index: 100;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+
+.menu-button svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
+
+
 
 /* .sidebar {
   width: 300px;
@@ -61,8 +85,25 @@
        linear-gradient(to right, rgb(0, 0, 0) 0%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 100%);
 
     background-color: rgba(0,0,0,0.5);
+    transition: transform 0.3s ease-in-out; /* Add this line only */
     
 }
+
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.sidebar-overlay.open {
+  display: block;
+}
+
 .nft-image-container {
   position: relative;
   width: 100%;
@@ -445,4 +486,52 @@
 .chatTitle h2 h4{
   margin: 0;
   padding: 0;
+}
+
+
+@media screen and (max-width: 768px) {
+  .chat-page {
+    flex-direction: column;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 999;
+    transform: translateX(-100%);
+    width: 80%;
+    max-width: 300px;
+  }
+
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .chat-container {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .chat-header {
+    padding: 20px 50px;
+    padding-top: 0px;
+  }
+
+  .bot-message {
+    max-width: 80%;
+  }
+
+  .user-message {
+    max-width: 80%;
+  }
+
+  .initializing-message{
+    top: -55px;
+  }
 }
