@@ -6,3 +6,5 @@
 
 /.logs/access.log
 /.logs/error.log
+/.nginx_logs/access.log
+/.nginx_logs/error.log
