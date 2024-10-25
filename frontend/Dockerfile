@@ -21,8 +21,10 @@ RUN rm -rf /usr/share/nginx/html/*
 COPY --from=build /app/build /usr/share/nginx/html
 
 # Copy nginx config
-COPY nginx.config /etc/nginx/conf.d/default.conf
-
+# COPY nginx_config/custom-nginx.conf /etc/nginx/nginx.conf
+# COPY nginx_config/real-ip.conf /etc/nginx/conf.d/real-ip.conf
+COPY nginx_config/nginx.config /etc/nginx/conf.d/default.conf
+# COPY nginx_config/nginx.conf /etc/nginx/nginx.conf
 # Create directory for logs if it doesn't exist
 RUN mkdir -p /var/log/nginx
 

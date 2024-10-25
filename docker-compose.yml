@@ -32,3 +32,17 @@ services:
         max-size: "10m"
         max-file: "3"
     command: ["nginx", "-g", "daemon off;"]
+    
+    # network_mode: "host"
+    # extra_hosts:
+    #   - "host.docker.internal:host-gateway"
+    #   - "localhost:127.0.0.1"
+    # networks:
+    #   - base_neuranft_network
+    # environment:
+    #   - NGINX_HOST=localhost
+    #   - NGINX_PORT=80
+
+# networks:
+#   base_neuranft_network:
+#     driver: bridge
