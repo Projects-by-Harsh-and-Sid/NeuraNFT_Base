@@ -21,7 +21,7 @@ const ViewCollectionNFTs = () => {
   // const [selectCollectionidForPopup, setselectCollectionidForPopup] = useState(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [error, setError] = useState(null);
-  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   const [nftLoaded, setNftLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -113,7 +113,7 @@ const ViewCollectionNFTs = () => {
   };
 
   const handleConnectWallet = async () => {
-    if (!tronWebState.loggedIn) {
+    if (!coinbaseState.loggedIn) {
       await connectWallet();
     } 
     // else {

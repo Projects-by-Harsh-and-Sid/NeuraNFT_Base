@@ -5,7 +5,7 @@ import CoinbaseWalletSDK from '@coinbase/wallet-sdk';
 const AppContext = createContext();
 
 export const AppProvider = ({ children }) => {
-  const [tronWebState, setTronWebState] = useState({
+  const [coinbaseState, setcoinbaseState] = useState({
     installed: false,
     loggedIn: false,
   });
@@ -86,7 +86,7 @@ useEffect(() => {
 
     setCoinbaseWallet(wallet);
     setProvider(ethereum);
-    setTronWebState((prevState) => ({
+    setcoinbaseState((prevState) => ({
       ...prevState,
       installed: true,
     }));
@@ -152,7 +152,7 @@ const updateBalance = async (userAddress, currentProvider) => {
 
       await updateBalance(userAddress, provider);
 
-      setTronWebState({
+      setcoinbaseState({
         installed: true,
         loggedIn: true,
       });
@@ -178,7 +178,7 @@ const updateBalance = async (userAddress, currentProvider) => {
   };
   const handleDisconnect = () => {
     // Reset all state
-    setTronWebState({
+    setcoinbaseState({
       installed: true,
       loggedIn: false,
     });
@@ -216,7 +216,7 @@ const updateBalance = async (userAddress, currentProvider) => {
   };
 
   const value = {
-    tronWebState,
+    coinbaseState,
     address,
     balance,
     connectWallet,

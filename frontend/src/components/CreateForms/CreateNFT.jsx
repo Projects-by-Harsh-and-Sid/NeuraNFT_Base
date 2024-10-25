@@ -42,7 +42,7 @@ function CreateNFT ()
   const [currentStep, setCurrentStep]         = useState(0);
   const [collectionsid, setCollectionsId]     = useState({});
   const [isUploading, setIsUploading]         = useState(false);
-  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   
   
   // console.log('Inside CreateNFT.jsx');

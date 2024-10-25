@@ -10,7 +10,7 @@ import {createCollection} from '../Utils/signData';
 
 const CreateNFTCollection = () => {
   const navigate = useNavigate();
-  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   const [collectionName, setCollectionName] = useState('');
   const [collectionDescription, setCollectionDescription] = useState('');
   const [selectedModel, setSelectedModel] = useState('');

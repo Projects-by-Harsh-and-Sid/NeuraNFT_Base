@@ -33,7 +33,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
 
     const navigate = useNavigate();
 
-    const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+    const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
     // const accessLevelDescriptions = {
     //     'Level 1': 'UseModel - Can use the model',
@@ -191,7 +191,7 @@ const NFTDetailPopup = ({ nft, onClose }) => {
                             <p className={styles.ownerInfo}>
                                 Owned by: <span className={styles.ownerAddress}>{formatAddress(nft.owner)}</span>
                             </p>
-                            {!tronWebState.loggedIn && (
+                            {!coinbaseState.loggedIn && (
                                 <button className={styles.connectWalletButton} onClick={connectWallet}>
                                     Connect Wallet
                                 </button>
