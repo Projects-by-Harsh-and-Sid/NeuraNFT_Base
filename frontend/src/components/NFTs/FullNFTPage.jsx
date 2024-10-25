@@ -29,7 +29,7 @@ const FullNFTPage = () => {
   const [isUpdateAccessDialogOpen, setIsUpdateAccessDialogOpen] = useState(false);
 
 
-  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
   const [isApiDialogOpen, setIsApiDialogOpen] = useState(false);
   const [isTestApiDialogOpen, setIsTestApiDialogOpen] = useState(false);
@@ -58,7 +58,7 @@ const FullNFTPage = () => {
   };
 
   const handleConnectWallet = async () => {
-    if (!tronWebState.loggedIn) {
+    if (!coinbaseState.loggedIn) {
       await connectWallet();
     } 
     // else {
@@ -205,7 +205,7 @@ const openChat = () => {
                   <p style={{ margin: '20px', marginBottom: '0px',marginTop: '0px'}}className={styles.ownerInfo}>
                     Owned by: <span className={styles.ownerAddress}>{formatAddress(nft.owner)}</span>
                   </p>
-                  {!tronWebState.loggedIn && (
+                  {!coinbaseState.loggedIn && (
                     <button className={styles.connectWalletButton} onClick={connectWallet}>
                       Connect Wallet
                     </button>

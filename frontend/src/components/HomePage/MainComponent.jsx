@@ -42,7 +42,7 @@ function MainComponent() {
 
 
 
-  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
   const {
     navigate,
     activeTab,
@@ -57,7 +57,7 @@ function MainComponent() {
 
   
   const handleConnectWallet = async () => {
-    if (!tronWebState.loggedIn) {
+    if (!coinbaseState.loggedIn) {
       await connectWallet();
     } 
     // else {

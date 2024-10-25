@@ -10,7 +10,7 @@ import { useNavigate,Link  } from 'react-router-dom';
 
 const TopBar = ({ onConnectWallet }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { tronWebState, balance, address,disconnectWallet } = useAppContext();
+  const { coinbaseState, balance, address,disconnectWallet } = useAppContext();
   const [isDiscoverOpen, setIsDiscoverOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -135,7 +135,7 @@ const TopBar = ({ onConnectWallet }) => {
 
 
       <div className={styles.navbarMenu}>
-        {!tronWebState.loggedIn ? (
+        {!coinbaseState.loggedIn ? (
           <button className={styles.fancybutton} onClick={onConnectWallet}>
             Connect Wallet
           </button>

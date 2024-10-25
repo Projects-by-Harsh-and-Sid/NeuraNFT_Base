@@ -7,7 +7,7 @@ import DefaultImage from './DefaultImage.jpg'; // Placeholder image
 
 const ViewCollection = () => {
   const navigate = useNavigate();
-  const { tronWebState, address, balance, connectWallet, disconnectWallet } = useAppContext();
+  const { coinbaseState, address, balance, connectWallet, disconnectWallet } = useAppContext();
 
   // Dummy data for collections (replace with actual data fetching)
   const collections = [
@@ -33,7 +33,7 @@ const ViewCollection = () => {
   };
 
   const handleConnectWallet = async () => {
-    if (!tronWebState.loggedIn) {
+    if (!coinbaseState.loggedIn) {
       await connectWallet();
     } 
     // else {
