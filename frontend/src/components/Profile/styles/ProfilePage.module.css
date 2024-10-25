@@ -197,7 +197,7 @@
 
   .gridContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(215px, 1.5fr));
     gap: 1.5rem;
     padding: 1rem 0;
     padding: 24px 32px;

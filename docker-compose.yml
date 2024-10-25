@@ -14,7 +14,7 @@ services:
     container_name: coinbase_neuranft_backend_container
 
     command: >
-      gunicorn -w 1 -b 0.0.0.0:5500 app:app
+      gunicorn -w 5 -b 0.0.0.0:5500 app:app
       --access-logfile /app/.logs/access.log 
       --error-logfile /app/.logs/error.log
     networks:
