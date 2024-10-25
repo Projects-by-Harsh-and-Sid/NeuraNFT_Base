@@ -1,11 +1,12 @@
 .mainContainer{
     background-color: black;
+    overflow: hidden;
 }
 
 .fullPageContainer {
     background-color: #0e0e11;
-    /* min-height: 100vh; */
-    min-height: 90vh;
+    min-height: 100vh;
+    /* min-height: 90vh; */
     padding: 20px;
     color: white;
   }
