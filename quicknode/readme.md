@@ -216,6 +216,264 @@ Each group utilizes QuickNode's streams and functions for real-time data process
    - Traditional: Manual intervention often required
    - QuickNode: Automated event-driven administration
 
+# NeuraNFT QuickNode Integration Details
+
+## 1. Access Control Integration
+
+```mermaid
+flowchart TD
+    subgraph AccessControl["Access Control System"]
+        MAC[MasterAccessControl]
+        NAC[NFTAccessControl]
+        
+        subgraph QuickNodeComponents["QuickNode Components"]
+            direction TB
+            ACS{Access Control Stream}
+            DSF[Digital Signature Function]
+            AVF[Access Verification Function]
+        end
+        
+        subgraph Events["Contract Events"]
+            AG[AccessGranted]
+            AR[AccessRevoked]
+            ALC[AccessLevelChanged]
+        end
+        
+        MAC --> AG
+        MAC --> AR
+        NAC --> ALC
+        
+        ACS --> |Monitor|AG
+        ACS --> |Monitor|AR
+        ACS --> |Monitor|ALC
+        
+        DSF --> |Verify|NAC
+        AVF --> |Check|MAC
+    end
+```
+
+### Implementation Details
+Based on `MasterAccessControl.sol` and `NFTAccessControl.sol`:
+
+1. **Event Monitoring**
+   - AccessGranted: `event AccessGranted(address indexed contractAddress, address indexed caller)`
+   - AccessRevoked: `event AccessRevoked(address indexed contractAddress, address indexed caller)`
+   - AccessLevelChanged: `event AccessLevelChanged(address indexed user, uint256 indexed collectionId, uint256 indexed nftId, AccessLevel newAccessLevel)`
+
+2. **Access Levels**
+```solidity
+enum AccessLevel {
+    None,
+    UseModel,
+    Resale,
+    CreateReplica,
+    ViewAndDownload,
+    EditData,
+    AbsoluteOwnership
+}
+```
+
+3. **QuickNode Function Integration**
+- Digital signature verification for access requests
+- Real-time access level verification
+- Permission change notifications
+
+## 2. NFT Management Integration
+
+```mermaid
+flowchart TD
+    subgraph NFTSystem["NFT Management System"]
+        NFTC[NFTContract]
+        META[NFTMetadata]
+        
+        subgraph QuickNodeComponents["QuickNode Components"]
+            direction TB
+            NTS{NFT Transfer Stream}
+            NCS{NFT Creation Stream}
+            MUF[Metadata Update Function]
+        end
+        
+        subgraph Events["Contract Events"]
+            NC[NFTCreated]
+            NB[NFTBurned]
+            MT[MetadataUpdated]
+        end
+        
+        NFTC --> NC
+        NFTC --> NB
+        META --> MT
+        
+        NTS --> |Monitor|NC
+        NTS --> |Monitor|NB
+        NCS --> |Monitor|MT
+        
+        MUF --> |Update|META
+    end
+```
+
+### Implementation Details
+Based on `NFTContract.sol` and `NFTMetadata.sol`:
+
+1. **NFT Creation and Management**
+```solidity
+struct NFTInfo {
+    uint8 levelOfOwnership;
+    string name;
+    address creator;
+    uint256 creationDate;
+    address owner;
+}
+```
+
+2. **Metadata Structure**
+```solidity
+struct Metadata {
+    string image;
+    string baseModel;
+    string data;
+    string rag;
+    string fineTuneData;
+    string description;
+}
+```
+
+3. **QuickNode Integration Points**
+- Real-time NFT creation monitoring
+- Metadata update streams
+- Transfer and ownership tracking
+
+## 3. Collection Management Integration
+
+```mermaid
+flowchart TD
+    subgraph CollectionSystem["Collection Management System"]
+        CC[CollectionContract]
+        
+        subgraph QuickNodeComponents["QuickNode Components"]
+            direction TB
+            CUS{Collection Update Stream}
+            CQF[Collection Query Function]
+        end
+        
+        subgraph Events["Contract Events"]
+            CCE[CollectionCreated]
+            CUE[CollectionUpdated]
+            CTE[CollectionTransferred]
+        end
+        
+        CC --> CCE
+        CC --> CUE
+        CC --> CTE
+        
+        CUS --> |Monitor|CCE
+        CUS --> |Monitor|CUE
+        CUS --> |Monitor|CTE
+        
+        CQF --> |Query|CC
+    end
+```
+
+### Implementation Details
+Based on `CollectionContract.sol`:
+
+1. **Collection Structure**
+```solidity
+struct CollectionMetadata {
+    string name;
+    uint256 contextWindow;
+    string baseModel;
+    string image;
+    string description;
+    address creator;
+    uint256 dateCreated;
+    address owner;
+}
+```
+
+2. **Key Functions Monitored**
+- Collection creation and updates
+- Ownership transfers
+- NFT counting and holder tracking
+
+3. **QuickNode Integration Points**
+- Collection state change monitoring
+- Real-time metadata updates
+- Holder statistics tracking
+
+## 4. Analytics and Dashboard Integration
+
+```mermaid
+flowchart TD
+    subgraph AnalyticsSystem["Analytics System"]
+        NAC[NFTAccessControl]
+        CC[CollectionContract]
+        NFTC[NFTContract]
+        
+        subgraph QuickNodeComponents["QuickNode Components"]
+            direction TB
+            ADS{Analytics Data Stream}
+            AGF[Aggregation Function]
+            QSF[Query Stats Function]
+        end
+        
+        subgraph Metrics["Key Metrics"]
+            HD[Holder Data]
+            TD[Transfer Data]
+            AD[Access Data]
+        end
+        
+        NAC --> AD
+        CC --> HD
+        NFTC --> TD
+        
+        ADS --> |Collect|HD
+        ADS --> |Collect|TD
+        ADS --> |Collect|AD
+        
+        AGF --> |Process|ADS
+        QSF --> |Query|ADS
+    end
+```
+
+### Implementation Details
+Based on actual contract implementations:
+
+1. **Analytics Data Points**
+- Number of holders: `numberOfHolders(uint256 _collectionId)`
+- Collection statistics: `getCollectionNFTCount(uint256 _collectionId)`
+- Access patterns: `getAllAccessForUser(address _user)`
+
+2. **Dashboard Metrics**
+```solidity
+// Access Entry Structure
+struct AccessEntry {
+    uint256 collectionId;
+    uint256 nftId;
+    AccessLevel accessLevel;
+}
+```
+
+3. **QuickNode Integration Points**
+- Real-time analytics data collection
+- Access pattern analysis
+- Holder statistics aggregation
+
+Key Features Present in Current Implementation:
+- Real-time access tracking
+- Collection statistics
+- Holder analytics
+- Transfer monitoring
+- Access level changes
+- Metadata updates
+
+Each of these integrations leverages QuickNode's infrastructure to provide:
+- Real-time event monitoring
+- Efficient data aggregation
+- Scalable query processing
+- Reliable state tracking
+
+
+
 ## Technical Implementation
 
 1. **Stream Integration**
