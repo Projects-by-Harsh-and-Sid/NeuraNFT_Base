@@ -16,7 +16,7 @@ The above diagram illustrates our current implementation, showcasing the interac
 
 
 
-```
+```mermaid
 flowchart TD
     subgraph AdminAndDAO["1. Platform Administration & DAO"]
         direction TB
