@@ -1,0 +1,31 @@
+
+Stream_Setting:
+    Chain and network:
+    Chain: Base
+    Network: Sepolia
+    Dataset: Logs
+    Stream name: master_access_control
+    Region: us-east-1
+    Batch size: 1
+    Stream Start: 16934421
+    Stream End: none
+    Payload Optimization: none
+    Filter : filter_strea+
+    
+    endpoint:
+        endpoint type: function
+        File name: database_access_logs.js
+
+
+
+Destination_Setting:
+    Destination type: postgresSQL
+    destination_url: https://test.hidden.neuranft.com/master_access_control
+    Payload compression: none
+    File name: database_access_logs.js
+    
+    
+
+
+    
+
