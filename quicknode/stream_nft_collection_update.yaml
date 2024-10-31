@@ -1,4 +1,3 @@
-
 Stream_Setting:
     Chain and network:
     Chain: Base
@@ -10,20 +9,18 @@ Stream_Setting:
     Stream Start: 16934421
     Stream End: none
     Payload Optimization: none
-    Filter : filter_stream_master_access_control.js
+    Filter : filter_stream_colletion_update_map.js
     endpoint:
         endpoint type: quicknode function
-        File name: functions_master_access_control.js
-
-
+        file name: function_nft_collection_metadata_updates.js
+       
 
 
 Destination_Setting:
     Destination type: function
-    destination_url: https://test.hidden.neuranft.com/master_access_control
+    destination_url: https://test.hidden.neuranft.com/collection_data
     Payload compression: none
-    File name: functions_master_access_control.js
-    
+    file name: function_nft_collection_metadata_updates.js
 
 
     

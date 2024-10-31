@@ -4,25 +4,22 @@ Stream_Setting:
     Chain: Base
     Network: Sepolia
     Dataset: Logs
-    Stream name: master_access_control
+    Stream name: nft_update
     Region: us-east-1
     Batch size: 1
     Stream Start: 16934421
     Stream End: none
     Payload Optimization: none
-    Filter : filter_stream_master_access_control.js
+    Filter : filter_stream_nft_update.js
     endpoint:
         endpoint type: quicknode function
-        File name: functions_master_access_control.js
-
-
-
+        file name: function_nft_collection_metadata_updates.js
 
 Destination_Setting:
     Destination type: function
-    destination_url: https://test.hidden.neuranft.com/master_access_control
+    destination_url: https://test.hidden.neuranft.com/nft_update
     Payload compression: none
-    File name: functions_master_access_control.js
+    File name: function_nft_collection_metadata_updates.js
     
 
 

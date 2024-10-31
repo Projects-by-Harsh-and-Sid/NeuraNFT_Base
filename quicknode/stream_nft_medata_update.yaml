@@ -13,9 +13,7 @@ Stream_Setting:
     Filter : filter_stream_master_access_control.js
     endpoint:
         endpoint type: quicknode function
-        File name: functions_master_access_control.js
-
-
+        file name: functions_master_access_control.js
 
 
 Destination_Setting:
