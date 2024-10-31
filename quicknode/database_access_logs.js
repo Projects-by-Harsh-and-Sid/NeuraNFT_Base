@@ -1,7 +1,13 @@
 import pg from 'pg';
 import dotenv from 'dotenv';
+import {NFTAccessControlEventDecoder} from './event_log_decoder/NFT_Access_Control.js';
 
 dotenv.config();
+
+
+// call the decoder for event logs
+
+
 
 // Database configuration
 const pool = new pg.Pool({
@@ -17,7 +23,8 @@ class AccessLogPusher {
     async pushLog(logData) {
         try {
             // Validate log data
-            this.validateLogData(logData);
+            const Decodedlog = this.decodeEventLogData(logData);
+            this.validateLogData(Decodedlog);
 
             const query = `
                 INSERT INTO access_logs (
@@ -114,6 +121,18 @@ class AccessLogPusher {
         } finally {
             client.release();
         }
+    }
+
+    decodeEventLogData(logData) { 
+        try {
+            const decoder = new NFTAccessControlEventDecoder();
+            const decodedData = decoder.decodeEventLogData(logData);
+            return decodedData;
+        } catch (error) {
+            console.error('Error decoding event log data:', error);
+            throw new Error('Failed to decode event log data');
+        }
+
     }
 
     // Validate log data
