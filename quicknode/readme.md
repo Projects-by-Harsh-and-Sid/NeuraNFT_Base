@@ -17,7 +17,7 @@ The above diagram illustrates our current implementation, showcasing the interac
 
 
 ```mermaid
-flowchart TD
+flowchart LR
     subgraph AdminAndDAO["1. Platform Administration & DAO"]
         direction TB
         subgraph AdminStreams["Admin QuickNode Streams"]
