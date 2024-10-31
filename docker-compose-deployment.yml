@@ -6,7 +6,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
       args:
-        - BACKEND_URL=http://localhost:6010
+        - BACKEND_URL=https://base.backend.neuranft.com
     ports:
       - "6011:80"
     volumes:
@@ -31,22 +31,21 @@ services:
     volumes:
       - ./master_node:/app  # Mount the ./master_node folder into the container
       - ./master_node/.logs:/app/.logs  # Mount the .logs folder to persist logs
-    # command: >
-    #   # gunicorn -w 1 -b 0.0.0.0:5500 app:app
-    #   # --access-logfile /app/.logs/access.log 
-    #   # --error-logfile /app/.logs/error.log
-    command: python app.py
+    command: >
+      # gunicorn -w 5 -b 0.0.0.0:5500 app:app
+      # --access-logfile /app/.logs/access.log 
+      # --error-logfile /app/.logs/error.log
     networks:
       - base_neuranft_network
     environment:
       - DEFAULT_ENV=0
       - CHAT_URL=http://host.docker.internal:8000/query
-      - HPC_ENDPOINT=http://localhost
-      - HPC_ENDPOINT_PORT=6010
+      - HPC_ENDPOINT=https://base.backend.neuranft.com
+      - HPC_ENDPOINT_PORT=443
       - FILESTORAGE_ENDPOINT=https://base.backend.neuranft.com
       - LOCAL_DATA_ENDPOINT=http://base_neuranft_backend_nginx:80
       - LOCAL_ENV=1
-      - BASE_NODE_RPC_ENDPOINT=https://base-sepolia-rpc.publicnode.com
+      - BASE_NODE_RPC_ENDPOINT=https://base-sepolia-rpc.publicnode.com # replace with your own rpc endpoint like quicknode
 
     container_name: base_neuranft_backend_container
 
@@ -72,45 +71,45 @@ services:
     environment:
       - BACKEND_ENDPOINT=http://base_neuranft_backend_container:5500
 
-  ollama:
-    build:
-      context: ./hpc_node
-      dockerfile: Dockerfile
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: nvidia
-              count: all
-              capabilities: [gpu]
-    command: ["serve"]
-    ports:
-      - "11434:11434"
-    volumes:
-      - ./hpc_node/ollama_data:/root/.ollama
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:11434"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
-    # networks:
-    #   - base_neuranft_network
+#   ollama:
+#     build:
+#       context: ./hpc_node
+#       dockerfile: Dockerfile
+#     deploy:
+#       resources:
+#         reservations:
+#           devices:
+#             - driver: nvidia
+#               count: all
+#               capabilities: [gpu]
+#     command: ["serve"]
+#     ports:
+#       - "11434:11434"
+#     volumes:
+#       - ./hpc_node/ollama_data:/root/.ollama
+#     healthcheck:
+#       test: ["CMD", "curl", "-f", "http://localhost:11434"]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+#     # networks:
+#     #   - base_neuranft_network
 
-  rag_service:
-    build:
-      context: ./hpc_node
-      dockerfile: Dockerfile.rag
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./hpc_node/documents:/app/documents
-    # networks:
-    #   - base_neuranft_network
-    # container_name: base_ollama_rag_service
+#   rag_service:
+#     build:
+#       context: ./hpc_node
+#       dockerfile: Dockerfile.rag
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./hpc_node/documents:/app/documents
+#     # networks:
+#     #   - base_neuranft_network
+#     # container_name: base_ollama_rag_service
     
 
-volumes:
-  ollama_data:
+# volumes:
+#   ollama_data:
 
 
   # goaccess_frontend:
@@ -143,4 +142,19 @@ volumes:
 networks:
   base_neuranft_network:
     driver: bridge
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -1,0 +1,70 @@
+version: '1.0'
+services:
+  
+  coinbase_backend_nginx:
+    image: nginx:alpine
+    ports:
+      - "6010:80"
+    volumes:
+      - ./master_node/nginx_config/nginx.conf:/etc/nginx/nginx.conf:ro
+      # - ./master_node/nginx_config/default.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./master_node/nginx_config/default.conf.template:/etc/nginx/templates/default.conf.template:ro
+      - ./master_node/app/uploads/images:/usr/share/nginx/images:ro  # Mount images directory
+      - ./master_node/app/uploads/images/default.jpg:/usr/share/nginx/html/default.jpg:ro  # Mount default image
+      - ./master_node/.nginx_logs:/var/log/nginx  # Mount nginx logs
+    # depends_on:
+      # - coinbase_neuranft_backend
+    networks:
+      - base_neuranft_network
+    container_name: base_neuranft_backend_nginx
+    environment:
+      # - BACKEND_ENDPOINT=http://base_neuranft_backend_container:5500 # this is for internal docker network
+      - BACKEND_ENDPOINT=http://host.docker.internal:5500 # this is for local development ie docker accesing host machine localhost
+      # - BACKEND_ENDPOINT=http://192.168.0.142:5500
+
+
+
+#   ollama:
+#     build:
+#       context: ./hpc_node
+#       dockerfile: Dockerfile
+#     deploy:
+#       resources:
+#         reservations:
+#           devices:
+#             - driver: nvidia
+#               count: all
+#               capabilities: [gpu]
+#     command: ["serve"]
+#     ports:
+#       - "11434:11434"
+#     volumes:
+#       - ./hpc_node/ollama_data:/root/.ollama
+#     healthcheck:
+#       test: ["CMD", "curl", "-f", "http://localhost:11434"]
+#       interval: 10s
+#       timeout: 5s
+#       retries: 5
+#     # networks:
+#     #   - base_neuranft_network
+
+#   rag_service:
+#     build:
+#       context: ./hpc_node
+#       dockerfile: Dockerfile.rag
+#     ports:
+#       - "8000:8000"
+#     volumes:
+#       - ./hpc_node/documents:/app/documents
+#     # networks:
+#     #   - base_neuranft_network
+#     # container_name: base_ollama_rag_service
+    
+
+# volumes:
+#   ollama_data:
+
+networks:
+  base_neuranft_network:
+    driver: bridge
+

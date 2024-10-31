@@ -3,9 +3,34 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
-    "configurations": [
+    "compounds": [
         {
-            "name": "Python Debugger: Flask",
+            "name": "Node + Flask",
+            "configurations": ["Backend:Node", "Backend:Flask"]
+        },
+        {
+            "name": "Backends + Frontend",
+            "configurations": ["Backend:Node", "Backend:Flask", "React Debug"]
+        }
+    ],
+    "configurations": [
+
+
+        // {   
+        //     "name": "Backend:Node",
+        //     "type": "node",
+        //     "request": "launch",
+        //     "program": "${workspaceFolder}/node_scripts/src/index.js",
+        //     // "runtimeExecutable": "nodemon",
+        //     // "runtimeExecutable": "C:\\Program Files\\nodejs\\node.exe",
+        //     "restart": true,
+        //     "console": "integratedTerminal",
+        //     "env": {"NODE_ENV": "development"},
+        //     "envFile": "${workspaceFolder}/node_scripts/.env"
+        //   },
+
+        {
+            "name": "Backend:Flask",
             "type": "debugpy",
             "request": "launch",
             "module": "flask",
@@ -18,10 +43,24 @@
                 "run",
                 "--no-debugger",
                 "--no-reload",
+                "--host", "0.0.0.0",
                 "--port", "5500"
             ],
             "jinja": true,
             "autoStartBrowser": false
+        },
+        {
+            "name": "React Debug",
+            "type": "msedge",
+            "request": "launch",
+            "url": "http://localhost:3001",
+            "webRoot": "${workspaceFolder}/frontend",
+            "sourceMapPathOverrides": {
+                "webpack:///src/*": "${webRoot}/src/*"
+            },
+            "userDataDir": false
         }
+
+
     ]
 }
