@@ -1,0 +1,1 @@
+![alt text](stream_destination_setup.png)

@@ -1,0 +1,13 @@
+{
+    "Chain and network":
+    {
+        "Chain": "Base",
+        "Network": "Sepolia"
+    },
+    "Dataset": "Logs",
+    "Stream name": "master_access_control",
+    "Region": "us-east-1",
+    "Batch size": 1,
+    "Stream Start":"16934421"
+
+}
