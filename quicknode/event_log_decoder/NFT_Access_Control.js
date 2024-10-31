@@ -1,15 +1,19 @@
-const { Web3 } = require('web3');  // Updated import syntax
-const NFTAccessControlABI = require('../../smart_contracts/truffle_compiled_contract/build/contracts/NFTAccessControl').abi;
+const { Web3 } = require('web3');
 
-class NFTAccessControlEventDecoder {
-    constructor(providerUrl, contractAddress) {
-        this.web3 = new Web3('https://base-sepolia-rpc.publicnode.com');
-        this.contract = new this.web3.eth.Contract(NFTAccessControlABI, contractAddress);
-    }
-
-    // Helper function to decode access levels with numeric value
-    decodeAccessLevel(level) {
-        const accessLevels = {
+class NFTAccessEventDecoder {
+    constructor() {
+        this.web3 = new Web3();
+        
+        // Event signatures
+        this.eventSignatures = {
+            // AccessGranted(uint256,uint256,address,uint256)
+            '0xd5422307db29d9fcf76206ee945905c864bf3bf5118ab875bc2c9523e59866e9': 'AccessGranted',
+            // AccessRequested(address,uint256,uint256)
+            '0x9c22416d2351a8fd56706bdcaba7a6a4a245104ea90834907b9f503a5de96c43': 'AccessRequested'
+        };
+        
+        // Access level mappings
+        this.accessLevels = {
             '0': 'None (0)',
             '1': 'UseModel (1)',
             '2': 'Resale (2)',
@@ -18,128 +22,140 @@ class NFTAccessControlEventDecoder {
             '5': 'EditData (5)',
             '6': 'AbsoluteOwnership (6)'
         };
-        return accessLevels[level] || 'Unknown';
     }
 
-    // Format timestamp
-    async getBlockTimestamp(blockNumber) {
-        const block = await this.web3.eth.getBlock(blockNumber);
-        const date = new Date(block.timestamp * 1000);
-        return date.toISOString().replace('T', ' ').slice(0, 19);
-    }
-
-    // Determine operation and status based on event type and values
-    determineOperationAndStatus(eventName, oldLevel, newLevel) {
-        if (eventName === 'AccessGranted') {
-            return {
-                operation: 'Grant Access Request',
-                status: 'Success',
-                reason: 'Access is granted'
-            };
-        } else if (eventName === 'AccessRevoked') {
-            return {
-                operation: 'Revoke Access Request',
-                status: 'Success',
-                reason: 'Access is revoked'
-            };
-        } else if (eventName === 'AccessLevelChanged') {
-            if (newLevel === '0') {
-                return {
-                    operation: 'Revoke Access Request',
-                    status: 'Success',
-                    reason: 'Access level changed to None'
-                };
-            } else {
-                return {
-                    operation: 'Modify Access Request',
-                    status: 'Success',
-                    reason: `Access level changed from ${this.decodeAccessLevel(oldLevel)} to ${this.decodeAccessLevel(newLevel)}`
-                };
-            }
+    async decodeEvents(events) {
+        const decodedEvents = [];
+        for (const event of events) {
+            const decoded = await this.decodeEvent(event);
+            if (decoded) decodedEvents.push(decoded);
         }
+        return decodedEvents;
     }
 
-    async formatEvent(event, ownerAddress) {
-        const timestamp = await this.getBlockTimestamp(event.blockNumber);
-        const baseFormat = {
-            nftid: parseInt(event.returnValues.nftId),
-            collectionid: parseInt(event.returnValues.collectionId),
-            user_address: event.returnValues.user,
-            owner_address: ownerAddress,
-            timestamp: timestamp
+    async decodeEvent(event) {
+        const eventType = this.eventSignatures[event.topics[0]];
+        if (!eventType) return null;
+
+        const baseInfo = {
+            type: eventType,
+            blockNumber: parseInt(event.blockNumber, 16),
+            blockHash: event.blockHash,
+            transactionHash: event.transactionHash,
+            transactionIndex: parseInt(event.transactionIndex, 16),
+            logIndex: parseInt(event.logIndex, 16),
+            contractAddress: event.address,
+            timestamp: await this.getBlockTimestamp(parseInt(event.blockNumber, 16))
         };
 
-        let operationInfo;
-        if (event.event === 'AccessGranted') {
-            operationInfo = {
-                operation: 'Grant Access Request',
-                access_request: this.decodeAccessLevel(event.returnValues.accessLevel),
-                current_level: this.decodeAccessLevel(event.returnValues.accessLevel),
-                status: 'Success',
-                reason: 'Access is granted'
-            };
-        } else if (event.event === 'AccessRevoked') {
-            operationInfo = {
-                operation: 'Revoke Access Request',
-                access_request: 'None (0)',
-                current_level: 'None (0)',
-                status: 'Success',
-                reason: 'Access is revoked'
-            };
-        } else if (event.event === 'AccessLevelChanged') {
-            operationInfo = {
-                operation: 'Modify Access Request',
-                access_request: this.decodeAccessLevel(event.returnValues.newAccessLevel),
-                current_level: this.decodeAccessLevel(event.returnValues.newAccessLevel),
-                status: 'Success',
-                reason: `Access level changed to ${this.decodeAccessLevel(event.returnValues.newAccessLevel)}`
-            };
+        let decodedEvent;
+        switch (eventType) {
+            case 'AccessGranted':
+                decodedEvent = this.decodeAccessGranted(event, baseInfo);
+                break;
+            case 'AccessRequested':
+                decodedEvent = this.decodeAccessRequested(event, baseInfo);
+                break;
+            default:
+                return null;
         }
 
+        return decodedEvent;
+    }
+
+    decodeAccessGranted(event, baseInfo) {
         return {
-            ...baseFormat,
-            ...operationInfo
+            ...baseInfo,
+            collectionId: parseInt(event.topics[1], 16),
+            nftId: parseInt(event.topics[2], 16),
+            userAddress: '0x' + event.topics[3].slice(26),
+            accessLevel: this.decodeAccessLevel(parseInt(event.data, 16)),
+            operation: 'Grant Access Request',
+            status: 'Success',
+            reason: 'Access is granted',
+            summary: `Access Granted: Collection ${parseInt(event.topics[1], 16)}, NFT ${parseInt(event.topics[2], 16)}, Level ${this.decodeAccessLevel(parseInt(event.data, 16))}`
         };
     }
 
-    async getFormattedEvents(fromBlock, toBlock, ownerAddress) {
+    decodeAccessRequested(event, baseInfo) {
+        return {
+            ...baseInfo,
+            requesterAddress: '0x' + event.topics[1].slice(26),
+            collectionId: parseInt(event.topics[2], 16),
+            nftId: parseInt(event.topics[3], 16),
+            requestedLevel: this.decodeAccessLevel(parseInt(event.data, 16)),
+            operation: 'Request Access',
+            status: 'Pending',
+            reason: 'Access request submitted',
+            summary: `Access Requested: Collection ${parseInt(event.topics[2], 16)}, NFT ${parseInt(event.topics[3], 16)}, Level ${this.decodeAccessLevel(parseInt(event.data, 16))}`
+        };
+    }
+
+    decodeAccessLevel(level) {
+        return this.accessLevels[level.toString()] || 'Unknown';
+    }
+
+    async getBlockTimestamp(blockNumber) {
         try {
-            // Get all events
-            const events = await this.contract.getPastEvents('allEvents', {
-                fromBlock,
-                toBlock
-            });
-
-            // Format all events
-            const formattedEvents = await Promise.all(
-                events.map(event => this.formatEvent(event, ownerAddress))
-            );
-
-            // Sort by timestamp
-            return formattedEvents.sort((a, b) => 
-                new Date(b.timestamp) - new Date(a.timestamp)
-            );
-
+            const block = await this.web3.eth.getBlock(blockNumber);
+            if (!block) {
+                return new Date().toISOString().replace('T', ' ').slice(0, 19);
+            }
+            const date = new Date(parseInt(block.timestamp) * 1000);
+            return date.toISOString().replace('T', ' ').slice(0, 19);
         } catch (error) {
-            console.error('Error fetching events:', error);
-            throw error;
+            console.error(`Error getting timestamp for block ${blockNumber}:`, error);
+            return new Date().toISOString().replace('T', ' ').slice(0, 19);
         }
-    }
-
-    async getFormattedEventsByNFT(collectionId, nftId, fromBlock, toBlock, ownerAddress) {
-        const allEvents = await this.getFormattedEvents(fromBlock, toBlock, ownerAddress);
-        return allEvents.filter(event => 
-            event.collectionid === parseInt(collectionId) && 
-            event.nftid === parseInt(nftId)
-        );
-    }
-
-    async getFormattedEventsByUser(userAddress, fromBlock, toBlock, ownerAddress) {
-        const allEvents = await this.getFormattedEvents(fromBlock, toBlock, ownerAddress);
-        return allEvents.filter(event => 
-            event.user_address.toLowerCase() === userAddress.toLowerCase()
-        );
     }
 }
 
-module.exports = NFTAccessControlEventDecoder;
+// Example usage
+function decodeExampleEvents() {
+    const exampleEvents = [
+        {
+            "address": "0x2c6993608197b40ae0d0d1042829541067ac761e",
+            "blockHash": "0x365c4f9483eea112d4871fe9dac0ba3169ae804f26cd38b34407c388c43045d1",
+            "blockNumber": "0x1026997",
+            "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "logIndex": "0x29",
+            "removed": false,
+            "topics": [
+                "0xd5422307db29d9fcf76206ee945905c864bf3bf5118ab875bc2c9523e59866e9",
+                "0x0000000000000000000000000000000000000000000000000000000000000001",
+                "0x0000000000000000000000000000000000000000000000000000000000000007",
+                "0x000000000000000000000000cb6d7cdca0563575b6b734fa4f3e9d6ac7542912"
+            ],
+            "transactionHash": "0xcf1f4291e0c66863e9e55c1f260cb9ddab2106d580f09abfcb331f447ca1023b",
+            "transactionIndex": "0x16"
+        },
+        {
+            "address": "0x2c6993608197b40ae0d0d1042829541067ac761e",
+            "blockHash": "0x365c4f9483eea112d4871fe9dac0ba3169ae804f26cd38b34407c388c43045d1",
+            "blockNumber": "0x1026997",
+            "data": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "logIndex": "0x2a",
+            "removed": false,
+            "topics": [
+                "0x9c22416d2351a8fd56706bdcaba7a6a4a245104ea90834907b9f503a5de96c43",
+                "0x000000000000000000000000cb6d7cdca0563575b6b734fa4f3e9d6ac7542912",
+                "0x0000000000000000000000000000000000000000000000000000000000000001",
+                "0x0000000000000000000000000000000000000000000000000000000000000007"
+            ],
+            "transactionHash": "0xcf1f4291e0c66863e9e55c1f260cb9ddab2106d580f09abfcb331f447ca1023b",
+            "transactionIndex": "0x16"
+        }
+    ];
+
+    const decoder = new NFTAccessEventDecoder();
+    decoder.decodeEvents(exampleEvents).then(decodedEvents => {
+        console.log(JSON.stringify(decodedEvents, null, 2));
+    });
+}
+
+// Run the example
+
+decodeExampleEvents();
+
+// Export the decoder
+module.exports = NFTAccessEventDecoder;

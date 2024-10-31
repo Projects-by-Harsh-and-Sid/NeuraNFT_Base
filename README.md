@@ -456,7 +456,7 @@ Addresses saved to base_addresses.json
 
 
 6_deploy_collection_contract.js
-===============================
+===============================  
 
    Replacing 'CollectionContract'
    ------------------------------

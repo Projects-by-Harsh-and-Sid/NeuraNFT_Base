@@ -2,7 +2,7 @@ const http = require('http');
 
 const server = http.createServer((req, res) => {
     console.log('Request received:', req.method, req.url);
-    if (req.method === 'POST' && req.url === '/access_control') {
+    if (req.method === 'POST' && req.url === '/nft_access_control') {
         let body = '';
         console.log('Received webhook. Request details:');
         req.on('data', chunk => {

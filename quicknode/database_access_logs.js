@@ -22,7 +22,7 @@ class AccessLogPusher {
     // Push a single log entry
     async pushLog(logData) {
         try {
-            // Validate log data
+            // Va
             const Decodedlog = this.decodeEventLogData(logData);
             this.validateLogData(Decodedlog);
 
