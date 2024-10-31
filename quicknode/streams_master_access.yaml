@@ -13,13 +13,16 @@ Stream_Setting:
     Filter : filter_stream_master_access_control.js
     endpoint:
         endpoint type: quicknode function
-        file name: functions_master_access_control.js
+        File name: functions_master_access_control.js
+
+
 
 
 Destination_Setting:
     Destination type: function
     destination_url: https://test.hidden.neuranft.com/master_access_control
     Payload compression: none
+    File name: functions_master_access_control.js
     
 
 

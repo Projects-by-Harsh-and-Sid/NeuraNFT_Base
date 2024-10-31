@@ -11,13 +11,15 @@ Stream_Setting:
     Stream End: none
     Payload Optimization: none
     Filter : filter_stream_nft_update.js
-
+    endpoint:
+        endpoint type: quicknode function
+        file name: function_nft_collection_metadata_updates.js
 
 Destination_Setting:
     Destination type: function
     destination_url: https://test.hidden.neuranft.com/nft_update
     Payload compression: none
-    File name: functions_nft_update.js  
+    File name: function_nft_collection_metadata_updates.js
     
 
 
