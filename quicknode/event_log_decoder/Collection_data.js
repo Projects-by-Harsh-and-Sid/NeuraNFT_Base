@@ -1,6 +1,6 @@
 const { Web3 } = require('web3');
 
-class BlockchainEventDecoder {
+class CollectionDataDecoder {
     constructor() {
         this.web3 = new Web3();
     }
@@ -99,7 +99,7 @@ function decodeEventExample() {
         "transactionIndex": "0x7"
       };
 
-    const decoder = new BlockchainEventDecoder();
+    const decoder = new CollectionDataDecoder();
     const decodedResult = decoder.decodeEvent(exampleEvent);
     
     console.log(JSON.stringify(decodedResult, null, 2));
@@ -111,4 +111,4 @@ if (require.main === module) {
     decodeEventExample();
 }
 
-module.exports = BlockchainEventDecoder;
+module.exports = CollectionDataDecoder;

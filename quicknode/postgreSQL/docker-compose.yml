@@ -1,0 +1,22 @@
+version: '3.10'
+services:
+  postgres:
+    image: postgres:15
+    container_name: neuranft_postgres
+    environment:
+      POSTGRES_USER: neuranft
+      POSTGRES_PASSWORD: neuranft_password
+      POSTGRES_DB: neuranft_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - neuranft_network
+
+networks:
+  neuranft_network:
+    driver: bridge
+
+volumes:
+  postgres_data:
