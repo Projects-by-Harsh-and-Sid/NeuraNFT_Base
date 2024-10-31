@@ -81,34 +81,34 @@ class CollectionDataDecoder {
     }
 }
 
-// Example usage function
-function decodeEventExample() {
-    const exampleEvent = {
-        "address": "0x536446035ef24cb011a3b55f0627df2fad083f67",
-        "blockHash": "0x92fbfc5ef13c2ba48cd705dde158f4363895460297ee5299642c73694fa1ba02",
-        "blockNumber": "0x10268f8",
-        "data": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094c6c616d6120332e310000000000000000000000000000000000000000000000",
-        "logIndex": "0x8",
-        "removed": false,
-        "topics": [
-          "0xb0b7b214963f2e16da9cf6ed5851757dfed306875edf1d59e030881102ef24ef",
-          "0x0000000000000000000000000000000000000000000000000000000000000014",
-          "0x00000000000000000000000043adac5516f8e2d3d2bd31276bec343547ee6612"
-        ],
-        "transactionHash": "0x3d417250bd9c0467163546968453287a27002d57d1160a0cf9d0052b98e8f4af",
-        "transactionIndex": "0x7"
-      };
+// // Example usage function
+// function decodeEventExample() {
+//     const exampleEvent = {
+//         "address": "0x536446035ef24cb011a3b55f0627df2fad083f67",
+//         "blockHash": "0x92fbfc5ef13c2ba48cd705dde158f4363895460297ee5299642c73694fa1ba02",
+//         "blockNumber": "0x10268f8",
+//         "data": "0x000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000094c6c616d6120332e310000000000000000000000000000000000000000000000",
+//         "logIndex": "0x8",
+//         "removed": false,
+//         "topics": [
+//           "0xb0b7b214963f2e16da9cf6ed5851757dfed306875edf1d59e030881102ef24ef",
+//           "0x0000000000000000000000000000000000000000000000000000000000000014",
+//           "0x00000000000000000000000043adac5516f8e2d3d2bd31276bec343547ee6612"
+//         ],
+//         "transactionHash": "0x3d417250bd9c0467163546968453287a27002d57d1160a0cf9d0052b98e8f4af",
+//         "transactionIndex": "0x7"
+//       };
 
-    const decoder = new CollectionDataDecoder();
-    const decodedResult = decoder.decodeEvent(exampleEvent);
+//     const decoder = new CollectionDataDecoder();
+//     const decodedResult = decoder.decodeEvent(exampleEvent);
     
-    console.log(JSON.stringify(decodedResult, null, 2));
-    return decodedResult;
-}
+//     console.log(JSON.stringify(decodedResult, null, 2));
+//     return decodedResult;
+// }
 
-// Run the example if this file is executed directly
-if (require.main === module) {
-    decodeEventExample();
-}
+// // Run the example if this file is executed directly
+// if (require.main === module) {
+//     decodeEventExample();
+// }
 
 module.exports = CollectionDataDecoder;
