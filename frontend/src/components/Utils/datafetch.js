@@ -1,4 +1,4 @@
-import endpoints from '../../endpoints.json';
+// import endpoints from '../../endpoints.json';
 import collectionsData from '../HomePage/collections.json';
 import nftsData from '../HomePage/nfts.json';
 
@@ -19,7 +19,9 @@ import nftsData from '../HomePage/nfts.json';
 
 import axios from 'axios';
 
-const baseURL = endpoints.BACKEND_URL;
+// const baseURL = endpoints.BACKEND_URL;
+const baseURL = process.env.REACT_APP_BACKEND_URL;
+
 
 export const fetchAllCollections = async () => {
   try {

@@ -4,6 +4,12 @@ WORKDIR /app
 
 # Copy only necessary files for npm install
 COPY package*.json ./
+
+ARG BACKEND_URL
+ENV REACT_APP_BACKEND_URL=$BACKEND_URL
+
+
+
 RUN npm install
 
 # Copy only necessary source files

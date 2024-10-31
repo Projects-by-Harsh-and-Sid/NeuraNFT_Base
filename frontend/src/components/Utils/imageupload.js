@@ -1,7 +1,10 @@
 import axios from 'axios';
-import endpoints from '../../endpoints.json';
+// import endpoints from '../../endpoints.json';
 
-const baseURL = endpoints.BACKEND_URL;
+// const baseURL = endpoints.BACKEND_URL;
+
+const baseURL = process.env.REACT_APP_BACKEND_URL;
+
 
 async function uploadImage(imageData, imageType) {
   // Validate the input imageType or determine it from imageData if possible
