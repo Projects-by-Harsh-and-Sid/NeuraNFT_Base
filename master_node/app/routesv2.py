@@ -153,7 +153,10 @@ def generate_key():
     
     #check if data_link is in uel format or not
     
-    
+    if int(app.config['LOCAL_ENV']) == 1:
+        # local_endpoint  = f"{app.config["Load_balancer_Endpoints"]['hpcEndpoint']}:{app.config["Load_balancer_Endpoints"]['hpcEndpointPort']}"
+        local_endpoint  = app.config["local_data_endpoint"]
+        data_link       = str(data_link).replace(str(FILE_STORAGE_ENDPOINT).lower(), local_endpoint)  
     
     
     if not check_urk_format(data_link) :

@@ -1,10 +1,16 @@
 *.crt
 *.pem
 *.key
-*.env
 /.logs/app.log
 
 /.logs/access.log
 /.logs/error.log
 /.nginx_logs/access.log
 /.nginx_logs/error.log
+
+/app/uploads/images/*
+/app/uploads/data/*
+
+
+!/app/uploads/images/__placeholder__
+!/app/uploads/data/__placeholder__
