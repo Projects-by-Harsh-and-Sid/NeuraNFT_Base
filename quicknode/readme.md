@@ -852,4 +852,17 @@ Destination_Setting:
 
 # Integration Screenshots
 
+## Stream
+
+![alt text](streams.png)
+
+
+## Function
+
+![alt text](function2.png)
+
+## Access Control Dashboard Stream
+
+![alt text](access_control_dashboard_stream.png)
+
 ![alt text](stream_destination_setup.png)

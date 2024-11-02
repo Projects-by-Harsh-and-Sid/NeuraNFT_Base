@@ -87,7 +87,7 @@ async function initializeTables() {
 }
 
 // Quicknode function to handle streams
-exports.handleQuicknodeStream = async function (params, response) {
+exports.handleQuicknodeStream = async function (params) {
     try {
 
         const contract_address = params.data[0].address;
@@ -112,10 +112,10 @@ exports.handleQuicknodeStream = async function (params, response) {
                 throw new Error(`Unknown stream ID: ${streamId}`);
         }
 
-        response.json({ success: true, data: result });
+        // response.json({ success: true, data: result });
     } catch (error) {
         console.error('Stream handling error:', error);
-        response.status(500).json({ success: false, error: error.message });
+        // response.status(500).json({ success: false, error: error.message });
     }
 }
 

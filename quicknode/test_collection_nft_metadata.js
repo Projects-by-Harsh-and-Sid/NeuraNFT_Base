@@ -2,8 +2,125 @@
 const { Web3 } = require('web3');
 const axios = require('axios');
 
+class NFTAccessEventDecoder {
+    constructor() {
+        this.web3 = new Web3();
+        
+        // Event signatures
+        this.eventSignatures = {
+            // AccessGranted(uint256,uint256,address,uint256)
+            '0xd5422307db29d9fcf76206ee945905c864bf3bf5118ab875bc2c9523e59866e9': 'AccessGranted',
+            // AccessRequested(address,uint256,uint256)
+            '0x9c22416d2351a8fd56706bdcaba7a6a4a245104ea90834907b9f503a5de96c43': 'AccessRequested'
+        };
+        
+        // Access level mappings
+        this.accessLevels = {
+            '0': 'None (0)',
+            '1': 'UseModel (1)',
+            '2': 'Resale (2)',
+            '3': 'CreateReplica (3)',
+            '4': 'ViewAndDownload (4)',
+            '5': 'EditData (5)',
+            '6': 'AbsoluteOwnership (6)'
+        };
+    }
 
-const NFTAccessEventDecoder = require('./event_log_decoder/NFT_Access_Control.js');
+    async decodeEvents(events) {
+        try {
+            const decodedEvents = [];
+            for (const event of events) {
+                const decoded = await this.decodeEvent(event);
+                if (decoded) decodedEvents.push(decoded);
+            }
+            return decodedEvents;
+        } catch (error) {
+            console.error('Error decoding events:', error);
+            throw error;
+        }
+    }
+
+    async decodeEvent(event) {
+        try {
+            const eventType = this.eventSignatures[event.topics[0]];
+            if (!eventType) return null;
+
+            const baseInfo = {
+                type: eventType,
+                blockNumber: parseInt(event.blockNumber, 16),
+                blockHash: event.blockHash,
+                transactionHash: event.transactionHash,
+                transactionIndex: parseInt(event.transactionIndex, 16),
+                logIndex: parseInt(event.logIndex, 16),
+                contractAddress: event.address,
+                timestamp: await this.getBlockTimestamp(parseInt(event.blockNumber, 16))
+            };
+
+            let decodedEvent;
+            switch (eventType) {
+                case 'AccessGranted':
+                    decodedEvent = this.decodeAccessGranted(event, baseInfo);
+                    break;
+                case 'AccessRequested':
+                    decodedEvent = this.decodeAccessRequested(event, baseInfo);
+                    break;
+                default:
+                    return null;
+            }
+
+            return decodedEvent;
+        } catch (error) {
+            console.error('Error decoding single event:', error);
+            throw error;
+        }
+    }
+
+    decodeAccessGranted(event, baseInfo) {
+        return {
+            ...baseInfo,
+            collectionId: parseInt(event.topics[1], 16),
+            nftId: parseInt(event.topics[2], 16),
+            userAddress: '0x' + event.topics[3].slice(26),
+            accessLevel: this.decodeAccessLevel(parseInt(event.data, 16)),
+            operation: 'Grant Access Request',
+            status: 'Success',
+            reason: 'Access is granted',
+            summary: `Access Granted: Collection ${parseInt(event.topics[1], 16)}, NFT ${parseInt(event.topics[2], 16)}, Level ${this.decodeAccessLevel(parseInt(event.data, 16))}`
+        };
+    }
+
+    decodeAccessRequested(event, baseInfo) {
+        return {
+            ...baseInfo,
+            requesterAddress: '0x' + event.topics[1].slice(26),
+            collectionId: parseInt(event.topics[2], 16),
+            nftId: parseInt(event.topics[3], 16),
+            requestedLevel: this.decodeAccessLevel(parseInt(event.data, 16)),
+            operation: 'Request Access',
+            status: 'Pending',
+            reason: 'Access request submitted',
+            summary: `Access Requested: Collection ${parseInt(event.topics[2], 16)}, NFT ${parseInt(event.topics[3], 16)}, Level ${this.decodeAccessLevel(parseInt(event.data, 16))}`
+        };
+    }
+
+    decodeAccessLevel(level) {
+        return this.accessLevels[level.toString()] || 'Unknown';
+    }
+
+    async getBlockTimestamp(blockNumber) {
+        try {
+            const block = await this.web3.eth.getBlock(blockNumber);
+            if (!block) {
+                return new Date().toISOString().replace('T', ' ').slice(0, 19);
+            }
+            const date = new Date(parseInt(block.timestamp) * 1000);
+            return date.toISOString().replace('T', ' ').slice(0, 19);
+        } catch (error) {
+            console.error(`Error getting timestamp for block ${blockNumber}:`, error);
+            return new Date().toISOString().replace('T', ' ').slice(0, 19);
+        }
+    }
+}
 
 // Configuration
 const CONTRACT_ADDRESSES = {
