@@ -12,15 +12,17 @@ Stream_Setting:
     Payload Optimization: none
     Filter : filter_stream_master_access_control.js
     endpoint:
-        endpoint type: quicknode function
-        file name: functions_master_access_control.js
+        endpoint type: postgreSQL
+        File name: database_access_logs.js
+
 
 
 Destination_Setting:
-    Destination type: function
+    Destination type: postgresSQL
     destination_url: https://test.hidden.neuranft.com/master_access_control
     Payload compression: none
-    File name: functions_master_access_control.js
+    File name: database_access_logs.js
+    
     
 
 
