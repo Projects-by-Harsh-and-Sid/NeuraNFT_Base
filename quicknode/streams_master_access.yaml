@@ -1,0 +1,21 @@
+
+Stream_Setting:
+    Chain and network:
+    Chain: Base
+    Network: Sepolia
+    Dataset: Logs
+    Stream name: master_access_control
+    Region: us-east-1
+    Batch size: 1
+    Stream Start: 16934421
+    Stream End: none
+    Payload Optimization: none
+    Filter : filter_stream_master_access_control.js
+    endpoint:
+        endpoint type: quicknode function
+        file name: functions_master_access_control.js
+
+
+Destination_Setting:
+    
+
