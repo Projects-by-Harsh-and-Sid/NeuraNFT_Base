@@ -1,55 +1,35 @@
-function main(data) {
+function main(stream) {
     try {
-        // If stream is configured with metadata in the body, the data may be nested under a `data` key
-        const data = stream.data ? stream.data : stream
+        // Extract data from stream
+        const data = stream.data ? stream.data : stream;
+        const targetAddress = '0xead39c0363378b3100cb8c89820f71353136ebd0'.toLowerCase();
 
-        const addresses = [
-            '0xEAD39C0363378B3100cB8C89820f71353136EBd0'
-        ]
-        var addressSet = new Set(addresses.map(address => address.toLowerCase()))
-        var paddedAddressSet = new Set(
-            addresses.map(
-                address => '0x' + address.toLowerCase().slice(2).padStart(64, '0')
-            )
-        )
-
-        var matchingTransactions = []
-        var matchingReceipts = []
-
-        data.block.transactions.forEach(transaction => {
-            let transactionMatches =
-                (transaction.from && addressSet.has(transaction.from.toLowerCase())) ||
-                (transaction.to && addressSet.has(transaction.to.toLowerCase()))
-
-            if (transactionMatches) {
-                matchingTransactions.push(transaction)
-            }
-        })
-
-        data.receipts.forEach(receipt => {
-            let receiptMatches =
-                receipt.logs &&
-                receipt.logs.some(
-                    log =>
-                        log.topics &&
-                        log.topics.length > 1 &&
-                        (paddedAddressSet.has(log.topics[1]) ||
-                            (log.topics.length > 2 && paddedAddressSet.has(log.topics[2])))
-                )
-            if (receiptMatches) {
-                matchingReceipts.push(receipt)
-            }
-        })
-
-        if (matchingTransactions.length === 0 && matchingReceipts.length === 0) {
-            return null
+        // Function to flatten nested arrays
+        function flattenArray(arr) {
+            return arr.reduce((flat, toFlatten) => {
+                return flat.concat(Array.isArray(toFlatten) ? flattenArray(toFlatten) : toFlatten);
+            }, []);
         }
 
-        return {
-            transactions: matchingTransactions,
-            receipts: matchingReceipts,
+        // Flatten the nested array structure
+        const flattenedData = flattenArray(data);
+
+        // Filter for valid transaction objects with matching address
+        const filteredTransactions = flattenedData.filter(item => {
+            return item && 
+                   typeof item === 'object' && 
+                   item.address && 
+                   item.address.toLowerCase() === targetAddress;
+        });
+
+        if (filteredTransactions.length === 0) {
+            return null;
         }
+
+        return filteredTransactions;
+
     } catch (e) {
-        return { error: e.message }
+        console.error('Error in processing stream:', e);
+        return { error: e.message };
     }
 }

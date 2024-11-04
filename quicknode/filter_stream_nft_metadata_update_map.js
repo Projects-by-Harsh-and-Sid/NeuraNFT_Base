@@ -2,7 +2,7 @@ function main(stream) {
     try {
         // Extract data from stream
         const data = stream.data ? stream.data : stream;
-        const targetAddress = '0x2c6993608197B40ae0d0D1042829541067ac761e'.toLowerCase();
+        const targetAddress = '0x13846e6fDe06853f6CC822A58f97AdbEbF1e6AFd'.toLowerCase();
 
         // Function to flatten nested arrays
         function flattenArray(arr) {
